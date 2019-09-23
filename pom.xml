@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+		 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.papaja</groupId>
+    <artifactId>papaja</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+
+    <properties>
+        <timestamp>${maven.build.timestamp}</timestamp>
+
+    </properties>
+
+    <modules>
+        <module>papaja-commons</module>
+        <module>papaja-adminfly</module>
+        <module>papaja-adminfly-kv</module>
+    </modules>
+
+    <profiles>
+        <profile>
+            <id>adminfly</id>
+            <modules>
+                <module>papaja-adminfly</module>
+            </modules>
+        </profile>
+        <!--<profile>-->
+            <!--<id>mdbv</id>-->
+            <!--<modules>-->
+                <!--<module>module-mdbv</module>-->
+            <!--</modules>-->
+        <!--</profile>-->
+        <!--<profile>-->
+            <!--<id>kv</id>-->
+            <!--<modules>-->
+                <!--<module>module-kv</module>-->
+            <!--</modules>-->
+        <!--</profile>-->
+        <!--<profile>-->
+            <!--<id>blog</id>-->
+            <!--<modules>-->
+                <!--<module>module-blog</module>-->
+            <!--</modules>-->
+        <!--</profile>-->
+        <!--<profile>-->
+            <!--<id>all</id>-->
+            <!--<activation>-->
+                <!--<activeByDefault>true</activeByDefault>-->
+            <!--</activation>-->
+            <!--<modules>-->
+                <!--<module>module-blog</module>-->
+                <!--<module>module-kv</module>-->
+                <!--<module>module-mdbv</module>-->
+            <!--</modules>-->
+        <!--</profile>-->
+    </profiles>
+
+    <build>
+        <finalName>ROOT##build-${timestamp}-${project.version}</finalName>
+
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.2</version>
+                <executions>
+                    <execution>
+                        <id>default-war</id>
+                        <phase>prepare-package</phase>
+                        <configuration>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <port>8888</port>
+                    <path>/</path>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

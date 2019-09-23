@@ -1,0 +1,13 @@
+.idea/
+target/
+bin/
+out/
+output/
+.settings/
+.vscode/
+*.iml
+.project
+.classpath
+.factorypath
+.DS_Store
+*.private.properties
