@@ -10,36 +10,39 @@
     <packaging>pom</packaging>
     <version>1.0</version>
 
+    <name>papaja-parent</name>
+    <url>https://papaja.org/</url>
+
     <properties>
         <timestamp>${maven.build.timestamp}</timestamp>
-
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <modules>
-        <module>papaja-commons</module>
-        <module>papaja-adminfly</module>
-        <module>papaja-adminfly-kv</module>
+        <module>adminfly</module>
+        <module>adminfly-module-kv</module>
     </modules>
 
     <profiles>
-        <profile>
-            <id>adminfly</id>
-            <modules>
-                <module>papaja-adminfly</module>
-            </modules>
-        </profile>
+<!--        <profile>-->
+<!--            <id>adminfly</id>-->
+<!--            <modules>-->
+<!--                <module>papaja-adminfly</module>-->
+<!--            </modules>-->
+<!--        </profile>-->
         <!--<profile>-->
             <!--<id>mdbv</id>-->
             <!--<modules>-->
                 <!--<module>module-mdbv</module>-->
             <!--</modules>-->
         <!--</profile>-->
-        <!--<profile>-->
-            <!--<id>kv</id>-->
-            <!--<modules>-->
-                <!--<module>module-kv</module>-->
-            <!--</modules>-->
-        <!--</profile>-->
+        <profile>
+            <id>kv</id>
+            <modules>
+                <module>adminfly-module-kv</module>
+            </modules>
+        </profile>
         <!--<profile>-->
             <!--<id>blog</id>-->
             <!--<modules>-->
@@ -60,7 +63,7 @@
     </profiles>
 
     <build>
-        <finalName>ROOT##build-${timestamp}-${project.version}</finalName>
+        <finalName>papaja-adminfly-parent</finalName>
 
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>

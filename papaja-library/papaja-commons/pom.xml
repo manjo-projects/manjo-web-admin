@@ -5,6 +5,13 @@
 		 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>org.papaja.commons</groupId>
+    <artifactId>papaja-commons</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>papaja-commons</name>
+
     <properties>
         <apache.lang3.version>3.9</apache.lang3.version>
         <apache.beanutils.version>1.9.3</apache.beanutils.version>
@@ -12,11 +19,6 @@
         <apache.codec.version>1.13</apache.codec.version>
         <jackson.version>2.9.9</jackson.version>
     </properties>
-
-    <groupId>org.papaja.commons</groupId>
-    <artifactId>papaja-commons</artifactId>
-    <version>1.0</version>
-    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>

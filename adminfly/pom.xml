@@ -12,9 +12,15 @@
     </parent>
 
     <groupId>org.papaja.adminfly</groupId>
-    <artifactId>papaja-adminfly</artifactId>
+    <artifactId>adminfly</artifactId>
     <version>1.0</version>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>../papaja-library/papaja-commons</module>
+    </modules>
+
+    <name>adminfly</name>
 
     <properties>
         <versionName>RC</versionName>
@@ -51,12 +57,6 @@
         <dependency>
             <groupId>org.papaja.commons</groupId>
             <artifactId>papaja-commons</artifactId>
-            <version>1.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.papaja.kv</groupId>
-            <artifactId>papaja-adminfly-kv</artifactId>
             <version>1.0</version>
         </dependency>
 
@@ -228,7 +228,7 @@
     </dependencies>
 
     <build>
-        <finalName>adminfly##build-${timestamp}-${project.version}-${versionName}</finalName>
+        <finalName>adminfly-${project.version}</finalName>
 
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
