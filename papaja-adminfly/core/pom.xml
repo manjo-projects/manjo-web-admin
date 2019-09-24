@@ -17,7 +17,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>../papaja-library/papaja-commons</module>
+        <module>../../papaja/papaja-commons</module>
     </modules>
 
     <name>adminfly</name>

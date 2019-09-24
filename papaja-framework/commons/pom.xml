@@ -49,8 +49,7 @@
     </dependencies>
 
     <build>
-        <finalName>papaja-commons-${project.version}</finalName>
-        <sourceDirectory>src/main/java</sourceDirectory>
+        <finalName>papaja-framework-commons-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
