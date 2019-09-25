@@ -5,31 +5,27 @@
 		 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.papaja</groupId>
-    <artifactId>papaja</artifactId>
+    <groupId>org.papaja.framework</groupId>
+    <artifactId>framework</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
 
-    <name>papaja-parent</name>
+    <name>papaja-framework-parent</name>
     <url>https://papaja.org/</url>
 
     <properties>
         <timestamp>${maven.build.timestamp}</timestamp>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <build.name>default</build.name>
     </properties>
 
     <modules>
-        <module>framework</module>
-        <module>adminfly-project</module>
+        <module>commons</module>
     </modules>
 
-    <profiles>
-
-    </profiles>
-
     <build>
-        <finalName>papaja-adminfly-parent</finalName>
+        <finalName>papaja-framework-commons-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

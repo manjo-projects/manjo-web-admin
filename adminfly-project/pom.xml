@@ -5,42 +5,31 @@
 		 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.papaja</groupId>
-    <artifactId>papaja</artifactId>
+    <parent>
+        <groupId>org.papaja</groupId>
+        <artifactId>papaja</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <groupId>org.papaja.adminfly</groupId>
+    <artifactId>adminfly</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
 
-    <name>papaja-parent</name>
+    <name>papaja-adminfly-parent</name>
     <url>https://papaja.org/</url>
 
     <properties>
         <timestamp>${maven.build.timestamp}</timestamp>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <build.name>default</build.name>
     </properties>
 
     <modules>
-        <module>framework</module>
-        <module>adminfly-project</module>
+        <module>core</module>
+        <module>bootstrap</module>
+        <module>module-admin</module>
     </modules>
-
-    <profiles>
-
-    </profiles>
-
-    <build>
-        <finalName>papaja-adminfly-parent</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
