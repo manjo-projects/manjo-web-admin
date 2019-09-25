@@ -11,7 +11,6 @@
         <version>1.0</version>
     </parent>
 
-    <groupId>org.papaja.adminfly</groupId>
     <artifactId>adminfly-core</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
@@ -51,8 +50,8 @@
     <dependencies>
         <!-- Local -->
         <dependency>
-            <groupId>org.papaja.commons</groupId>
-            <artifactId>papaja-commons</artifactId>
+            <groupId>org.papaja.framework</groupId>
+            <artifactId>papaja-framework-commons</artifactId>
             <version>1.0</version>
         </dependency>
 

@@ -20,7 +20,7 @@
     </properties>
 
     <modules>
-        <module>framework</module>
+        <module>papaja-framework</module>
         <module>adminfly-project</module>
     </modules>
 
