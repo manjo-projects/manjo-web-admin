@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+		 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.papaja.adminfly</groupId>
+        <artifactId>papaja-adminfly-modules</artifactId>
+        <version>1.0</version>
+    </parent>
+
+    <artifactId>papaja-adminfly-module-blog</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>PapaJa Adminfly - Blog</name>
+
+    <properties>
+        <buildName>papaja-adminfly-module-blog</buildName>
+    </properties>
+
+    <build>
+        <finalName>papaja-adminfly-module-blog-${project.version}</finalName>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.papaja.adminfly</groupId>
+            <artifactId>papaja-adminfly-commons</artifactId>
+            <version>1.0</version>
+        </dependency>
+    </dependencies>
+
+</project>
