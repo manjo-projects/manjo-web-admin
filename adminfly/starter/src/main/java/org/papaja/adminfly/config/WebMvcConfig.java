@@ -47,8 +47,11 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
+import java.util.Objects;
 
+import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
+import static java.util.Objects.requireNonNull;
 import static org.papaja.util.StringUtils.substringBetween;
 
 @SuppressWarnings({"unused"})
@@ -122,8 +125,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         resolver.setCookieMaxAge(2400);
         resolver.setCookieName(environment.getProperty("app.view.theme.cookieName"));
-        resolver.setCookieMaxAge(Integer.valueOf(environment.getProperty("app.view.theme.cookieMaxAge")));
-        resolver.setDefaultThemeName(environment.getProperty("app.view.theme.default"));
+        resolver.setCookieMaxAge(Integer.valueOf(requireNonNull(environment.getProperty("app.view.theme.cookieMaxAge"))));
+        resolver.setDefaultThemeName(requireNonNull(environment.getProperty("app.view.theme.default")));
 
         return resolver;
     }
@@ -155,9 +158,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
                     format("classpath:%s", substringBetween("locale", "_", resource.getURI().toString()))
                 );
             }
-
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
         return source;
@@ -167,12 +169,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public LocaleResolver localeResolver() {
         CookieLocaleResolver resolver = new CookieLocaleResolver();
 
-        if (false) {
-            resolver.setDefaultLocale(Locale.forLanguageTag(environment.getProperty("app.locale.default").replace('_', '-')));
-        }
-
         resolver.setCookieName(environment.getProperty("app.locale.cookieName"));
-        resolver.setCookieMaxAge(Integer.valueOf(environment.getProperty("app.locale.cookieMaxAge")));
+        resolver.setCookieMaxAge(Integer.valueOf(requireNonNull(environment.getProperty("app.locale.cookieMaxAge"))));
 
         return resolver;
     }
@@ -224,7 +222,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
 
-        interceptor.setParamName(environment.getProperty("app.locale.queryParameterName"));
+        interceptor.setParamName(requireNonNull(environment.getProperty("app.locale.queryParameterName")));
 
         return interceptor;
     }
@@ -233,7 +231,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public ThemeChangeInterceptor themeChangeInterceptor() {
         ThemeChangeInterceptor interceptor = new ThemeChangeInterceptor();
 
-        interceptor.setParamName(environment.getProperty("app.view.theme.queryParameterName"));
+        interceptor.setParamName(requireNonNull(environment.getProperty("app.view.theme.queryParameterName")));
 
         return interceptor;
     }
@@ -242,7 +240,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
 
-        multipartResolver.setMaxUploadSize(Integer.valueOf(environment.getProperty("app.file.upload.maxSize")));
+        multipartResolver.setMaxUploadSize(parseInt(requireNonNull(environment.getProperty("app.file.upload.maxSize"))));
 
         return multipartResolver;
     }

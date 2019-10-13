@@ -115,6 +115,16 @@
             <artifactId>papaja-geo</artifactId>
             <version>1.0.0-RC1</version>
         </dependency>
+        <dependency>
+            <groupId>org.papaja</groupId>
+            <artifactId>papaja-converter</artifactId>
+            <version>1.0.0-RC1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.papaja</groupId>
+            <artifactId>papaja-data</artifactId>
+            <version>1.0.0-RC1</version>
+        </dependency>
 
         <!-- Spring -->
         <dependency>

@@ -27,8 +27,8 @@
 
     <modules>
         <module>admin-secure</module>
-<!--        <module>blog</module>-->
-<!--        <module>mongodb-viewer</module>-->
+        <module>blog</module>
+        <module>mongodb-viewer</module>
         <module>key-vault</module>
     </modules>
 

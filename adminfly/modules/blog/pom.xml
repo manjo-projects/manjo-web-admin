@@ -15,7 +15,7 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>PapaJa Adminfly - Blog</name>
+    <name>PapaJa Adminfly - [Module]: Blog</name>
 
     <properties>
         <buildName>papaja-adminfly-module-blog</buildName>
@@ -30,13 +30,5 @@
             </resource>
         </resources>
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.papaja.adminfly</groupId>
-            <artifactId>papaja-adminfly-commons</artifactId>
-            <version>1.0</version>
-        </dependency>
-    </dependencies>
 
 </project>

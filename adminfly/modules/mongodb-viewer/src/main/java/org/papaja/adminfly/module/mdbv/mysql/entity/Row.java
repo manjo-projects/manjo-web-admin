@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.mdbv.mysql.entity;
 
-import org.papaja.commons.converter.Format;
 import org.papaja.adminfly.commons.entity.AbstractEntity;
+import org.papaja.converter.Format;
 
 import javax.persistence.*;
 

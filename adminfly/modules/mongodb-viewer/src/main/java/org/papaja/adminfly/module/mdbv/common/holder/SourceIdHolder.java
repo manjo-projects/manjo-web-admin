@@ -1,11 +1,11 @@
 package org.papaja.adminfly.module.mdbv.common.holder;
 
-import org.papaja.commons.structure.Holder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpSession;
+import java.util.function.Supplier;
 
-public class SourceIdHolder implements Holder<Integer> {
+public class SourceIdHolder implements Supplier<Integer> {
 
     @Autowired
     private HttpSession session;
@@ -21,7 +21,6 @@ public class SourceIdHolder implements Holder<Integer> {
         return (Integer) session.getAttribute(sessionKey);
     }
 
-    @Override
     public void set(Integer value) {
         session.setAttribute(sessionKey, value);
     }

@@ -167,7 +167,7 @@ abstract public class AbstractRepository<E extends AbstractEntity> {
     }
 
     public CriteriaQuery<E> getQuery(Pair<String, ?>... pairs) {
-        return getQuery(Arrays.asList(pairs));
+        return getQuery(asList(pairs));
     }
 
     public <T extends Serializable> List<T> cleanIds(List<T> ids) {

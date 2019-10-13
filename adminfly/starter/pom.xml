@@ -54,6 +54,16 @@
                     <artifactId>papaja-adminfly-module-kv</artifactId>
                     <version>${papaja.adminfly.module.key-vault.version}</version>
                 </dependency>
+                <dependency>
+                    <groupId>org.papaja.adminfly</groupId>
+                    <artifactId>papaja-adminfly-module-blog</artifactId>
+                    <version>${papaja.adminfly.module.blog.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.papaja.adminfly</groupId>
+                    <artifactId>papaja-adminfly-module-mdbv</artifactId>
+                    <version>${papaja.adminfly.module.mongodb-viewer.version}</version>
+                </dependency>
             </dependencies>
         </profile>
     </profiles>

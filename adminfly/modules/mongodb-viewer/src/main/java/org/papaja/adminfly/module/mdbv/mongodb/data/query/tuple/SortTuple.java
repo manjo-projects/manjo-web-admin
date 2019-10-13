@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.mdbv.mongodb.data.query.tuple;
 
-import org.papaja.commons.data.query.Operator;
-import org.papaja.commons.structure.tuple.Pair;
+import org.papaja.data.query.Operator;
+import org.papaja.tuple.Pair;
 
 import java.util.Objects;
 

@@ -1,11 +1,11 @@
 package org.papaja.adminfly.module.mdbv.config;
 
 import com.mongodb.MongoClient;
+import org.papaja.adminfly.commons.data.AdminFlyModules;
 import org.papaja.adminfly.module.mdbv.common.converter.DateTimeConverter;
 import org.papaja.adminfly.module.mdbv.common.converter.RawJsonConverter;
 import org.papaja.adminfly.module.mdbv.common.holder.SourceIdHolder;
 import org.papaja.adminfly.module.mdbv.common.manager.MongoDatabaseManager;
-import org.papaja.adminfly.commons.data.AdminFlyModules;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

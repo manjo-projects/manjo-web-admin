@@ -18,6 +18,8 @@ public class BlogConfig {
     BlogConfig(Environment environment) {
         this.environment = environment;
 
+        System.out.println(getClass().getName());
+
         AdminFlyModules.addModule(
             environment.getProperty("module.blog.name"), environment.getProperty("module.blog.path")
         );

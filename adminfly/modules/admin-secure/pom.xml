@@ -15,7 +15,7 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>PapaJa Adminfly - Users Manager (Default)</name>
+    <name>PapaJa Adminfly - [Module]: Users Manager (Default)</name>
 
     <properties>
         <buildName>papaja-adminfly-module-admin</buildName>

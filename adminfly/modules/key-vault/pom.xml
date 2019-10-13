@@ -15,7 +15,7 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>PapaJa Adminfly - Key-Value Vault</name>
+    <name>PapaJa Adminfly - [Module]: Key-Value Vault</name>
 
     <build>
         <finalName>adminfly-module-kv-${project.version}</finalName>

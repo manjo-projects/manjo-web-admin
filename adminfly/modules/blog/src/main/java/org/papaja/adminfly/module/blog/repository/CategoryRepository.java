@@ -1,8 +1,8 @@
 package org.papaja.adminfly.module.blog.repository;
 
+import org.papaja.adminfly.commons.repository.AbstractRepository;
 import org.papaja.adminfly.module.blog.entity.Category;
 import org.papaja.adminfly.module.blog.entity.Domain;
-import org.papaja.adminfly.core.repository.AbstractRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.criteria.CriteriaBuilder;

@@ -1,9 +1,9 @@
 package org.papaja.adminfly.module.mdbv.mongodb.data.query.tuple;
 
-import org.papaja.commons.converter.Format;
-import org.papaja.commons.data.query.Operator.Comparison;
-import org.papaja.commons.data.query.Operator.Logical;
-import org.papaja.commons.structure.tuple.Quintet;
+import org.papaja.converter.Format;
+import org.papaja.data.query.Operator.Comparison;
+import org.papaja.data.query.Operator.Logical;
+import org.papaja.tuple.Quintet;
 
 import static java.util.Objects.nonNull;
 

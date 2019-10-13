@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.mdbv.mongodb.data.query.tuple;
 
-import org.papaja.commons.structure.tuple.Pair;
+import org.papaja.tuple.Pair;
 
 import static java.util.Objects.nonNull;
 

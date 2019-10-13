@@ -12,12 +12,11 @@ import org.papaja.adminfly.module.mdbv.mysql.entity.Source;
 import org.papaja.adminfly.module.mdbv.mysql.service.RowService;
 import org.papaja.adminfly.module.mdbv.mysql.service.SourceService;
 import org.papaja.adminfly.commons.controller.AbstractController;
-import org.papaja.commons.converter.Format;
-import org.papaja.commons.converter.coder.StringCoder;
-import org.papaja.commons.data.pagination.Paging;
-import org.papaja.commons.data.query.Operator;
-import org.papaja.commons.util.MapPathAccessor;
-import org.papaja.commons.util.MapUtils;
+import org.papaja.converter.Format;
+import org.papaja.converter.coder.StringCoder;
+import org.papaja.data.pagination.Paging;
+import org.papaja.data.query.Operator;
+import org.papaja.util.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.query.Query;
@@ -38,9 +37,9 @@ import java.util.Set;
 
 import static java.lang.String.format;
 import static java.util.Objects.isNull;
-import static org.papaja.commons.converter.Coders.INSTANCE;
-import static org.papaja.commons.converter.Format.STRING;
-import static org.papaja.commons.converter.coder.StringCoder.SQUARE_BRACES;
+import static org.papaja.converter.Coders.INSTANCE;
+import static org.papaja.converter.Format.STRING;
+import static org.papaja.converter.coder.StringCoder.SQUARE_BRACES;
 
 @Controller("mdbvIndexController")
 @RequestMapping("/mdbv")
@@ -253,7 +252,7 @@ public class IndexController extends AbstractController {
             mav.addObject("filters", Operator.Comparison.values());
             mav.addObject("source", sources.getActiveSource());
             mav.addObject("coders", INSTANCE);
-            mav.addObject("accessor", new MapPathAccessor());
+            mav.addObject("accessor", new MapUtils());
         } else {
             mav = newRedirect("sources?forced=1");
         }
@@ -273,7 +272,7 @@ public class IndexController extends AbstractController {
 
             mav.addObject("jsonRecord", records.getJsonRecord(objectId));
             mav.addObject("record", record);
-            mav.addObject("accessor", new MapPathAccessor());
+            mav.addObject("accessor", new MapUtils());
             mav.addObject("coders", INSTANCE);
             mav.addObject("rows", this.rows.getSortedRows());
             mav.addObject("source", sources.getActiveSource());
@@ -296,7 +295,7 @@ public class IndexController extends AbstractController {
             Set<String> predefined = new HashSet<>(Arrays.asList("_id", "_time", "time"));
 
             for (MapRecord record : records.getRecords(collection, new Query())) {
-                paths.addAll(MapUtils.getPaths(record));
+                paths.addAll(MapUtils.mapPaths(record));
             }
 
             counter[0] = paths.size();

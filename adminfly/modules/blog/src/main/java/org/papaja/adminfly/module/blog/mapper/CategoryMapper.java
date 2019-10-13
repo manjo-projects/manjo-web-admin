@@ -1,15 +1,15 @@
 package org.papaja.adminfly.module.blog.mapper;
 
+import org.papaja.adminfly.commons.mapper.AbstractMapper;
 import org.papaja.adminfly.module.blog.dto.CategoryDto;
 import org.papaja.adminfly.module.blog.entity.Category;
-import org.papaja.commons.util.Mapper;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CategoryMapper implements Mapper<CategoryDto, Category> {
+public class CategoryMapper extends AbstractMapper<CategoryDto, Category> {
 
     @Override
-    public void map(CategoryDto source, Category target) {
+    public void accept(CategoryDto source, Category target) {
         target.setName(source.getName());
     }
 

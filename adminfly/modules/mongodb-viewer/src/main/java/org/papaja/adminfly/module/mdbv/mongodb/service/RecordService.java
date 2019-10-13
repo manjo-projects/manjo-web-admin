@@ -15,9 +15,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.papaja.commons.converter.Format.RAW;
-import static org.papaja.commons.data.query.Operator.Comparison.EQ;
-import static org.papaja.commons.data.query.Operator.Logical.NONE;
+import static org.papaja.converter.Format.RAW;
+import static org.papaja.data.query.Operator.Comparison.EQ;
+import static org.papaja.data.query.Operator.Logical.NONE;
 
 @Service
 @SuppressWarnings({"all"})

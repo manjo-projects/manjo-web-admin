@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static java.util.Objects.nonNull;
+
 @Service
 @Transactional
 public class SourceService extends AbstractService<Source, SourceRepository> {
@@ -26,7 +28,7 @@ public class SourceService extends AbstractService<Source, SourceRepository> {
     private Source currentSource;
 
     public boolean hasActiveSource() {
-        return holder.has();
+        return nonNull(holder.get());
     }
 
     public void setActiveSource(Integer sourceId) {
