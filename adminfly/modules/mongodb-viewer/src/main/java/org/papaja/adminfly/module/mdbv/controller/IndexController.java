@@ -238,9 +238,6 @@ public class IndexController extends AbstractController {
             Query  query  = records.getQuery(filter, page, sort);
             Source source = sources.getActiveSource();
 
-            System.out.println(query.getQueryObject().toJson());
-            System.out.println(records.count(query));
-
             // rows
             mav.addObject("rows", rows.getSortedRows());
             mav.addObject("preview", rows.getPreviewRows());

@@ -7,6 +7,7 @@ import org.papaja.adminfly.module.mdbv.common.converter.RawJsonConverter;
 import org.papaja.adminfly.module.mdbv.common.holder.SourceIdHolder;
 import org.papaja.adminfly.module.mdbv.common.manager.MongoDatabaseManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -17,7 +18,8 @@ import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Integer.valueOf;
+import static java.lang.Integer.parseInt;
+import static java.util.Objects.requireNonNull;
 
 @SuppressWarnings({"unused"})
 @Configuration
@@ -35,7 +37,8 @@ public class MongoDBViewerConfig {
         this.environment = environment;
 
         AdminFlyModules.addModule(
-            environment.getProperty("module.mdbv.name"), environment.getProperty("module.mdbv.path")
+            environment.getProperty("module.mdbv.name"),
+            environment.getProperty("module.mdbv.path")
         );
     }
 
@@ -49,7 +52,8 @@ public class MongoDBViewerConfig {
 
     public @Bean MongoClient mongoClient() {
         return new MongoClient(
-            environment.getProperty("mdbv.connection.host"), valueOf(environment.getProperty("mdbv.connection.port"))
+            requireNonNull(environment.getProperty("mdbv.connection.host")),
+            parseInt(requireNonNull(environment.getProperty("mdbv.connection.port")))
         );
     }
 

@@ -8,9 +8,9 @@ import org.jtwig.spring.asset.resolver.AssetResolver;
 import org.jtwig.translate.spring.SpringTranslateExtension;
 import org.jtwig.translate.spring.SpringTranslateExtensionConfiguration;
 import org.jtwig.web.servlet.JtwigRenderer;
-import org.papaja.adminfly.commons.vendor.jtwig.extension.url.UrlPathExtension;
 import org.papaja.adminfly.commons.vendor.jtwig.extension.asset.resolver.ResourceUrlBasedAssetResolver;
 import org.papaja.adminfly.commons.vendor.jtwig.extension.theme.ThemeResolverExtension;
+import org.papaja.adminfly.commons.vendor.jtwig.extension.url.UrlPathExtension;
 import org.papaja.adminfly.commons.vendor.jtwig.spring.MultipleTemplateViewResolver;
 import org.papaja.adminfly.commons.vendor.spring.web.servlet.resource.ContentHashVersionStrategy;
 import org.papaja.function.Supplier;
@@ -42,12 +42,9 @@ import org.springframework.web.servlet.resource.VersionResourceResolver;
 import org.springframework.web.servlet.theme.CookieThemeResolver;
 import org.springframework.web.servlet.theme.ThemeChangeInterceptor;
 
-import javax.servlet.ServletContext;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.Locale;
-import java.util.Objects;
 
 import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
@@ -66,12 +63,8 @@ import static org.papaja.util.StringUtils.substringBetween;
 )
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    private static final Charset UTF8 = StandardCharsets.UTF_8;
-
-    protected Environment environment;
-
-    @Autowired
-    private ServletContext context;
+    private static final Charset        UTF8 = StandardCharsets.UTF_8;
+    protected            Environment    environment;
 
     @Autowired
     public WebMvcConfig(Environment environment) {
@@ -148,19 +141,15 @@ public class WebMvcConfig implements WebMvcConfigurer {
         source.setDefaultEncoding("UTF-8");
 
         try {
-            System.out.println("try");
-            String     pattern   = "classpath:locale/module/**/*.properties";
+            String     pattern   = "classpath*:locale/module/**/*.properties";
             Resource[] resources = resolver.getResources(pattern);
 
             for (Resource resource : resources) {
-                System.out.println(resource.toString());
                 source.addBasenames(
                     format("classpath:%s", substringBetween("locale", "_", resource.getURI().toString()))
                 );
             }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        } catch (IOException ignore) { }
 
         return source;
     }

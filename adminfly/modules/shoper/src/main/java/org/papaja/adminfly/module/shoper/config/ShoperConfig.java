@@ -1,26 +1,26 @@
-package org.papaja.adminfly.module.blog.config;
+package org.papaja.adminfly.module.kv.config;
 
 import org.papaja.adminfly.commons.data.AdminFlyModules;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
 @Configuration
-@PropertySource(value = {"classpath:properties/module/blog/module.properties",}, ignoreResourceNotFound = true)
-public class BlogConfig {
+@PropertySource(value = {
+        "classpath:properties/module/shoper/module.properties",
+}, ignoreResourceNotFound = true)
+public class ShoperConfig {
 
     protected Environment environment;
 
     public @Autowired
-    BlogConfig(Environment environment) {
+    ShoperConfig(Environment environment) {
         this.environment = environment;
 
         AdminFlyModules.addModule(
-            environment.getProperty("module.blog.name"),
-            environment.getProperty("module.blog.path")
+                environment.getProperty("module.shoper.name"),
+                environment.getProperty("module.shoper.path")
         );
     }
 

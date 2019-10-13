@@ -30,6 +30,7 @@
         <module>blog</module>
         <module>mongodb-viewer</module>
         <module>key-vault</module>
+        <module>shoper</module>
     </modules>
 
     <dependencies>

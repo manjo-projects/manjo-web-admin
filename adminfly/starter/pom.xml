@@ -35,6 +35,7 @@
         <papaja.adminfly.module.blog.version>1.0</papaja.adminfly.module.blog.version>
         <papaja.adminfly.module.mongodb-viewer.version>1.0</papaja.adminfly.module.mongodb-viewer.version>
         <papaja.adminfly.module.key-vault.version>1.0</papaja.adminfly.module.key-vault.version>
+        <papaja.adminfly.module.shoper.version>1.0</papaja.adminfly.module.shoper.version>
     </properties>
 
     <profiles>
@@ -63,6 +64,11 @@
                     <groupId>org.papaja.adminfly</groupId>
                     <artifactId>papaja-adminfly-module-mdbv</artifactId>
                     <version>${papaja.adminfly.module.mongodb-viewer.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.papaja.adminfly</groupId>
+                    <artifactId>papaja-adminfly-module-shoper</artifactId>
+                    <version>${papaja.adminfly.module.shoper.version}</version>
                 </dependency>
             </dependencies>
         </profile>
