@@ -30,13 +30,13 @@
         <module>blog</module>
         <module>mongodb-viewer</module>
         <module>key-vault</module>
-        <module>shoper</module>
+        <module>shopper</module>
     </modules>
 
     <dependencies>
         <dependency>
             <groupId>org.papaja.adminfly</groupId>
-            <artifactId>papaja-adminfly-commons</artifactId>
+            <artifactId>papaja-adminfly-core</artifactId>
             <version>1.0</version>
         </dependency>
     </dependencies>

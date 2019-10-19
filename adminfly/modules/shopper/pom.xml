@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 		 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.papaja.adminfly</groupId>
-        <artifactId>papaja-adminfly-project</artifactId>
+        <artifactId>papaja-adminfly-modules</artifactId>
         <version>1.0</version>
     </parent>
 
-    <artifactId>papaja-adminfly-commons</artifactId>
+    <artifactId>papaja-adminfly-module-shopper</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>PapaJa Adminfly - Commons Classes</name>
-
-    <properties>
-        <buildName>papaja-adminfly-commons</buildName>
-    </properties>
+    <name>PapaJa Adminfly - [Module]: Shopper</name>
 
     <build>
-        <finalName>${buildName}-${project.version}</finalName>
+        <finalName>${project.name}-${project.version}</finalName>
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>
@@ -30,4 +26,5 @@
             </resource>
         </resources>
     </build>
+
 </project>
