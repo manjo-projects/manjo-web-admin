@@ -22,8 +22,8 @@
     </properties>
 
     <modules>
-        <module>config</module>
-        <module>core</module>
+        <module>build</module>
+        <module>commons</module>
         <module>modules</module>
     </modules>
 

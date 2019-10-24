@@ -1,13 +1,12 @@
 package org.papaja.adminfly.module.mdbv.config;
 
 import com.mongodb.MongoClient;
-import org.papaja.adminfly.commons.data.AdminFlyModules;
+import org.papaja.adminfly.commons.ui.Modules;
 import org.papaja.adminfly.module.mdbv.common.converter.DateTimeConverter;
 import org.papaja.adminfly.module.mdbv.common.converter.RawJsonConverter;
 import org.papaja.adminfly.module.mdbv.common.holder.SourceIdHolder;
 import org.papaja.adminfly.module.mdbv.common.manager.MongoDatabaseManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -36,10 +35,11 @@ public class MongoDBViewerConfig {
     MongoDBViewerConfig(Environment environment) {
         this.environment = environment;
 
-        AdminFlyModules.addModule(
-            environment.getProperty("module.mdbv.name"),
-            environment.getProperty("module.mdbv.path")
-        );
+        Modules.register(new Modules.Module(
+                environment.getProperty("module.mdbv.name"),
+                environment.getProperty("module.mdbv.path"),
+                null
+        ));
     }
 
     public @Bean SourceIdHolder getCollectionDetector() {

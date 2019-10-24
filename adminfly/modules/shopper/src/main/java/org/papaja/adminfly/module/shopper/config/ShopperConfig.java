@@ -1,4 +1,4 @@
-package org.papaja.adminfly.module.blog.config;
+package org.papaja.adminfly.module.shopper.config;
 
 import org.papaja.adminfly.commons.ui.Modules;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,19 +8,19 @@ import org.springframework.core.env.Environment;
 
 @Configuration
 @PropertySource(value = {
-        "classpath:properties/module/blog/module.properties",
+        "classpath:properties/module/shopper/module.properties",
 }, ignoreResourceNotFound = true)
-public class BlogConfig {
+public class ShopperConfig {
 
     protected Environment environment;
 
     public @Autowired
-    BlogConfig(Environment environment) {
+    ShopperConfig(Environment environment) {
         this.environment = environment;
 
         Modules.register(new Modules.Module(
-                environment.getProperty("module.blog.name"),
-                environment.getProperty("module.blog.path"),
+                environment.getProperty("module.shopper.name"),
+                environment.getProperty("module.shopper.path"),
                 null
         ));
     }

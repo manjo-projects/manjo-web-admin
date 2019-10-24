@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.kv.config;
 
-import org.papaja.adminfly.commons.data.AdminFlyModules;
+import org.papaja.adminfly.commons.ui.Modules;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -18,10 +18,11 @@ public class KVVaultConfig {
     KVVaultConfig(Environment environment) {
         this.environment = environment;
 
-        AdminFlyModules.addModule(
+        Modules.register(new Modules.Module(
                 environment.getProperty("module.kv.name"),
-                environment.getProperty("module.kv.path")
-        );
+                environment.getProperty("module.kv.path"),
+                null
+        ));
     }
 
 }

@@ -31,12 +31,13 @@
         <module>mongodb-viewer</module>
         <module>key-vault</module>
         <module>shopper</module>
+        <module>psy-tests</module>
     </modules>
 
     <dependencies>
         <dependency>
             <groupId>org.papaja.adminfly</groupId>
-            <artifactId>papaja-adminfly-core</artifactId>
+            <artifactId>papaja-adminfly-commons</artifactId>
             <version>1.0</version>
         </dependency>
     </dependencies>
