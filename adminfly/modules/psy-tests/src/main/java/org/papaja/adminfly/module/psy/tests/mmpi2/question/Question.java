@@ -8,6 +8,9 @@ public class Question {
         this.number = number;
     }
 
+    public Question(Object... objects) {
+    }
+
     public int getNumber() {
         return number;
     }

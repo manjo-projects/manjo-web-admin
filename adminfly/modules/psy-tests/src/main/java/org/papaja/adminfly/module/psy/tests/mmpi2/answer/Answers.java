@@ -1,36 +1,29 @@
 package org.papaja.adminfly.module.psy.tests.mmpi2.answer;
 
-import org.papaja.adminfly.module.psy.tests.mmpi2.scale.Scale;
 
-import java.util.EnumMap;
+import java.util.Map;
+import java.util.TreeMap;
 
-public class Answers
-//        extends EnumMap<Scale, Integer> {
-{
-//    {
-//        for (Scale scale : Scale.values()) {
-//            put(scale, 0);
-//        }
-//    }
+public class Answers {
 
-//    public Answers() {
-//        super(Scale.class);
-//    }
-//
-//    public void set(Scale scale, Integer value) {
-//        put(scale, value);
-//    }
-//
-//    public void increase(Scale scale) {
-//        set(scale, get(scale) + 1);
-//    }
-//
-//    public void decrease(Scale scale) {
-//        set(scale, get(scale) - 1);
-//    }
-//
-//    public int getRate(Scale scale) {
-//        return scale.getRatio(get(scale));
-//    }
+    private Map<Integer, Answer> answers = new TreeMap<>();
+
+    public void add(Answer answer, Integer... questions) {
+        for (Integer question : questions) {
+            answers.put(question, answer);
+        }
+    }
+
+    public Answer getAnswer(Integer question) {
+        return answers.get(question);
+    }
+
+    public Map<Integer, Answer> getAnswers() {
+        return answers;
+    }
+
+    public boolean isCorrect(Integer question, Answer answer) {
+        return getAnswer(question).equals(answer);
+    }
 
 }
