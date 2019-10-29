@@ -1,8 +1,5 @@
 package org.papaja.adminfly.module.psy.tests.mmpi2;
 
-import org.papaja.adminfly.module.psy.tests.mmpi2.answer.Answer;
-import org.papaja.adminfly.module.psy.tests.mmpi2.answer.Answers;
-
 import java.util.*;
 
 public class Run {
