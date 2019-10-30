@@ -63,7 +63,7 @@
                             {% set view = url('/mdbv/records/view/' ~ record.getId()) %}
                             <tr>
                                 {% for column in preview %}
-                                    {% set value = accessor.get(record, column.path) %}
+                                    {% set value = accessor.getValue(record, column.path) %}
                                     <td>
                                         <small>{{ coders.get(column.type).encode(value) }}</small>
                                     </td>

@@ -1,6 +1,7 @@
 package org.papaja.adminfly.module.mdbv.config;
 
 import com.mongodb.MongoClient;
+import org.papaja.adminfly.commons.ui.Menu;
 import org.papaja.adminfly.commons.ui.Modules;
 import org.papaja.adminfly.module.mdbv.common.converter.DateTimeConverter;
 import org.papaja.adminfly.module.mdbv.common.converter.RawJsonConverter;
@@ -35,10 +36,16 @@ public class MongoDBViewerConfig {
     MongoDBViewerConfig(Environment environment) {
         this.environment = environment;
 
+        Menu menu = new Menu();
+
+        menu.addItem(new Menu.Item("label.source", "/mdbv/sources"));
+        menu.addItem(new Menu.Item("label.rows", "/mdbv/rows"));
+        menu.addItem(new Menu.Item("label.records", "/mdbv/records"));
+
         Modules.register(new Modules.Module(
                 environment.getProperty("module.mdbv.name"),
                 environment.getProperty("module.mdbv.path"),
-                null
+                menu
         ));
     }
 

@@ -29,6 +29,21 @@
 
     <profiles>
         <profile>
+            <id>mdbv</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.papaja.adminfly</groupId>
+                    <artifactId>papaja-adminfly-module-admin</artifactId>
+                    <version>${papaja.adminfly.module.admin.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.papaja.adminfly</groupId>
+                    <artifactId>papaja-adminfly-module-mdbv</artifactId>
+                    <version>${papaja.adminfly.module.mongodb-viewer.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
             <id>all</id>
             <activation>
                 <activeByDefault>true</activeByDefault>

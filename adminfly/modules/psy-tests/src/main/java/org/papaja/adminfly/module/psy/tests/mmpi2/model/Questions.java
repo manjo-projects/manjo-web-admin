@@ -1,11 +1,19 @@
 package org.papaja.adminfly.module.psy.tests.mmpi2.model;
 
+import org.papaja.tuple.Pair;
+
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static org.papaja.adminfly.module.psy.tests.mmpi2.model.Scale.*;
 
 public class Questions {
+
+    private static final int QUESTION_START = 1;
+    private static final int QUESTION_END = 566;
 
     public static final Questions F_QUESTIONS = new Questions() {{
         add(SCALE_L, 15, 30, 45, 75, 105, 135, 195, 225, 255, 285, 60, 90, 120, 150, 165);
@@ -41,12 +49,18 @@ public class Questions {
 
     private Map<Integer, Scale> questions = new TreeMap<>();
 
-    private Questions() { }
+    private Questions() {
+        new Pair<>(SCALE_A, Answer.TRUE);
+    }
 
     public void add(Scale scale, Integer... numbers) {
         for (Integer number : numbers) {
             questions.put(number, scale);
         }
+    }
+
+    public List<Integer> getRange() {
+        return IntStream.range(QUESTION_START, QUESTION_END).boxed().collect(Collectors.toList());
     }
 
 }

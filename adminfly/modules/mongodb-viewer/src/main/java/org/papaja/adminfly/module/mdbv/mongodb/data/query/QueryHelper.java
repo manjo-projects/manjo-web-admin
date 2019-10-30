@@ -106,6 +106,8 @@ public class QueryHelper implements Supplier<Query> {
                     .apply(tuple.getPath(), criteria(criteria, tuple), value(tuple.getFormat(), tuple.getQuery()));
         }
 
+        System.out.println(criteria.getCriteriaObject().toJson());
+
         add(criteria);
     }
 
