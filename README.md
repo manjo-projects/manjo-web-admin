@@ -1,2 +1,1 @@
-# papaja-adminfly
-Adminify - Modular Secure Admin Panel 🍃
+# AdminFly - Modular Secure Admin Panel 🍃
