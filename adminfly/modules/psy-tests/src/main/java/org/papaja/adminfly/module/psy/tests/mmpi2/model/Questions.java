@@ -8,6 +8,7 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static org.papaja.adminfly.module.psy.tests.mmpi2.model.Answer.TRUE;
 import static org.papaja.adminfly.module.psy.tests.mmpi2.model.Scale.*;
 
 public class Questions {
@@ -50,7 +51,9 @@ public class Questions {
     private Map<Integer, Scale> questions = new TreeMap<>();
 
     private Questions() {
-        new Pair<>(SCALE_A, Answer.TRUE);
+        Pair<Answer, Scale[]> pair = new Pair<>(TRUE, new Scale[]{SCALE_1, SCALE_2});
+
+
     }
 
     public void add(Scale scale, Integer... numbers) {
