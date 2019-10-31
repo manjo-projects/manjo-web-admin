@@ -10,7 +10,7 @@ public enum Scale {
     SCALE_2,
     SCALE_3,
     SCALE_4,
-    SCALE_5,
+    SCALE_5_F, SCALE_5_M,
     SCALE_6,
     SCALE_7,
     SCALE_8,
