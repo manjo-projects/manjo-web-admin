@@ -1,0 +1,12 @@
+{% extends '../layout-blank.twig' %}
+{% set logoName = 'MMPI-2' %}
+{% block title %}{{ 'label.psy.name' | translate }} — {{ logoName }}{% endblock %}
+{% block content %}
+    <div class="page-header mb-4">
+        <h1 id="tables">{{ 'label.psy.name' | translate }}</h1>
+    </div>
+    {% for i in [1..566] %}
+        <h1><b>Q{{ i }}</b>: {{ 'mmpi2.male.q' ~ i | translate }}</h1>
+        <hr>
+    {% endfor %}
+{% endblock %}

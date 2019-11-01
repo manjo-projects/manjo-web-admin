@@ -31,7 +31,7 @@
         <module>mongodb-viewer</module>
         <module>key-vault</module>
         <module>shopper</module>
-        <module>psy-tests</module>
+        <!-- <module>psy-tests</module>-->
     </modules>
 
     <dependencies>

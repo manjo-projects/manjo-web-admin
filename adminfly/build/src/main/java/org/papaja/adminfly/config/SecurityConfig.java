@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(final WebSecurity web) {
-        web.ignoring().antMatchers("/static/**");
+        web.ignoring().antMatchers("/static/**", "/shared/**");
     }
 
     @Override
@@ -58,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().anyRequest()
                 .authenticated();
 
-        http.authorizeRequests().antMatchers("/*/auth/**", "/auth/**")
+        http.authorizeRequests().antMatchers("/auth/**")
                 .permitAll();
 
         http.formLogin().loginPage("/auth/login")

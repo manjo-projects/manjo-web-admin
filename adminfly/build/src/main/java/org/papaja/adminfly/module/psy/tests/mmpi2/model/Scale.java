@@ -20,7 +20,7 @@ public enum Scale {
     SCALE_9("Ma", K.FP),
     SCALE_0("Si");
 
-    private Scale.K k;
+    private K k;
     private boolean inverted;
     private String  name;
 
