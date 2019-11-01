@@ -3,76 +3,79 @@ package org.papaja.adminfly.module.psy.tests.mmpi2.model;
 import java.util.EnumMap;
 import java.util.Map;
 
-import static org.papaja.adminfly.module.psy.tests.mmpi2.model.Sex.*;
+import static java.util.Arrays.binarySearch;
+import static org.papaja.adminfly.module.psy.tests.mmpi2.model.Sex.F;
+import static org.papaja.adminfly.module.psy.tests.mmpi2.model.Sex.M;
 
 public enum Rates {
     INSTANCE;
 
     /*
-    * RATES[MALE|FEMALE][SCALE][RAW_POINTS] = T_POINTS_WITHOUT_K
-    */
-    private static final Map<Sex, EnumMap<Scale, double[]>> SEX_RATES;
+     * RATES[MALE|FEMALE][SCALE][RAW_POINTS] = T_POINTS_WITHOUT_K
+     */
+    private static final Map<Sex, EnumMap<Scale, float[]>> SEX_RATES;
 
     static {
         SEX_RATES = new EnumMap<>(Sex.class);
 
-        EnumMap<Scale, double[]> M_RATES = new EnumMap<>(Scale.class);
-        EnumMap<Scale, double[]> F_RATES = new EnumMap<>(Scale.class);
+        EnumMap<Scale, float[]> M_RATES = new EnumMap<>(Scale.class);
+        EnumMap<Scale, float[]> F_RATES = new EnumMap<>(Scale.class);
 
         SEX_RATES.put(M, M_RATES);
         SEX_RATES.put(F, F_RATES);
 
-        F_RATES.put(Scale.SCALE_1, new double[] {
-                24D, 26D, 28D, 30D, 33D, 35D, 37D, 39D,
-                41D, 43D, 45D, 47D, 49D, 51D, 53D, 55D,
-                56D, 58D, 60D, 62D, 64D, 66D, 68D, 70D,
-                72D, 74D, 76D, 78D, 80D, 82D, 84D, 86D,
-                88D, 91D, 92D, 94D, 96D, 98D, 101D, 102D,
-                105D, 106D, 107D, 108D, 109D, 110D, 111D
+        F_RATES.put(Scale.SCALE_1, new float[]{
+                24f, 26f, 28f, 30f, 33f, 35f, 37f, 39f,
+                41f, 43f, 45f, 47f, 49f, 51f, 53f, 55f,
+                56f, 58f, 60f, 62f, 64f, 66f, 68f, 70f,
+                72f, 74f, 76f, 78f, 80f, 82f, 84f, 86f,
+                88f, 91f, 92f, 94f, 96f, 98f, 101f, 102f,
+                105f, 106f, 107f, 108f, 109f, 110f, 111f
         });
-        F_RATES.put(Scale.SCALE_2, new double[] {
-                28D, 29D, 30D, 31D, 32D, 33D, 35D, 37D,
-                39D, 41D, 43D, 45D, 47D, 49D, 52D, 54D,
-                56D, 58D, 59D, 61D, 63D, 65D, 67D, 69D,
-                71D, 72D, 74D, 76D, 78D, 80D, 82D, 84D,
-                86D, 88D, 90D, 92D, 94D, 96D, 98D, 100D,
-                102D, 104D, 105D, 107D, 109D, 112D, 114D,
-                116D
+        F_RATES.put(Scale.SCALE_2, new float[]{
+                0f, 0f, 0f, 0f, 0f, 0f,
+                28f, 29f, 30f, 31f, 32f, 33f, 35f, 37f,
+                39f, 41f, 43f, 45f, 47f, 49f, 52f, 54f,
+                56f, 58f, 59f, 61f, 63f, 65f, 67f, 69f,
+                71f, 72f, 74f, 76f, 78f, 80f, 82f, 84f,
+                86f, 88f, 90f, 92f, 94f, 96f, 98f, 100f,
+                102f, 104f, 105f, 107f, 109f, 112f, 114f,
+                116f
         });
-        F_RATES.put(Scale.SCALE_0, new double[] {
-                25.0140D, 26.0281D, 27.0422D, 28.0563D, 29.0704D,
-                30.0845D, 31.0985D, 32.1126D, 33.1267D, 34.1408D,
-                35.1549D, 36.1690D, 37.1830D, 38.1971D, 39.2112D,
-                40.2253D, 41.2394D, 42.2535D, 43.2676D, 44.2816D,
-                45.2957D, 46.3098D, 47.3239D, 48.3380D, 49.3521D,
-                50.3661D, 51.3802D, 52.3943D, 53.4084D, 54.4225D,
-                55.4366D, 56.4507D, 57.4647D, 58.4788D, 59.4929D,
-                60.5070D, 61.5211D, 62.5352D, 63.5492D, 64.5633D,
-                65.5774D, 66.5915D, 67.6056D, 68.6197D, 69.6338D,
-                70.6478D, 71.6619D, 72.6760D, 73.6901D, 74.7042D,
-                75.7183D, 76.7323D, 77.7464D, 78.7605D, 79.7746D,
-                80.7887D, 81.8028D, 82.8169D, 83.8309D, 84.8450D,
-                85.8591D, 86.8732D, 87.8873D, 88.9014D, 89.9155D,
-                90.9295D, 91.9436D, 92.9577D, 93.9718D, 94.9859D,
-                96D
+        F_RATES.put(Scale.SCALE_0, new float[]{
+                25.0140f, 26.0281f, 27.0422f, 28.0563f, 29.0704f,
+                30.0845f, 31.0985f, 32.1126f, 33.1267f, 34.1408f,
+                35.1549f, 36.1690f, 37.1830f, 38.1971f, 39.2112f,
+                40.2253f, 41.2394f, 42.2535f, 43.2676f, 44.2816f,
+                45.2957f, 46.3098f, 47.3239f, 48.3380f, 49.3521f,
+                50.3661f, 51.3802f, 52.3943f, 53.4084f, 54.4225f,
+                55.4366f, 56.4507f, 57.4647f, 58.4788f, 59.4929f,
+                60.5070f, 61.5211f, 62.5352f, 63.5492f, 64.5633f,
+                65.5774f, 66.5915f, 67.6056f, 68.6197f, 69.6338f,
+                70.6478f, 71.6619f, 72.6760f, 73.6901f, 74.7042f,
+                75.7183f, 76.7323f, 77.7464f, 78.7605f, 79.7746f,
+                80.7887f, 81.8028f, 82.8169f, 83.8309f, 84.8450f,
+                85.8591f, 86.8732f, 87.8873f, 88.9014f, 89.9155f,
+                90.9295f, 91.9436f, 92.9577f, 93.9718f, 94.9859f,
+                96f
         });
 
-        M_RATES.put(Scale.SCALE_0, new double[] {
-                25.0140D, 26.0281D, 27.0422D, 28.0563D, 29.0704D,
-                30.0845D, 31.0985D, 32.1126D, 33.1267D, 34.1408D,
-                35.1549D, 36.1690D, 37.1830D, 38.1971D, 39.2112D,
-                40.2253D, 41.2394D, 42.2535D, 43.2676D, 44.2816D,
-                45.2957D, 46.3098D, 47.3239D, 48.3380D, 49.3521D,
-                50.3661D, 51.3802D, 52.3943D, 53.4084D, 54.4225D,
-                55.4366D, 56.4507D, 57.4647D, 58.4788D, 59.4929D,
-                60.5070D, 61.5211D, 62.5352D, 63.5492D, 64.5633D,
-                65.5774D, 66.5915D, 67.6056D, 68.6197D, 69.6338D,
-                70.6478D, 71.6619D, 72.6760D, 73.6901D, 74.7042D,
-                75.7183D, 76.7323D, 77.7464D, 78.7605D, 79.7746D,
-                80.7887D, 81.8028D, 82.8169D, 83.8309D, 84.8450D,
-                85.8591D, 86.8732D, 87.8873D, 88.9014D, 89.9155D,
-                90.9295D, 91.9436D, 92.9577D, 93.9718D, 94.9859D,
-                96D
+        M_RATES.put(Scale.SCALE_0, new float[]{
+                25.0140f, 26.0281f, 27.0422f, 28.0563f, 29.0704f,
+                30.0845f, 31.0985f, 32.1126f, 33.1267f, 34.1408f,
+                35.1549f, 36.1690f, 37.1830f, 38.1971f, 39.2112f,
+                40.2253f, 41.2394f, 42.2535f, 43.2676f, 44.2816f,
+                45.2957f, 46.3098f, 47.3239f, 48.3380f, 49.3521f,
+                50.3661f, 51.3802f, 52.3943f, 53.4084f, 54.4225f,
+                55.4366f, 56.4507f, 57.4647f, 58.4788f, 59.4929f,
+                60.5070f, 61.5211f, 62.5352f, 63.5492f, 64.5633f,
+                65.5774f, 66.5915f, 67.6056f, 68.6197f, 69.6338f,
+                70.6478f, 71.6619f, 72.6760f, 73.6901f, 74.7042f,
+                75.7183f, 76.7323f, 77.7464f, 78.7605f, 79.7746f,
+                80.7887f, 81.8028f, 82.8169f, 83.8309f, 84.8450f,
+                85.8591f, 86.8732f, 87.8873f, 88.9014f, 89.9155f,
+                90.9295f, 91.9436f, 92.9577f, 93.9718f, 94.9859f,
+                96f
         });
     }
 
@@ -80,14 +83,29 @@ public enum Rates {
         return INSTANCE;
     }
 
-    public EnumMap<Scale, double[]> getRates(Sex sex) {
+    public EnumMap<Scale, float[]> getRates(Sex sex) {
         return SEX_RATES.get(sex);
     }
 
-    public double getRate(Sex sex, Scale scale, int points) {
-        double[] rates = getRates(sex).get(scale);
+    public double getTRate(Sex sex, Scale scale, int points) {
+        float[] rates = getRates(sex).get(scale);
+
+        if (scale.hasK()) {
+            points += scale.getK().calculate(rates[points]);
+        }
 
         return rates.length < points ? 0D : rates[points];
+    }
+
+    public int getRawRate(Sex sex, Scale scale, float rate) {
+        float[] rates  = getRates(sex).get(scale);
+        int     points = binarySearch(rates, rate);
+
+        if (points < -1) {
+            points = (points * -1) - 1;
+        }
+
+        return points;
     }
 
 }
