@@ -2,7 +2,7 @@ package org.papaja.adminfly.module.psy.tests.mmpi2.model;
 
 public enum Answer {
 
-    TRUE(1), FALSE(0);
+    F(0), T(1);
 
     private int value;
 
@@ -12,6 +12,16 @@ public enum Answer {
 
     public int getValue() {
         return value;
+    }
+
+    public static Answer valueOf(int value) {
+        Answer answer = F;
+
+        if (value == 1) {
+            answer = T;
+        }
+
+        return answer;
     }
 
 }

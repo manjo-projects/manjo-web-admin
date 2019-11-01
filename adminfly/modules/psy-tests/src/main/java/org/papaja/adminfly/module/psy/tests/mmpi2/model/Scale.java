@@ -1,7 +1,6 @@
 package org.papaja.adminfly.module.psy.tests.mmpi2.model;
 
 public enum Scale {
-
     SCALE_A,
     SCALE_L,
     SCALE_F,
@@ -15,18 +14,5 @@ public enum Scale {
     SCALE_7,
     SCALE_8,
     SCALE_9,
-    SCALE_0;
-
-    private double[] rates;
-
-    Scale(double... rates) {
-        this.rates = rates;
-    }
-
-    Scale() { this(0D); }
-
-    public double getRate(int points) {
-        return rates[points];
-    }
-
+    SCALE_0
 }

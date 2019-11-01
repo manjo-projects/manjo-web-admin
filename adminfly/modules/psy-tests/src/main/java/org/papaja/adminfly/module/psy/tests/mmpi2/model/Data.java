@@ -4,6 +4,13 @@ import static org.papaja.adminfly.module.psy.tests.mmpi2.model.Scale.*;
 
 public class Data {
 
+    /**
+     * Q-N:
+     *   0-FALSE:
+     *     SCALE[]
+     *   1-TRUE:
+     *     SCALE[]
+     */
     private static final Scale[][][] QUESTIONS = {
             {{SCALE_5_F, SCALE_5_M},{},}, // Q1
             {{SCALE_1, SCALE_2, SCALE_3},{},}, // Q2
