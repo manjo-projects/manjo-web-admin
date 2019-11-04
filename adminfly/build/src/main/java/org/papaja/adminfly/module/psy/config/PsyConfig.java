@@ -23,7 +23,7 @@ public class PsyConfig {
         Menu menu = new Menu();
 
         menu.addItem("label.patients", "/psy/patients");
-        menu.addItem("label.tests", "/psy/index");
+        menu.addItem("label.tests", "/psy/tests");
         menu.addItem("label.results", "/psy/results");
 
         Modules.register(new Modules.Module(

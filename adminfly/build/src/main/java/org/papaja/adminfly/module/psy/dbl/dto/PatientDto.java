@@ -3,6 +3,7 @@ package org.papaja.adminfly.module.psy.dbl.dto;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import static java.lang.String.format;
 import static javax.validation.constraints.Pattern.Flag.UNICODE_CASE;
 
 public class PatientDto {
@@ -49,5 +50,11 @@ public class PatientDto {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    @Override
+    public String toString() {
+        return format("PatientDto{id=%d, name='%s', surname='%s', sex='%s'}",
+                id, name, surname, sex);
     }
 }

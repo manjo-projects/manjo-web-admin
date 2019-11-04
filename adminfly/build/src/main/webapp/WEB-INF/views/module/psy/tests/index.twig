@@ -1,11 +1,7 @@
-{% extends '../layout.twig' %}
-{% import '../../../shared/macro/fields.twig' as fields %}
+{% extends './../layout.twig' %}
 {% block content %}
     <div class="page-header mb-4">
-        {% set create = url('/psy/patients/create') %}
-        <button type="button" onclick="location.href='{{ create }}'"
-                class="btn btn-sm btn-info">{{ 'label.create' | translate }}
-        </button>
+        <h1 id="tables">{{ 'label.tests' | translate }}</h1>
     </div>
     <div class="row">
         <div class="col-lg-12">
@@ -18,25 +14,19 @@
                         <thead>
                         <tr>
                             <th scope="col">{{ 'label.name' | translate }}</th>
-                            <th scope="col">{{ 'label.surname' | translate }}</th>
-                            <th scope="col">{{ 'label.sex' | translate }}</th>
-                            <th scope="col">{{ 'label.created' | translate }}</th>
+                            <th scope="col">{{ 'label.code' | translate }}</th>
                             <th scope="col" class="w-25"></th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for item in items %}
-                            {% set edit = url('/psy/patients/edit/' ~ item.id) %}
+                            {% set start = url('/psy/tests/start/' ~ item.code) %}
                             <tr>
                                 <td>{{ item.name }}</td>
-                                <td>{{ item.surname }}</td>
+                                <td><code>{{ item.code }}</code></td>
                                 <td>
-                                    <b>{% if item.sex == 'F' %}&#127825;{% else %}&#127820;{% endif %}</b>
-                                </td>
-                                <td>{{ item.created }}</td>
-                                <td>
-                                    <button type="button" onclick="location.href='{{ edit }}'"
-                                            class="btn btn-sm btn-info">{{ 'label.edit' | translate }}
+                                    <button type="button" onclick="location.href='{{ start }}'"
+                                            class="btn btn-sm btn-info">{{ 'label.start' | translate }}
                                     </button>
                                 </td>
                             </tr>

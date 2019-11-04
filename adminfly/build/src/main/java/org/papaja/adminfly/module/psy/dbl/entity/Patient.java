@@ -6,6 +6,8 @@ import org.papaja.adminfly.module.psy.tests.mmpi2.model.Sex;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+import static java.lang.String.format;
+
 @Entity
 @Table(name = "psy_patients")
 public class Patient extends AbstractEntity {
@@ -66,4 +68,9 @@ public class Patient extends AbstractEntity {
         this.updated = updated;
     }
 
+    @Override
+    public String toString() {
+        return format("Patient{name='%s', surname='%s', sex=%s, created=%s, updated=%s}",
+                name, surname, sex, created, updated);
+    }
 }
