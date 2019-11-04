@@ -11,19 +11,19 @@ import org.springframework.core.env.Environment;
 @PropertySource(value = {
         "classpath:properties/module/psy/module.properties",
 }, ignoreResourceNotFound = true)
-public class PsyTestsConfig {
+public class PsyConfig {
 
     protected Environment environment;
 
     public @Autowired
-    PsyTestsConfig(Environment environment) {
+    PsyConfig(Environment environment) {
         this.environment = environment;
 
         Menu menu = new Menu();
 
-        menu.addItem("label.patients", "/psy-tests/patients");
-        menu.addItem("label.tests", "/psy-tests/index");
-        menu.addItem("label.results", "/psy-tests/results");
+        menu.addItem("label.patients", "/psy/patients");
+        menu.addItem("label.tests", "/psy/index");
+        menu.addItem("label.results", "/psy/results");
 
         Modules.register(new Modules.Module(
                 environment.getProperty("module.psy.name"),

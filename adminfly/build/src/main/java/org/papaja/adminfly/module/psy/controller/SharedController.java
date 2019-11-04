@@ -12,7 +12,7 @@ public class SharedController extends AbstractController {
 
     @GetMapping(value = {"/mmpi-2"})
     public ModelAndView index() {
-        return new ModelAndView("psy/shared/index");
+        return new ModelAndView("/psy/shared/index");
     }
 
 }

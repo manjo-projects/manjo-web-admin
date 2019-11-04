@@ -1,0 +1,19 @@
+{% extends '../layout.twig' %}
+{% block title %}{{ 'label.psy.name' | translate }}{% endblock %}
+{% block content %}
+    {% set i = 13 %}
+    <div class="jumbotron">
+        <h1 class="display-3">Q{{ i }}</b>: {{ 'mmpi2.male.q' ~ i | translate }}</h1>
+        <hr class="my-4"/>
+        <div class="lead">
+            <div class="btn-group btn-block">
+                <button class="btn btn-success btn-lg" href="#" role="button">
+                    {{ 'label.true' | translate }}!
+                </button>
+                <button class="btn btn-danger btn-lg" href="#" role="button">
+                    {{ 'label.not_true' | translate }}!
+                </button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
