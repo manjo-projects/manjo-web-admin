@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
+@SuppressWarnings({"unused"})
 @Configuration
 @PropertySource(value = {
         "classpath:properties/module/psy/module.properties",

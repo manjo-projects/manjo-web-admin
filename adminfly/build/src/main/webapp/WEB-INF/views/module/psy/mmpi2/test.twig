@@ -3,7 +3,7 @@
 {% block content %}
     {% set i = 13 %}
     <div class="jumbotron">
-        <h1 class="display-3">Q{{ i }}</b>: {{ 'mmpi2.male.q' ~ i | translate }}</h1>
+        <h1 class="display-3">Q{{ app.request.query.question }}</b>: {{ 'mmpi2.male.q' ~ app.request.query.question | translate }}</h1>
         <hr class="my-4"/>
         <div class="lead">
             <div class="btn-group btn-block">
