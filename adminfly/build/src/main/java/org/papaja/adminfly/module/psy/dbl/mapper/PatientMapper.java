@@ -1,0 +1,32 @@
+package org.papaja.adminfly.module.psy.dbl.mapper;
+
+import org.papaja.adminfly.commons.mapper.AbstractMapper;
+import org.papaja.adminfly.module.psy.dbl.dto.PatientDto;
+import org.papaja.adminfly.module.psy.dbl.entity.Patient;
+import org.papaja.adminfly.module.psy.tests.mmpi2.model.Sex;
+
+import java.sql.Timestamp;
+import java.time.Instant;
+
+public class PatientMapper extends AbstractMapper<PatientDto, Patient> {
+
+    @Override
+    public void accept(PatientDto dto, Patient patient) {
+        Timestamp timestamp = Timestamp.from(Instant.now());
+
+        patient.setName(dto.getName());
+        patient.setSurname(dto.getSurname());
+        patient.setSex(Sex.valueOf(dto.getSex()));
+
+        if (patient.isNew()) {
+            patient.setCreated(timestamp);
+        }
+
+        patient.setUpdated(timestamp);
+    }
+
+    @Override
+    public Patient get() {
+        return new Patient();
+    }
+}

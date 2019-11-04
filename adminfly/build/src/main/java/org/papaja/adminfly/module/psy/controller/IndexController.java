@@ -18,17 +18,22 @@ public class IndexController extends AbstractController {
 
     @GetMapping(value = {"/patients"})
     public ModelAndView patients() {
-        return newView("index");
+        return newView("patients/index");
+    }
+
+    @GetMapping(value = {"/patients/edit/{id:[0-9]+}", "/patients/create"})
+    public ModelAndView editPatient() {
+        return newView("patients/form");
     }
 
     @GetMapping(value = {"/results"})
     public ModelAndView results() {
-        return newView("index");
+        return newView("results");
     }
 
     @GetMapping(value = {"/tests"})
     public ModelAndView tests() {
-        return newView("index");
+        return newView("tests");
     }
 
 }

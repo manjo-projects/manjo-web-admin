@@ -1,6 +1,5 @@
 package org.papaja.adminfly.commons.mapper;
 
-import org.papaja.function.Extractor;
 import org.papaja.function.Supplier;
 
 import java.util.Optional;
