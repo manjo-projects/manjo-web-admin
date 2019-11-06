@@ -2,10 +2,11 @@ package org.papaja.adminfly.module.psy.config;
 
 import org.papaja.adminfly.commons.ui.Menu;
 import org.papaja.adminfly.commons.ui.Modules;
+import org.papaja.adminfly.module.psy.commons.holder.PatientHolder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
+import org.springframework.web.context.WebApplicationContext;
 
 @SuppressWarnings({"unused"})
 @Configuration
@@ -31,6 +32,12 @@ public class PsyConfig {
                 environment.getProperty("module.psy.path"),
                 menu
         ));
+    }
+
+    @Bean
+    @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public PatientHolder patientHolder() {
+        return new PatientHolder();
     }
 
 }

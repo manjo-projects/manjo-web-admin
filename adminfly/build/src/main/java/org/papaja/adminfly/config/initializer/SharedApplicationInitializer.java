@@ -19,26 +19,26 @@ import org.springframework.web.servlet.support.AbstractDispatcherServletInitiali
 import java.util.Random;
 
 public class SharedApplicationInitializer
-        extends AbstractDispatcherServletInitializer {
+        /*extends AbstractDispatcherServletInitializer*/ {
 
-    @Override
+    //@Override
     protected WebApplicationContext createServletApplicationContext() {
         AnnotationConfigWebApplicationContext normalWebAppContext = new AnnotationConfigWebApplicationContext();
         normalWebAppContext.register(SharedWebConfiguration.class);
         return normalWebAppContext;
     }
 
-    @Override
+    //@Override
     protected WebApplicationContext createRootApplicationContext() {
         return null;
     }
 
-    @Override
+    //@Override
     protected String[] getServletMappings() {
         return new String[]{"/shared/*"};
     }
 
-    @Override
+    //@Override
     protected String getServletName() {
         return "sharedServlet";
     }
