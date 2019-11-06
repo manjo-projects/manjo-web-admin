@@ -6,6 +6,7 @@ import org.papaja.adminfly.module.psy.dbl.entity.Patient;
 import org.papaja.adminfly.module.psy.dbl.mapper.PatientMapper;
 import org.papaja.adminfly.module.psy.dbl.service.PatientService;
 import org.papaja.adminfly.module.psy.dbl.service.TestService;
+import org.papaja.adminfly.module.psy.tests.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -93,7 +94,7 @@ public class IndexController extends AbstractController {
     public ModelAndView tests() {
         ModelAndView mav = newView("tests/index");
 
-        mav.addObject("items", tests.getAll());
+        mav.addObject("items", Test.values());
 
         return mav;
     }

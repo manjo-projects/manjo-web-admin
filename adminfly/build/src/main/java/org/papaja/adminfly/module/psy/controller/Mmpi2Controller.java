@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/psy/mmpi2")
+@RequestMapping("/psy/tests")
 public class Mmpi2Controller extends AbstractController {
 
-    @GetMapping(value = {"/test"})
+    @GetMapping(value = {"/MMPI2"})
     public ModelAndView test() {
         return newView("test");
     }

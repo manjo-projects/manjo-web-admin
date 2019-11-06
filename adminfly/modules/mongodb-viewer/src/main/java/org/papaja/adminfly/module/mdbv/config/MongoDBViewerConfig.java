@@ -8,12 +8,11 @@ import org.papaja.adminfly.module.mdbv.common.converter.RawJsonConverter;
 import org.papaja.adminfly.module.mdbv.common.holder.SourceIdHolder;
 import org.papaja.adminfly.module.mdbv.common.manager.MongoDatabaseManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,7 +48,9 @@ public class MongoDBViewerConfig {
         ));
     }
 
-    public @Bean SourceIdHolder getCollectionDetector() {
+    @Bean
+    @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public SourceIdHolder getCollectionDetector() {
         return new SourceIdHolder(environment.getProperty("module.mdbv.session.currentCollection"));
     }
 

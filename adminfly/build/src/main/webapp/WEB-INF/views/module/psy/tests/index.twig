@@ -14,16 +14,14 @@
                         <thead>
                         <tr>
                             <th scope="col">{{ 'label.name' | translate }}</th>
-                            <th scope="col">{{ 'label.code' | translate }}</th>
                             <th scope="col" class="w-25"></th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for item in items %}
-                            {% set start = url('/psy/tests/start/' ~ item.code) %}
+                            {% set start = url('/psy/run') ~ '?test=' ~ item %}
                             <tr>
-                                <td>{{ item.name }}</td>
-                                <td><code>{{ item.code }}</code></td>
+                                <td>{{ item.getName() }}</td>
                                 <td>
                                     <button type="button" onclick="location.href='{{ start }}'"
                                             class="btn btn-sm btn-info">{{ 'label.start' | translate }}
