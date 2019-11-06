@@ -74,11 +74,11 @@
                     <artifactId>papaja-adminfly-module-shopper</artifactId>
                     <version>${papaja.adminfly.module.shopper.version}</version>
                 </dependency>
-                <dependency>
+                <!-- <dependency>
                     <groupId>org.papaja.adminfly</groupId>
                     <artifactId>papaja-adminfly-module-psy</artifactId>
                     <version>${papaja.adminfly.module.psy-tests.version}</version>
-                </dependency>
+                </dependency> -->
             </dependencies>
         </profile>
     </profiles>
