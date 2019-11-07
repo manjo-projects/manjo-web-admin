@@ -27,6 +27,7 @@
                         <tbody>
                         {% for item in items %}
                             {% set edit = url('/psy/patients/edit/' ~ item.id) %}
+                            {% set activate = url('/psy/patients/activate/' ~ item.id) %}
                             <tr>
                                 <td>{{ item.name }}</td>
                                 <td>{{ item.surname }}</td>
@@ -35,6 +36,9 @@
                                 </td>
                                 <td>{{ item.created }}</td>
                                 <td>
+                                    <button type="button" onclick="location.href='{{ activate }}'"
+                                            class="btn btn-sm btn-success">{{ 'label.select' | translate }}
+                                    </button>
                                     <button type="button" onclick="location.href='{{ edit }}'"
                                             class="btn btn-sm btn-info">{{ 'label.edit' | translate }}
                                     </button>

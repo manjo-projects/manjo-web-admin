@@ -7,52 +7,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <form action="{{ url('/psy/patients') }}{% if not empty(patient.id) %}/edit/{{ patient.id }}{% else %}/create{% endif %}"
-                  method="post">
-                <div class="card bg-light mb-3">
-                    <div class="card-header">
-                        {% if not empty(patient.id) %}{{ patient.name }}&nbsp;{{ patient.surname }}{% else %}---{% endif %}
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="patientsName">{{ 'label.name' | translate }}</label>
-                            <input type="text" class="form-control {{ fields.ifError(result, 'name', 'is-invalid') }}"
-                                   id="patientsName" name="name" value="{{ default(patient.name, post.name) }}">
-                            {{ fields.error(result, 'name') }}
-                        </div>
-                        <div class="form-group">
-                            <label for="patientsDatabase">{{ 'label.surname' | translate }}</label>
-                            <input type="text"
-                                   class="form-control {{ fields.ifError(result, 'surname', 'is-invalid') }}"
-                                   id="patientsDatabase" name="surname"
-                                   value="{{ default(patient.surname, post.surname) }}">
-                            {{ fields.error(result, 'surname') }}
-                        </div>
-                        <div class="form-group">
-                            <label for="patientsCollection">{{ 'label.sex' | translate }}</label>
-                            <div class="form-group">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="femaleRadio" name="sex" class="custom-control-input"
-                                           value="F" checked>
-                                    <label class="custom-control-label"
-                                           for="femaleRadio">{{ 'label.female' | translate }}</label>
-                                </div>
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" id="maleRadio" name="sex" class="custom-control-input"
-                                           value="M">
-                                    <label class="custom-control-label"
-                                           for="maleRadio">{{ 'label.male' | translate }}</label>
-                                </div>
-                            </div>
-                            {{ fields.error(result, 'sex') }}
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn btn-secondary btn-sm my-2 my-sm-0"
-                                type="submit">{{ 'label.save' | translate }}</button>
-                    </div>
-                </div>
-            </form>
+            {% include './../_partials/patient-form.twig' %}
         </div>
     </div>
 {% endblock %}

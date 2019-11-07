@@ -16,7 +16,7 @@
                         </thead>
                         <tbody>
                         {% for item in items %}
-                            {% set start = url('/psy/run') ~ '?test=' ~ item %}
+                            {% set start = url('/psy/' ~ item) %}
                             <tr>
                                 <td>{{ item.getName() }}</td>
                                 <td>

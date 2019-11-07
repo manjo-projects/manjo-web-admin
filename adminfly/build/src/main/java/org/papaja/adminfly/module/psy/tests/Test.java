@@ -2,7 +2,8 @@ package org.papaja.adminfly.module.psy.tests;
 
 public enum Test {
 
-    MMPI2("MMPI-2 - 566 Questions Test");
+    MMPI2("MMPI2 - 566"),
+    YAKHINA("Yakhin-Mendelevich");
 
     private String name;
 

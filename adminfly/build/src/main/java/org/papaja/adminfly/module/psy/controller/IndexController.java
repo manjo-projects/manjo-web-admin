@@ -10,6 +10,7 @@ import org.papaja.adminfly.module.psy.tests.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,6 +30,11 @@ public class IndexController extends AbstractController {
 
     @Autowired
     private PatientHolder patient;
+
+    @ModelAttribute
+    public void model(Model model) {
+        model.addAttribute("patient", patient);
+    }
 
     @PreAuthorize("hasAnyAuthority('READ')")
     @GetMapping(value = {"/"})
@@ -99,29 +105,30 @@ public class IndexController extends AbstractController {
     }
 
     @PreAuthorize("hasAnyAuthority('READ')")
-    @GetMapping(value = {"/run"})
+    @GetMapping(value = {"/{name:[\\p{LD}]+}"})
     public ModelAndView startTest(
-            @RequestParam(value = "test") String name
+            @PathVariable(value = "name") String name
     ) {
         ModelAndView mav = newView("tests/run");
 
         System.out.println(name);
 
-        if (patient.has()) {
-            mav.addObject("patient", patients.getOne(patient.get()));
-        } else {
-            mav = newView("tests/getPatient");
-            mav.addObject("items", patients.getAll());
-            mav.addObject("test", name);
-        }
+//        if (patient.has()) {
+//            mav.addObject("patient", patients.getOne(patient.get()));
+//        } else {
+//            mav = newView("tests/getPatient");
+//            mav.addObject("items", patients.getAll());
+//            mav.addObject("test", name);
+//        }
 
         return mav;
     }
 
     @PreAuthorize("hasAnyAuthority('READ')")
-    @GetMapping(value = {"/activatePatient/{id:[0-9]+}"})
+    @GetMapping(value = {"/patients/activate/{id:[0-9]+}"})
     public ModelAndView startTest(
-            @PathVariable(value = "id") Integer id, @RequestParam(value = "test") String test,
+            @PathVariable(value = "id") Integer id,
+            @RequestParam(value = "test", required = false) String test,
             RedirectAttributes attributes
     ) {
         patient.set(id);
