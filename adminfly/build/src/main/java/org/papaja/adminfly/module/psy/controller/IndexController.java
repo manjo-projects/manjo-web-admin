@@ -1,25 +1,35 @@
 package org.papaja.adminfly.module.psy.controller;
 
 import org.papaja.adminfly.module.psy.dbl.dto.PatientDto;
+import org.papaja.adminfly.module.psy.dbl.dto.SessionDto;
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
+import org.papaja.adminfly.module.psy.dbl.entity.Session;
 import org.papaja.adminfly.module.psy.dbl.mapper.PatientMapper;
-import org.papaja.adminfly.module.psy.dbl.service.PatientService;
+import org.papaja.adminfly.module.psy.dbl.service.SessionService;
 import org.papaja.adminfly.module.psy.tests.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.encrypt.TextEncryptor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
+
+import static java.lang.String.format;
+import static java.util.Objects.isNull;
 
 @SuppressWarnings({"unused"})
 @Controller("psyIndexController")
 @RequestMapping(value = "/psy")
 public class IndexController extends AbstractPsyController {
+
+    @Autowired
+    private SessionService sessions;
 
     @ModelAttribute
     public void model(Model model) {
@@ -43,15 +53,35 @@ public class IndexController extends AbstractPsyController {
     }
 
     @PreAuthorize("hasAnyAuthority('READ')")
-    @GetMapping(value = {"/patients/view/{id:[0-9]+}"})
-    public ModelAndView view(
+    @GetMapping(value = {"/patients/profile/{id:[0-9]+}"})
+    public ModelAndView profile(
             @PathVariable(value = "id") Integer id
     ) {
-        ModelAndView mav = newView("patients/view");
+        ModelAndView mav = newView("patients/profile");
 
-        mav.addObject("item", patients.getOne(id));
+        mav.addObject("profile", patients.getOne(id));
+        mav.addObject("tests", Test.values());
+        mav.addObject("sessions", sessions.getAll());
+        mav.addObject("encryptor", sessions.getEncryptor());
+        mav.addObject("url", ServletUriComponentsBuilder.fromCurrentContextPath().toUriString());
 
         return mav;
+    }
+
+    @PreAuthorize("hasAnyAuthority('READ')")
+    @PostMapping(value = {"/patients/profile/{id:[0-9]+}"})
+    public ModelAndView createSession(
+            @Valid SessionDto dto,
+            @PathVariable(value = "id") Integer id,
+            RedirectAttributes attributes
+    ) {
+        sessions.newSession(patients.getOne(id), dto.getTest());
+
+        attributes.addFlashAttribute("message",
+                messages.getSuccessMessage("record.saved",
+                        getMessage("label.session")));
+
+        return newRedirect(format("patients/profile/%d", id));
     }
 
     @PreAuthorize("hasAnyAuthority('READ')")
@@ -110,14 +140,40 @@ public class IndexController extends AbstractPsyController {
     @GetMapping(value = {"/patients/activate/{id:[0-9]+}"})
     public ModelAndView startTest(
             @PathVariable(value = "id") Integer id,
-            @RequestParam(value = "test") String test,
+            @RequestParam(value = "test", required = false) String test,
             RedirectAttributes attributes
     ) {
         patient.set(id);
 
         attributes.addFlashAttribute("message", "Activated!");
 
-        return newRedirect(test);
+        return newRedirect(isNull(test) ? "tests" : test);
+    }
+
+    @Controller
+    @RequestMapping("/shared/psy")
+    public static class Shared extends AbstractPsyController {
+
+        @Autowired
+        private SessionService sessions;
+
+        @GetMapping("/registration")
+        public ModelAndView registration(
+                @RequestParam("session") String hash
+        ) {
+            TextEncryptor encryptor = sessions.getEncryptor();
+            Session       session   = sessions.getOne(Integer.valueOf(encryptor.decrypt(hash)));
+
+            patient.set(session.getPatient().getId());
+
+            return newRedirect(session.getTest().toString());
+        }
+
+        @GetMapping("/undefined")
+        public ModelAndView undefined() {
+            return new ModelAndView("/psy/shared/undefined");
+        }
+
     }
 
 }

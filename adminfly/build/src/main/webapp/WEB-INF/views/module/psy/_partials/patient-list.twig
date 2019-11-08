@@ -1,13 +1,13 @@
 <ul class="list-group">
     {% for item in items %}
         {% set edit = url('/psy/patients/edit/' ~ item.id) %}
-        {% set activate = url('/psy/patients/activate/' ~ item.id) ~ '?test=' ~ default(test, 'UNDEFINED') %}
-        {% set view = url('/psy/patients/view/' ~ item.id) %}
+        {% set activate = url('/psy/patients/activate/' ~ item.id) ~ ((test is defined) ? '?test=' ~ test : '') %}
+        {% set profile = url('/psy/patients/profile/' ~ item.id) %}
         <li class="list-group-item d-flex justify-content-between align-items-center">
             {{ item.sexEmoji }}&nbsp;{{ item.name }}&nbsp;{{ item.surname }}
             <div class="float-right">
-                <button type="button" onclick="location.href='{{ view }}'"
-                        class="btn btn-sm btn-secondary">{{ 'label.view' | translate }}
+                <button type="button" onclick="location.href='{{ profile }}'"
+                        class="btn btn-sm btn-secondary">{{ 'label.profile' | translate }}
                 </button>
                 <button type="button" onclick="location.href='{{ activate }}'"
                         class="btn btn-sm btn-success">{{ 'label.select' | translate }}

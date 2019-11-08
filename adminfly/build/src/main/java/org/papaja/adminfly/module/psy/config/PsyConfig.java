@@ -26,6 +26,7 @@ public class PsyConfig {
         menu.addItem("label.patients", "/psy/patients");
         menu.addItem("label.tests", "/psy/tests");
         menu.addItem("label.results", "/psy/results");
+        menu.addItem("label.documents", "/psy/documents");
 
         Modules.register(new Modules.Module(
                 environment.getProperty("module.psy.name"),

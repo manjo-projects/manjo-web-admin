@@ -3,7 +3,13 @@
     {% include './../_partials/patient-current.twig' %}
     <div class="row">
         <div class="col-lg-6">
-            {% include '../_partials/patient-list.twig' %}
+
+            <div class="card bg-light mb-3">
+                <div class="card-header">
+                    {{ 'label.patients' | translate }}
+                </div>
+                {% include '../_partials/patient-list.twig' %}
+            </div>
         </div>
         <div class="col-lg-6">
             {% include '../_partials/patient-form.twig' %}

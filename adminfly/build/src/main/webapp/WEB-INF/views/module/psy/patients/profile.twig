@@ -1,0 +1,54 @@
+{% extends '../layout.twig' %}
+{% block content %}
+    <div class="page-header mb-4">
+        <h2>{{ 'label.profile' | translate }}:&nbsp;<b>{{ profile.name }}&nbsp;{{ profile.surname }}</b></h2>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card mb-3">
+                <h4 class="card-header">{{ 'label.test' | translate }}-{{ 'label.session' | translate }}</h4>
+                <div class="card-body">
+                    <form method="post" action="{{ url('/psy/patients/profile/' ~ profile.id) }}">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="testsSelect">{{ 'label.tests' | translate }}</label>
+                                <select class="form-control" name="test" id="testsSelect">
+                                    <option>-- {{ 'label.select' | translate }} --</option>
+                                    {% for test in tests %}
+                                    <option value="{{ test }}">{{ test.getName() }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">{{ 'label.create' | translate }}</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <h4 class="card-header">{{ 'label.opened' | translate }}</h4>
+                <div class="list-group">
+                    {% for session in sessions %}
+                        {% set sessionURL = url ~ '/shared/psy/registration?session=' ~ encryptor.encrypt(session.getStringId()) %}
+                    <a href="{{ sessionURL }}" target="_blank" class="list-group-item">{{ sessionURL }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="card mb-3">
+                <h4 class="card-header">{{ 'label.forms' | translate }}</h4>
+                <div class="list-group">
+                    <a href="#" class="list-group-item">
+                        <i>no forms yet...</i>
+                    </a>
+                </div>
+            </div>
+            <div class="card">
+                <h4 class="card-header">{{ 'label.documents' | translate }}</h4>
+                <div class="list-group">
+                    <a href="#" class="list-group-item">
+                        <i>no documents yet...</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
