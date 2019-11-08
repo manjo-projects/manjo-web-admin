@@ -26,12 +26,14 @@
             </div>
             <div class="card mb-3">
                 <h4 class="card-header">{{ 'label.opened' | translate }}</h4>
-                <div class="list-group">
+                <ul class="list-group">
                     {% for session in sessions %}
                         {% set sessionURL = url ~ '/shared/psy/registration?session=' ~ encryptor.encrypt(session.getStringId()) %}
-                    <a href="{{ sessionURL }}" target="_blank" class="list-group-item">{{ sessionURL }}</a>
+                    <li class="list-group-item">
+                        [{{ session.test }}]: <a href="{{ sessionURL }}" target="_blank" >{{ sessionURL }}</a>
+                    </li>
                     {% endfor %}
-                </div>
+                </ul>
             </div>
             <div class="card mb-3">
                 <h4 class="card-header">{{ 'label.forms' | translate }}</h4>
