@@ -1,0 +1,10 @@
+{% if patient is not null %}
+<div class="card border-secondary mb-3">
+    <div class="card-header">
+        <h4 class="m-0">
+            {% if patient.sex == 'F' %}&#127825;{% else %}&#127820;{% endif %}&nbsp;{{ patient.name }}&nbsp;{{ patient.surname }}
+        </h4>
+    </div>
+</div>
+<hr class="my-4"/>
+{% endif %}

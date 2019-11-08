@@ -1,0 +1,12 @@
+{% extends '../layout.twig' %}
+{% block content %}
+    {% include './../_partials/patient-current.twig' %}
+    <div class="row">
+        <div class="col-lg-6">
+            {% include '../_partials/patient-list.twig' %}
+        </div>
+        <div class="col-lg-6">
+            {% include '../_partials/patient-form.twig' %}
+        </div>
+    </div>
+{% endblock %}

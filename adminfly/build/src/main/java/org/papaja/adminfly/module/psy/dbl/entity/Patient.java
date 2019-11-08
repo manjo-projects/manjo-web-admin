@@ -7,6 +7,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 import static java.lang.String.format;
+import static org.papaja.adminfly.module.psy.tests.mmpi2.model.Sex.F;
 
 @Entity
 @Table(name = "psy_patients")
@@ -50,6 +51,10 @@ public class Patient extends AbstractEntity {
 
     public void setSex(Sex sex) {
         this.sex = sex;
+    }
+
+    public String getSexEmoji() {
+        return sex.equals(F) ? "&#127825;" : "&#127820;";
     }
 
     public Timestamp getCreated() {

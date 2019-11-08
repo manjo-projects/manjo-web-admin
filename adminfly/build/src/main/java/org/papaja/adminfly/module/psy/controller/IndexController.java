@@ -1,7 +1,5 @@
 package org.papaja.adminfly.module.psy.controller;
 
-import org.papaja.adminfly.commons.controller.AbstractController;
-import org.papaja.adminfly.module.psy.commons.holder.PatientHolder;
 import org.papaja.adminfly.module.psy.dbl.dto.PatientDto;
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
 import org.papaja.adminfly.module.psy.dbl.mapper.PatientMapper;
@@ -18,18 +16,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
-import static java.lang.String.format;
-
 @SuppressWarnings({"unused"})
 @Controller("psyIndexController")
 @RequestMapping(value = "/psy")
-public class IndexController extends AbstractController {
-
-    @Autowired
-    private PatientService patients;
-
-    @Autowired
-    private PatientHolder patient;
+public class IndexController extends AbstractPsyController {
 
     @ModelAttribute
     public void model(Model model) {
@@ -48,6 +38,18 @@ public class IndexController extends AbstractController {
         ModelAndView mav = newView("patients/index");
 
         mav.addObject("items", patients.getAll());
+
+        return mav;
+    }
+
+    @PreAuthorize("hasAnyAuthority('READ')")
+    @GetMapping(value = {"/patients/view/{id:[0-9]+}"})
+    public ModelAndView view(
+            @PathVariable(value = "id") Integer id
+    ) {
+        ModelAndView mav = newView("patients/view");
+
+        mav.addObject("item", patients.getOne(id));
 
         return mav;
     }
@@ -105,37 +107,17 @@ public class IndexController extends AbstractController {
     }
 
     @PreAuthorize("hasAnyAuthority('READ')")
-    @GetMapping(value = {"/{name:[\\p{LD}]+}"})
-    public ModelAndView startTest(
-            @PathVariable(value = "name") String name
-    ) {
-        ModelAndView mav = newView("tests/run");
-
-        System.out.println(name);
-
-//        if (patient.has()) {
-//            mav.addObject("patient", patients.getOne(patient.get()));
-//        } else {
-//            mav = newView("tests/getPatient");
-//            mav.addObject("items", patients.getAll());
-//            mav.addObject("test", name);
-//        }
-
-        return mav;
-    }
-
-    @PreAuthorize("hasAnyAuthority('READ')")
     @GetMapping(value = {"/patients/activate/{id:[0-9]+}"})
     public ModelAndView startTest(
             @PathVariable(value = "id") Integer id,
-            @RequestParam(value = "test", required = false) String test,
+            @RequestParam(value = "test") String test,
             RedirectAttributes attributes
     ) {
         patient.set(id);
 
         attributes.addFlashAttribute("message", "Activated!");
 
-        return newRedirect(format("run?test=%s", test));
+        return newRedirect(test);
     }
 
 }

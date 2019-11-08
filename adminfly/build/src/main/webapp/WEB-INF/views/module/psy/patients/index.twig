@@ -1,53 +1,20 @@
 {% extends '../layout.twig' %}
 {% import '../../../shared/macro/fields.twig' as fields %}
 {% block content %}
+    {% include './../_partials/patient-current.twig' %}
     <div class="page-header mb-4">
-        {% set create = url('/psy/patients/create') %}
-        <button type="button" onclick="location.href='{{ create }}'"
-                class="btn btn-sm btn-info">{{ 'label.create' | translate }}
-        </button>
+        <h1>{{ 'label.patients' | translate }}</h1>
     </div>
     <div class="row">
         <div class="col-lg-12">
             <div class="card bg-light mb-3">
                 <div class="card-header">
-                    {{ 'label.patients' | translate }}
+                    {% set create = url('/psy/patients/create') %}
+                    <button type="button" onclick="location.href='{{ create }}'"
+                            class="btn btn-sm btn-info">{{ 'label.create' | translate }}
+                    </button>
                 </div>
-                <div class="card-body">
-                    <table class="table table-hover">
-                        <thead>
-                        <tr>
-                            <th scope="col">{{ 'label.name' | translate }}</th>
-                            <th scope="col">{{ 'label.surname' | translate }}</th>
-                            <th scope="col">{{ 'label.sex' | translate }}</th>
-                            <th scope="col">{{ 'label.created' | translate }}</th>
-                            <th scope="col" class="w-25"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for item in items %}
-                            {% set edit = url('/psy/patients/edit/' ~ item.id) %}
-                            {% set activate = url('/psy/patients/activate/' ~ item.id) %}
-                            <tr>
-                                <td>{{ item.name }}</td>
-                                <td>{{ item.surname }}</td>
-                                <td>
-                                    <b>{% if item.sex == 'F' %}&#127825;{% else %}&#127820;{% endif %}</b>
-                                </td>
-                                <td>{{ item.created }}</td>
-                                <td>
-                                    <button type="button" onclick="location.href='{{ activate }}'"
-                                            class="btn btn-sm btn-success">{{ 'label.select' | translate }}
-                                    </button>
-                                    <button type="button" onclick="location.href='{{ edit }}'"
-                                            class="btn btn-sm btn-info">{{ 'label.edit' | translate }}
-                                    </button>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                {% include './../_partials/patient-list.twig' %}
             </div>
         </div>
     </div>
