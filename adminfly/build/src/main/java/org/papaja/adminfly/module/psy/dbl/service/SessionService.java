@@ -6,8 +6,15 @@ import org.papaja.adminfly.module.psy.dbl.entity.Patient;
 import org.papaja.adminfly.module.psy.dbl.entity.Session;
 import org.papaja.adminfly.module.psy.dbl.repository.SessionRepository;
 import org.papaja.adminfly.module.psy.tests.Test;
+import org.papaja.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import static java.util.Arrays.asList;
 
 @Service
 public class SessionService extends AbstractService<Session, SessionRepository> {
@@ -31,6 +38,13 @@ public class SessionService extends AbstractService<Session, SessionRepository> 
         session.setActive(true);
 
         merge(session);
+    }
+
+    public List<Session> getSessions(Patient patient) {
+        return repository.getList(repository.getConsumer(asList(
+                new Pair<>("patient", patient),
+                new Pair<>("active", false)
+        )).after((builder, query, root) -> query.orderBy(builder.asc(root.get("id")))));
     }
 
     @Override

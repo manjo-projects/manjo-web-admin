@@ -1,5 +1,6 @@
 package org.papaja.adminfly.module.psy.controller;
 
+import org.papaja.adminfly.commons.data.AvailableThemes;
 import org.papaja.adminfly.module.psy.commons.crypto.CryptoUtils;
 import org.papaja.adminfly.module.psy.dbl.dto.PatientDto;
 import org.papaja.adminfly.module.psy.dbl.dto.SessionDto;
@@ -59,14 +60,16 @@ public class IndexController extends AbstractPsyController {
     public ModelAndView profile(
             @PathVariable(value = "id") Integer id
     ) {
-        ModelAndView mav = newView("patients/profile");
+        ModelAndView mav     = newView("patients/profile");
+        Patient      patient = patients.getOne(id);
 
-        mav.addObject("profile", patients.getOne(id));
+        mav.addObject("profile", patient);
         mav.addObject("tests", Test.values());
-        mav.addObject("sessions", sessions.getAll());
+        mav.addObject("sessions", sessions.getSessions(patient));
         mav.addObject("encryptor", sessions.getEncryptor());
         mav.addObject("url", ServletUriComponentsBuilder.fromCurrentContextPath().toUriString());
-        mav.addObject("locale", Locale.RU_RU);
+        mav.addObject("locale", Locale.UK_UA);
+        mav.addObject("theme", AvailableThemes.Themes.LUMEN);
 
         return mav;
     }
@@ -74,17 +77,24 @@ public class IndexController extends AbstractPsyController {
     @PreAuthorize("hasAnyAuthority('READ')")
     @PostMapping(value = {"/patients/profile/{id:[0-9]+}"})
     public ModelAndView createSession(
-            @Valid SessionDto dto,
             @PathVariable(value = "id") Integer id,
+            @Valid SessionDto dto, BindingResult result,
             RedirectAttributes attributes
     ) {
-        sessions.newSession(patients.getOne(id), dto.getTest());
+        ModelAndView mav = newRedirect(format("patients/profile/%d", id));
 
-        attributes.addFlashAttribute("message",
-                messages.getSuccessMessage("record.saved",
-                        getMessage("label.session")));
+        if (result.hasErrors()) {
+            mav = profile(id);
+            mav.addObject("result", result);
+        } else {
+            sessions.newSession(patients.getOne(id), dto.getTest());
 
-        return newRedirect(format("patients/profile/%d", id));
+            attributes.addFlashAttribute("message",
+                    messages.getSuccessMessage("record.saved",
+                            getMessage("label.session")));
+        }
+
+        return mav;
     }
 
     @PreAuthorize("hasAnyAuthority('READ')")
@@ -148,7 +158,8 @@ public class IndexController extends AbstractPsyController {
     ) {
         patient.set(id);
 
-        attributes.addFlashAttribute("message", "Activated!");
+        attributes.addFlashAttribute("message",
+                messages.getSuccessMessage("text.patientActivated", id));
 
         return newRedirect(isNull(test) ? "tests" : test);
     }
@@ -164,12 +175,17 @@ public class IndexController extends AbstractPsyController {
         public ModelAndView registration(
                 @PathVariable("session") String hash
         ) {
-            CryptoUtils encryptor = sessions.getEncryptor();
-            Session     session   = sessions.getOne(Integer.valueOf(encryptor.decrypt(hash)));
+            CryptoUtils  crypto  = sessions.getEncryptor();
+            Session      session = sessions.getOne(Integer.valueOf(crypto.decrypt(hash)));
+            ModelAndView mav     = newRedirect(session.getTest().toString());
 
-            patient.set(session.getPatient().getId());
+            if (session.isOld() && session.isActive()) {
+                patient.set(session.getPatient().getId());
+            } else {
+                mav = newRedirect("undefined");
+            }
 
-            return newRedirect(session.getTest().toString());
+            return mav;
         }
 
         @GetMapping("/undefined")

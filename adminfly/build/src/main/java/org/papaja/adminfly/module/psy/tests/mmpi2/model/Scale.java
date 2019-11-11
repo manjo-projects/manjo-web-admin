@@ -58,6 +58,10 @@ public enum Scale {
         return name;
     }
 
+    public String getKey() {
+        return getName().toUpperCase();
+    }
+
     public enum K {
 
         HP(0.5f),

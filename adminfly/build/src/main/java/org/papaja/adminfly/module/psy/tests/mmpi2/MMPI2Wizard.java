@@ -6,7 +6,7 @@ import org.papaja.adminfly.module.psy.tests.wizard.AbstractWizard;
 public class MMPI2Wizard extends AbstractWizard<Answer> {
 
     public MMPI2Wizard() {
-        super(1, 566);
+        super(1, 5);
     }
 
 }

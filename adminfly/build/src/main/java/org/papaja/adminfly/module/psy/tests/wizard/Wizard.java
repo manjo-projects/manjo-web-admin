@@ -1,5 +1,7 @@
 package org.papaja.adminfly.module.psy.tests.wizard;
 
+import java.util.Map;
+
 import static org.papaja.adminfly.module.psy.tests.wizard.Wizard.Direction.BACKWARD;
 import static org.papaja.adminfly.module.psy.tests.wizard.Wizard.Direction.FORWARD;
 
@@ -24,6 +26,8 @@ public interface Wizard<T> {
     void move(Direction direction);
 
     boolean submit(T result, Direction direction);
+
+    Map<Integer, T> results();
 
     void update();
 

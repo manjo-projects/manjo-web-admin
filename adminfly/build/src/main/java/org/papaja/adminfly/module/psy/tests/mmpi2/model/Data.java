@@ -2,7 +2,8 @@ package org.papaja.adminfly.module.psy.tests.mmpi2.model;
 
 import static org.papaja.adminfly.module.psy.tests.mmpi2.model.Scale.*;
 
-public class Data {
+public enum Data {
+    INSTANCE;
 
     /**
      * Q-N:

@@ -1,19 +1,17 @@
 package org.papaja.adminfly.module.psy.tests.wizard;
 
-import org.papaja.adminfly.module.psy.tests.AnswerKeeper;
-
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.papaja.adminfly.module.psy.tests.wizard.Wizard.State.*;
 
-abstract public class AbstractWizard<T> implements Wizard<T>, AnswerKeeper<Integer, T> {
+abstract public class AbstractWizard<T> implements Wizard<T> {
 
-    protected Map<Integer, T> answers = new HashMap<>();
-    protected State                   state;
-    protected int                     position;
-    protected int                     lowest;
-    protected int                     highest;
+    protected Map<Integer, T> results = new HashMap<>();
+    protected State           state;
+    protected int             position;
+    protected int             lowest;
+    protected int             highest;
 
     public AbstractWizard(int lowest, int highest) {
         this.lowest = lowest;
@@ -64,7 +62,7 @@ abstract public class AbstractWizard<T> implements Wizard<T>, AnswerKeeper<Integ
         boolean submitted = false;
 
         if (validate(direction)) {
-            answers.put(position(), result);
+            results.put(position(), result);
             move(direction);
             submitted = true;
         }
@@ -85,9 +83,7 @@ abstract public class AbstractWizard<T> implements Wizard<T>, AnswerKeeper<Integ
 
     @Override
     public boolean validate(Direction direction) {
-        int next = position() + direction.step();
-
-        return next >= lowest() && next <= highest();
+        return (position() + direction.step()) >= lowest() && position() - 1 <= highest();
     }
 
     @Override
@@ -96,8 +92,8 @@ abstract public class AbstractWizard<T> implements Wizard<T>, AnswerKeeper<Integ
     }
 
     @Override
-    public Map<Integer, T> getAnswers() {
-        return answers;
+    public Map<Integer, T> results() {
+        return results;
     }
 
 }
