@@ -1,19 +1,20 @@
 {% include './../../_partials/patient-current.twig' %}
+<h5>{{ position }} — {{ total }}</h5>
 <div class="jumbotron">
-    <h3 class="display-4">{{ 'mmpi2.male.q' ~ app.request.query.question | translate }}</h3>
+    <h3 class="display-4">{{ 'mmpi2.male.q' ~ position | translate }}</h3>
     <hr class="my-4"/>
     <div class="lead">
         <div class="btn-group btn-block">
-            <button class="btn btn-success btn-lg" href="#" role="button">
+            <button class="btn btn-success btn-lg" href="#" onclick="window.location='{{ url(prefix) ~ '/FORWARD/T' }}'" role="button">
                 {{ 'label.true' | translate }}!
             </button>
-            <button class="btn btn-danger btn-lg" href="#" role="button">
+            <button class="btn btn-danger btn-lg" href="#" onclick="window.location='{{ url(prefix) ~ '/FORWARD/F' }}'" role="button">
                 {{ 'label.not_true' | translate }}!
             </button>
         </div>
     </div>
     <hr class="my-4"/>
-    <button class="btn btn-secondary btn-lg" href="#" role="button">
+    <button class="btn btn-secondary btn-lg" href="#" onclick="window.location='{{ url(prefix) ~ '/BACKWARD' }}'" role="button">
         {{ 'label.back' | translate }}!
     </button>
 </div>

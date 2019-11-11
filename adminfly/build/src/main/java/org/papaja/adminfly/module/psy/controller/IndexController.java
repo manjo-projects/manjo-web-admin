@@ -1,5 +1,6 @@
 package org.papaja.adminfly.module.psy.controller;
 
+import org.papaja.adminfly.module.psy.commons.crypto.CryptoUtils;
 import org.papaja.adminfly.module.psy.dbl.dto.PatientDto;
 import org.papaja.adminfly.module.psy.dbl.dto.SessionDto;
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
@@ -7,6 +8,7 @@ import org.papaja.adminfly.module.psy.dbl.entity.Session;
 import org.papaja.adminfly.module.psy.dbl.mapper.PatientMapper;
 import org.papaja.adminfly.module.psy.dbl.service.SessionService;
 import org.papaja.adminfly.module.psy.tests.Test;
+import org.papaja.geo.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.encrypt.TextEncryptor;
@@ -64,6 +66,7 @@ public class IndexController extends AbstractPsyController {
         mav.addObject("sessions", sessions.getAll());
         mav.addObject("encryptor", sessions.getEncryptor());
         mav.addObject("url", ServletUriComponentsBuilder.fromCurrentContextPath().toUriString());
+        mav.addObject("locale", Locale.RU_RU);
 
         return mav;
     }
@@ -157,12 +160,12 @@ public class IndexController extends AbstractPsyController {
         @Autowired
         private SessionService sessions;
 
-        @GetMapping("/registration")
+        @GetMapping("/_/{session}")
         public ModelAndView registration(
-                @RequestParam("session") String hash
+                @PathVariable("session") String hash
         ) {
-            TextEncryptor encryptor = sessions.getEncryptor();
-            Session       session   = sessions.getOne(Integer.valueOf(encryptor.decrypt(hash)));
+            CryptoUtils encryptor = sessions.getEncryptor();
+            Session     session   = sessions.getOne(Integer.valueOf(encryptor.decrypt(hash)));
 
             patient.set(session.getPatient().getId());
 

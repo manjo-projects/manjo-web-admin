@@ -74,11 +74,13 @@
                     <artifactId>papaja-adminfly-module-shopper</artifactId>
                     <version>${papaja.adminfly.module.shopper.version}</version>
                 </dependency>
-                <!-- <dependency>
+                <!--
+                <dependency>
                     <groupId>org.papaja.adminfly</groupId>
                     <artifactId>papaja-adminfly-module-psy</artifactId>
                     <version>${papaja.adminfly.module.psy-tests.version}</version>
-                </dependency> -->
+                </dependency>
+                -->
             </dependencies>
         </profile>
     </profiles>
@@ -99,7 +101,7 @@
                 <version>2.2</version>
                 <configuration>
                     <port>8080</port>
-                    <path>/app</path>
+                    <path>/</path>
                 </configuration>
             </plugin>
         </plugins>

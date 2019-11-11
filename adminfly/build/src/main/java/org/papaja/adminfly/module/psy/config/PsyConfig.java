@@ -3,6 +3,9 @@ package org.papaja.adminfly.module.psy.config;
 import org.papaja.adminfly.commons.ui.Menu;
 import org.papaja.adminfly.commons.ui.Modules;
 import org.papaja.adminfly.module.psy.commons.holder.PatientHolder;
+import org.papaja.adminfly.module.psy.tests.mmpi2.MMPI2Wizard;
+import org.papaja.adminfly.module.psy.tests.mmpi2.model.Answer;
+import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
@@ -39,6 +42,12 @@ public class PsyConfig {
     @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
     public PatientHolder patientHolder() {
         return new PatientHolder();
+    }
+
+    @Bean("wizardMMPI2")
+    @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+    public Wizard<Answer> wizardMMPI2() {
+        return new MMPI2Wizard();
     }
 
 }

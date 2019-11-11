@@ -25,10 +25,10 @@
                 </div>
             </div>
             <div class="card mb-3">
-                <h4 class="card-header">{{ 'label.opened' | translate }}</h4>
+                <h4 class="card-header">{{ 'label.sessions' | translate }}</h4>
                 <ul class="list-group">
                     {% for session in sessions %}
-                        {% set sessionURL = url ~ '/shared/psy/registration?session=' ~ encryptor.encrypt(session.getStringId()) %}
+                        {% set sessionURL = url ~ '/shared/psy/_/' ~ encryptor.encrypt(session.getStringId()) ~ '?locale=' ~ locale.getCode() %}
                     <li class="list-group-item">
                         [{{ session.test }}]: <a href="{{ sessionURL }}" target="_blank" >{{ sessionURL }}</a>
                     </li>
