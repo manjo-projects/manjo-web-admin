@@ -1,5 +1,7 @@
 package org.papaja.adminfly.commons.entity;
 
+import org.papaja.adminfly.commons.entity.api.AbstractEntity;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Collection;

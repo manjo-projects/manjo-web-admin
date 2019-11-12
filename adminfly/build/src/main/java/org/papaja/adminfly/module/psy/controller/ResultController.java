@@ -1,5 +1,6 @@
 package org.papaja.adminfly.module.psy.controller;
 
+import org.papaja.adminfly.module.psy.dbl.entity.results.Result;
 import org.papaja.adminfly.module.psy.dbl.service.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller("psyResultsController")
+@Controller("psyResultController")
 @RequestMapping("/psy/results")
 public class ResultController extends AbstractPsyController {
 
@@ -19,7 +20,10 @@ public class ResultController extends AbstractPsyController {
     @PreAuthorize("hasAnyAuthority('READ')")
     public ModelAndView index() {
 
-        System.out.println(results.getOne(1));
+
+        for (Result result : results.getAll()) {
+            System.out.println(result);
+        }
 
 
         return newView("index");

@@ -1,7 +1,7 @@
 package org.papaja.adminfly.commons.service;
 
 import org.hibernate.query.Query;
-import org.papaja.adminfly.commons.entity.AbstractEntity;
+import org.papaja.adminfly.commons.entity.api.EntityInterface;
 import org.papaja.adminfly.commons.repository.AbstractRepository;
 import org.papaja.function.Supplier;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +13,7 @@ import static java.util.Objects.nonNull;
 
 @SuppressWarnings({"all"})
 @Transactional
-abstract public class AbstractService<E extends AbstractEntity, R extends AbstractRepository<E>> implements Supplier<E> {
+abstract public class AbstractService<E extends EntityInterface, R extends AbstractRepository<E>> implements Supplier<E> {
 
     public void remove(Integer id) {
         remove(getOne(id));

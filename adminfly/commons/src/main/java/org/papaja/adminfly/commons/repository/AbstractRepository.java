@@ -4,9 +4,9 @@ import org.hibernate.MultiIdentifierLoadAccess;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.papaja.adminfly.commons.entity.api.EntityInterface;
 import org.papaja.function.TriConsumer;
 import org.papaja.tuple.Pair;
-import org.papaja.adminfly.commons.entity.AbstractEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -15,7 +15,6 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,7 +22,7 @@ import static java.lang.String.format;
 import static java.util.Arrays.asList;
 
 @SuppressWarnings({"all"})
-abstract public class AbstractRepository<E extends AbstractEntity> {
+abstract public class AbstractRepository<E extends EntityInterface> {
 
     @Autowired
     protected SessionFactory factory;

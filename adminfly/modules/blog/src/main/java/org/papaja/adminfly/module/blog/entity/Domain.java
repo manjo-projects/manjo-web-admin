@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.blog.entity;
 
-import org.papaja.adminfly.commons.entity.AbstractEntity;
+import org.papaja.adminfly.commons.entity.api.AbstractEntity;
 import org.papaja.adminfly.commons.entity.User;
 
 import javax.persistence.*;

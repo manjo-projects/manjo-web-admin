@@ -1,6 +1,7 @@
 package org.papaja.adminfly.commons.entity;
 
 import org.hibernate.annotations.DynamicUpdate;
+import org.papaja.adminfly.commons.entity.api.AbstractEntity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

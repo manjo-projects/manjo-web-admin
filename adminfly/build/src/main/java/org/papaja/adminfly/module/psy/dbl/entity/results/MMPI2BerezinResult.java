@@ -1,8 +1,7 @@
 package org.papaja.adminfly.module.psy.dbl.entity.results;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.Positive;
 
 import static java.lang.String.format;
 
@@ -48,6 +47,16 @@ public class MMPI2BerezinResult extends Result {
 
     @Column(name = "SCALE_0")
     private Integer scale0;
+
+    @Override
+    public Integer getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getScaleL() {
         return scaleL;

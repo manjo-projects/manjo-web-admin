@@ -1,4 +1,4 @@
-package org.papaja.adminfly.commons.entity;
+package org.papaja.adminfly.commons.entity.api;
 
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
@@ -8,7 +8,7 @@ import static java.util.Objects.hash;
 
 @SuppressWarnings({"unused"})
 @MappedSuperclass
-abstract public class AbstractEntity {
+abstract public class AbstractEntity implements EntityInterface {
 
     @Id
     @Positive

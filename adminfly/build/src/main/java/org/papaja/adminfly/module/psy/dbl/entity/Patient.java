@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.psy.dbl.entity;
 
-import org.papaja.adminfly.commons.entity.AbstractEntity;
+import org.papaja.adminfly.commons.entity.api.AbstractEntity;
 import org.papaja.adminfly.module.psy.tests.mmpi2.model.Sex;
 
 import javax.persistence.*;
@@ -10,7 +10,7 @@ import static java.lang.String.format;
 import static org.papaja.adminfly.module.psy.tests.mmpi2.model.Sex.F;
 
 @Entity
-@Table(name = "psy_patients")
+@Table(name = "PSY_PATIENTS")
 public class Patient extends AbstractEntity {
 
     @Column(name = "NAME")
