@@ -6,7 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "blog_categories")
+@Table(name = "BLOG_CATEGORIES")
 public class Category extends AbstractEntity {
 
     @OneToOne(cascade = {
