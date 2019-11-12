@@ -7,13 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "kv_values")
+@Table(name = "KV_VALUES")
 public class KeyValue extends AbstractEntity {
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String key;
 
-    @Column(name = "value")
+    @Column(name = "VALUE")
     private String value;
 
     public String getKey() {

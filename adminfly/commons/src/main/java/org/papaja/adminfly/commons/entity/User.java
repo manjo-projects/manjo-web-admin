@@ -13,25 +13,25 @@ import static java.util.Objects.nonNull;
 @SuppressWarnings({"unused"})
 @DynamicUpdate
 @Entity
-@Table(name = "security_users")
+@Table(name = "SECURITY_USERS")
 public class User extends AbstractEntity {
 
-    @Column(name = "username")
+    @Column(name = "USERNAME")
     private String username;
 
-    @Column(name = "password")
+    @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "enabled", columnDefinition = "TINYINT(1)")
+    @Column(name = "ENABLED", columnDefinition = "TINYINT(1)")
     private Boolean enabled;
 
-    @Column(name = "expired")
+    @Column(name = "EXPIRED")
     private Timestamp expired;
 
-    @Column(name = "created")
+    @Column(name = "CREATED")
     private Timestamp created;
 
-    @Column(name = "updated")
+    @Column(name = "UPDATED")
     private Timestamp updated;
 
     @ManyToMany(cascade = {
@@ -39,9 +39,9 @@ public class User extends AbstractEntity {
             CascadeType.REFRESH, CascadeType.PERSIST
     })
     @JoinTable(
-        name = "security_users_roles",
-        joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
+        name = "SECURITY_USERS_ROLES",
+        joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")
     )
     private Collection<Role> roles;
 

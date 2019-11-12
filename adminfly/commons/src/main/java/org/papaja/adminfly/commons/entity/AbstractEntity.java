@@ -13,7 +13,7 @@ abstract public class AbstractEntity {
     @Id
     @Positive
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "ID")
     protected Integer id;
 
     public Integer getId() {

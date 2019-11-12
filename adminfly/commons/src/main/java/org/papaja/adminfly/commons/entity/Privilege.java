@@ -7,21 +7,21 @@ import java.util.Collection;
 
 @SuppressWarnings({"unused"})
 @Entity
-@Table(name = "security_privileges")
+@Table(name = "SECURITY_PRIVILEGES")
 public class Privilege extends AbstractEntity {
 
     @NotBlank(message = "{validation.notBlank}")
     @Size(min = 3, max = 64, message = "{validation.size}")
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 
     @ManyToMany(cascade = {
             CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.REFRESH, CascadeType.PERSIST
     })
-    @JoinTable(name = "security_roles_privileges",
-        joinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
+    @JoinTable(name = "SECURITY_ROLES_PRIVILEGES",
+        joinColumns = @JoinColumn(name = "PRIVILEGE_ID", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID")
     )
     private Collection<Role> roles;
 

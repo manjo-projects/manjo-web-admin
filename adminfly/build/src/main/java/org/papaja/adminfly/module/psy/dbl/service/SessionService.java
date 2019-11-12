@@ -43,7 +43,7 @@ public class SessionService extends AbstractService<Session, SessionRepository> 
     public List<Session> getSessions(Patient patient) {
         return repository.getList(repository.getConsumer(asList(
                 new Pair<>("patient", patient),
-                new Pair<>("active", false)
+                new Pair<>("active", true)
         )).after((builder, query, root) -> query.orderBy(builder.asc(root.get("id")))));
     }
 

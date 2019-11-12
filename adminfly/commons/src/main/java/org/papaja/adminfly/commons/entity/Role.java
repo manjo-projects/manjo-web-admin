@@ -8,20 +8,20 @@ import java.util.stream.Collectors;
 
 @SuppressWarnings({"unused"})
 @Entity
-@Table(name = "security_roles")
+@Table(name = "SECURITY_ROLES")
 public class Role extends AbstractEntity {
 
     @Size(min = 5, max = 16)
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 
     @ManyToMany(cascade = {
             CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.REFRESH, CascadeType.PERSIST
     })
-    @JoinTable(name = "security_users_roles",
-        joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinTable(name = "SECURITY_USERS_ROLES",
+        joinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     )
     private Collection<User> users;
 
@@ -29,9 +29,9 @@ public class Role extends AbstractEntity {
             CascadeType.DETACH, CascadeType.MERGE,
             CascadeType.REFRESH, CascadeType.PERSIST
     })
-    @JoinTable(name = "security_roles_privileges",
-        joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id")
+    @JoinTable(name = "SECURITY_ROLES_PRIVILEGES",
+        joinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "PRIVILEGE_ID", referencedColumnName = "ID")
     )
     private Collection<Privilege> privileges;
 

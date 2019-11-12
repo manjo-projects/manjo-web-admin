@@ -6,33 +6,33 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
-@Table(name = "blog_posts")
+@Table(name = "BLOG_POSTS")
 public class Post extends AbstractEntity {
 
     @OneToOne
-    @JoinColumn(name="domain_id")
+    @JoinColumn(name="DOMAIN_ID")
     private Domain domain;
 
     @OneToOne
-    @JoinColumn(name="category_id")
+    @JoinColumn(name="CATEGORY_ID")
     private Category category;
 
-    @Column(name = "title")
+    @Column(name = "TITLE")
     private String title;
 
-    @Column(name = "body", columnDefinition = "MEDIUMTEXT")
+    @Column(name = "BODY", columnDefinition = "MEDIUMTEXT")
     private String body;
 
-    @Column(name = "views")
+    @Column(name = "VIEWS")
     private Integer views;
 
-    @Column(name = "enabled")
+    @Column(name = "ENABLED")
     private boolean enabled;
 
-    @Column(name = "created")
+    @Column(name = "CREATED")
     private Timestamp created;
 
-    @Column(name = "updated")
+    @Column(name = "UPDATED")
     private Timestamp updated;
 
     public Domain getDomain() {

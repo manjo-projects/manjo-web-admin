@@ -6,31 +6,31 @@ import org.papaja.converter.Format;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "mdbv_rows")
+@Table(name = "MDBV_ROWS")
 public class Row extends AbstractEntity {
 
-    @Column(name = "path")
+    @Column(name = "PATH")
     private String path;
 
     @Column(name = "d_type", columnDefinition = "CHAR")
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @Column(name = "column_preview", columnDefinition = "TINYINT(1)")
+    @Column(name = "COLUMN_PREVIEW", columnDefinition = "TINYINT(1)")
     private Boolean preview;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "source_id")
+    @JoinColumn(name = "SOURCE_ID")
     private Source source;
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 
-    @Column(name = "type", columnDefinition = "CHAR")
+    @Column(name = "TYPE", columnDefinition = "CHAR")
     @Enumerated(EnumType.STRING)
     private Format type;
 
-    @Column(name = "position")
+    @Column(name = "POSITION")
     private Integer position;
 
     public String getPath() {

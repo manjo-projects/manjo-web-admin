@@ -13,20 +13,20 @@ import static org.papaja.adminfly.module.psy.tests.mmpi2.model.Sex.F;
 @Table(name = "psy_patients")
 public class Patient extends AbstractEntity {
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 
-    @Column(name = "surname")
+    @Column(name = "SURNAME")
     private String surname;
 
-    @Column(name = "sex", columnDefinition = "CHAR")
+    @Column(name = "SEX", columnDefinition = "CHAR")
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
-    @Column(name = "created")
+    @Column(name = "CREATED")
     private Timestamp created;
 
-    @Column(name = "updated")
+    @Column(name = "UPDATED")
     private Timestamp updated;
 
     public String getName() {

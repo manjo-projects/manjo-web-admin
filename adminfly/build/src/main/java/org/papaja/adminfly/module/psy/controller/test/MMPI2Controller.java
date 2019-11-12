@@ -49,6 +49,7 @@ public class MMPI2Controller extends AbstractPsyController {
             mav.addObject("position", wizard.position());
             mav.addObject("total", wizard.size());
             mav.addObject("previous", wizard.results().get(wizard.position()));
+            System.out.println(wizard.results().get(wizard.position()));
         } else if (wizard.is(FINISHED)) {
             mav = newRedirect("calculate");
         } else {

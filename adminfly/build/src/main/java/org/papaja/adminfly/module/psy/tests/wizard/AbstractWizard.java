@@ -83,7 +83,7 @@ abstract public class AbstractWizard<T> implements Wizard<T> {
 
     @Override
     public boolean validate(Direction direction) {
-        return (position() + direction.step()) >= lowest() && position() - 1 <= highest();
+        return (position() + direction.step()) >= lowest() && position() <= highest();
     }
 
     @Override

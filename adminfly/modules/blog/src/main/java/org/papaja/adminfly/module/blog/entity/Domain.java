@@ -9,22 +9,22 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name = "blog_domains")
+@Table(name = "BLOG_DOMAINS")
 public class Domain extends AbstractEntity {
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 
-    @Column(name = "domain")
+    @Column(name = "DOMAIN")
     private String domain;
 
     @ManyToMany(cascade = {
         CascadeType.DETACH, CascadeType.MERGE,
         CascadeType.REFRESH, CascadeType.PERSIST
     })
-    @JoinTable(name = "blog_users_domains",
-        joinColumns = @JoinColumn(name = "domain_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinTable(name = "BLOG_USERS_DOMAINS",
+        joinColumns = @JoinColumn(name = "DOMAIN_ID", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID")
     )
     private Collection<User> users;
 

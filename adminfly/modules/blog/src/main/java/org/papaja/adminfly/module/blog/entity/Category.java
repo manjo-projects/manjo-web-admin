@@ -12,11 +12,11 @@ public class Category extends AbstractEntity {
     @OneToOne(cascade = {
             CascadeType.PERSIST, CascadeType.MERGE
     }, optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name="domain_id")
+    @JoinColumn(name="DOMAIN_ID")
     private Domain domain;
 
     @NotBlank(message = "{validation.notBlank}")
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 
     public Domain getDomain() {

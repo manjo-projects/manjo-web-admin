@@ -6,16 +6,16 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "mdbv_sources")
+@Table(name = "MDBV_SOURCES")
 public class Source extends AbstractEntity {
 
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
 
-    @Column(name = "db")
+    @Column(name = "DB")
     private String database;
 
-    @Column(name = "collection")
+    @Column(name = "COLLECTION")
     private String collection;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "source")

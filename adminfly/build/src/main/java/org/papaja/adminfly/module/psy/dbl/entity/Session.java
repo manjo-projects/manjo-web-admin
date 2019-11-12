@@ -9,18 +9,18 @@ import static java.lang.String.format;
 import static java.lang.String.valueOf;
 
 @Entity
-@Table(name = "psy_sessions")
+@Table(name = "PSY_SESSIONS")
 public class Session extends AbstractEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "patient_id")
+    @JoinColumn(name = "PATIENT_ID")
     private Patient patient;
 
-    @Column(name = "test", columnDefinition = "VARCHAR(16)")
+    @Column(name = "TEST", columnDefinition = "VARCHAR(16)")
     @Enumerated(EnumType.STRING)
     private Test test;
 
-    @Column(name = "active", columnDefinition = "TINYINT(1)")
+    @Column(name = "ACTIVE", columnDefinition = "TINYINT(1)")
     private Boolean active;
 
     public String getStringId() {
