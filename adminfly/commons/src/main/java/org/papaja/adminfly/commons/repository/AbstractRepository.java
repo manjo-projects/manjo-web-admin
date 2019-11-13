@@ -4,7 +4,7 @@ import org.hibernate.MultiIdentifierLoadAccess;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import org.papaja.adminfly.commons.entity.api.EntityInterface;
+import org.papaja.adminfly.commons.entity.api.Entity;
 import org.papaja.function.TriConsumer;
 import org.papaja.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import static java.lang.String.format;
 import static java.util.Arrays.asList;
 
 @SuppressWarnings({"all"})
-abstract public class AbstractRepository<E extends EntityInterface> {
+abstract public class AbstractRepository<E extends Entity> {
 
     @Autowired
     protected SessionFactory factory;

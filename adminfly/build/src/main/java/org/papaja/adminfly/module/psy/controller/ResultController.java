@@ -19,14 +19,17 @@ public class ResultController extends AbstractPsyController {
     @GetMapping
     @PreAuthorize("hasAnyAuthority('READ')")
     public ModelAndView index() {
+        ModelAndView mav = newView("index");
 
 
         for (Result result : results.getAll()) {
-            System.out.println(result);
+            System.out.println(result.getTest());
         }
 
+        mav.addObject("results", results.getAll());
 
-        return newView("index");
+
+        return mav;
     }
 
 }

@@ -1,6 +1,6 @@
 package org.papaja.adminfly.commons.entity.api;
 
-public interface EntityInterface {
+public interface Entity {
 
     Integer getId();
 

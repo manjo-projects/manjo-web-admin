@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.psy.dbl.entity.results;
 
-import org.papaja.adminfly.commons.entity.api.EntityInterface;
+import org.papaja.adminfly.commons.entity.api.AbstractEntity;
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
 import org.papaja.adminfly.module.psy.tests.Test;
 
@@ -11,13 +11,9 @@ import java.util.Objects;
 import static java.lang.String.format;
 
 @Entity
-@MappedSuperclass
-public abstract class Result implements EntityInterface {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    protected Integer id;
+@Table(name = "PSY_RESULTS")
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Result extends AbstractEntity {
 
     @Column(name = "TEST", columnDefinition = "VARCHAR(16)")
     @Enumerated(EnumType.STRING)

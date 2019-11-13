@@ -8,7 +8,7 @@ import static java.util.Objects.hash;
 
 @SuppressWarnings({"unused"})
 @MappedSuperclass
-abstract public class AbstractEntity implements EntityInterface {
+abstract public class AbstractEntity implements Entity {
 
     @Id
     @Positive
