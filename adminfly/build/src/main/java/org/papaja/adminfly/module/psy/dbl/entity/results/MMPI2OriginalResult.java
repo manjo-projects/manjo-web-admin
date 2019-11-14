@@ -7,7 +7,7 @@ import static java.lang.String.format;
 @Entity
 @PrimaryKeyJoinColumn(name = "RESULT_ID")
 @Table(name = "PSY_RESULTS_MMPI2")
-public class MMPI2Result extends Result {
+public class MMPI2OriginalResult extends Result {
 
     @Column(name = "SCALE_A")
     private Integer scaleA;
@@ -175,7 +175,7 @@ public class MMPI2Result extends Result {
 
     @Override
     public String toString() {
-        return format("MMPI2Result{parent=%s, scaleA=%d, scaleL=%d, scaleF=%d, scaleK=%d, scale1=%d, scale2=%d, scale3=%d, scale4=%d, scale5=%d, scale6=%d, scale7=%d, scale8=%d, scale9=%d, scale0=%d}",
+        return format("MMPI2OriginalResult{parent=%s, scaleA=%d, scaleL=%d, scaleF=%d, scaleK=%d, scale1=%d, scale2=%d, scale3=%d, scale4=%d, scale5=%d, scale6=%d, scale7=%d, scale8=%d, scale9=%d, scale0=%d}",
                 super.toString(), scaleA, scaleL, scaleF, scaleK, scale1, scale2, scale3, scale4, scale5, scale6, scale7, scale8, scale9, scale0);
     }
 }

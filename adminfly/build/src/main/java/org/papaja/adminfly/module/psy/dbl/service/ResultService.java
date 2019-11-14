@@ -23,7 +23,7 @@ public class ResultService extends AbstractService<Result, ResultRepository> {
 
     @Override
     public Result get() {
-        return null;
+        throw new UnsupportedOperationException("Unable to instantiate abstract class");
     }
 
 }
