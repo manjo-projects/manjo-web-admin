@@ -1,6 +1,7 @@
 package org.papaja.adminfly.module.psy.controller.test;
 
 import org.papaja.adminfly.module.psy.controller.AbstractPsyController;
+import org.papaja.adminfly.module.psy.dbl.entity.Patient;
 import org.papaja.adminfly.module.psy.tests.mmpi2.calculator.RawPointsCalculator;
 import org.papaja.adminfly.module.psy.tests.mmpi2.Points;
 import org.papaja.adminfly.module.psy.tests.mmpi2.model.Answer;
@@ -44,7 +45,7 @@ public class MMPI2Controller extends AbstractPsyController {
 
         wizard.update();
 
-        if (!wizard.is(FINISHED) && patient.has()) {
+        if (!wizard.is(FINISHED) && context.getPatient().isOld()) {
             mav.addObject("prefix", getPrefix());
             mav.addObject("position", wizard.position());
             mav.addObject("total", wizard.size());
@@ -88,7 +89,7 @@ public class MMPI2Controller extends AbstractPsyController {
         ModelAndView mav = new ModelAndView("redirect:/psy/tests");
 
         if (wizard.results().size() == wizard.size()) {
-            RawPointsCalculator calculator = new RawPointsCalculator(patients.getOne(patient.get()).getSex());
+            RawPointsCalculator calculator = new RawPointsCalculator(context.getPatient().getSex());
 
             Points points = calculator.calculate(wizard.results());
 
@@ -100,7 +101,7 @@ public class MMPI2Controller extends AbstractPsyController {
 
             // reset after calculation
             wizard.reset();
-            patient.set(null);
+            context.setPatient(new Patient());
         } else {
             wizard.reset();
             attributes.addFlashAttribute("message",
@@ -128,7 +129,7 @@ public class MMPI2Controller extends AbstractPsyController {
 
             wizard.update();
 
-            if (!patient.has()) {
+            if (context.getPatient().isNew()) {
                 mav = new ModelAndView("redirect:/shared/psy/undefined");
             } else {
                 mav.addObject("prefix", "/shared/psy/MMPI2");

@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.psy.dbl.service;
 
 import org.papaja.adminfly.commons.service.AbstractService;
-import org.papaja.adminfly.module.psy.commons.crypto.CryptoUtils;
+import org.papaja.adminfly.module.psy.commons.crypto.Crypto;
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
 import org.papaja.adminfly.module.psy.dbl.entity.Session;
 import org.papaja.adminfly.module.psy.dbl.repository.SessionRepository;
@@ -10,8 +10,6 @@ import org.papaja.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -26,8 +24,8 @@ public class SessionService extends AbstractService<Session, SessionRepository> 
         this.repository = repository;
     }
 
-    public CryptoUtils getEncryptor() {
-        return CryptoUtils.INSTANCE;
+    public Crypto getEncryptor() {
+        return Crypto.INSTANCE;
     }
 
     public void newSession(Patient patient, Test test) {

@@ -13,9 +13,10 @@ import static java.lang.String.format;
 @Entity
 @Table(name = "PSY_RESULTS")
 @Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "TEST")
 public abstract class Result extends AbstractEntity {
 
-    @Column(name = "TEST", columnDefinition = "VARCHAR(16)")
+    @Column(name = "TEST", columnDefinition = "VARCHAR(16)", nullable = false, insertable = false, updatable = false)
     @Enumerated(EnumType.STRING)
     private Test test;
 
@@ -25,10 +26,6 @@ public abstract class Result extends AbstractEntity {
 
     public Test getTest() {
         return test;
-    }
-
-    public void setTest(Test test) {
-        this.test = test;
     }
 
     public Patient getPatient() {

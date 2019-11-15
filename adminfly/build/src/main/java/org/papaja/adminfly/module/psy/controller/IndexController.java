@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.psy.controller;
 
 import org.papaja.adminfly.commons.data.AvailableThemes;
-import org.papaja.adminfly.module.psy.commons.crypto.CryptoUtils;
+import org.papaja.adminfly.module.psy.commons.crypto.Crypto;
 import org.papaja.adminfly.module.psy.dbl.dto.PatientDto;
 import org.papaja.adminfly.module.psy.dbl.dto.SessionDto;
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
@@ -33,10 +33,10 @@ public class IndexController extends AbstractPsyController {
     @Autowired
     private SessionService sessions;
 
-    @ModelAttribute
-    public void model(Model model) {
-        model.addAttribute("patient", patient);
-    }
+//    @ModelAttribute
+//    public void model(Model model) {
+//        model.addAttribute("patient", context.getPatient());
+//    }
 
     @PreAuthorize("hasAnyAuthority('READ')")
     @GetMapping(value = {"/"})
@@ -155,7 +155,7 @@ public class IndexController extends AbstractPsyController {
             @RequestParam(value = "test", required = false) String test,
             RedirectAttributes attributes
     ) {
-        patient.set(id);
+        context.setPatient(patients.getOne(id));
 
         attributes.addFlashAttribute("message",
                 messages.getSuccessMessage("text.patientActivated", id));
@@ -171,15 +171,16 @@ public class IndexController extends AbstractPsyController {
         private SessionService sessions;
 
         @GetMapping("/_/{session}")
-        public ModelAndView registration(
+        public ModelAndView session(
                 @PathVariable("session") String hash
         ) {
-            CryptoUtils  crypto  = sessions.getEncryptor();
-            Session      session = sessions.getOne(Integer.valueOf(crypto.decrypt(hash)));
+            Crypto  crypto  = sessions.getEncryptor();
+            Session session = sessions.getOne(Integer.valueOf(crypto.decrypt(hash)));
             ModelAndView mav     = newRedirect(session.getTest().toString());
 
             if (session.isOld() && session.isActive()) {
-                patient.set(session.getPatient().getId());
+                context.setSession(session);
+                context.setPatient(session.getPatient());
             } else {
                 mav = newRedirect("undefined");
             }

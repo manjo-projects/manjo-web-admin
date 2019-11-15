@@ -1,16 +1,17 @@
 package org.papaja.adminfly.module.psy.commons.crypto;
 
-import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.security.crypto.encrypt.TextEncryptor;
 
-public enum CryptoUtils {
+import static org.springframework.security.crypto.encrypt.Encryptors.delux;
 
-    INSTANCE("InnaPsy", "404136e388d8dfe2");
+public enum Crypto implements TextEncryptor {
+
+    INSTANCE("b18b00bs", "404136e388d8dfe2");
 
     private TextEncryptor encryptor;
 
-    CryptoUtils(String password, String salt) {
-        encryptor = Encryptors.text(password, salt);
+    Crypto(String password, String salt) {
+        encryptor = delux(password, salt);
     }
 
     public String encrypt(String value) {
