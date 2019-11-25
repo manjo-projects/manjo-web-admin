@@ -20,7 +20,7 @@ public enum Scale {
     SCALE_9("Ma", K.FP),
     SCALE_0("Si");
 
-    private K k;
+    private K       k;
     private boolean inverted;
     private String  name;
 
@@ -69,14 +69,21 @@ public enum Scale {
         FP(0.2f),
         OP(1.0f);
 
-        private float factor;
+        private static final float RATIO_CORRECTION = 10f;
+        private static final float K_GRADUATION     = 31.5f;
+        private static final float T_GRADUATION     = 120f - RATIO_CORRECTION;
+        private              float factor;
 
         K(float factor) {
-            this.factor = factor;
+            this.factor = (T_GRADUATION / K_GRADUATION) / factor;
         }
 
         public int calculate(float rate) {
-            return round(rate / (120 / (30 * factor)));
+            return round((rate - RATIO_CORRECTION) / factor);
+        }
+
+        public int subtract(float rate) {
+            return round(rate * factor);
         }
 
     }

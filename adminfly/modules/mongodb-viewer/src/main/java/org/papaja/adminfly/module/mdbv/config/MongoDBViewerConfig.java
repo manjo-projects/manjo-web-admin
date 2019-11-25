@@ -58,7 +58,8 @@ public class MongoDBViewerConfig {
         return new MongoDatabaseManager(mongoClient());
     }
 
-    public @Bean MongoClient mongoClient() {
+    @Bean
+    public MongoClient mongoClient() {
         return new MongoClient(
             requireNonNull(environment.getProperty("mdbv.connection.host")),
             parseInt(requireNonNull(environment.getProperty("mdbv.connection.port")))
