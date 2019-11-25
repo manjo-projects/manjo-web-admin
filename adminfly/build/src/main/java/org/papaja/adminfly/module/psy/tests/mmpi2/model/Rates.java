@@ -3,7 +3,6 @@ package org.papaja.adminfly.module.psy.tests.mmpi2.model;
 import java.util.EnumMap;
 import java.util.Map;
 
-import static java.util.Arrays.binarySearch;
 import static org.papaja.adminfly.module.psy.tests.mmpi2.model.Sex.F;
 import static org.papaja.adminfly.module.psy.tests.mmpi2.model.Sex.M;
 
@@ -13,18 +12,54 @@ public enum Rates {
     /*
      * RATES[MALE|FEMALE][SCALE][RAW_POINTS] = T_POINTS_WITHOUT_K
      */
-    private static final Map<Sex, EnumMap<Scale, float[]>> SEX_RATES;
+    private static final Map<Sex, EnumMap<Scale, Ranges>> SEX_RATES;
 
     static {
         SEX_RATES = new EnumMap<>(Sex.class);
 
-        EnumMap<Scale, float[]> M_RATES = new EnumMap<>(Scale.class);
-        EnumMap<Scale, float[]> F_RATES = new EnumMap<>(Scale.class);
+        EnumMap<Scale, Ranges> M_RATES = new EnumMap<>(Scale.class);
+        EnumMap<Scale, Ranges> F_RATES = new EnumMap<>(Scale.class);
 
         SEX_RATES.put(M, M_RATES);
         SEX_RATES.put(F, F_RATES);
 
-        F_RATES.put(Scale.SCALE_1, new float[]{
+        // female rates
+        F_RATES.put(Scale.SCALE_0, new Ranges() {{
+            add(0f, 24f, 1); add(25f, 96f, 70);
+        }});
+
+        F_RATES.put(Scale.SCALE_A, new Ranges() {{
+            add(0f, 49f, 29); add(50f, 80f, 131);
+        }});
+
+        F_RATES.put(Scale.SCALE_1, new Ranges() {{
+            add(24f, 35f, 6);
+            add(37f, 53f, 9);
+            add(55f, 56f, 1);
+            add(58f, 88f, 18);
+            add(91f, 92f, 1);
+            add(94f, 105f, 6);
+            add(106f, 111f, 6);
+            add(112f, 120f, 9);
+        }});
+
+        F_RATES.put(Scale.SCALE_2, new Ranges() {{
+            add(0f, 33f, 11);
+            add(35f, 58f, 12);
+            add(59f, 71f, 7);
+            add(72f, 104f, 17);
+            add(105f, 120f, 8);
+        }});
+
+        M_RATES.put(Scale.SCALE_0, F_RATES.get(Scale.SCALE_0));
+
+        int counter = 0;
+
+        for (float rate : F_RATES.get(Scale.SCALE_0).getRates()) {
+            System.out.printf("raw:%d; t-rate: %s%n", counter++, rate);
+        }
+
+        /*F_RATES.put(Scale.SCALE_1, new float[]{
                 24f, 26f, 28f, 30f, 33f, 35f, 37f, 39f,
                 41f, 43f, 45f, 47f, 49f, 51f, 53f, 55f,
                 56f, 58f, 60f, 62f, 64f, 66f, 68f, 70f,
@@ -76,19 +111,23 @@ public enum Rates {
                 85.8591f, 86.8732f, 87.8873f, 88.9014f, 89.9155f,
                 90.9295f, 91.9436f, 92.9577f, 93.9718f, 94.9859f,
                 96f
-        });
+        });*/
+    }
+
+    public static void main(String[] args) {
+        System.out.println(INSTANCE);
     }
 
     public static Rates getInstance() {
         return INSTANCE;
     }
 
-    public EnumMap<Scale, float[]> getRates(Sex sex) {
+    public EnumMap<Scale, Ranges> getRates(Sex sex) {
         return SEX_RATES.get(sex);
     }
 
     public double getTRate(Sex sex, Scale scale, int points) {
-        float[] rates = getRates(sex).get(scale);
+        float[] rates = getRates(sex).get(scale).getRates();
 
         if (scale.hasK()) {
             points += scale.getK().calculate(rates[points]);
