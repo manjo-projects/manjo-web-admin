@@ -33,7 +33,7 @@ public enum Rates {
                 105f, 106f, 107f, 108f, 109f, 110f, 111f
         });
         F_RATES.put(Scale.SCALE_2, new float[]{
-                0f, 0f, 0f, 0f, 0f, 0f,
+                26f, 26f, 26f, 26f, 26f, 26f,
                 28f, 29f, 30f, 31f, 32f, 33f, 35f, 37f,
                 39f, 41f, 43f, 45f, 47f, 49f, 52f, 54f,
                 56f, 58f, 59f, 61f, 63f, 65f, 67f, 69f,
@@ -95,17 +95,6 @@ public enum Rates {
         }
 
         return rates.length < points ? 0D : rates[points];
-    }
-
-    public int getRawRate(Sex sex, Scale scale, float rate) {
-        float[] rates  = getRates(sex).get(scale);
-        int     points = binarySearch(rates, rate);
-
-        if (points < -1) {
-            points = (points * -1) - 1;
-        }
-
-        return points;
     }
 
 }
