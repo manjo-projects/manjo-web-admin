@@ -2,10 +2,7 @@ package org.papaja.adminfly.commons.entity;
 
 import org.papaja.adminfly.commons.entity.api.AbstractEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 import static java.lang.String.format;
@@ -13,13 +10,17 @@ import static java.lang.String.format;
 @SuppressWarnings({"unused"})
 @Entity
 @Table(name = "SHARED_FILES")
-public class BlobFile extends AbstractEntity {
+@DiscriminatorColumn(name = "D_TYPE")
+abstract public class BlobFile extends AbstractEntity {
 
     @Column(name = "NAME", length = 64)
     private String name;
 
+    @Column(name = "D_TYPE", length = 32, updatable = false, insertable = false, nullable = false)
+    private String dType;
+
     @Lob
-    @Column(name = "DATA")
+    @Column(name = "DATA", columnDefinition = "BLOB")
     private byte[] data;
 
     @Column(name = "MIME_TYPE", length = 32)
@@ -30,9 +31,6 @@ public class BlobFile extends AbstractEntity {
 
     @Column(name = "ALGORITHM", length = 8)
     private String algorithm;
-
-    @Column(name = "SCOPE", length = 16)
-    private String scope;
 
     @Column(name = "CREATED")
     private Timestamp created;
@@ -80,14 +78,6 @@ public class BlobFile extends AbstractEntity {
         this.algorithm = algorithm;
     }
 
-    public String getScope() {
-        return scope;
-    }
-
-    public void setScope(String scope) {
-        this.scope = scope;
-    }
-
     public Timestamp getCreated() {
         return created;
     }
@@ -106,7 +96,7 @@ public class BlobFile extends AbstractEntity {
 
     @Override
     public String toString() {
-        return format("BlobFile{name='%s', data=%s, mime='%s', compressed=%s, algorithm='%s', scope='%s', created=%s, updated=%s}",
-                name, format("BLOB[%d]", data.length), mime, compressed, algorithm, scope, created, updated);
+        return format("BlobFile{dType='%s', name='%s', data=%s, mime='%s', compressed=%s, algorithm='%s', created=%s, updated=%s}",
+                dType, name, format("BLOB[%d]", data.length), mime, compressed, algorithm, created, updated);
     }
 }
