@@ -4,7 +4,7 @@ import org.papaja.adminfly.commons.ui.Menu;
 import org.papaja.adminfly.commons.ui.Modules;
 import org.papaja.adminfly.module.psy.commons.holder.TestContextHolder;
 import org.papaja.adminfly.module.psy.tests.mmpi2.MMPI2Wizard;
-import org.papaja.adminfly.module.psy.tests.mmpi2.model.Answer;
+import org.papaja.adminfly.module.psy.tests.mmpi2.data.Answer;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;

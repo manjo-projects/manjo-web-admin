@@ -2,9 +2,12 @@ package org.papaja.adminfly.module.psy.controller.test;
 
 import org.papaja.adminfly.module.psy.controller.AbstractPsyController;
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
-import org.papaja.adminfly.module.psy.tests.mmpi2.calculator.RawPointsCalculator;
 import org.papaja.adminfly.module.psy.tests.mmpi2.Points;
-import org.papaja.adminfly.module.psy.tests.mmpi2.model.Answer;
+import org.papaja.adminfly.module.psy.tests.mmpi2.calculation.Formula;
+import org.papaja.adminfly.module.psy.tests.mmpi2.calculation.RawPointCalculator;
+import org.papaja.adminfly.module.psy.tests.mmpi2.data.Answer;
+import org.papaja.adminfly.module.psy.tests.mmpi2.data.Scale;
+import org.papaja.adminfly.module.psy.tests.mmpi2.data.ValueMap.Value;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard.Direction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Map;
+
 import static java.lang.String.format;
 import static org.papaja.adminfly.module.psy.tests.Test.MMPI2_SOBCHIK;
+import static org.papaja.adminfly.module.psy.tests.mmpi2.data.ValueMap.MAP;
 import static org.papaja.adminfly.module.psy.tests.wizard.Wizard.State.FINISHED;
 
 @SuppressWarnings({"unused"})
@@ -88,12 +94,20 @@ public class MMPI2Controller extends AbstractPsyController {
         ModelAndView mav = new ModelAndView("redirect:/psy/tests");
 
         if (wizard.results().size() == wizard.size()) {
-            RawPointsCalculator calculator = new RawPointsCalculator(context.getPatient().getSex());
+            RawPointCalculator calculator = new RawPointCalculator();
+            Points             points     = calculator.calculate(wizard.results());
+            Formula            formula    = new Formula();
+            Map<Scale, Value>  values     = MAP.getValues(context.getPatient().getSex());
 
-            Points points = calculator.calculate(wizard.results());
-
-            points.points().forEach((scale, integer)
-                    -> System.out.println(scale +" - "+ scale.getKey() + ": " + integer));
+            points.points().forEach((scale, integer) -> {
+                Value value = values.get(scale);
+                System.out.println(integer);
+                System.out.println(scale);
+                System.out.println(value.getIndex());
+                System.out.println(value.getSigma());
+                System.out.printf("%s - %s: RAW-%d; T-%s%n",
+                        scale, scale.getKey(), integer, formula.apply(integer, value.getIndex(), value.getSigma()));
+            });
 
             attributes.addFlashAttribute("message",
                     messages.getSuccessMessage("text.calculationResultWasSaved", MMPI2_SOBCHIK.getName()));

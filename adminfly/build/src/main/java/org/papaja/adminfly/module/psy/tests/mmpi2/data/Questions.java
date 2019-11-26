@@ -1,9 +1,9 @@
-package org.papaja.adminfly.module.psy.tests.mmpi2.model;
+package org.papaja.adminfly.module.psy.tests.mmpi2.data;
 
-import static org.papaja.adminfly.module.psy.tests.mmpi2.model.Scale.*;
+import static org.papaja.adminfly.module.psy.tests.mmpi2.data.Scale.*;
 
-public enum Data {
-    INSTANCE;
+public enum Questions {
+    QUESTIONS;
 
     /**
      * Q-N:
@@ -12,7 +12,7 @@ public enum Data {
      *   1-TRUE:
      *     SCALE[]
      */
-    private static final Scale[][][] QUESTIONS = {
+    private static final Scale[][][] MAP = {
             {{SCALE_5_F, SCALE_5_M},{},}, // Q1
             {{SCALE_1, SCALE_2, SCALE_3},{},}, // Q2
             {{SCALE_1, SCALE_3, SCALE_7},{},}, // Q3
@@ -582,7 +582,7 @@ public enum Data {
     };
 
     public Scale[] getScales(int question, Answer answer) {
-        return QUESTIONS[question - 1][answer.getValue()];
+        return MAP[question - 1][answer.getValue()];
     }
 
     public boolean hasScales(int question, Answer answer) {

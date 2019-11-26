@@ -3,6 +3,7 @@ package org.papaja.adminfly.module.psy.dbl.service;
 import org.papaja.adminfly.commons.service.AbstractService;
 import org.papaja.adminfly.module.psy.dbl.entity.results.Result;
 import org.papaja.adminfly.module.psy.dbl.repository.ResultRepository;
+import org.papaja.adminfly.module.psy.tests.mmpi2.Points;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,10 @@ public class ResultService extends AbstractService<Result, ResultRepository> {
     @Autowired
     public ResultService(ResultRepository repository) {
         this.repository = repository;
+    }
+
+    public void save(Points points) {
+
     }
 
     @Override

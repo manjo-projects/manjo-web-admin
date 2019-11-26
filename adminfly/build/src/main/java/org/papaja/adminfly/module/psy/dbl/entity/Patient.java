@@ -1,13 +1,13 @@
 package org.papaja.adminfly.module.psy.dbl.entity;
 
 import org.papaja.adminfly.commons.entity.api.AbstractEntity;
-import org.papaja.adminfly.module.psy.tests.mmpi2.model.Sex;
+import org.papaja.adminfly.module.psy.tests.mmpi2.data.Sex;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 import static java.lang.String.format;
-import static org.papaja.adminfly.module.psy.tests.mmpi2.model.Sex.F;
+import static org.papaja.adminfly.module.psy.tests.mmpi2.data.Sex.F;
 
 @Entity
 @Table(name = "PSY_PATIENTS")

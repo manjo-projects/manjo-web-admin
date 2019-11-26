@@ -1,22 +1,20 @@
 package org.papaja.adminfly.module.psy.tests.mmpi2;
 
-import org.papaja.adminfly.module.psy.tests.mmpi2.model.Scale;
-import org.papaja.adminfly.module.psy.tests.mmpi2.model.Sex;
+import org.papaja.adminfly.module.psy.tests.mmpi2.data.Scale;
+import org.papaja.adminfly.module.psy.tests.mmpi2.data.Sex;
 
 import java.util.EnumMap;
 import java.util.Map;
 
-import static org.papaja.adminfly.module.psy.tests.mmpi2.model.Scale.*;
-import static org.papaja.adminfly.module.psy.tests.mmpi2.model.Sex.F;
+import static org.papaja.adminfly.module.psy.tests.mmpi2.data.Scale.*;
+import static org.papaja.adminfly.module.psy.tests.mmpi2.data.Sex.F;
 
 public class Points {
 
     private Map<Scale, Integer> points = new EnumMap<>(Scale.class);
 
-    public Points(Sex sex) {
+    public Points() {
         for (Scale scale : Scale.values()) {
-            scale = (scale.equals(SCALE_5_F) || scale.equals(SCALE_5_M))
-                    ? (sex.equals(F) ? SCALE_5_F : SCALE_5_M) : scale;
             points.put(scale, 0);
         }
     }
