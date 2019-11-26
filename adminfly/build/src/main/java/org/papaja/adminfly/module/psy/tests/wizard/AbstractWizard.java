@@ -36,6 +36,7 @@ abstract public class AbstractWizard<T> implements Wizard<T> {
 
     @Override
     public void start() {
+        results.clear();
         position = lowest();
         state = RUNNING;
     }

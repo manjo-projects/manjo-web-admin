@@ -1,4 +1,4 @@
-package org.papaja.adminfly.module.psy.tests.mmpi2.model;
+package org.papaja.adminfly.module.psy.tests.mmpi2.support;
 
 import org.papaja.tuple.Triplet;
 

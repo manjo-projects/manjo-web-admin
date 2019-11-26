@@ -1,16 +1,14 @@
 package org.papaja.adminfly.module.psy.dbl.entity.results;
 
-import org.papaja.adminfly.module.psy.tests.Test;
-
 import javax.persistence.*;
 
 import static java.lang.String.format;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "RESULT_ID")
-@Table(name = "PSY_RESULTS_MMPI2")
-@DiscriminatorValue("MMPI2")
-public class MMPI2OriginalResult extends Result {
+@Table(name = "PSY_RESULTS_MMPI2_SOBCHIK")
+@DiscriminatorValue("MMPI2_SOBCHIK")
+public class MMPI2SobchikResult extends Result {
 
     @Column(name = "SCALE_A")
     private Integer scaleA;

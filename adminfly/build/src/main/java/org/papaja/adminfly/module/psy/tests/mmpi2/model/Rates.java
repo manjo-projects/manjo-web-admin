@@ -2,7 +2,7 @@ package org.papaja.adminfly.module.psy.tests.mmpi2.model;
 
 import static java.lang.String.format;
 
-enum Rates {
+public enum Rates {
 
     UNK(0f),
     FSL(0f),
@@ -54,13 +54,7 @@ enum Rates {
         return data;
     }
 
-    public double getTRate(Sex sex, Scale scale, int points) {
-        float rates = this.rates[points];
-
-        if (scale.hasK()) {
-            points += scale.getK().calculate(rates);
-        }
-
+    public double getTRate(int points) {
         return this.rates.length < points ? 0D : this.rates[points];
     }
 

@@ -18,12 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import static java.lang.String.format;
-import static org.papaja.adminfly.module.psy.tests.Test.MMPI2;
+import static org.papaja.adminfly.module.psy.tests.Test.MMPI2_SOBCHIK;
 import static org.papaja.adminfly.module.psy.tests.wizard.Wizard.State.FINISHED;
 
 @SuppressWarnings({"unused"})
 @Controller
-@RequestMapping("/psy/MMPI2")
+@RequestMapping("/psy/MMPI2_SOBCHIK")
 public class MMPI2Controller extends AbstractPsyController {
 
     @Autowired
@@ -50,13 +50,12 @@ public class MMPI2Controller extends AbstractPsyController {
             mav.addObject("position", wizard.position());
             mav.addObject("total", wizard.size());
             mav.addObject("previous", wizard.results().get(wizard.position()));
-            System.out.println(wizard.results().get(wizard.position()));
         } else if (wizard.is(FINISHED)) {
             mav = newRedirect("calculate");
         } else {
             mav = newView("choose-patient");
             mav.addObject("items", patients.getAll());
-            mav.addObject("test", MMPI2);
+            mav.addObject("test", MMPI2_SOBCHIK);
         }
 
         return mav;
@@ -97,7 +96,7 @@ public class MMPI2Controller extends AbstractPsyController {
                     -> System.out.println(scale +" - "+ scale.getKey() + ": " + integer));
 
             attributes.addFlashAttribute("message",
-                    messages.getSuccessMessage("text.calculationResultWasSaved", MMPI2.getName()));
+                    messages.getSuccessMessage("text.calculationResultWasSaved", MMPI2_SOBCHIK.getName()));
 
             // reset after calculation
             wizard.reset();
@@ -112,7 +111,7 @@ public class MMPI2Controller extends AbstractPsyController {
     }
 
     @Controller
-    @RequestMapping("/shared/psy/MMPI2")
+    @RequestMapping("/shared/psy/MMPI2_SOBCHIK")
     public static class Shared extends AbstractPsyController {
 
         @Autowired
@@ -120,7 +119,7 @@ public class MMPI2Controller extends AbstractPsyController {
         private Wizard<Answer> wizard;
 
         {
-            setPrefix("/psy/MMPI2/shared");
+            setPrefix("/psy/MMPI2_SOBCHIK/shared");
         }
 
         @GetMapping
@@ -132,7 +131,7 @@ public class MMPI2Controller extends AbstractPsyController {
             if (context.getPatient().isNew()) {
                 mav = new ModelAndView("redirect:/shared/psy/undefined");
             } else {
-                mav.addObject("prefix", "/shared/psy/MMPI2");
+                mav.addObject("prefix", "/shared/psy/MMPI2_SOBCHIK");
                 mav.addObject("position", wizard.position());
                 mav.addObject("total", wizard.size());
                 mav.addObject("previous", wizard.results().get(wizard.position()));
@@ -155,7 +154,14 @@ public class MMPI2Controller extends AbstractPsyController {
                         messages.getSuccessMessage("text.unableGoToStep", direction, wizard.position()));
             }
 
-            return new ModelAndView(format("redirect:%s", "/shared/psy/MMPI2"));
+            return new ModelAndView(format("redirect:%s", "/shared/psy/MMPI2_SOBCHIK"));
+        }
+
+        @GetMapping({"/restart"})
+        public ModelAndView restart() {
+            wizard.reset();
+
+            return new ModelAndView(format("redirect:/shared/psy/MMPI2_SOBCHIK"));
         }
 
     }

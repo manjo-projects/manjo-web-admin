@@ -33,7 +33,9 @@ public class RawPointsCalculator implements Calculator<Answer, Points> {
             }
         });
 
-        System.out.println(Rates.INSTANCE.getTRate(sex, SCALE_2, points.points().get(SCALE_2)));
+        Rates.valueOf(sex, SCALE_2).getTRate(points.points().get(SCALE_2));
+
+//        System.out.println(Rates.INSTANCE.getTRate(sex, SCALE_2, points.points().get(SCALE_2)));
 
         return points;
     }
