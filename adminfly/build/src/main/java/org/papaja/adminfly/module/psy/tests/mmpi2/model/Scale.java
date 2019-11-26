@@ -4,42 +4,44 @@ import static java.lang.Math.round;
 
 public enum Scale {
 
-    SCALE_A("?"),
-    SCALE_L("L"),
-    SCALE_F("F"),
-    SCALE_K("K"),
-    SCALE_1("Hs", K.HP),
-    SCALE_2("D"),
-    SCALE_3("Hy"),
-    SCALE_4("Pd", K.QP),
-    SCALE_5_F("Mf-F", true),
-    SCALE_5_M("Mf-M", true),
-    SCALE_6("Pa"),
-    SCALE_7("Pt", K.OP),
-    SCALE_8("Sc", K.OP),
-    SCALE_9("Ma", K.FP),
-    SCALE_0("Si");
+    SCALE_A("?", 'A'),
+    SCALE_L("L", 'L'),
+    SCALE_F("F", 'F'),
+    SCALE_K("K", '1'),
+    SCALE_1("Hs", K.HP, '1'),
+    SCALE_2("D", '2'),
+    SCALE_3("Hy", '3'),
+    SCALE_4("Pd", K.QP, '4'),
+    SCALE_5_F("Mf-F", true, '5'),
+    SCALE_5_M("Mf-M", true, '5'),
+    SCALE_6("Pa", '6'),
+    SCALE_7("Pt", K.OP, '7'),
+    SCALE_8("Sc", K.OP, '8'),
+    SCALE_9("Ma", K.FP, '9'),
+    SCALE_0("Si", '0');
 
     private K       k;
     private boolean inverted;
     private String  name;
+    private char    code;
 
-    Scale(String name, K k, boolean inverted) {
+    Scale(String name, K k, boolean inverted, char code) {
         this.name = name;
         this.k = k;
         this.inverted = inverted;
+        this.code = code;
     }
 
-    Scale(String name, K k) {
-        this(name, k, false);
+    Scale(String name, K k, char code) {
+        this(name, k, false, code);
     }
 
-    Scale(String name, boolean inverted) {
-        this(name, null, inverted);
+    Scale(String name, boolean inverted, char code) {
+        this(name, null, inverted, code);
     }
 
-    Scale(String name) {
-        this(name, null, false);
+    Scale(String name, char code) {
+        this(name, null, false, code);
     }
 
     public boolean hasK() {
@@ -60,6 +62,10 @@ public enum Scale {
 
     public String getKey() {
         return getName().toUpperCase();
+    }
+
+    public char code() {
+        return code;
     }
 
     public enum K {
