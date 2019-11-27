@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.kv.reposirory;
 
 import org.papaja.adminfly.module.kv.entity.KeyValue;
-import org.papaja.adminfly.commons.repository.AbstractRepository;
+import org.papaja.adminfly.commons.mvc.repository.AbstractRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.shopper.controller;
 
-import org.papaja.adminfly.commons.controller.AbstractController;
+import org.papaja.adminfly.commons.mvc.controller.AbstractController;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

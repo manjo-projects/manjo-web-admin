@@ -1,17 +1,20 @@
 package org.papaja.adminfly.module.admin.controller;
 
-import org.papaja.adminfly.commons.controller.AbstractController;
-import org.papaja.adminfly.commons.dto.UserDto;
-import org.papaja.adminfly.commons.entity.User;
-import org.papaja.adminfly.commons.service.RoleService;
-import org.papaja.adminfly.commons.service.UserService;
+import org.papaja.adminfly.commons.mvc.controller.AbstractController;
+import org.papaja.adminfly.commons.mvc.entity.User;
+import org.papaja.adminfly.commons.mvc.service.RoleService;
+import org.papaja.adminfly.commons.mvc.service.UserService;
+import org.papaja.adminfly.commons.pojo.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -20,7 +23,7 @@ import java.util.Optional;
 
 @SuppressWarnings("unused")
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/secure/users")
 @Secured("ROLE_ADMIN")
 public class UserController extends AbstractController {
 
@@ -32,22 +35,21 @@ public class UserController extends AbstractController {
 
     @RequestMapping
     @PreAuthorize("hasAuthority('READ')")
-    public String list(
+    public ModelAndView list(
         @RequestParam(value = "page", defaultValue = "1") int page, Model model
     ) {
         model.addAttribute("pagination", users.getUsers(page));
 
-        return "users/list";
+        return newView("list");
     }
 
     @PreAuthorize("hasAuthority('READ')")
     @RequestMapping({"/edit/{id:[0-9]+}", "/create"})
     public ModelAndView form(
-        @PathVariable(value = "id", required = false) Integer id, ModelAndView model
+        @PathVariable(value = "id", required = false) Integer id
     ) {
-        User user = users.getUser(id);
-
-        model.setViewName("users/form");
+        User         user  = users.getUser(id);
+        ModelAndView model = newView("form");
 
         model.addObject("user", Optional.ofNullable(user).orElseGet(User::new));
         model.addObject("roles", roles.getRoles());
@@ -61,17 +63,17 @@ public class UserController extends AbstractController {
         @PathVariable(value = "id", required = false) Integer id,
         @Valid UserDto dto, BindingResult result, RedirectAttributes attributes
     ) {
-        ModelAndView view   = new ModelAndView("redirect:/users");
+        ModelAndView view   = newRedirect("");
         User         entity = users.getUser(id);
 
         if (!result.hasErrors()) {
             users.save(dto, entity);
             attributes.addFlashAttribute("message", messages.getSuccessMessage("user.saved", entity.getUsername()));
         } else {
+            view = newView("form");
             view.addObject("result", result);
             view.addObject("user", Optional.ofNullable(entity).orElseGet(User::new));
             view.addObject("roles", roles.getRoles());
-            view.setViewName("users/form");
         }
 
         return view;

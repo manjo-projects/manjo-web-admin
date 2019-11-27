@@ -1,22 +1,22 @@
 package org.papaja.adminfly.module.blog.controller;
 
-import org.papaja.adminfly.commons.controller.AbstractController;
+import org.papaja.adminfly.commons.mvc.controller.AbstractController;
 import org.papaja.adminfly.module.blog.dto.CategoryDto;
 import org.papaja.adminfly.module.blog.dto.DomainDto;
 import org.papaja.adminfly.module.blog.dto.PostDto;
-import org.papaja.adminfly.commons.dto.IdsSet;
+import org.papaja.adminfly.commons.pojo.IdsSet;
 import org.papaja.adminfly.module.blog.entity.Category;
 import org.papaja.adminfly.module.blog.entity.Domain;
 import org.papaja.adminfly.module.blog.entity.Post;
-import org.papaja.adminfly.commons.entity.Authorized;
-import org.papaja.adminfly.commons.entity.User;
+import org.papaja.adminfly.commons.mvc.entity.Authorized;
+import org.papaja.adminfly.commons.mvc.entity.User;
 import org.papaja.adminfly.module.blog.mapper.CategoryMapper;
 import org.papaja.adminfly.module.blog.mapper.DomainMapper;
 import org.papaja.adminfly.module.blog.mapper.PostMapper;
 import org.papaja.adminfly.module.blog.service.CategoryService;
 import org.papaja.adminfly.module.blog.service.DomainService;
 import org.papaja.adminfly.module.blog.service.PostService;
-import org.papaja.adminfly.commons.service.UserService;
+import org.papaja.adminfly.commons.mvc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;

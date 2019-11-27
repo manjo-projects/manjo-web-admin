@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.psy.dbl.entity;
 
-import org.papaja.adminfly.commons.entity.api.AbstractEntity;
+import org.papaja.adminfly.commons.mvc.entity.api.AbstractEntity;
 import org.papaja.adminfly.module.psy.tests.Test;
 
 import javax.persistence.*;

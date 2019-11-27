@@ -11,7 +11,7 @@ import org.papaja.adminfly.module.mdbv.mysql.entity.Row;
 import org.papaja.adminfly.module.mdbv.mysql.entity.Source;
 import org.papaja.adminfly.module.mdbv.mysql.service.RowService;
 import org.papaja.adminfly.module.mdbv.mysql.service.SourceService;
-import org.papaja.adminfly.commons.controller.AbstractController;
+import org.papaja.adminfly.commons.mvc.controller.AbstractController;
 import org.papaja.converter.Format;
 import org.papaja.converter.coder.StringCoder;
 import org.papaja.data.pagination.Paging;

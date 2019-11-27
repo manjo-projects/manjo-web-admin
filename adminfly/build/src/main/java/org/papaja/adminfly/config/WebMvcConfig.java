@@ -12,6 +12,7 @@ import org.papaja.adminfly.commons.vendor.jtwig.extension.asset.resolver.Resourc
 import org.papaja.adminfly.commons.vendor.jtwig.extension.theme.ThemeResolverExtension;
 import org.papaja.adminfly.commons.vendor.jtwig.extension.url.UrlPathExtension;
 import org.papaja.adminfly.commons.vendor.jtwig.spring.MultipleTemplateViewResolver;
+import org.papaja.adminfly.commons.vendor.spring.web.servlet.handler.ModuleContextChangeInterceptor;
 import org.papaja.adminfly.commons.vendor.spring.web.servlet.resource.ContentHashVersionStrategy;
 import org.papaja.function.Supplier;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 import static java.lang.Integer.parseInt;
+import static java.lang.Integer.valueOf;
 import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
 import static org.papaja.util.StringUtils.substringBetween;
@@ -118,7 +120,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         resolver.setCookieMaxAge(2400);
         resolver.setCookieName(environment.getProperty("app.view.theme.cookieName"));
-        resolver.setCookieMaxAge(Integer.valueOf(requireNonNull(environment.getProperty("app.view.theme.cookieMaxAge"))));
+        resolver.setCookieMaxAge(valueOf(requireNonNull(environment.getProperty("app.view.theme.cookieMaxAge"))));
         resolver.setDefaultThemeName(requireNonNull(environment.getProperty("app.view.theme.default")));
 
         return resolver;
@@ -159,7 +161,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         CookieLocaleResolver resolver = new CookieLocaleResolver();
 
         resolver.setCookieName(environment.getProperty("app.locale.cookieName"));
-        resolver.setCookieMaxAge(Integer.valueOf(requireNonNull(environment.getProperty("app.locale.cookieMaxAge"))));
+        resolver.setCookieMaxAge(valueOf(requireNonNull(environment.getProperty("app.locale.cookieMaxAge"))));
 
         return resolver;
     }
@@ -177,6 +179,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
         registry.addInterceptor(themeChangeInterceptor());
+        registry.addInterceptor(moduleContextChangeInterceptor());
     }
 
     @Override
@@ -225,6 +228,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
         return interceptor;
     }
 
+    public ModuleContextChangeInterceptor moduleContextChangeInterceptor() {
+        return new ModuleContextChangeInterceptor();
+    }
+
     @Bean(name = "multipartResolver")
     public CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
@@ -233,6 +240,5 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         return multipartResolver;
     }
-
 
 }

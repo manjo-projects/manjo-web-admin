@@ -1,8 +1,8 @@
 package org.papaja.adminfly.module.mdbv.config;
 
 import com.mongodb.MongoClient;
-import org.papaja.adminfly.commons.ui.Menu;
-import org.papaja.adminfly.commons.ui.Modules;
+import org.papaja.adminfly.commons.mvc.module.Menu;
+import org.papaja.adminfly.commons.mvc.module.Modules;
 import org.papaja.adminfly.module.mdbv.common.converter.DateTimeConverter;
 import org.papaja.adminfly.module.mdbv.common.converter.RawJsonConverter;
 import org.papaja.adminfly.module.mdbv.common.holder.SourceIdHolder;

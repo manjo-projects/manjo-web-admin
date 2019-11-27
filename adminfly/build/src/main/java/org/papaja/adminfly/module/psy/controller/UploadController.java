@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.psy.controller;
 
-import org.papaja.adminfly.commons.dto.UploadFile;
+import org.papaja.adminfly.commons.pojo.UploadFile;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

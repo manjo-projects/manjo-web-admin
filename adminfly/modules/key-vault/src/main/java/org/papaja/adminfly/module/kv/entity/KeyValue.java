@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.kv.entity;
 
-import org.papaja.adminfly.commons.entity.api.AbstractEntity;
+import org.papaja.adminfly.commons.mvc.entity.api.AbstractEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.psy.dbl.service;
 
-import org.papaja.adminfly.commons.service.AbstractService;
+import org.papaja.adminfly.commons.mvc.service.AbstractService;
 import org.papaja.adminfly.module.psy.dbl.entity.results.Result;
 import org.papaja.adminfly.module.psy.dbl.repository.ResultRepository;
 import org.papaja.adminfly.module.psy.tests.mmpi2.Points;

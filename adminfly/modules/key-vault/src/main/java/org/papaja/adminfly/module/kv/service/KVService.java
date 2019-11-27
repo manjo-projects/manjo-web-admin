@@ -4,7 +4,7 @@ import org.papaja.adminfly.module.kv.dto.KeyValueDto;
 import org.papaja.adminfly.module.kv.entity.KeyValue;
 import org.papaja.adminfly.module.kv.mapper.KVMapper;
 import org.papaja.adminfly.module.kv.reposirory.KVRepository;
-import org.papaja.adminfly.commons.service.AbstractService;
+import org.papaja.adminfly.commons.mvc.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

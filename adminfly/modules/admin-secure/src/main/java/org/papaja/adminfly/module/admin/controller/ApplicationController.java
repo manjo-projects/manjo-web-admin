@@ -1,16 +1,19 @@
 package org.papaja.adminfly.module.admin.controller;
 
-import org.papaja.adminfly.commons.data.SystemInformation;
+import org.papaja.adminfly.commons.support.SystemInformation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static java.lang.Runtime.getRuntime;
+
 @Controller
-@RequestMapping("/application")
-public class ApplicationController {
+@RequestMapping("/secure/application")
+public class ApplicationController extends AuthorityController {
 
     @RequestMapping
     public String redirect() {
@@ -24,10 +27,10 @@ public class ApplicationController {
 
     @RequestMapping("/gc")
     @PreAuthorize("hasAuthority('SYSTEM')")
-    public String gc() {
-        Runtime.getRuntime().gc();
+    public ModelAndView gc() {
+        getRuntime().gc();
 
-        return "redirect:/application/status";
+        return newRedirect("status");
     }
 
     @PreAuthorize("hasAuthority('READ')")

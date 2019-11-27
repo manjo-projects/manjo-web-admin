@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.blog.mapper;
 
-import org.papaja.adminfly.commons.mapper.AbstractMapper;
+import org.papaja.adminfly.commons.mvc.mapper.AbstractMapper;
 import org.papaja.adminfly.module.blog.dto.PostDto;
 import org.papaja.adminfly.module.blog.entity.Post;
 import org.springframework.stereotype.Component;

@@ -2,7 +2,7 @@ package org.papaja.adminfly.module.blog.service;
 
 import org.papaja.adminfly.module.blog.config.properties.BlogProperties;
 import org.papaja.adminfly.module.blog.entity.Domain;
-import org.papaja.adminfly.commons.entity.User;
+import org.papaja.adminfly.commons.mvc.entity.User;
 import org.papaja.adminfly.module.blog.repository.DomainRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.blog.repository;
 
 import org.papaja.adminfly.module.blog.entity.Domain;
-import org.papaja.adminfly.commons.repository.AbstractRepository;
+import org.papaja.adminfly.commons.mvc.repository.AbstractRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

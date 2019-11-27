@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.admin.config;
 
-import org.papaja.adminfly.commons.ui.Menu;
-import org.papaja.adminfly.commons.ui.Modules;
+import org.papaja.adminfly.commons.mvc.module.Menu;
+import org.papaja.adminfly.commons.mvc.module.Modules;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration

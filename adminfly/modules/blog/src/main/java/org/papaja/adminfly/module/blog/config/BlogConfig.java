@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.blog.config;
 
-import org.papaja.adminfly.commons.ui.Modules;
+import org.papaja.adminfly.commons.mvc.module.Modules;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;

@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.psy.controller;
 
-import org.papaja.adminfly.commons.service.BlogFileService;
+import org.papaja.adminfly.commons.mvc.service.BlogFileService;
 import org.papaja.adminfly.module.psy.dbl.entity.Document;
 import org.papaja.adminfly.module.psy.dbl.service.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.psy.dbl.entity;
 
-import org.papaja.adminfly.commons.entity.BlobFile;
+import org.papaja.adminfly.commons.mvc.entity.BlobFile;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

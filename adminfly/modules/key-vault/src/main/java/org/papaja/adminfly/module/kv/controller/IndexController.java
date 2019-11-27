@@ -2,7 +2,7 @@ package org.papaja.adminfly.module.kv.controller;
 
 import org.papaja.adminfly.module.kv.dto.KeyValueDto;
 import org.papaja.adminfly.module.kv.service.KVService;
-import org.papaja.adminfly.commons.controller.AbstractController;
+import org.papaja.adminfly.commons.mvc.controller.AbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;

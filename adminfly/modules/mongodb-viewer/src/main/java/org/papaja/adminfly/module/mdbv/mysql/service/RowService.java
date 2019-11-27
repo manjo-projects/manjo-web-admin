@@ -5,7 +5,7 @@ import org.papaja.adminfly.module.mdbv.mysql.dto.RowDto;
 import org.papaja.adminfly.module.mdbv.mysql.entity.Row;
 import org.papaja.adminfly.module.mdbv.mysql.mapper.RowMapper;
 import org.papaja.adminfly.module.mdbv.mysql.repository.RowRepository;
-import org.papaja.adminfly.commons.service.AbstractService;
+import org.papaja.adminfly.commons.mvc.service.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

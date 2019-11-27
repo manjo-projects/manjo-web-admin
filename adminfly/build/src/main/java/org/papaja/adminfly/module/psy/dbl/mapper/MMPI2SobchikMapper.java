@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.psy.dbl.mapper;
 
-import org.papaja.adminfly.commons.mapper.AbstractMapper;
+import org.papaja.adminfly.commons.mvc.mapper.AbstractMapper;
 import org.papaja.adminfly.module.psy.dbl.entity.results.MMPI2SobchikResult;
 import org.papaja.adminfly.module.psy.tests.mmpi2.Points;
 

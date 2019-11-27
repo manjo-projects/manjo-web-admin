@@ -1,9 +1,6 @@
 <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
     <div class="container">
-        <a href="{{ url('/') }}" class="navbar-brand"><img src="{{ asset('icons/leaves-white.svg') }}" alt="Adminfly"
-                                                           class="brand-logo">
-            {{ default(logoName, 'AdminFly - Shared Page') }}
-        </a>
+        {% include 'logo/logo.twig' %}
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

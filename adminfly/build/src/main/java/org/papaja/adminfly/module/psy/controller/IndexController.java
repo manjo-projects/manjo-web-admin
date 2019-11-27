@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.psy.controller;
 
-import org.papaja.adminfly.commons.data.AvailableThemes;
+import org.papaja.adminfly.commons.support.SystemThemes;
 import org.papaja.adminfly.module.psy.commons.crypto.Crypto;
 import org.papaja.adminfly.module.psy.dbl.dto.PatientDto;
 import org.papaja.adminfly.module.psy.dbl.dto.SessionDto;
@@ -13,7 +13,6 @@ import org.papaja.geo.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -68,7 +67,7 @@ public class IndexController extends AbstractPsyController {
         mav.addObject("encryptor", sessions.getEncryptor());
         mav.addObject("url", ServletUriComponentsBuilder.fromCurrentContextPath().toUriString());
         mav.addObject("locale", Locale.UK_UA);
-        mav.addObject("theme", AvailableThemes.Themes.LUMEN);
+        mav.addObject("theme", SystemThemes.Themes.LUMEN);
 
         return mav;
     }

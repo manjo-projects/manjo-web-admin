@@ -50,7 +50,7 @@ public class RootConfig {
         LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 
         factory.setPackagesToScan(
-                "org.papaja.adminfly.commons.entity",
+                "org.papaja.adminfly.commons.mvc.entity",
                 "org.papaja.adminfly.module.**.entity"
         );
         factory.setHibernateProperties(getHibernateProperties());

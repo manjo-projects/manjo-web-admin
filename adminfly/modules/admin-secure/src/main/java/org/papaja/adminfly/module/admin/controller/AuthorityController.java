@@ -1,11 +1,11 @@
 package org.papaja.adminfly.module.admin.controller;
 
-import org.papaja.adminfly.commons.controller.AbstractController;
-import org.papaja.adminfly.commons.dto.RoleDto;
-import org.papaja.adminfly.commons.entity.Privilege;
-import org.papaja.adminfly.commons.entity.Role;
-import org.papaja.adminfly.commons.service.PrivilegeService;
-import org.papaja.adminfly.commons.service.RoleService;
+import org.papaja.adminfly.commons.mvc.controller.AbstractController;
+import org.papaja.adminfly.commons.pojo.RoleDto;
+import org.papaja.adminfly.commons.mvc.entity.Privilege;
+import org.papaja.adminfly.commons.mvc.entity.Role;
+import org.papaja.adminfly.commons.mvc.service.PrivilegeService;
+import org.papaja.adminfly.commons.mvc.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,7 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/authority")
+@RequestMapping("/secure/authority")
 public class AuthorityController extends AbstractController {
 
     @Autowired
@@ -35,17 +35,18 @@ public class AuthorityController extends AbstractController {
 
     @PreAuthorize("hasAuthority('READ')")
     @RequestMapping(method = RequestMethod.GET)
-    public String list(Model model) {
+    public ModelAndView list(Model model) {
+
         model.addAttribute("roles", roles.getRoles());
         model.addAttribute("privileges", privileges.getPrivileges());
 
-        return "authority/list";
+        return newView("list");
     }
 
     @RequestMapping(value = "/role/edit/{id:[0-9]+}", method = RequestMethod.GET)
     @PreAuthorize("hasAuthority('READ')")
     public ModelAndView edit(@PathVariable("id") Integer id) {
-        ModelAndView model = new ModelAndView("authority/role/form");
+        ModelAndView model = newView("role/form");
 
         model.addObject("role", roles.getRole(id));
         model.addObject("privileges", privileges.getPrivileges());
@@ -55,7 +56,7 @@ public class AuthorityController extends AbstractController {
 
     @PreAuthorize("hasAuthority('SECURITY')")
     @RequestMapping(value = "/{entity:[a-z]+}/remove/{id:[0-9]+}", method = RequestMethod.GET)
-    public String remove(
+    public ModelAndView remove(
         @PathVariable("entity") String name,
         @PathVariable("id") Integer id,
         RedirectAttributes attributes
@@ -72,12 +73,12 @@ public class AuthorityController extends AbstractController {
         attributes.addFlashAttribute("message",
                 getMessage("authority.record.removed", getMessage(String.format("label.%s", name)), id));
 
-        return "redirect:/authority";
+        return newRedirect("");
     }
 
     @PreAuthorize("hasAuthority('SECURITY')")
     @RequestMapping(value = {"/process/privilege/{id:[0-9]+}", "/process/privilege"}, method = RequestMethod.POST)
-    public String privileges(
+    public ModelAndView privileges(
         @PathVariable(value = "id", required = false) Integer id,
         @Valid Privilege privilege,
         final BindingResult result, RedirectAttributes attributes
@@ -90,7 +91,7 @@ public class AuthorityController extends AbstractController {
             privileges.merge(privilege);
         }
 
-        return "redirect:/authority";
+        return newRedirect("");
     }
 
     @PreAuthorize("hasAuthority('SECURITY')")
@@ -98,14 +99,14 @@ public class AuthorityController extends AbstractController {
     public ModelAndView roles(
         @PathVariable(value = "id", required = false) Integer id, @Valid RoleDto dto, BindingResult result, RedirectAttributes attributes
     ) {
-        ModelAndView view = new ModelAndView("redirect:/authority");
+        ModelAndView view = newRedirect("");
 
         if (!result.hasErrors()) {
             Role role = roles.getRole(id);
             roles.store(dto, role);
             attributes.addFlashAttribute("message", getMessage("authority.role.saved", dto.getName()));
         } else {
-            view.setViewName("authority/role/form");
+            view.setViewName("role/form");
             view.addObject("role", roles.getRole(id));
             view.addObject("privileges", privileges.getPrivileges());
             view.addObject("result", result);
