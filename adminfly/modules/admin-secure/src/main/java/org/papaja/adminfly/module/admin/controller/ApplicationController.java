@@ -16,13 +16,18 @@ import static java.lang.Runtime.getRuntime;
 public class ApplicationController extends AuthorityController {
 
     @RequestMapping
-    public String redirect() {
-        return "redirect:/application/status";
+    public ModelAndView redirect() {
+        return newRedirect("status");
     }
 
+    @PreAuthorize("hasAuthority('READ')")
     @RequestMapping("/status")
-    public void status(Model model) {
-        model.addAttribute("info", new SystemInformation());
+    public ModelAndView status() {
+        ModelAndView mav = newView("status");
+
+        mav.addObject("info", new SystemInformation());
+
+        return mav;
     }
 
     @RequestMapping("/gc")

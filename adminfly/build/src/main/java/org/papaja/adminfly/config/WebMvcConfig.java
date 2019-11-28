@@ -8,6 +8,7 @@ import org.jtwig.spring.asset.resolver.AssetResolver;
 import org.jtwig.translate.spring.SpringTranslateExtension;
 import org.jtwig.translate.spring.SpringTranslateExtensionConfiguration;
 import org.jtwig.web.servlet.JtwigRenderer;
+import org.papaja.adminfly.commons.ExtraDataSource;
 import org.papaja.adminfly.commons.vendor.jtwig.extension.asset.resolver.ResourceUrlBasedAssetResolver;
 import org.papaja.adminfly.commons.vendor.jtwig.extension.theme.ThemeResolverExtension;
 import org.papaja.adminfly.commons.vendor.jtwig.extension.url.UrlPathExtension;
@@ -42,10 +43,13 @@ import org.springframework.web.servlet.resource.ResourceUrlEncodingFilter;
 import org.springframework.web.servlet.resource.VersionResourceResolver;
 import org.springframework.web.servlet.theme.CookieThemeResolver;
 import org.springframework.web.servlet.theme.ThemeChangeInterceptor;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
+import java.util.Map;
 
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.valueOf;
@@ -152,6 +156,29 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 );
             }
         } catch (IOException ignore) { }
+
+        return source;
+    }
+
+    @Bean
+    public ExtraDataSource extraDataSource() {
+        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+        Yaml                    yaml     = new Yaml();
+        ExtraDataSource         source   = new ExtraDataSource();
+
+        try {
+            String     pattern   = "classpath*:module-data/*.yaml";
+            Resource[] resources = resolver.getResources(pattern);
+
+            for (Resource resource : resources) {
+                Map<String, Object> data = yaml.load(resource.getInputStream());
+                System.out.println(data);
+                System.out.println(
+                        ((Map)data.get("module")).get("key")
+                );
+            }
+        } catch (IOException ignore) {
+        }
 
         return source;
     }

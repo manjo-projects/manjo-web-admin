@@ -4,7 +4,7 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.papaja.adminfly.commons.support.SystemLocales;
 import org.papaja.adminfly.commons.mvc.module.Modules;
 import org.papaja.adminfly.commons.support.SystemThemes;
-import org.papaja.adminfly.commons.ui.UIDataKeeper;
+import org.papaja.adminfly.commons.ExtraDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -33,7 +33,7 @@ public class GlobalController {
     private SystemThemes themes;
 
     @Autowired
-    private UIDataKeeper keeper;
+    private ExtraDataSource values;
 
     @ExceptionHandler({AccessDeniedException.class})
     public String handleAccessDeniedException(Model model, HttpServletRequest request, Principal principal) {
@@ -65,7 +65,7 @@ public class GlobalController {
         view.addAttribute("themes", themes);
         view.addAttribute("modules", modules);
         view.addAttribute("principal", request.getUserPrincipal());
-        view.addAttribute("uiData", keeper.getActive());
+        view.addAttribute("extra", values.getActive());
     }
 
 }

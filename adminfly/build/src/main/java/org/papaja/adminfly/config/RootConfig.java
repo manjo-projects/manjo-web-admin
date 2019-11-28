@@ -22,7 +22,7 @@ import java.util.Properties;
 @ComponentScan(
         basePackages = {
                 "org.papaja.adminfly.commons",
-                "org.papaja.adminfly.module.*"
+//                "org.papaja.adminfly.module.*"
         }, basePackageClasses = {
                 RootConfig.class
         }

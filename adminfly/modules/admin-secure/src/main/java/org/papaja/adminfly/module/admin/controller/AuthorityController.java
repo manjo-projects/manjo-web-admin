@@ -30,9 +30,6 @@ public class AuthorityController extends AbstractController {
     @Autowired
     private RoleService roles;
 
-    @Autowired
-    private MessageSource ms;
-
     @PreAuthorize("hasAuthority('READ')")
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView list(Model model) {
@@ -106,7 +103,7 @@ public class AuthorityController extends AbstractController {
             roles.store(dto, role);
             attributes.addFlashAttribute("message", getMessage("authority.role.saved", dto.getName()));
         } else {
-            view.setViewName("role/form");
+            view = newView("role/form");
             view.addObject("role", roles.getRole(id));
             view.addObject("privileges", privileges.getPrivileges());
             view.addObject("result", result);
