@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.psy.dbl.mapper;
 
-import org.papaja.adminfly.commons.mvc.mapper.AbstractMapper;
+import org.papaja.adminfly.commons.dao.mapper.AbstractMapper;
 import org.papaja.adminfly.module.psy.dbl.dto.PatientDto;
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
 

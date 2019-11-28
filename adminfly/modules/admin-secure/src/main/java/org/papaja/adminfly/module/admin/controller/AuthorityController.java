@@ -2,12 +2,11 @@ package org.papaja.adminfly.module.admin.controller;
 
 import org.papaja.adminfly.commons.mvc.controller.AbstractController;
 import org.papaja.adminfly.commons.pojo.RoleDto;
-import org.papaja.adminfly.commons.mvc.entity.Privilege;
-import org.papaja.adminfly.commons.mvc.entity.Role;
-import org.papaja.adminfly.commons.mvc.service.PrivilegeService;
-import org.papaja.adminfly.commons.mvc.service.RoleService;
+import org.papaja.adminfly.commons.dao.entity.Privilege;
+import org.papaja.adminfly.commons.dao.entity.Role;
+import org.papaja.adminfly.commons.dao.service.PrivilegeService;
+import org.papaja.adminfly.commons.dao.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

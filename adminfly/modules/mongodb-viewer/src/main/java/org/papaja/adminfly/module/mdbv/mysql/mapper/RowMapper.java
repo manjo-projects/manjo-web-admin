@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.mdbv.mysql.mapper;
 
-import org.papaja.adminfly.commons.mvc.mapper.AbstractMapper;
+import org.papaja.adminfly.commons.dao.mapper.AbstractMapper;
 import org.papaja.adminfly.module.mdbv.mysql.dto.RowDto;
 import org.papaja.converter.Format;
 import org.papaja.adminfly.module.mdbv.mysql.entity.Row;

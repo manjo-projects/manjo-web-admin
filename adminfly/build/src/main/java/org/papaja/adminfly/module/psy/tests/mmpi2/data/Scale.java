@@ -22,6 +22,8 @@ public enum Scale {
     private K       k;
     private boolean inverted;
     private String  name;
+    // todo
+    private Sex sex;
 
     Scale(String name, K k, boolean inverted) {
         this.name = name;
@@ -59,6 +61,14 @@ public enum Scale {
 
     public String getKey() {
         return getName().toUpperCase();
+    }
+
+    public Sex sex() {
+        return sex;
+    }
+
+    public void sex(Sex sex) {
+        this.sex = sex;
     }
 
     public enum K {

@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.blog.repository;
 
 import org.hibernate.query.Query;
-import org.papaja.adminfly.commons.mvc.repository.AbstractRepository;
+import org.papaja.adminfly.commons.dao.repository.AbstractRepository;
 import org.papaja.adminfly.module.blog.entity.Domain;
 import org.papaja.adminfly.module.blog.entity.Post;
 import org.springframework.stereotype.Repository;

@@ -1,9 +1,9 @@
 package org.papaja.adminfly.module.admin.controller;
 
 import org.papaja.adminfly.commons.mvc.controller.AbstractController;
-import org.papaja.adminfly.commons.mvc.entity.User;
-import org.papaja.adminfly.commons.mvc.service.RoleService;
-import org.papaja.adminfly.commons.mvc.service.UserService;
+import org.papaja.adminfly.commons.dao.entity.User;
+import org.papaja.adminfly.commons.dao.service.RoleService;
+import org.papaja.adminfly.commons.dao.service.UserService;
 import org.papaja.adminfly.commons.pojo.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;

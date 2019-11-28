@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.mdbv.mysql.repository;
 
 import org.papaja.adminfly.module.mdbv.mysql.entity.Source;
-import org.papaja.adminfly.commons.mvc.repository.AbstractRepository;
+import org.papaja.adminfly.commons.dao.repository.AbstractRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
