@@ -1,4 +1,4 @@
-package org.papaja.adminfly.config.root;
+package org.papaja.adminfly.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
@@ -11,26 +11,17 @@ import java.util.Properties;
 
 @SuppressWarnings({"unused"})
 @Configuration
-@EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableTransactionManagement
 @PropertySource(value = {
-    "classpath:properties/database.properties",
-    "classpath:properties/database.private.properties"
+        "classpath:properties/database.properties",
+        "classpath:properties/database.private.properties"
 }, ignoreResourceNotFound = true)
-@ComponentScan(
-        basePackages = {
-                "org.papaja.adminfly.commons.dao"
-        },
-        basePackageClasses = {
-                ApplicationConfiguration.class
-        }
-)
-public class ApplicationConfiguration {
+public class DatabaseConfig {
 
     private Environment environment;
 
     @Autowired
-    public ApplicationConfiguration(Environment environment) {
+    public DatabaseConfig(Environment environment) {
         this.environment = environment;
     }
 
@@ -48,8 +39,7 @@ public class ApplicationConfiguration {
         LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
 
         factory.setPackagesToScan(
-                "org.papaja.adminfly.commons.dao.entity",
-                "org.papaja.adminfly.module.**.entity"
+                "org.papaja.adminfly.**.entity"
         );
         factory.setHibernateProperties(getHibernateProperties());
 

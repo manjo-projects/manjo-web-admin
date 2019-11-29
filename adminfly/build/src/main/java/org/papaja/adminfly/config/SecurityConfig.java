@@ -1,8 +1,12 @@
-package org.papaja.adminfly.config.root;
+package org.papaja.adminfly.config;
 
 import org.papaja.adminfly.commons.dao.service.AuthUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -15,12 +19,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SuppressWarnings({"all"})
+@PropertySource("classpath:properties/application.properties")
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private Environment environment;
 
     @Autowired
-    private SecurityProperties properties;
+    public SecurityConfig(Environment environment) {
+        this.environment = environment;
+    }
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) {
@@ -60,15 +69,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/auth/**")
                 .permitAll();
 
-        http.formLogin().loginPage("/auth/login").successForwardUrl("/home")
+        http.formLogin().loginPage("/auth/login").defaultSuccessUrl("/home")
                 .permitAll();
 
         http.logout().logoutUrl("/auth/logout").logoutSuccessUrl("/auth/login")
-                .deleteCookies(properties.getSessionCookieName())
+                .deleteCookies(environment.getProperty("app.security.session.cookieName"))
                 .permitAll();
 
-        http.rememberMe().rememberMeCookieName(properties.getSessionRememberMeCookieName())
-                .key(properties.getSessionRememberMeSecretKey()).tokenValiditySeconds(86400);
+        http.rememberMe().rememberMeCookieName(environment.getProperty("app.security.session.rememberMeCookieName"))
+                .key(environment.getProperty("app.security.session.rememberMeSecretKey")).tokenValiditySeconds(86400);
 
         http.csrf().disable();
     }

@@ -1,7 +1,18 @@
-{{ exceptionClass }}
-<hr>
-{{ exceptionClass }}
-<hr>
-<pre>
-    {{ stack }}
-</pre>
+{% extends '../shared/layout/shared.twig' %}
+{% set menu = 'index' %}
+{% block title %}{{ 'text.accessDenied' | translate }}{% endblock %}
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-3">{{ 'label.flash.danger' | translate }}</h1>
+        <hr class="my-4">
+        <h2>{{ exceptionClass }}</h2>
+        <hr class="my-4">
+        <p class="lead">
+            {{ rootMassage }}
+        </p>
+        <hr class="my-4">
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" onclick="history.back();" role="button">{{ 'label.back' | translate }}</a>
+        </p>
+    </div>
+{% endblock %}

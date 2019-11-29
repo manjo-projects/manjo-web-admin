@@ -1,4 +1,4 @@
-package org.papaja.adminfly.config.web;
+package org.papaja.adminfly.config.application;
 
 import org.hibernate.validator.HibernateValidator;
 import org.jtwig.environment.EnvironmentConfigurationBuilder;
@@ -63,19 +63,20 @@ import static org.papaja.util.StringUtils.substringBetween;
 @PropertySource("classpath:properties/application.properties")
 @ComponentScan(
         basePackages = {
+                "org.papaja.adminfly.config",
+                "org.papaja.adminfly.commons",
                 "org.papaja.adminfly.module",
-                "org.papaja.adminfly.commons"
         }
 )
-public class MVCConfiguration implements WebMvcConfigurer {
+public class WebMVCConfig implements WebMvcConfigurer {
 
-    private static final Charset        UTF8 = StandardCharsets.UTF_8;
-    protected            Environment    environment;
+    private static final Charset     UTF8 = StandardCharsets.UTF_8;
+    protected            Environment environment;
 
     private int counter = 0;
 
     @Autowired
-    public MVCConfiguration(Environment environment) {
+    public WebMVCConfig(Environment environment) {
         this.environment = environment;
     }
 
@@ -154,10 +155,11 @@ public class MVCConfiguration implements WebMvcConfigurer {
 
             for (Resource resource : resources) {
                 source.addBasenames(
-                    format("classpath:%s", substringBetween("locale", "_", resource.getURI().toString()))
+                        format("classpath:%s", substringBetween("locale", "_", resource.getURI().toString()))
                 );
             }
-        } catch (IOException ignore) { }
+        } catch (IOException ignore) {
+        }
 
         return source;
     }
@@ -176,7 +178,7 @@ public class MVCConfiguration implements WebMvcConfigurer {
                 Map<String, Object> data = yaml.load(resource.getInputStream());
                 System.out.println(data);
                 System.out.println(
-                        ((Map)data.get("module")).get("key")
+                        ((Map) data.get("module")).get("key")
                 );
             }
         } catch (IOException ignore) {
@@ -197,16 +199,6 @@ public class MVCConfiguration implements WebMvcConfigurer {
 
     @Bean
     public AssetResolver assetResolver() {
-        ResourceUrlBasedAssetResolver resolver = new ResourceUrlBasedAssetResolver();
-
-        resolver.setPrefix("/static");
-
-        return resolver;
-    }
-
-
-    @Bean("org.jtwig.spring.asset.resolver.AssetResolver")
-    public AssetResolver assetResolver2() {
         ResourceUrlBasedAssetResolver resolver = new ResourceUrlBasedAssetResolver();
 
         resolver.setPrefix("/static");
