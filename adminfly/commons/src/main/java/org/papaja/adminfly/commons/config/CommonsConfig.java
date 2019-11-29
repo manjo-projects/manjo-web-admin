@@ -11,7 +11,6 @@ public class CommonsConfig {
 
     @Bean
     public SystemLocales availableLocales() {
-        System.out.println(">>>>>>>>>>>>>>>>>>>>> CommonsConfig.availableLocales");
         return new SystemLocales();
     }
 

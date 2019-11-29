@@ -1,0 +1,13 @@
+key: DEFAULT
+
+module:
+  link:
+    label: "AdminFly (Build-In)"
+    path: "/"
+
+text:
+  logo: "AdminFly (Build-In)"
+
+menu:
+  - label: "label.home"
+    path: ""

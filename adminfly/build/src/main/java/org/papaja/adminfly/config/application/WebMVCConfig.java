@@ -54,6 +54,7 @@ import static java.lang.Integer.parseInt;
 import static java.lang.Integer.valueOf;
 import static java.lang.String.format;
 import static java.util.Objects.requireNonNull;
+import static org.apache.commons.beanutils.PropertyUtils.getProperty;
 import static org.papaja.util.StringUtils.substringBetween;
 
 @SuppressWarnings({"unused"})
@@ -169,6 +170,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         Yaml                    yaml     = new Yaml();
         ExtraDataSource         source   = new ExtraDataSource();
+        String[]                required = {"key", "text.name", "text.logo",};
 
         try {
             String     pattern   = "classpath*:module-data/*.yaml";
@@ -176,12 +178,26 @@ public class WebMVCConfig implements WebMvcConfigurer {
 
             for (Resource resource : resources) {
                 Map<String, Object> data = yaml.load(resource.getInputStream());
-                System.out.println(data);
-                System.out.println(
-                        ((Map) data.get("module")).get("key")
-                );
+
+                for (String path : required) {
+                    try {
+                        getProperty(data, path);
+                    } catch (Exception skip) {
+                        continue;
+                    }
+                }
+
+                source.add((String) data.get("key"), data);
             }
-        } catch (IOException ignore) {
+
+            source.setActive(ExtraDataSource.DEFAULT_KEY);
+
+            for (Map<String, Object> map : source.getFor("module")) {
+                System.out.println(map);
+            }
+
+        } catch (Throwable ignore) {
+            // ignore all exception
         }
 
         return source;

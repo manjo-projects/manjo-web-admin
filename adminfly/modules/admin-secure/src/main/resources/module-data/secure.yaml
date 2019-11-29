@@ -1,3 +1,13 @@
+key: SECURE
+
 module:
-  key: SECURE
-  name: Secure
+  link:
+    label: "Secure"
+    path: "/secure"
+
+text:
+  logo: "Hui"
+
+menu:
+  - label: "label.users"
+    path: "/secure/users"

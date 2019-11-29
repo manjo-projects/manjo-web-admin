@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
+import java.util.Map;
 
 @SuppressWarnings({"unused"})
 @ControllerAdvice
@@ -33,7 +34,7 @@ public class GlobalController {
     private SystemThemes themes;
 
     @Autowired
-    private ExtraDataSource values;
+    private ExtraDataSource source;
 
     @ExceptionHandler({AccessDeniedException.class})
     public String handleAccessDeniedException(Model model, HttpServletRequest request, Principal principal) {
@@ -61,11 +62,15 @@ public class GlobalController {
 
     @ModelAttribute
     public void handleRequest(HttpServletRequest request, Model view) {
+        Map<String, Object> extra = source.getActive();
+
+        extra.put("modules", source.getFor("module"));
+
         view.addAttribute("languages", locales);
         view.addAttribute("themes", themes);
         view.addAttribute("modules", modules);
         view.addAttribute("principal", request.getUserPrincipal());
-        view.addAttribute("extra", values.getActive());
+        view.addAttribute("extra", extra);
     }
 
 }

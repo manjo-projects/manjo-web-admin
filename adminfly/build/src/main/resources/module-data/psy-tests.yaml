@@ -1,6 +1,13 @@
+key: PSY
+
 module:
-  key: DEFAULT
-  name: DEFAULT
+  link:
+    label: "Psy-Tests"
+    path: "/psy"
+
+text:
+  logo: "Psy"
+
 menu:
-  - label: "label.home"
-    path: "/"
+  - label: "label.patients"
+    path: "/psy/patients"

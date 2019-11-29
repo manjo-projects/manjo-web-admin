@@ -21,9 +21,9 @@ public class ModuleContextChangeInterceptor extends HandlerInterceptorAdapter {
             throws Exception
     {
 
-//        if (handler instanceof HandlerMethod) {
-//            source.setActive(getModuleName(request));
-//        }
+        if (handler instanceof HandlerMethod) {
+            source.setActive(getModuleName(request));
+        }
 
         return super.preHandle(request, response, handler);
     }

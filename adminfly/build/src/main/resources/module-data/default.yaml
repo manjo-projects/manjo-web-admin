@@ -1,7 +1,0 @@
-text:
-  key: DEFAULT
-  name: DEFAULT
-  logo: "AdminFly"
-menu:
-  - label: "label.home"
-    path: "/"
