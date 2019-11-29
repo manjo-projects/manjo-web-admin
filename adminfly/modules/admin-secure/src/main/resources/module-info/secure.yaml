@@ -1,0 +1,20 @@
+key: SECURE
+current: "Secure"
+
+module:
+  link:
+    label: "Secure"
+    path: "/secure/"
+
+text:
+  logo: "Secure"
+
+menu:
+  - label: "title.users"
+    path: "/secure/users"
+
+  - label: "title.authority"
+    path: "/secure/authority"
+
+  - label: "title.application"
+    path: "/secure/application"

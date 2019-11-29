@@ -1,0 +1,23 @@
+key: MDBV
+current: "MongoDB Viewer"
+
+module:
+  link:
+    label: "MongoDB Viewer"
+    path: "/mdbv/"
+
+text:
+  logo: "MongoDB Viewer"
+
+menu:
+  - label: "label.source"
+    path: "/mdbv/sources"
+
+  - label: "label.rows"
+    path: "/mdbv/rows"
+
+  - label: "label.records"
+    path: "/mdbv/records"
+
+view:
+  theme: yeti

@@ -13,7 +13,7 @@ import org.papaja.adminfly.commons.vendor.jtwig.extension.asset.resolver.Resourc
 import org.papaja.adminfly.commons.vendor.jtwig.extension.theme.ThemeResolverExtension;
 import org.papaja.adminfly.commons.vendor.jtwig.extension.url.UrlPathExtension;
 import org.papaja.adminfly.commons.vendor.jtwig.spring.MultipleTemplateViewResolver;
-import org.papaja.adminfly.commons.vendor.spring.web.servlet.handler.ModuleContextChangeInterceptor;
+import org.papaja.adminfly.commons.vendor.spring.web.servlet.handler.ModuleChangerInterceptor;
 import org.papaja.adminfly.commons.vendor.spring.web.servlet.resource.ContentHashVersionStrategy;
 import org.papaja.function.Supplier;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +49,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.valueOf;
@@ -71,7 +72,8 @@ import static org.papaja.util.StringUtils.substringBetween;
 )
 public class WebMVCConfig implements WebMvcConfigurer {
 
-    private static final Charset     UTF8 = StandardCharsets.UTF_8;
+    private static final Charset     UTF8   = StandardCharsets.UTF_8;
+    private static final Logger      LOGGER = Logger.getLogger(WebMVCConfig.class.getName());
     protected            Environment environment;
 
     private int counter = 0;
@@ -169,11 +171,11 @@ public class WebMVCConfig implements WebMvcConfigurer {
     public ExtraDataSource extraDataSource() {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         Yaml                    yaml     = new Yaml();
-        ExtraDataSource         source   = new ExtraDataSource();
-        String[]                required = {"key", "text.name", "text.logo",};
+        ExtraDataSource         source   = ExtraDataSource.HOLDER;
+        String[]                required = {"key", "text.logo",};
 
         try {
-            String     pattern   = "classpath*:module-data/*.yaml";
+            String     pattern   = "classpath*:module-info/*.yaml";
             Resource[] resources = resolver.getResources(pattern);
 
             for (Resource resource : resources) {
@@ -183,6 +185,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
                     try {
                         getProperty(data, path);
                     } catch (Exception skip) {
+                        LOGGER.warning(format("Skipped extra data for : %s", resource.getURL().toString()));
                         continue;
                     }
                 }
@@ -191,13 +194,10 @@ public class WebMVCConfig implements WebMvcConfigurer {
             }
 
             source.setActive(ExtraDataSource.DEFAULT_KEY);
-
-            for (Map<String, Object> map : source.getFor("module")) {
-                System.out.println(map);
-            }
-
         } catch (Throwable ignore) {
             // ignore all exception
+            LOGGER.warning(format("While 'ExtraDataSource' was initialized some exception was threw '%s'",
+                    ignore.getMessage()));
         }
 
         return source;
@@ -275,8 +275,8 @@ public class WebMVCConfig implements WebMvcConfigurer {
         return interceptor;
     }
 
-    public ModuleContextChangeInterceptor moduleContextChangeInterceptor() {
-        return new ModuleContextChangeInterceptor();
+    public ModuleChangerInterceptor moduleContextChangeInterceptor() {
+        return new ModuleChangerInterceptor();
     }
 
     @Bean(name = "multipartResolver")

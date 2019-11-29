@@ -1,0 +1,10 @@
+key: KV
+current: "Key-Value"
+
+module:
+  link:
+    label: "Key-Value"
+    path: "/kv/"
+
+text:
+  logo: "KV Vault"

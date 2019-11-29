@@ -1,6 +1,5 @@
 package org.papaja.adminfly.module.shopper.config;
 
-import org.papaja.adminfly.commons.mvc.module.Modules;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -17,12 +16,6 @@ public class ShopperConfig {
     public @Autowired
     ShopperConfig(Environment environment) {
         this.environment = environment;
-
-        Modules.register(new Modules.Module(
-                environment.getProperty("module.shopper.name"),
-                environment.getProperty("module.shopper.path"),
-                null
-        ));
     }
 
 }

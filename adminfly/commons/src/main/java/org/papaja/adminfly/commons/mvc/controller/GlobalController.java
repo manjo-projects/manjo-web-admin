@@ -1,10 +1,9 @@
 package org.papaja.adminfly.commons.mvc.controller;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.papaja.adminfly.commons.support.SystemLocales;
-import org.papaja.adminfly.commons.mvc.module.Modules;
-import org.papaja.adminfly.commons.support.SystemThemes;
 import org.papaja.adminfly.commons.ExtraDataSource;
+import org.papaja.adminfly.commons.support.SystemLocales;
+import org.papaja.adminfly.commons.support.SystemThemes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -25,9 +24,6 @@ import java.util.Map;
 public class GlobalController {
 
     @Autowired
-    private Modules modules;
-
-    @Autowired
     private SystemLocales locales;
 
     @Autowired
@@ -37,8 +33,12 @@ public class GlobalController {
     private ExtraDataSource source;
 
     @ExceptionHandler({AccessDeniedException.class})
-    public String handleAccessDeniedException(Model model, HttpServletRequest request, Principal principal) {
+    public String handleAccessDeniedException(
+            Exception exception,
+            Model model, HttpServletRequest request, Principal principal
+    ) {
         model.addAttribute("uri", request.getRequestURI());
+        model.addAttribute("message", exception.getMessage());
 
         handleRequest(request, model);
 
@@ -47,7 +47,7 @@ public class GlobalController {
 
     @ExceptionHandler({Exception.class})
     public String handleException(
-        Exception exception, Model model, HttpServletRequest request, HttpServletResponse response, Principal principal
+            Exception exception, Model model, HttpServletRequest request, HttpServletResponse response, Principal principal
     ) {
         String template = "errors/exception";
 
@@ -64,11 +64,10 @@ public class GlobalController {
     public void handleRequest(HttpServletRequest request, Model view) {
         Map<String, Object> extra = source.getActive();
 
-        extra.put("modules", source.getFor("module"));
+        extra.put("modules", source.getListOf("module"));
 
         view.addAttribute("languages", locales);
         view.addAttribute("themes", themes);
-        view.addAttribute("modules", modules);
         view.addAttribute("principal", request.getUserPrincipal());
         view.addAttribute("extra", extra);
     }

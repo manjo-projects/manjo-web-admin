@@ -1,8 +1,6 @@
 package org.papaja.adminfly.module.mdbv.config;
 
 import com.mongodb.MongoClient;
-import org.papaja.adminfly.commons.mvc.module.Menu;
-import org.papaja.adminfly.commons.mvc.module.Modules;
 import org.papaja.adminfly.module.mdbv.common.converter.DateTimeConverter;
 import org.papaja.adminfly.module.mdbv.common.converter.RawJsonConverter;
 import org.papaja.adminfly.module.mdbv.common.holder.SourceIdHolder;
@@ -23,9 +21,9 @@ import static java.util.Objects.requireNonNull;
 @SuppressWarnings({"unused"})
 @Configuration
 @PropertySource(value = {
-    "classpath:properties/module/mdbv/database.properties",
-    "classpath:properties/module/mdbv/database.private.properties",
-    "classpath:properties/module/mdbv/module.properties",
+        "classpath:properties/module/mdbv/database.properties",
+        "classpath:properties/module/mdbv/database.private.properties",
+        "classpath:properties/module/mdbv/module.properties",
 }, ignoreResourceNotFound = true)
 public class MongoDBViewerConfig {
 
@@ -34,18 +32,6 @@ public class MongoDBViewerConfig {
     public @Autowired
     MongoDBViewerConfig(Environment environment) {
         this.environment = environment;
-
-        Menu menu = new Menu();
-
-        menu.addItem(new Menu.Item("label.source", "/mdbv/sources"));
-        menu.addItem(new Menu.Item("label.rows", "/mdbv/rows"));
-        menu.addItem(new Menu.Item("label.records", "/mdbv/records"));
-
-        Modules.register(new Modules.Module(
-                environment.getProperty("module.mdbv.name"),
-                environment.getProperty("module.mdbv.path"),
-                menu
-        ));
     }
 
     @Bean
@@ -54,19 +40,21 @@ public class MongoDBViewerConfig {
         return new SourceIdHolder(environment.getProperty("module.mdbv.session.currentCollection"));
     }
 
-    public @Bean MongoDatabaseManager mongoDatabaseManager() {
+    public @Bean
+    MongoDatabaseManager mongoDatabaseManager() {
         return new MongoDatabaseManager(mongoClient());
     }
 
     @Bean
     public MongoClient mongoClient() {
         return new MongoClient(
-            requireNonNull(environment.getProperty("mdbv.connection.host")),
-            parseInt(requireNonNull(environment.getProperty("mdbv.connection.port")))
+                requireNonNull(environment.getProperty("mdbv.connection.host")),
+                parseInt(requireNonNull(environment.getProperty("mdbv.connection.port")))
         );
     }
 
-    public @Bean MongoCustomConversions customConversions() {
+    public @Bean
+    MongoCustomConversions customConversions() {
         List<Converter<?, ?>> converters = new ArrayList<>();
 
         converters.add(new RawJsonConverter());

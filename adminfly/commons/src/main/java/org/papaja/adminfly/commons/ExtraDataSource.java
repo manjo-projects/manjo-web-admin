@@ -2,7 +2,8 @@ package org.papaja.adminfly.commons;
 
 import java.util.*;
 
-public class ExtraDataSource {
+public enum ExtraDataSource {
+    HOLDER;
 
     public static final  String                           DEFAULT_KEY = "DEFAULT";
     private static final Map<String, Map<String, Object>> SOURCES;
@@ -13,11 +14,13 @@ public class ExtraDataSource {
 
     private Map<String, Object> active;
 
-    public List<Map<String, Object>> getFor(String name) {
-        List<Map<String, Object>> values = new ArrayList<>();
+    public List<Object> getListOf(String name) {
+        List<Object> values = new ArrayList<>();
 
         for (Map<String, Object> value : SOURCES.values()) {
-            values.add(value);
+            if (value.containsKey(name)) {
+                values.add(value.get(name));
+            }
         }
 
         return values;
@@ -31,12 +34,16 @@ public class ExtraDataSource {
         SOURCES.put(name, map);
     }
 
-    public void setActive(String name) {
-        this.active = SOURCES.get(name);
+    public boolean has(String name) {
+        return SOURCES.containsKey(name);
     }
 
     public Map<String, Object> getActive() {
         return active;
+    }
+
+    public void setActive(String name) {
+        this.active = SOURCES.get(name.isEmpty() ? DEFAULT_KEY : name);
     }
 
 }

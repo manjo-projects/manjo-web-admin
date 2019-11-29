@@ -1,0 +1,23 @@
+key: PSY
+current: "Psy"
+
+module:
+  link:
+    label: "Psy-Tests"
+    path: "/psy/"
+
+text:
+  logo: "Psy-Tests"
+
+menu:
+  - label: "label.patients"
+    path: "/psy/patients"
+
+  - label: "label.tests"
+    path: "/psy/tests"
+
+  - label: "label.results"
+    path: "/psy/results"
+
+view:
+  theme: lumen

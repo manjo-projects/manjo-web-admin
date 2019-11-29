@@ -1,0 +1,10 @@
+key: BLOG
+current: "Blog"
+
+module:
+  link:
+    label: "Blog Manager"
+    path: "/blog/"
+
+text:
+  logo: "Blog"

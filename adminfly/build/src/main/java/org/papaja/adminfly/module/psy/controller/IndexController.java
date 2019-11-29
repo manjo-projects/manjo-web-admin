@@ -32,13 +32,8 @@ public class IndexController extends AbstractPsyController {
     @Autowired
     private SessionService sessions;
 
-//    @ModelAttribute
-//    public void model(Model model) {
-//        model.addAttribute("patient", context.getPatient());
-//    }
-
     @PreAuthorize("hasAnyAuthority('READ')")
-    @GetMapping(value = {"/"})
+    @GetMapping("")
     public ModelAndView index() {
         return newView("index");
     }

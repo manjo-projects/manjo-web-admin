@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
-@Controller
+@Controller("kvIndexController")
 @RequestMapping(value = "/kv", produces = MediaType.TEXT_PLAIN_VALUE)
 public class IndexController extends AbstractController {
 
