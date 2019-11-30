@@ -1,13 +1,11 @@
 main:
-  name: Psy-Tests
+  name: "🤪 Psy-Tests"
   key: PSY
   link: "/psy/"
 settings:
   view:
     theme: lumen
 values:
-  text:
-    logo: "Psy-Tests"
   label:
     footer: "label.test"
   menu:
@@ -17,3 +15,7 @@ values:
       path: "/psy/tests"
     - label: "label.results"
       path: "/psy/results"
+  footer:
+    links:
+      - label: "Inna Hontarenko (Yefremova)"
+        href: "mailto:inna.efremova1992@gmail.com"

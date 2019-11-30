@@ -1,0 +1,33 @@
+# required
+main:
+  name: "🦝 Secure"
+  key: SECURE
+  link: "/secure/"
+
+# optional
+settings:
+  view:
+    theme: minty
+
+# optional
+values:
+
+  # optional
+  menu:
+    - label: "label.users"
+      path: "/secure/users"
+
+    - label: "label.credentials"
+      path: "/secure/credentials"
+
+    - label: "label.system"
+      path: "/secure/system"
+
+  # optional
+  footer:
+    links:
+      - label: "GitHub - AdminFly"
+        href: "https://github.com/org-papaja"
+
+      - label: "Mail-Me"
+        href: "mailto:ihontarenko@gmail.com"

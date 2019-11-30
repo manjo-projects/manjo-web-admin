@@ -6,9 +6,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-
             <ul class="navbar-nav">
-                {% for item in extra.values.menu %}
+                {% for item in extra.get('values.menu') %}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ url(item.path) }}">{{ item.label | translate }}</a>
                     </li>
@@ -18,12 +17,12 @@
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="modules" aria-expanded="true">
-                        [{{ extra.metadata.name }}] <span class="caret"></span>
+                        [{{ extra.get('main.name') }}] <span class="caret"></span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="modules">
-                        {% for module in extra.modules %}
-                            {% if module.link is not empty %}
-                            <a class="dropdown-item" href="{{ url(module.link) }}">&bullet;&nbsp;{{ module.name }}</a>
+                        {% for module in extra.all() %}
+                            {% if module.main.link is not empty %}
+                            <a class="dropdown-item" href="{{ url(module.main.link) }}">&bullet;&nbsp;{{ module.main.name }}</a>
                             {% endif %}
                         {% endfor %}
                     </div>

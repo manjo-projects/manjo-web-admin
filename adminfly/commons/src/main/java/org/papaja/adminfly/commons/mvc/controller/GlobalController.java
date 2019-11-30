@@ -1,7 +1,7 @@
 package org.papaja.adminfly.commons.mvc.controller;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.papaja.adminfly.commons.ExtraHashMap;
+import org.papaja.adminfly.commons.DataHolder;
 import org.papaja.adminfly.commons.support.SystemLocales;
 import org.papaja.adminfly.commons.support.SystemThemes;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class GlobalController {
     private SystemThemes themes;
 
     @Autowired
-    private ExtraHashMap extra;
+    private DataHolder extra;
 
     @ExceptionHandler({AccessDeniedException.class})
     public String handleAccessDeniedException(

@@ -1,6 +1,6 @@
 # required
 main:
-  name: Default
+  name: "🐌 Default"
   key: DEFAULT
 
 # optional
@@ -10,5 +10,14 @@ settings:
 
 # optional
 values:
-  text:
+  uni: "FFDP"
+  text:giy
     logo: "default/module.yaml"
+
+  # optional
+  footer:
+    links:
+      - label: "PapaJa - AdminFly"
+        href: "https://google.com/?q=papaja+adminfly"
+      - label: "Ivan Hontarenko"
+        href: "mailto:ihontarenko@gmail.com"

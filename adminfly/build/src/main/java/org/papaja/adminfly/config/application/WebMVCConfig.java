@@ -8,7 +8,7 @@ import org.jtwig.spring.asset.resolver.AssetResolver;
 import org.jtwig.translate.spring.SpringTranslateExtension;
 import org.jtwig.translate.spring.SpringTranslateExtensionConfiguration;
 import org.jtwig.web.servlet.JtwigRenderer;
-import org.papaja.adminfly.commons.ExtraHashMap;
+import org.papaja.adminfly.commons.DataHolder;
 import org.papaja.adminfly.commons.vendor.jtwig.extension.asset.resolver.ResourceUrlBasedAssetResolver;
 import org.papaja.adminfly.commons.vendor.jtwig.extension.theme.ThemeResolverExtension;
 import org.papaja.adminfly.commons.vendor.jtwig.extension.url.UrlPathExtension;
@@ -169,10 +169,10 @@ public class WebMVCConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public ExtraHashMap extraDataSource() {
+    public DataHolder modulesDataHolder() {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         Yaml                    yaml     = new Yaml();
-        ExtraHashMap            source   = ExtraHashMap.HOLDER;
+        DataHolder              source   = DataHolder.HOLDER;
         String[]                required = {"main.key", "main.name",};
 
         try {
@@ -198,13 +198,10 @@ public class WebMVCConfig implements WebMvcConfigurer {
                 }
 
                 if (isValidResource) {
-                    source.put((String) getProperty(data, "main.key"), ExtraHashMap.wrap(data));
+                    source.put((String) getProperty(data, "main.key"), data);
                 }
             }
 
-            System.out.println(source);
-
-            source.setActive(ExtraHashMap.DEFAULT_KEY);
         } catch (Throwable ignore) {
             // ignore all exception
             LOGGER.warning(format("While 'ExtraDataSource' was initialized some exception was threw '%s'",

@@ -1,9 +1,10 @@
 main:
-  name: AdminFly (Index)
+  name: "🦄 AdminFly"
   key: BUILD-IN
+
 settings:
   view:
     theme: minty
+
 values:
-  text:
-    logo: "AdminFly (Build-In)"
+  ~

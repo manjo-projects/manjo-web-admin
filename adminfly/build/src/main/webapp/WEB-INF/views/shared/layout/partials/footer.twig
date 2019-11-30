@@ -4,9 +4,9 @@
             <div class="card text-white bg-primary mb-3">
                 <div class="card-body">
                     <p>
-                        <a class="text-white" href="https://adminfly.me/" target="_blank">PapaJa — AdminFly</a> &bull;
-                        <a class="text-white" href="mailto:ihontarenko@gmail.com">Ivan Hontarenko</a> &bull;
-                        <a class="text-white" href="https://github.com/org-papaja/papaja-adminfly" target="_blank">GitHub</a>
+                        {% for item in extra.get('values.footer.links') %}
+                            <a class="text-white" href="{{ item.href }}" target="_blank">{{ item.label }}</a> &bull;
+                        {% endfor %}
                     </p>
                 </div>
             </div>

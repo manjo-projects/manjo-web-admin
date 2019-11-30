@@ -1,9 +1,7 @@
 main:
-  name: "AdminFly (Auth)"
+  name: " 🛡 AdminFly"
   key: AUTH
 settings:
   view:
     theme: minty
-values:
-  text:
-    logo: "AdminFly (Auth)"
+values: ~

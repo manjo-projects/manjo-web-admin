@@ -1,0 +1,19 @@
+# required
+main:
+  name: "🦊 Blog"
+  key: BLOG
+  link: "/blog/"
+
+# optional
+values:
+
+  # optional
+  menu:
+    - label: "label.create"
+      path: "/blog/posts/create"
+
+    - label: "label.posts"
+      path: "/blog/posts"
+
+    - label: "label.domains"
+      path: "/blog//setting/domains"

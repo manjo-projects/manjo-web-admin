@@ -1,0 +1,13 @@
+# required
+main:
+  name: "💵 Shopper!"
+  key: SHOPPER
+  link: "/shopper/"
+
+# optional
+values:
+
+  # optional
+  menu:
+    - label: "label.create"
+      path: "/blog/posts/create"

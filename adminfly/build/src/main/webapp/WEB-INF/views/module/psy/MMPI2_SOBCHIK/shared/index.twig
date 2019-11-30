@@ -2,17 +2,5 @@
 {% set logoName = 'MMPI-2 SOBCHIK' %}
 {% block title %}{{ 'label.psy.name' | translate }} — {{ logoName }}{% endblock %}
 {% block content %}
-
-    <hr>
-    undefined.value: {{ extra.get('undefined.value', 'undefined!') }}
-    <hr>
-    values.text.logo: {{ extra.get('values.text.logo') }}
-    <hr>
-    main.name: {{ extra.get('main.name') }}
-    <hr>
-    direct (extra.SHARED.main.key): {{ extra.SHARED.main.key }}
-    <hr>
-
-
     {% include './../_partials/questions.twig' %}
 {% endblock %}

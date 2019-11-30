@@ -1,0 +1,24 @@
+# required
+main:
+  name: "🥭 MongoDB Viewer"
+  key: MDBV
+  link: "/mdbv/"
+
+# optional
+settings:
+  view:
+    theme: yeti
+
+# optional
+values:
+
+  # optional
+  menu:
+    - label: "label.source"
+      path: "/mdbv/sources"
+
+    - label: "label.rows"
+      path: "/mdbv/rows"
+
+    - label: "label.records"
+      path: "/mdbv/records"
