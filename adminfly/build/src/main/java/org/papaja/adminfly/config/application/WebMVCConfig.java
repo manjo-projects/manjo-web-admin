@@ -8,7 +8,7 @@ import org.jtwig.spring.asset.resolver.AssetResolver;
 import org.jtwig.translate.spring.SpringTranslateExtension;
 import org.jtwig.translate.spring.SpringTranslateExtensionConfiguration;
 import org.jtwig.web.servlet.JtwigRenderer;
-import org.papaja.adminfly.commons.ExtraDataSource;
+import org.papaja.adminfly.commons.ExtraHashMap;
 import org.papaja.adminfly.commons.vendor.jtwig.extension.asset.resolver.ResourceUrlBasedAssetResolver;
 import org.papaja.adminfly.commons.vendor.jtwig.extension.theme.ThemeResolverExtension;
 import org.papaja.adminfly.commons.vendor.jtwig.extension.url.UrlPathExtension;
@@ -54,6 +54,7 @@ import java.util.logging.Logger;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.valueOf;
 import static java.lang.String.format;
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static org.apache.commons.beanutils.PropertyUtils.getProperty;
 import static org.papaja.util.StringUtils.substringBetween;
@@ -168,32 +169,42 @@ public class WebMVCConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public ExtraDataSource extraDataSource() {
+    public ExtraHashMap extraDataSource() {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         Yaml                    yaml     = new Yaml();
-        ExtraDataSource         source   = ExtraDataSource.HOLDER;
-        String[]                required = {"key", "text.logo",};
+        ExtraHashMap            source   = ExtraHashMap.HOLDER;
+        String[]                required = {"main.key", "main.name",};
 
         try {
-            String     pattern   = "classpath*:module-info/*.yaml";
-            Resource[] resources = resolver.getResources(pattern);
+            String     pattern         = "classpath*:**/module.yaml";
+            Resource[] resources       = resolver.getResources(pattern);
+
+            boolean    isValidResource;
 
             for (Resource resource : resources) {
                 Map<String, Object> data = yaml.load(resource.getInputStream());
+                isValidResource = true;
 
                 for (String path : required) {
                     try {
-                        getProperty(data, path);
+                        if (isNull(getProperty(data, path))) {
+                            isValidResource = false;
+                            break;
+                        }
                     } catch (Exception skip) {
-                        LOGGER.warning(format("Skipped extra data for : %s", resource.getURL().toString()));
-                        continue;
+                        isValidResource = false;
+                        break;
                     }
                 }
 
-                source.add((String) data.get("key"), data);
+                if (isValidResource) {
+                    source.put((String) getProperty(data, "main.key"), ExtraHashMap.wrap(data));
+                }
             }
 
-            source.setActive(ExtraDataSource.DEFAULT_KEY);
+            System.out.println(source);
+
+            source.setActive(ExtraHashMap.DEFAULT_KEY);
         } catch (Throwable ignore) {
             // ignore all exception
             LOGGER.warning(format("While 'ExtraDataSource' was initialized some exception was threw '%s'",

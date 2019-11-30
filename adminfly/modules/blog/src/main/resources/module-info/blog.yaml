@@ -8,3 +8,19 @@ module:
 
 text:
   logo: "Blog"
+
+menu:
+  - label: "label.create"
+    path: "/blog/create"
+
+  - label: "label.posts"
+    path: "/blog/posts"
+
+  - label: "label.domains"
+    path: "/blog/domains"
+
+  - label: "label.permissions"
+    path: "/blog/domainAccess"
+
+  - label: "label.categories"
+    path: "/blog/categories"

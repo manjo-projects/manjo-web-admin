@@ -62,7 +62,6 @@ public class IndexController extends AbstractPsyController {
         mav.addObject("encryptor", sessions.getEncryptor());
         mav.addObject("url", ServletUriComponentsBuilder.fromCurrentContextPath().toUriString());
         mav.addObject("locale", Locale.UK_UA);
-        mav.addObject("theme", SystemThemes.Themes.LUMEN);
 
         return mav;
     }

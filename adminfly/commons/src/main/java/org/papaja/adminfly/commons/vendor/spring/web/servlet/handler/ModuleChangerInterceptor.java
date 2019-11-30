@@ -1,22 +1,18 @@
 package org.papaja.adminfly.commons.vendor.spring.web.servlet.handler;
 
-import org.papaja.adminfly.commons.ExtraDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.papaja.adminfly.commons.ExtraHashMap;
 import org.springframework.security.access.AccessDeniedException;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Enumeration;
 
 import static java.lang.String.format;
 
 public class ModuleChangerInterceptor extends HandlerInterceptorAdapter {
 
-    private ExtraDataSource source = ExtraDataSource.HOLDER;
+    private ExtraHashMap source = ExtraHashMap.HOLDER;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
@@ -29,8 +25,8 @@ public class ModuleChangerInterceptor extends HandlerInterceptorAdapter {
                 source.setActive(name);
             } else {
                 throw new AccessDeniedException(
-                    format("Unable load module: '%s'. Make sure you configure the module in 'module-info/(%s|*).yaml'",
-                        name, name));
+                    format("Access denied to the module: '%s'. Make sure you correctly configure the module in 'resources/**/module.yaml'",
+                        name));
             }
         }
 

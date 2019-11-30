@@ -1,0 +1,14 @@
+# required
+main:
+  name: Default
+  key: DEFAULT
+
+# optional
+settings:
+  view:
+    theme: minty
+
+# optional
+values:
+  text:
+    logo: "default/module.yaml"

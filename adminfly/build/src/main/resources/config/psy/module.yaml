@@ -1,0 +1,19 @@
+main:
+  name: Psy-Tests
+  key: PSY
+  link: "/psy/"
+settings:
+  view:
+    theme: lumen
+values:
+  text:
+    logo: "Psy-Tests"
+  label:
+    footer: "label.test"
+  menu:
+    - label: "label.patients"
+      path: "/psy/patients"
+    - label: "label.tests"
+      path: "/psy/tests"
+    - label: "label.results"
+      path: "/psy/results"

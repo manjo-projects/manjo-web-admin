@@ -1,5 +1,6 @@
 package org.papaja.adminfly.module.psy.controller.test;
 
+import org.papaja.adminfly.commons.ExtraHashMap;
 import org.papaja.adminfly.module.psy.controller.AbstractPsyController;
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
 import org.papaja.adminfly.module.psy.tests.mmpi2.Points;
@@ -139,6 +140,8 @@ public class MMPI2Controller extends AbstractPsyController {
         @GetMapping
         public ModelAndView test() {
             ModelAndView mav = newView("index");
+
+            ExtraHashMap.HOLDER.set("SHARED.metadata.name", "MMPI-2");
 
             wizard.update();
 

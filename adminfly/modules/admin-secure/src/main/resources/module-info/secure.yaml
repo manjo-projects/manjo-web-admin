@@ -10,11 +10,11 @@ text:
   logo: "Secure"
 
 menu:
-  - label: "title.users"
+  - label: "label.users"
     path: "/secure/users"
 
-  - label: "title.authority"
-    path: "/secure/authority"
+  - label: "label.credentials"
+    path: "/secure/credentials"
 
-  - label: "title.application"
-    path: "/secure/application"
+  - label: "label.system"
+    path: "/secure/system"

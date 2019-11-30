@@ -1,5 +1,6 @@
 package org.papaja.adminfly.module.admin.controller;
 
+import org.papaja.adminfly.commons.mvc.controller.AbstractController;
 import org.papaja.adminfly.commons.support.SystemInformation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -12,10 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import static java.lang.Runtime.getRuntime;
 
 @Controller
-@RequestMapping("/secure/application")
-public class ApplicationController extends AuthorityController {
+@RequestMapping("/secure/system")
+public class SystemController extends AbstractController {
 
-    @RequestMapping
+    @RequestMapping("")
     public ModelAndView redirect() {
         return newRedirect("status");
     }

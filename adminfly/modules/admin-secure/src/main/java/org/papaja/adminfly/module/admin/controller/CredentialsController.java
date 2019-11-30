@@ -20,8 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/secure/authority")
-public class AuthorityController extends AbstractController {
+@RequestMapping("/secure/credentials")
+public class CredentialsController extends AbstractController {
 
     @Autowired
     private PrivilegeService privileges;

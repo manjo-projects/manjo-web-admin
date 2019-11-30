@@ -1,7 +1,7 @@
 package org.papaja.adminfly.commons.mvc.controller;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.papaja.adminfly.commons.ExtraDataSource;
+import org.papaja.adminfly.commons.ExtraHashMap;
 import org.papaja.adminfly.commons.support.SystemLocales;
 import org.papaja.adminfly.commons.support.SystemThemes;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
-import java.util.Map;
 
 @SuppressWarnings({"unused"})
 @ControllerAdvice
@@ -30,7 +29,7 @@ public class GlobalController {
     private SystemThemes themes;
 
     @Autowired
-    private ExtraDataSource source;
+    private ExtraHashMap extra;
 
     @ExceptionHandler({AccessDeniedException.class})
     public String handleAccessDeniedException(
@@ -62,10 +61,6 @@ public class GlobalController {
 
     @ModelAttribute
     public void handleRequest(HttpServletRequest request, Model view) {
-        Map<String, Object> extra = source.getActive();
-
-        extra.put("modules", source.getListOf("module"));
-
         view.addAttribute("languages", locales);
         view.addAttribute("themes", themes);
         view.addAttribute("principal", request.getUserPrincipal());

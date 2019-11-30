@@ -35,7 +35,7 @@ abstract public class AbstractController {
     }
 
     private String normalizeViewPath(String view) {
-        return format("%s/%s", getPrefix(), (view.startsWith("/") ? view.substring(1) : (view.isEmpty() ? null : view)));
+        return format("%s/%s", getPrefix(), (view.startsWith("/") ? view.substring(1) : view));
     }
 
     protected String getPrefix() {

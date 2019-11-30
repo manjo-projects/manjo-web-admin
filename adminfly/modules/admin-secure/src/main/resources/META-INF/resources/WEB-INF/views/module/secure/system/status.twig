@@ -2,7 +2,7 @@
 {% block title %}{{ 'title.status' | translate }}{% endblock %}
 {% block content %}
     <div class="page-header mb-4">
-        <h1 id="tables">{{ 'title.application' | translate }}</h1>
+        <h1 id="tables">{{ 'label.system' | translate }}</h1>
     </div>
     {% include 'partials/buttons.twig' %}
     <div class="row">
@@ -50,7 +50,7 @@
                     </div>
                 </a>
                 <div class="card-footer">
-                    <button type="button" onclick="location.href='{{ url('/secure/application/gc') }}'" type="button"
+                    <button type="button" onclick="location.href='{{ url('/secure/system/gc') }}'" type="button"
                             class="btn btn-secondary">{{ 'text.runGc' | translate }}</button>
                 </div>
             </div>

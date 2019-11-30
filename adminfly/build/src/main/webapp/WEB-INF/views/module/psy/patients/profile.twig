@@ -31,7 +31,7 @@
                 <ul class="list-group">
                     {% if sessions is not empty %}
                         {% for session in sessions %}
-                            {% set sessionURL = url ~ '/shared/psy/_/' ~ encryptor.encrypt(session.getStringId()) ~ '?locale=' ~ locale.getCode() ~ '&theme=' ~ theme.getName() %}
+                            {% set sessionURL = url ~ '/shared/psy/_/' ~ encryptor.encrypt(session.getStringId()) ~ '?locale=' ~ locale.getCode() %}
                             <li class="list-group-item">
                                 [{{ session.test }}]: <a href="{{ sessionURL }}" target="_blank">{{ sessionURL }}</a>
                             </li>

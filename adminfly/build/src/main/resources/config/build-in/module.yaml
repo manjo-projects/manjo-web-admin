@@ -1,0 +1,9 @@
+main:
+  name: AdminFly (Index)
+  key: BUILD-IN
+settings:
+  view:
+    theme: minty
+values:
+  text:
+    logo: "AdminFly (Build-In)"

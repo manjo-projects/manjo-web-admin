@@ -1,0 +1,8 @@
+main:
+  name: Shared
+  key: SHARED
+settings:
+  view:
+    theme: minty
+values:
+  ~
