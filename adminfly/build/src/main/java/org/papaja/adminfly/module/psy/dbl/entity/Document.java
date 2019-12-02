@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "PSY_DOCUMENT")
-@PrimaryKeyJoinColumn(name = "RESULT_ID")
+@PrimaryKeyJoinColumn(name = "PATIENT_ID")
 @DiscriminatorValue(value = "PSY_DOCUMENT")
 public class Document extends BlobFile {
 
