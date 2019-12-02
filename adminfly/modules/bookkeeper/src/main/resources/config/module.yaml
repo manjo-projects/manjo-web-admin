@@ -1,0 +1,9 @@
+# required
+main:
+  name: "📈 BookKeeper"
+  key: BOOKKEEPER
+  link: "/bookkeeper/"
+
+# optional
+values:
+  ~

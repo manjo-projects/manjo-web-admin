@@ -1,6 +1,6 @@
 # required
 main:
-  name: "💵 Shopper!"
+  name: "💲 Shopper"
   key: SHOPPER
   link: "/shopper/"
 

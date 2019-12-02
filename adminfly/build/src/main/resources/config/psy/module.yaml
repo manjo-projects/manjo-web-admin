@@ -17,5 +17,7 @@ values:
       path: "/psy/results"
   footer:
     links:
-      - label: "Inna Hontarenko (Yefremova)"
+      - label: "Inna Yefremova"
         href: "mailto:inna.efremova1992@gmail.com"
+      - label: "Blog"
+        href: "https://inna.blog/"

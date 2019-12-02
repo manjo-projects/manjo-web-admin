@@ -53,6 +53,8 @@
 
         <apache.lang3.version>3.9</apache.lang3.version>
         <apache.beanutils.version>1.9.3</apache.beanutils.version>
+
+        <snake-yaml.version>1.25</snake-yaml.version>
     </properties>
 
     <build>
@@ -114,6 +116,13 @@
             <groupId>org.papaja</groupId>
             <artifactId>papaja-data</artifactId>
             <version>1.0.0-RC1</version>
+        </dependency>
+
+        <!-- SnakeYAML -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${snake-yaml.version}</version>
         </dependency>
 
         <!-- Spring -->

@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import static java.lang.String.format;
-import static java.util.Optional.ofNullable;
 import static org.apache.commons.beanutils.PropertyUtils.getProperty;
 import static org.apache.commons.beanutils.PropertyUtils.setProperty;
 
@@ -16,8 +15,12 @@ public class DataHolder<T> {
     public static final String     DEFAULT_KEY = "DEFAULT";
     public static final Supplier   DEFAULT     = () -> HOLDER.get(DEFAULT_KEY, null, false);
 
-    public Map<String, T> map = new HashMap<>();
-    public String         key = DEFAULT_KEY;
+    private Map<String, T> map = new HashMap<>();
+    private String         key = DEFAULT_KEY;
+
+    public String normalize() {
+        return key;
+    }
 
     public String getKey() {
         return key;
@@ -43,19 +46,18 @@ public class DataHolder<T> {
         return get(map, key, supplier, withPrefix);
     }
 
-    public T get(Object bean, String key, Supplier<T> supplier, boolean withPrefix) {
+    public T get(Object bean, String key, Supplier<T> supplier, boolean prefix) {
+
         T value = null;
 
         try {
-            value = (T) ofNullable(getProperty(bean, getKey(key, withPrefix))).orElseGet(supplier);
+            value = (T) getProperty(bean, normalize(key, prefix));
         } catch (Exception ignore) {
-            if (supplier != null) {
-                value = get(supplier.get(), key, null, true);
-            }
+
         }
 
-        if (value == null) {
-            value = get(DEFAULT.get(), key, null, false);
+        if (value == null && supplier != null) {
+            value = supplier.get();
         }
 
         return value;
@@ -67,7 +69,7 @@ public class DataHolder<T> {
 
     public void set(String key, T value, boolean withPrefix) {
         try {
-            setProperty(map, getKey(key, withPrefix), value);
+            setProperty(map, normalize(key, withPrefix), value);
         } catch (Exception ignore) {
         }
     }
@@ -81,11 +83,11 @@ public class DataHolder<T> {
     }
 
     public boolean has(String name) {
-        return get(name, null, false) != null;
+        return get(name, () -> null, false) != null;
     }
 
-    private String getKey(String key, boolean withPrefix) {
-        return withPrefix ? format("%s.%s", getKey(), key) : key;
+    private String normalize(String key, boolean withPrefix) {
+        return withPrefix ? format("%s.%s", normalize(), key) : key;
     }
 
 }

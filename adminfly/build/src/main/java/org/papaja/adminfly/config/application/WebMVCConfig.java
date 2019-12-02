@@ -204,8 +204,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
 
         } catch (Throwable ignore) {
             // ignore all exception
-            LOGGER.warning(format("While 'ExtraDataSource' was initialized some exception was threw '%s'",
-                    ignore.getMessage()));
+            LOGGER.warning(ignore.getMessage());
         }
 
         return source;

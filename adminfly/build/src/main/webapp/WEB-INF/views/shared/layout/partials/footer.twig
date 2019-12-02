@@ -5,7 +5,8 @@
                 <div class="card-body">
                     <p>
                         {% for item in extra.get('values.footer.links') %}
-                            <a class="text-white" href="{{ item.href }}" target="_blank">{{ item.label }}</a> &bull;
+                            {% set bullet = (loop.last) ? '' : '&bull;' %}
+                            <a class="text-white" href="{{ item.href }}" target="_blank">{{ item.label }}</a> {{ bullet }}
                         {% endfor %}
                     </p>
                 </div>

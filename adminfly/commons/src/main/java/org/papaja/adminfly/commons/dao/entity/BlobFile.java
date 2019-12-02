@@ -9,7 +9,8 @@ import static java.lang.String.format;
 
 @SuppressWarnings({"unused"})
 @Entity
-@Table(name = "SHARED_FILES")
+@Table(name = "ABSTRACT_FILES")
+@Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "D_TYPE")
 abstract public class BlobFile extends AbstractEntity {
 

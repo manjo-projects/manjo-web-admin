@@ -1,6 +1,6 @@
 # required
 main:
-  name: "🥭 MongoDB Viewer"
+  name: "📄 MongoDB Viewer"
   key: MDBV
   link: "/mdbv/"
 

@@ -16,4 +16,4 @@ values:
       path: "/blog/posts"
 
     - label: "label.domains"
-      path: "/blog//setting/domains"
+      path: "/blog/setting/domains"

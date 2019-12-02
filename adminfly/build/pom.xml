@@ -24,22 +24,81 @@
         <papaja.adminfly.module.mongodb-viewer.version>1.0</papaja.adminfly.module.mongodb-viewer.version>
         <papaja.adminfly.module.key-vault.version>1.0</papaja.adminfly.module.key-vault.version>
         <papaja.adminfly.module.shopper.version>1.0</papaja.adminfly.module.shopper.version>
+        <papaja.adminfly.module.bookkeeper.version>1.0</papaja.adminfly.module.bookkeeper.version>
         <papaja.adminfly.module.psy-tests.version>1.0</papaja.adminfly.module.psy-tests.version>
     </properties>
 
     <profiles>
         <profile>
+            <id>empty</id>
+            <dependencies>
+                <!-- Admin-Secure Only -->
+            </dependencies>
+        </profile>
+        <profile>
             <id>mdbv</id>
             <dependencies>
                 <dependency>
                     <groupId>org.papaja.adminfly</groupId>
-                    <artifactId>papaja-adminfly-module-admin</artifactId>
-                    <version>${papaja.adminfly.module.admin.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.papaja.adminfly</groupId>
                     <artifactId>papaja-adminfly-module-mdbv</artifactId>
                     <version>${papaja.adminfly.module.mongodb-viewer.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>kv</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.papaja.adminfly</groupId>
+                    <artifactId>papaja-adminfly-module-kv</artifactId>
+                    <version>${papaja.adminfly.module.key-vault.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>blog</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.papaja.adminfly</groupId>
+                    <artifactId>papaja-adminfly-module-blog</artifactId>
+                    <version>${papaja.adminfly.module.blog.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>shopper</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.papaja.adminfly</groupId>
+                    <artifactId>papaja-adminfly-module-shopper</artifactId>
+                    <version>${papaja.adminfly.module.shopper.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>psy</id>
+            <dependencies>
+                <!-- Psy -->
+            </dependencies>
+        </profile>
+        <profile>
+            <id>bookkeeper</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.papaja.adminfly</groupId>
+                    <artifactId>papaja-adminfly-module-bookkeeper</artifactId>
+                    <version>${papaja.adminfly.module.bookkeeper.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>psy-blog</id>
+            <dependencies>
+                <!-- Psy -->
+                <dependency>
+                    <groupId>org.papaja.adminfly</groupId>
+                    <artifactId>papaja-adminfly-module-blog</artifactId>
+                    <version>${papaja.adminfly.module.blog.version}</version>
                 </dependency>
             </dependencies>
         </profile>
@@ -49,18 +108,6 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <dependencies>
-
-                <dependency>
-                    <groupId>org.yaml</groupId>
-                    <artifactId>snakeyaml</artifactId>
-                    <version>1.25</version>
-                </dependency>
-
-                <dependency>
-                    <groupId>org.papaja.adminfly</groupId>
-                    <artifactId>papaja-adminfly-module-admin</artifactId>
-                    <version>${papaja.adminfly.module.admin.version}</version>
-                </dependency>
                 <dependency>
                     <groupId>org.papaja.adminfly</groupId>
                     <artifactId>papaja-adminfly-module-kv</artifactId>
@@ -80,6 +127,11 @@
                     <groupId>org.papaja.adminfly</groupId>
                     <artifactId>papaja-adminfly-module-shopper</artifactId>
                     <version>${papaja.adminfly.module.shopper.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.papaja.adminfly</groupId>
+                    <artifactId>papaja-adminfly-module-bookkeeper</artifactId>
+                    <version>${papaja.adminfly.module.bookkeeper.version}</version>
                 </dependency>
                 <!--
                 <dependency>
@@ -115,6 +167,11 @@
     </build>
 
     <dependencies>
+        <dependency>
+            <groupId>org.papaja.adminfly</groupId>
+            <artifactId>papaja-adminfly-module-admin</artifactId>
+            <version>${papaja.adminfly.module.admin.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.papaja.adminfly</groupId>
             <artifactId>papaja-adminfly-commons</artifactId>

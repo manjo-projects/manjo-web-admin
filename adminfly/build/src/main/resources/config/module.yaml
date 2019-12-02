@@ -6,12 +6,13 @@ main:
 # optional
 settings:
   view:
+    layout: default
     theme: minty
 
 # optional
 values:
   uni: "FFDP"
-  text:giy
+  text:
     logo: "default/module.yaml"
 
   # optional

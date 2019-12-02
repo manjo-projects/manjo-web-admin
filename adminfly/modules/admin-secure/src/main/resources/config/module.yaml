@@ -1,6 +1,6 @@
 # required
 main:
-  name: "🦝 Secure"
+  name: "🔒 Secure"
   key: SECURE
   link: "/secure/"
 
@@ -22,12 +22,3 @@ values:
 
     - label: "label.system"
       path: "/secure/system"
-
-  # optional
-  footer:
-    links:
-      - label: "GitHub - AdminFly"
-        href: "https://github.com/org-papaja"
-
-      - label: "Mail-Me"
-        href: "mailto:ihontarenko@gmail.com"
