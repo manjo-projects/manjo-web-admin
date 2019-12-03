@@ -2,7 +2,9 @@ package org.papaja.adminfly.module.psy.controller.test;
 
 import org.papaja.adminfly.commons.DataHolder;
 import org.papaja.adminfly.module.psy.controller.AbstractPsyController;
+import org.papaja.adminfly.module.psy.dbl.converter.MMPI2SobchikConverter;
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
+import org.papaja.adminfly.module.psy.dbl.entity.results.MMPI2SobchikResult;
 import org.papaja.adminfly.module.psy.tests.mmpi2.Points;
 import org.papaja.adminfly.module.psy.tests.mmpi2.calculation.Formula;
 import org.papaja.adminfly.module.psy.tests.mmpi2.calculation.RawPointCalculator;
@@ -11,6 +13,7 @@ import org.papaja.adminfly.module.psy.tests.mmpi2.data.Scale;
 import org.papaja.adminfly.module.psy.tests.mmpi2.data.ValueMap.Value;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard.Direction;
+import org.papaja.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -100,15 +103,9 @@ public class MMPI2SobchikController extends AbstractPsyController {
             Formula            formula    = new Formula();
             Map<Scale, Value>  values     = MAP.getValues(context.getPatient().getSex());
 
-            points.points().forEach((scale, integer) -> {
-                Value value = values.get(scale);
-                System.out.println(integer);
-                System.out.println(scale);
-                System.out.println(value.getIndex());
-                System.out.println(value.getSigma());
-                System.out.printf("%s - %s: RAW-%d; T-%s%n",
-                        scale, scale.getKey(), integer, formula.apply(integer, value.getIndex(), value.getSigma()));
-            });
+            MMPI2SobchikResult result = new MMPI2SobchikConverter().convert(new Pair<>(points, context.getPatient()));
+
+            results.merge(result);
 
             attributes.addFlashAttribute("message",
                     messages.getSuccessMessage("text.calculationResultWasSaved", MMPI2_SOBCHIK.getName()));

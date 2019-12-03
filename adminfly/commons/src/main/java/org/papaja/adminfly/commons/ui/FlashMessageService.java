@@ -44,7 +44,7 @@ public class FlashMessageService {
     }
 
     public String getMessage(String key, Object... parameters) {
-        return translator.getMessage(key, parameters, LocaleContextHolder.getLocale());
+        return translator.getMessage(key, LocaleContextHolder.getLocale(), parameters);
     }
 
 }

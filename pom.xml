@@ -18,6 +18,8 @@
     </modules>
 
     <properties>
+        <papaja-adminfly.version>1.0</papaja-adminfly.version>
+
         <buildName>papaja-adminfly-parent</buildName>
         <versionName>RC0-${maven.build.timestamp}</versionName>
         <timestamp>${maven.build.timestamp}</timestamp>

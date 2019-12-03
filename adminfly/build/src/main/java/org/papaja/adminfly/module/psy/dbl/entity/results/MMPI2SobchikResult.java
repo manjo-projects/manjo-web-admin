@@ -10,9 +10,6 @@ import static java.lang.String.format;
 @DiscriminatorValue("MMPI2_SOBCHIK")
 public class MMPI2SobchikResult extends Result {
 
-    @Column(name = "SCALE_A")
-    private Integer scaleA;
-
     @Column(name = "SCALE_L")
     private Integer scaleL;
 
@@ -60,14 +57,6 @@ public class MMPI2SobchikResult extends Result {
     @Override
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getScaleA() {
-        return scaleA;
-    }
-
-    public void setScaleA(Integer scaleA) {
-        this.scaleA = scaleA;
     }
 
     public Integer getScaleL() {
@@ -176,7 +165,7 @@ public class MMPI2SobchikResult extends Result {
 
     @Override
     public String toString() {
-        return format("MMPI2OriginalResult{parent=%s, scaleA=%d, scaleL=%d, scaleF=%d, scaleK=%d, scale1=%d, scale2=%d, scale3=%d, scale4=%d, scale5=%d, scale6=%d, scale7=%d, scale8=%d, scale9=%d, scale0=%d}",
-                super.toString(), scaleA, scaleL, scaleF, scaleK, scale1, scale2, scale3, scale4, scale5, scale6, scale7, scale8, scale9, scale0);
+        return format("MMPI2SobchikResult{parent=%s, scaleL=%d, scaleF=%d, scaleK=%d, scale1=%d, scale2=%d, scale3=%d, scale4=%d, scale5=%d, scale6=%d, scale7=%d, scale8=%d, scale9=%d, scale0=%d}",
+                super.toString(), scaleL, scaleF, scaleK, scale1, scale2, scale3, scale4, scale5, scale6, scale7, scale8, scale9, scale0);
     }
 }

@@ -18,9 +18,6 @@ import java.sql.Timestamp;
 public class ResultController extends AbstractPsyController {
 
     @Autowired
-    private ResultService results;
-
-    @Autowired
     private BlogFileService files;
 
     @GetMapping
