@@ -11,9 +11,7 @@ settings:
 
 # optional
 values:
-  uni: "FFDP"
-  text:
-    logo: "default/module.yaml"
+  github: "https://github.com/org-papaja/papaja-adminfly"
 
   # optional
   footer:

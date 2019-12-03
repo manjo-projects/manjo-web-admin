@@ -37,12 +37,13 @@ public class BuildInController extends AbstractController {
     @RequestMapping("/")
     public static class ToBuildIn extends AbstractController {
         @RequestMapping
-        public String home(RedirectAttributes attributes) {
+        public ModelAndView home(RedirectAttributes attributes) {
+            ModelAndView mav = new ModelAndView("redirect:/build-in/");
 
             attributes.addFlashAttribute("message",
                     messages.getSuccessMessage("record.removed.id", "path", new Random().nextInt()));
 
-            return "redirect:/build-in/";
+            return mav;
         }
     }
 

@@ -31,7 +31,7 @@ import static org.papaja.adminfly.module.psy.tests.wizard.Wizard.State.FINISHED;
 @SuppressWarnings({"unused"})
 @Controller
 @RequestMapping("/psy/MMPI2_SOBCHIK")
-public class MMPI2Controller extends AbstractPsyController {
+public class MMPI2SobchikController extends AbstractPsyController {
 
     @Autowired
     @Qualifier("wizardMMPI2")

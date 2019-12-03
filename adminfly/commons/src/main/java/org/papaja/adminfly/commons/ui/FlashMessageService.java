@@ -36,6 +36,7 @@ public class FlashMessageService {
     }
 
     public FlashMessage getMessage(FlashMessage.Severity severity, String textKey, Object... parameters) {
+        System.out.println(getMessage(textKey, parameters));
         return new FlashMessage(severity,
             getMessage(textKey, parameters),
             getMessage(format("label.flash.%s", severity.getName()))
