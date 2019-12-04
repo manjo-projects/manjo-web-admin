@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.psy.config;
 
 import org.papaja.adminfly.module.psy.commons.holder.TestContextHolder;
-import org.papaja.adminfly.module.psy.tests.mmpi2.MMPI2Wizard;
+import org.papaja.adminfly.module.psy.tests.mmpi2.sobchik.MMPI2SobchikWizard;
 import org.papaja.adminfly.module.psy.tests.mmpi2.data.Answer;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class PsyConfig {
     @Bean("wizardMMPI2")
     @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
     public Wizard<Answer> wizardMMPI2() {
-        return new MMPI2Wizard();
+        return new MMPI2SobchikWizard();
     }
 
 }
