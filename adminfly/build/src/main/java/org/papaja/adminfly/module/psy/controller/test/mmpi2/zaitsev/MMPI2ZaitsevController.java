@@ -1,4 +1,4 @@
-package org.papaja.adminfly.module.psy.controller.test.mmpi2.berezin;
+package org.papaja.adminfly.module.psy.controller.test.mmpi2.zaitsev;
 
 import org.papaja.adminfly.module.psy.controller.test.mmpi2.MMPI2Controller;
 import org.papaja.adminfly.module.psy.dbl.entity.results.MMPI2BerezinResult;
@@ -11,12 +11,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import static org.papaja.adminfly.module.psy.tests.Test.MMPI2_BEREZIN;
+import static org.papaja.adminfly.module.psy.tests.Test.MMPI2_ZAITSEV;
 
 @SuppressWarnings({"unused"})
 @Controller
-@RequestMapping("/psy/MMPI2_BEREZIN")
-public class MMPI2BerezinController extends MMPI2Controller {
+@RequestMapping("/psy/MMPI2_ZAITSEV")
+public class MMPI2ZaitsevController extends MMPI2Controller {
 
     @Autowired
     @Qualifier("wizardMMPI2")
@@ -29,7 +29,7 @@ public class MMPI2BerezinController extends MMPI2Controller {
 
     @Override
     public Test getTest() {
-        return MMPI2_BEREZIN;
+        return MMPI2_ZAITSEV;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class MMPI2BerezinController extends MMPI2Controller {
     }
 
     @Controller
-    @RequestMapping("/shared/psy/MMPI2_BEREZIN")
+    @RequestMapping("/shared/psy/MMPI2_ZAITSEV")
     public static class Shared extends MMPI2Shared {
 
         @Autowired
@@ -46,7 +46,7 @@ public class MMPI2BerezinController extends MMPI2Controller {
         private Wizard<Answer> wizard;
 
         {
-            setPrefix("/psy/MMPI2_BEREZIN/shared");
+            setPrefix("/psy/MMPI2_ZAITSEV/shared");
         }
 
         @Override
@@ -56,7 +56,7 @@ public class MMPI2BerezinController extends MMPI2Controller {
 
         @Override
         public Test getTest() {
-            return MMPI2_BEREZIN;
+            return MMPI2_ZAITSEV;
         }
 
     }
