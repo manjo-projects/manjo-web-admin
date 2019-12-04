@@ -15,7 +15,6 @@ import org.papaja.adminfly.module.psy.tests.mmpi2.data.Scale;
 import org.papaja.adminfly.module.psy.tests.mmpi2.data.ValueMap;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
 import org.papaja.adminfly.module.psy.tests.wizard.WizardAware;
-import org.papaja.tuple.Pair;
 import org.papaja.tuple.Triplet;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

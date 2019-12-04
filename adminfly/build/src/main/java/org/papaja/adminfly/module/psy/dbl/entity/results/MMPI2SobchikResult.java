@@ -4,8 +4,10 @@ import javax.persistence.*;
 
 import static java.lang.String.format;
 
-@Table(name = "PSY_RESULTS_MMPI2_BEREZIN")
-@DiscriminatorValue("MMPI2_BEREZIN")
+@Entity
+@Table(name = "PSY_RESULTS_MMPI2_SOBCHIK")
+@PrimaryKeyJoinColumn(name = "RESULT_ID")
+@DiscriminatorValue("MMPI2_SOBCHIK")
 public class MMPI2SobchikResult extends MMPI2Result {
 
 }

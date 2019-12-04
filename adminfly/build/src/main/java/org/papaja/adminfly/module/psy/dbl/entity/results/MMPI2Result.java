@@ -1,11 +1,11 @@
 package org.papaja.adminfly.module.psy.dbl.entity.results;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import static java.lang.String.format;
 
-@Entity
-@PrimaryKeyJoinColumn(name = "RESULT_ID")
 abstract public class MMPI2Result extends Result {
 
     @Column(name = "SCALE_L")
