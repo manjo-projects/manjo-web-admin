@@ -1,20 +1,21 @@
 package org.papaja.adminfly.module.psy.dbl.converter;
 
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
-import org.papaja.adminfly.module.psy.dbl.entity.results.MMPI2SobchikResult;
+import org.papaja.adminfly.module.psy.dbl.entity.results.MMPI2Result;
 import org.papaja.adminfly.module.psy.tests.mmpi2.Points;
 import org.papaja.adminfly.module.psy.tests.mmpi2.data.Scale;
 import org.papaja.adminfly.module.psy.tests.mmpi2.data.Sex;
 import org.papaja.function.Converter;
-import org.papaja.tuple.Pair;
+import org.papaja.tuple.Triplet;
 
-public class MMPI2SobchikConverter implements Converter<Pair<Points, Patient>, MMPI2SobchikResult> {
+public class MMPI2ResultConverter<Result extends MMPI2Result>
+        implements Converter<Triplet<Result, Points, Patient>, Result> {
 
     @Override
-    public MMPI2SobchikResult convert(Pair<Points, Patient> data) {
-        Points             points  = data.getA();
-        Patient            patient = data.getB();
-        MMPI2SobchikResult result  = new MMPI2SobchikResult();
+    public Result convert(Triplet<Result, Points, Patient> data) {
+        Points  points  = data.getB();
+        Patient patient = data.getC();
+        Result  result  = data.getA();
 
         result.setPatient(patient);
 

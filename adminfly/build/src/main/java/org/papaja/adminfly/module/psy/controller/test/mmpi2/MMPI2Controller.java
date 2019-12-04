@@ -2,10 +2,21 @@ package org.papaja.adminfly.module.psy.controller.test.mmpi2;
 
 import org.papaja.adminfly.commons.DataHolder;
 import org.papaja.adminfly.module.psy.controller.AbstractPsyController;
+import org.papaja.adminfly.module.psy.dbl.converter.MMPI2ResultConverter;
+import org.papaja.adminfly.module.psy.dbl.entity.Patient;
+import org.papaja.adminfly.module.psy.dbl.entity.results.MMPI2Result;
+import org.papaja.adminfly.module.psy.dbl.entity.results.MMPI2SobchikResult;
 import org.papaja.adminfly.module.psy.tests.TestAware;
+import org.papaja.adminfly.module.psy.tests.mmpi2.Points;
+import org.papaja.adminfly.module.psy.tests.mmpi2.calculation.Formula;
+import org.papaja.adminfly.module.psy.tests.mmpi2.calculation.RawPointCalculator;
 import org.papaja.adminfly.module.psy.tests.mmpi2.data.Answer;
+import org.papaja.adminfly.module.psy.tests.mmpi2.data.Scale;
+import org.papaja.adminfly.module.psy.tests.mmpi2.data.ValueMap;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
 import org.papaja.adminfly.module.psy.tests.wizard.WizardAware;
+import org.papaja.tuple.Pair;
+import org.papaja.tuple.Triplet;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +24,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Map;
+
 import static java.lang.String.format;
+import static org.papaja.adminfly.module.psy.tests.Test.MMPI2_SOBCHIK;
+import static org.papaja.adminfly.module.psy.tests.mmpi2.data.ValueMap.MAP;
 import static org.papaja.adminfly.module.psy.tests.wizard.Wizard.State.FINISHED;
 
 @Controller
@@ -68,6 +83,42 @@ abstract public class MMPI2Controller extends AbstractPsyController implements W
 
         return mav;
     }
+
+    @PreAuthorize("hasAnyAuthority('READ')")
+    @GetMapping({"/calculate"})
+    public ModelAndView calculate(
+            RedirectAttributes attributes
+    ) {
+        Wizard<Answer> wizard = getWizard();
+        ModelAndView   mav    = new ModelAndView("redirect:/psy/tests");
+
+        if (wizard.results().size() == wizard.size()) {
+            RawPointCalculator         calculator = new RawPointCalculator();
+            Points                     points     = calculator.calculate(wizard.results());
+            Formula                    formula    = new Formula();
+            Map<Scale, ValueMap.Value> values     = MAP.getValues(context.getPatient().getSex());
+
+            MMPI2Result result = new MMPI2ResultConverter()
+                    .convert(new Triplet(getMMPI2ResultEntity(), points, context.getPatient()));
+
+            results.merge(result);
+
+            attributes.addFlashAttribute("message",
+                    messages.getSuccessMessage("text.calculationResultWasSaved", MMPI2_SOBCHIK.getName()));
+
+            // reset after calculation
+            wizard.reset();
+            context.setPatient(new Patient());
+        } else {
+            wizard.reset();
+            attributes.addFlashAttribute("message",
+                    messages.getErrorMessage("text.calculationNotReady"));
+        }
+
+        return mav;
+    }
+
+    abstract protected MMPI2Result getMMPI2ResultEntity();
 
     abstract public static class MMPI2Shared extends AbstractPsyController implements WizardAware, TestAware {
 
