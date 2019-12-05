@@ -4,6 +4,7 @@ public enum Test {
 
     MMPI_566("MMPI-2 566Q"),
     MMPI_71("MMPI-2 MiniMulti-71Q"),
+    MMPI_377("MMPI-2 377Q"),
     SCHMIESCHEK("Schmieschek"),
     YAKHIN("Yakhin-Mendelevich");
 

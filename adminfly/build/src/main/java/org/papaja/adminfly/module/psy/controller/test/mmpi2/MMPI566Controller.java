@@ -14,7 +14,7 @@ import static org.papaja.adminfly.module.psy.tests.Test.MMPI_566;
 
 @SuppressWarnings({"unused", "Duplicates"})
 @Controller
-@RequestMapping("/psy/MMPI2_SOBCHIK")
+@RequestMapping("/psy/MMPI_566")
 public class MMPI566Controller extends MMPI2Controller {
 
     @Autowired
@@ -37,7 +37,7 @@ public class MMPI566Controller extends MMPI2Controller {
     }
 
     @Controller
-    @RequestMapping("/shared/psy/MMPI2_SOBCHIK")
+    @RequestMapping("/shared/psy/MMPI_566")
     public static class Shared extends MMPI2Controller.MMPI2Shared {
 
         @Autowired
@@ -45,7 +45,7 @@ public class MMPI566Controller extends MMPI2Controller {
         private Wizard<Answer> wizard;
 
         {
-            setPrefix("/psy/MMPI2_SOBCHIK/shared");
+            setPrefix("/psy/MMPI_566/shared");
         }
 
         @Override

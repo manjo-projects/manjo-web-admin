@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.psy.tests.mmpi2.q566;
 
 import org.papaja.adminfly.module.psy.tests.mmpi2.Scale;
-import org.papaja.adminfly.module.psy.tests.mmpi2.ScaleInterface;
+import org.papaja.adminfly.module.psy.tests.mmpi2.Scale;
 import org.papaja.adminfly.module.psy.tests.mmpi2.Sex;
 import org.papaja.tuple.Pair;
 
@@ -16,11 +16,11 @@ import static org.papaja.adminfly.module.psy.tests.mmpi2.Sex.M;
 public enum ValueMap {
     MAP;
 
-    private static final Map<Sex, Map<ScaleInterface, Value>> VALUES;
+    private static final Map<Sex, Map<Scale, Value>> VALUES;
 
     static {
-        Map<ScaleInterface, Value> F_VALUES = new EnumMap<>(Scale.class);
-        Map<ScaleInterface, Value> M_VALUES = new EnumMap<>(Scale.class);
+        Map<Scale, Value> F_VALUES = new EnumMap<>(Scale.class);
+        Map<Scale, Value> M_VALUES = new EnumMap<>(Scale.class);
 
         VALUES = new EnumMap<>(Sex.class);
 
@@ -56,7 +56,7 @@ public enum ValueMap {
         M_VALUES.put(SCALE_0, new Value(25.0f, 10.0f));
     }
 
-    public Map<ScaleInterface, Value> getValues(Sex sex) {
+    public Map<Scale, Value> getValues(Sex sex) {
         return VALUES.get(sex);
     }
 

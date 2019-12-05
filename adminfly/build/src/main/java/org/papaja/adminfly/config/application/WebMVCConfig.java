@@ -153,16 +153,20 @@ public class WebMVCConfig implements WebMvcConfigurer {
         source.setFallbackToSystemLocale(true);
         source.setDefaultEncoding("UTF-8");
 
-        try {
-            String     pattern   = "classpath*:locale/module/**/*.properties";
-            Resource[] resources = resolver.getResources(pattern);
+        for (String pattern : new String[]{
+                "classpath*:locale/module/**/*.properties",
+                "classpath*:locale/shared/**/*.properties"
+        }) {
+            try {
+                Resource[] resources = resolver.getResources(pattern);
 
-            for (Resource resource : resources) {
-                source.addBasenames(
-                        format("classpath:%s", substringBetween("locale", "_", resource.getURI().toString()))
-                );
+                for (Resource resource : resources) {
+                    source.addBasenames(
+                            format("classpath:%s", substringBetween("locale", "_", resource.getURI().toString()))
+                    );
+                }
+            } catch (IOException ignore) {
             }
-        } catch (IOException ignore) {
         }
 
         return source;
@@ -282,9 +286,11 @@ public class WebMVCConfig implements WebMvcConfigurer {
         return interceptor;
     }
 
+    @Bean
     public ModuleChangerInterceptor moduleContextChangeInterceptor() {
         return new ModuleChangerInterceptor();
     }
+
 
     @Bean(name = "multipartResolver")
     public CommonsMultipartResolver multipartResolver() {

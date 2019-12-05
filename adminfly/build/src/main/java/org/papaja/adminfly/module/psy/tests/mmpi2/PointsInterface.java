@@ -4,12 +4,12 @@ import java.util.Map;
 
 public interface PointsInterface {
 
-    void increase(ScaleInterface scale);
+    void increase(Scale scale);
 
-    void decrease(ScaleInterface scale);
+    void decrease(Scale scale);
 
-    int points(ScaleInterface scale);
+    int points(Scale scale);
 
-    Map<ScaleInterface, Integer> points();
+    Map<Scale, Integer> points();
 
 }

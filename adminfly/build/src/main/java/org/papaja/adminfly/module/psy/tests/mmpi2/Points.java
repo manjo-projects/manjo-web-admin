@@ -5,31 +5,31 @@ import java.util.Map;
 
 public class Points implements PointsInterface {
 
-    private Map<ScaleInterface, Integer> points = new EnumMap<>(Scale.class);
+    private Map<Scale, Integer> points = new EnumMap<>(Scale.class);
 
     public Points() {
-        for (ScaleInterface scale : Scale.values()) {
+        for (Scale scale : Scale.values()) {
             points.put(scale, 0);
         }
     }
 
     @Override
-    public void increase(ScaleInterface scale) {
+    public void increase(Scale scale) {
         points.put(scale, points.get(scale) + 1);
     }
 
     @Override
-    public void decrease(ScaleInterface scale) {
+    public void decrease(Scale scale) {
         points.put(scale, points.get(scale) - 1);
     }
 
     @Override
-    public int points(ScaleInterface scale) {
+    public int points(Scale scale) {
         return points.get(scale);
     }
 
     @Override
-    public Map<ScaleInterface, Integer> points() {
+    public Map<Scale, Integer> points() {
         return points;
     }
 

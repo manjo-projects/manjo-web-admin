@@ -2,7 +2,7 @@ package org.papaja.adminfly.module.psy.tests.mmpi2;
 
 import static java.lang.Math.round;
 
-public enum Scale implements ScaleInterface {
+public enum Scale {
 
     SCALE_L("L"),
     SCALE_F("F"),
@@ -43,37 +43,30 @@ public enum Scale implements ScaleInterface {
         this(name, null, false);
     }
 
-    @Override
     public boolean hasK() {
         return k != null;
     }
 
-    @Override
     public K getK() {
         return k;
     }
 
-    @Override
     public boolean isInverted() {
         return inverted;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    @Override
     public String getKey() {
         return getName().toUpperCase();
     }
 
-    @Override
     public Sex sex() {
         return sex;
     }
 
-    @Override
     public void sex(Sex sex) {
         this.sex = sex;
     }

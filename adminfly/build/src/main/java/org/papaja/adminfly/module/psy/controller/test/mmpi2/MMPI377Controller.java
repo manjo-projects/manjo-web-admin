@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.psy.controller.test.mmpi2;
 
-import org.papaja.adminfly.module.psy.dbl.entity.results.MMPI71Result;
 import org.papaja.adminfly.module.psy.dbl.entity.results.AbstractMMPIResult;
+import org.papaja.adminfly.module.psy.dbl.entity.results.MMPI71Result;
 import org.papaja.adminfly.module.psy.tests.Test;
 import org.papaja.adminfly.module.psy.tests.mmpi2.Answer;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import static org.papaja.adminfly.module.psy.tests.Test.MMPI_71;
+import static org.papaja.adminfly.module.psy.tests.Test.MMPI_377;
 
 @SuppressWarnings({"unused"})
 @Controller
-@RequestMapping("/psy/MMPI_71")
-public class MMPI71Controller extends MMPI2Controller {
+@RequestMapping("/psy/MMPI_377")
+public class MMPI377Controller extends MMPI2Controller {
 
     @Autowired
     @Qualifier("wizardMMPI2")
@@ -28,7 +28,7 @@ public class MMPI71Controller extends MMPI2Controller {
 
     @Override
     public Test getTest() {
-        return MMPI_71;
+        return MMPI_377;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class MMPI71Controller extends MMPI2Controller {
     }
 
     @Controller
-    @RequestMapping("/shared/psy/MMPI2_ZAITSEV")
+    @RequestMapping("/shared/psy/MMPI_377")
     public static class Shared extends MMPI2Shared {
 
         @Autowired
@@ -45,7 +45,7 @@ public class MMPI71Controller extends MMPI2Controller {
         private Wizard<Answer> wizard;
 
         {
-            setPrefix("/psy/MMPI_71/shared");
+            setPrefix("/psy/MMPI_377/shared");
         }
 
         @Override
@@ -55,7 +55,7 @@ public class MMPI71Controller extends MMPI2Controller {
 
         @Override
         public Test getTest() {
-            return MMPI_71;
+            return MMPI_377;
         }
 
     }
