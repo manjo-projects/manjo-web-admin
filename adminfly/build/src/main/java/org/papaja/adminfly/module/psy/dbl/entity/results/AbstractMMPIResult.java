@@ -6,7 +6,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import static java.lang.String.format;
 
-abstract public class MMPI2Result extends Result {
+abstract public class AbstractMMPIResult extends Result {
 
     @Column(name = "SCALE_L")
     private Integer scaleL;
@@ -163,7 +163,7 @@ abstract public class MMPI2Result extends Result {
 
     @Override
     public String toString() {
-        return format("MMPI2BerezinResult{parent=%s, scaleL=%d, scaleF=%d, scaleK=%d, scale1=%d, scale2=%d, scale3=%d, scale4=%d, scale5=%d, scale6=%d, scale7=%d, scale8=%d, scale9=%d, scale0=%d}",
+        return format("MMPIResult{parent=%s, scaleL=%d, scaleF=%d, scaleK=%d, scale1=%d, scale2=%d, scale3=%d, scale4=%d, scale5=%d, scale6=%d, scale7=%d, scale8=%d, scale9=%d, scale0=%d}",
                 super.toString(), scaleL, scaleF, scaleK, scale1, scale2, scale3, scale4, scale5, scale6, scale7, scale8, scale9, scale0);
     }
 }

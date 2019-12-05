@@ -1,8 +1,12 @@
-package org.papaja.adminfly.module.psy.tests.mmpi2.data;
+package org.papaja.adminfly.module.psy.tests.mmpi2.q566;
 
-import static org.papaja.adminfly.module.psy.tests.mmpi2.data.Scale.*;
+import org.papaja.adminfly.module.psy.tests.mmpi2.Answer;
+import org.papaja.adminfly.module.psy.tests.mmpi2.QuestionsInterface;
+import org.papaja.adminfly.module.psy.tests.mmpi2.ScaleInterface;
 
-public enum Questions {
+import static org.papaja.adminfly.module.psy.tests.mmpi2.Scale.*;
+
+public enum Questions implements QuestionsInterface {
     QUESTIONS;
 
     /**
@@ -12,7 +16,7 @@ public enum Questions {
      *   1-TRUE:
      *     SCALE[]
      */
-    private static final Scale[][][] MAP = {
+    private static final ScaleInterface[][][] MAP = {
             {{SCALE_5_F, SCALE_5_M},{},}, // Q1
             {{SCALE_1, SCALE_2, SCALE_3},{},}, // Q2
             {{SCALE_1, SCALE_3, SCALE_7},{},}, // Q3
@@ -581,10 +585,12 @@ public enum Questions {
             {{},{},}, // Q566
     };
 
-    public Scale[] getScales(int question, Answer answer) {
+    @Override
+    public ScaleInterface[] getScales(int question, Answer answer) {
         return MAP[question - 1][answer.getValue()];
     }
 
+    @Override
     public boolean hasScales(int question, Answer answer) {
         return getScales(question, answer).length > 0;
     }

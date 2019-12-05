@@ -7,7 +7,7 @@ import org.papaja.adminfly.module.psy.dbl.entity.Patient;
 import java.sql.Timestamp;
 import java.time.Instant;
 
-import static org.papaja.adminfly.module.psy.tests.mmpi2.data.Sex.valueOf;
+import static org.papaja.adminfly.module.psy.tests.mmpi2.Sex.valueOf;
 import static org.springframework.util.StringUtils.capitalize;
 
 public class PatientMapper extends AbstractMapper<PatientDto, Patient> {

@@ -1,14 +1,14 @@
 package org.papaja.adminfly.module.psy.dbl.converter;
 
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
-import org.papaja.adminfly.module.psy.dbl.entity.results.MMPI2Result;
+import org.papaja.adminfly.module.psy.dbl.entity.results.AbstractMMPIResult;
 import org.papaja.adminfly.module.psy.tests.mmpi2.Points;
-import org.papaja.adminfly.module.psy.tests.mmpi2.data.Scale;
-import org.papaja.adminfly.module.psy.tests.mmpi2.data.Sex;
+import org.papaja.adminfly.module.psy.tests.mmpi2.Scale;
+import org.papaja.adminfly.module.psy.tests.mmpi2.Sex;
 import org.papaja.function.Converter;
 import org.papaja.tuple.Triplet;
 
-public class MMPI2ResultConverter<Result extends MMPI2Result>
+public class MMPI2ResultConverter<Result extends AbstractMMPIResult>
         implements Converter<Triplet<Result, Points, Patient>, Result> {
 
     @Override

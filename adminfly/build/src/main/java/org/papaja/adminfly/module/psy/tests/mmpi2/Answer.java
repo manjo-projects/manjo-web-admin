@@ -1,4 +1,4 @@
-package org.papaja.adminfly.module.psy.tests.mmpi2.data;
+package org.papaja.adminfly.module.psy.tests.mmpi2;
 
 public enum Answer {
 

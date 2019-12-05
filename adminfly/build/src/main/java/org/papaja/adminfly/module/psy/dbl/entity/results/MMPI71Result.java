@@ -5,9 +5,9 @@ import javax.persistence.*;
 import static java.lang.String.format;
 
 @Entity
-@Table(name = "PSY_RESULTS_MMPI2_SOBCHIK")
+@Table(name = "PSY_RESULTS_MMPI_Q71")
 @PrimaryKeyJoinColumn(name = "RESULT_ID")
-@DiscriminatorValue("MMPI2_SOBCHIK")
-public class MMPI2SobchikResult extends MMPI2Result {
+@DiscriminatorValue("MMPI_71")
+public class MMPI71Result extends AbstractMMPIResult {
 
 }
