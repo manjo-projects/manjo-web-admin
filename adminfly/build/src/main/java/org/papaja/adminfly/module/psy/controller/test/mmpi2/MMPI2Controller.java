@@ -6,11 +6,10 @@ import org.papaja.adminfly.module.psy.dbl.converter.MMPI2ResultConverter;
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
 import org.papaja.adminfly.module.psy.dbl.entity.results.AbstractMMPIResult;
 import org.papaja.adminfly.module.psy.tests.TestAware;
-import org.papaja.adminfly.module.psy.tests.mmpi2.Points;
+import org.papaja.adminfly.module.psy.tests.mmpi2.Answer;
+import org.papaja.adminfly.module.psy.tests.mmpi2.AnswersPointsConverter;
 import org.papaja.adminfly.module.psy.tests.mmpi2.Scale;
 import org.papaja.adminfly.module.psy.tests.mmpi2.q566.Formula;
-import org.papaja.adminfly.module.psy.tests.mmpi2.AnswersPointsConverter;
-import org.papaja.adminfly.module.psy.tests.mmpi2.Answer;
 import org.papaja.adminfly.module.psy.tests.mmpi2.q566.Questions;
 import org.papaja.adminfly.module.psy.tests.mmpi2.q566.ValueMap;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
@@ -92,8 +91,8 @@ abstract public class MMPI2Controller extends AbstractPsyController implements W
         ModelAndView   mav    = new ModelAndView("redirect:/psy/tests");
 
         if (wizard.results().size() == wizard.size()) {
-            AnswersPointsConverter     converter = new AnswersPointsConverter(Questions.QUESTIONS);
-            Points                     points    = converter.convert(wizard.results());
+            AnswersPointsConverter     converter = new AnswersPointsConverter(new Questions());
+            Map<Scale, Integer>        points    = converter.convert(wizard.results());
             Formula                    formula   = new Formula();
             Map<Scale, ValueMap.Value> values    = MAP.getValues(context.getPatient().getSex());
 
