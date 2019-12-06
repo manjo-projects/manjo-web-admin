@@ -1,4 +1,4 @@
-package org.papaja.adminfly.module.psy.tests.mmpi2.calculation;
+package org.papaja.adminfly.module.psy.tests.mmpi2.q566;
 
 import org.papaja.function.TriFunction;
 
