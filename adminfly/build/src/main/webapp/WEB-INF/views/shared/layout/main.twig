@@ -8,7 +8,6 @@
 {% include 'partials/menu/' ~ default(menu, 'main') ~ '.twig' %}
 <div class="container">
     {% include 'partials/flash/message.twig' %}
-    {{ data.getName() }}
     {% block content %}{% endblock %}
     {% include 'partials/footer.twig' %}
 </div>
