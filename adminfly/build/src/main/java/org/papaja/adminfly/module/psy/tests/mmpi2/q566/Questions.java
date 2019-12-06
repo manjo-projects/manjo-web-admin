@@ -1,13 +1,13 @@
 package org.papaja.adminfly.module.psy.tests.mmpi2.q566;
 
+import org.papaja.adminfly.module.psy.tests.mmpi2.AbstractQuestions;
 import org.papaja.adminfly.module.psy.tests.mmpi2.Answer;
 import org.papaja.adminfly.module.psy.tests.mmpi2.QuestionsInterface;
 import org.papaja.adminfly.module.psy.tests.mmpi2.Scale;
 
 import static org.papaja.adminfly.module.psy.tests.mmpi2.Scale.*;
 
-public enum Questions implements QuestionsInterface {
-    QUESTIONS;
+public class Questions extends AbstractQuestions {
 
     /**
      * Q-N:
@@ -586,13 +586,8 @@ public enum Questions implements QuestionsInterface {
     };
 
     @Override
-    public Scale[] getScales(int question, Answer answer) {
-        return MAP[question - 1][answer.getValue()];
-    }
-
-    @Override
-    public boolean hasScales(int question, Answer answer) {
-        return getScales(question, answer).length > 0;
+    public Scale[][][] getMap() {
+        return MAP;
     }
 
 }

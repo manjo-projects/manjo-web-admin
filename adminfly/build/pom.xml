@@ -26,6 +26,8 @@
         <papaja.adminfly.module.shopper.version>1.0</papaja.adminfly.module.shopper.version>
         <papaja.adminfly.module.bookkeeper.version>1.0</papaja.adminfly.module.bookkeeper.version>
         <papaja.adminfly.module.psy-tests.version>1.0</papaja.adminfly.module.psy-tests.version>
+
+        <jfree-chart.version>1.5.0</jfree-chart.version>
     </properties>
 
     <profiles>
@@ -182,6 +184,12 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>${javax.servlet.api.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>${jfree-chart.version}</version>
         </dependency>
     </dependencies>
 
