@@ -7,14 +7,14 @@ import org.papaja.adminfly.module.psy.tests.mmpi2.PointsTRateConverterInterface;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PointsTRateConverter implements PointsTRateConverterInterface {
+public class PointsTRateQ566Converter implements PointsTRateConverterInterface {
 
     private static final Formula  FORMULA   = new Formula();
     private static final ValueMap VALUE_MAP = ValueMap.MAP;
 
     private Sex sex;
 
-    public PointsTRateConverter(Sex sex) {
+    public PointsTRateQ566Converter(Sex sex) {
         this.sex = sex;
     }
 
