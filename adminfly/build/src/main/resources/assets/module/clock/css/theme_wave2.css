@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+
+#clock {
+    text-shadow: 2px 2px 15px #8a7a7b;
+    font-size: 200px;
+    font-family: 'Righteous', cursive;
+    top: 80%;
+    left: 70%;
+}

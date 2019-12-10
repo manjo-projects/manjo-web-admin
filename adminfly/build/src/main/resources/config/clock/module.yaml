@@ -14,44 +14,40 @@ values:
       gradient1:
         background: "Gradient1.png"
       gradient2:
-        background: "Gradient2.png"
+        background: "Gradient2.jpg"
       gradient3:
-        background: "Gradient3.png"
-      sasha:
-        background: "Sasha0.jpg"
+        background: "Gradient3.jpg"
       amadeus:
         background: "Amadeus.jpg"
-      sasha_adult_1:
-        background: "adult/Sasha1.png"
-      sasha_adult_2:
-        background: "adult/Sasha2.jpg"
-      sasha_adult_3:
-        background: "adult/Sasha3.jpg"
-      sasha_adult_4:
-        background: "adult/Sasha4.jpg"
-      sasha_adult_5:
-        background: "adult/Sasha5.jpg"
+      beach1:
+        background: "Beach1.jpg"
+      wave1:
+        background: "Wave1.png"
+      wave2:
+        background: "Wave2.jpg"
+      sasha1:
+        background: "adult/Sasha1.jpg"
+      sasha2:
+        background: "adult/Sasha2.png"
 
   themes:
-    - label: "Default"
+    - label: "✔ - Default"
       path: "/shared/clock"
-    - label: "Gradient 1"
+    - label: "🖼️ - Gradient 1"
       path: "/shared/clock/gradient1"
-    - label: "Gradient 2"
+    - label: "🖼️ - Gradient 2"
       path: "/shared/clock/gradient2"
-    - label: "Gradient 3"
+    - label: "🖼️ - Gradient 3"
       path: "/shared/clock/gradient3"
-    - label: "Amadeus"
+    - label: "✈ - Amadeus"
       path: "/shared/clock/amadeus"
-    - label: "🔞 - Sashka"
-      path: "/shared/clock/sasha"
+    - label: "🌴 - Beach 1"
+      path: "/shared/clock/beach1"
+    - label: "🌊 - Wave 1"
+      path: "/shared/clock/wave1"
+    - label: "🌊 - Wave 2"
+      path: "/shared/clock/wave2"
     - label: "🔞 - Sasha 1"
-      path: "/shared/clock/sasha_adult_1"
+      path: "/shared/clock/sasha1"
     - label: "🔞 - Sasha 2"
-      path: "/shared/clock/sasha_adult_2"
-    - label: "🔞 - Sasha 3"
-      path: "/shared/clock/sasha_adult_3"
-    - label: "🔞 - Sasha 4"
-      path: "/shared/clock/sasha_adult_4"
-    - label: "🔞 - Sasha 5"
-      path: "/shared/clock/sasha_adult_5"
+      path: "/shared/clock/sasha2"

@@ -1,8 +1,7 @@
-* {
-    @import url('https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap');
-}
+@import url('https://fonts.googleapis.com/css?family=Alatsi&display=swap');
 
 #clock {
-    font-size: 136px;
-    font-family: 'Bebas Neue', cursive;
+    font-size: 200px;
+    font-family: 'Alatsi', cursive;
+    top: 45%;
 }

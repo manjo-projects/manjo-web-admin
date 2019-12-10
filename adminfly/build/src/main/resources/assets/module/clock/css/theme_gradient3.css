@@ -1,6 +1,4 @@
-* {
-    @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
-}
+@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 
 #clock {
     font-family: 'Raleway', sans-serif;

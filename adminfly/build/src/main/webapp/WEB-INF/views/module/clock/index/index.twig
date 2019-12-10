@@ -1,5 +1,11 @@
 {% extends '../clock-layout.twig' %}
 {% block content %}
+
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="{{ asset('module/clock/css/clock.css') }}">
     <link rel="stylesheet" href="{{ asset('module/clock/css/theme_' ~ name ~ '.css') }}">
     <style>
@@ -19,10 +25,6 @@
 
         function fillZero(number) {
             return (number < 10) ? "0" + number : number;
-        }
-
-        function tiktok(number) {
-            return (number % 2 == 0) ? "{{ extra.get('values.clock.config.' ~ name ~ '.tiktok.tok') }}" : '{{ extra.get('values.clock.config.' ~ name ~ '.tiktok.tik') }}';
         }
 
         function showTime() {
