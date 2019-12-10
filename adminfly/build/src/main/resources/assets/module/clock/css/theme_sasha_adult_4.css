@@ -1,0 +1,9 @@
+#clock {
+    font-size: 200px;
+}
+
+.clock {
+    left: 64%;
+    top: 14%;
+    text-shadow: 0px 0px 10px #00000080;
+}

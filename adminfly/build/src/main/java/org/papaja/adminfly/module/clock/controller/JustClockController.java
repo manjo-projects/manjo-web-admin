@@ -19,14 +19,17 @@ public class JustClockController extends AbstractController {
         setPrefix("clock");
     }
 
-    @RequestMapping({"/clock", "/clock/{theme:\\w+}"})
+    @RequestMapping({"/clock", "/clock/{theme:[\\w\\d_]+}"})
     public ModelAndView index(
             @PathVariable(name = "theme", required = false) String theme
     ) {
         String       name = ofNullable(theme).orElse("default");
         ModelAndView mav  = newView("index/index");
 
+        // manually set module name
         HOLDER.set("main.name", LOGO_TEXT);
+        HOLDER.setKey("CLOCK");
+
         mav.addObject("name", name);
 
         return mav;

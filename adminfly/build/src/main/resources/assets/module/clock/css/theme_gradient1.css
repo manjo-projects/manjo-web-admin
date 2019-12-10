@@ -1,0 +1,9 @@
+* {
+    @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+}
+
+#clock {
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 1px 1px 10px #00000080;
+    font-size: 320px;
+}

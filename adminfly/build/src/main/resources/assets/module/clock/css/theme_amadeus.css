@@ -1,0 +1,8 @@
+* {
+    @import url('https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap');
+}
+
+#clock {
+    font-size: 136px;
+    font-family: 'Bebas Neue', cursive;
+}

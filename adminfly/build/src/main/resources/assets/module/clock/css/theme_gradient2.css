@@ -1,0 +1,8 @@
+* {
+    @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+}
+
+#clock {
+    font-family: 'Bebas Neue', 'Montserrat', sans-serif;
+    font-size: 320px;
+}

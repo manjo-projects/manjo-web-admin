@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>AdminFly — {% block title %}Home{% endblock %}</title>
-    {% include '../../shared/layout/partials/short-meta.twig' %}
+    <title>AdminFly — {% block title %}Just Clock{% endblock %}</title>
+    {% include '../../shared/layout/partials/meta.twig' %}
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet">
 </head>
 <body>
-{% include '../../shared/layout/partials/menu/blank.twig' %}
+{% include './clock-menu.twig' %}
 <div class="container-fluid p-0">
     {% block content %}{% endblock %}
 </div>
+{% include '../../shared/layout/partials/js.twig' %}
 </body>
 </html>

@@ -1,84 +1,41 @@
 {% extends '../clock-layout.twig' %}
-{% block meta %}
-<link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet">
-{% endblock %}
 {% block content %}
+    <link rel="stylesheet" href="{{ asset('module/clock/css/clock.css') }}">
+    <link rel="stylesheet" href="{{ asset('module/clock/css/theme_' ~ name ~ '.css') }}">
     <style>
         body {
-            /*font-family: 'Orbitron', sans-serif;*/
-            /*font-family: 'Major Mono Display', monospace;*/
-            /*font-family: 'Bebas Neue', cursive;*/
-            font-family: 'Alatsi', sans-serif;
-            font-size: 48px;
-            color: green;
-            background-color: black;
-        }
-
-        .clock div {
-            float: left;
-        }
-
-        .clock-format:before {
-            content: " [";
-        }
-
-        .clock-format:after {
-            content: "]";
-        }
-
-        .clock-value > div:not(:last-child):after {
-            content: ":";
+            background-image: url("{{ asset('module/clock/images/' ~ extra.get('values.clock.config.' ~ name ~ '.background')) }}");
         }
     </style>
-    <div class="clock-container">
-        <div class="clock">
-            <sup class="clock-format" id="clock-format"></sup>
-            <div class="clock-value">
-                <div id="clock-hours"></div>
-                <div id="clock-minutes"></div>
-                <div id="clock-seconds"></div>
-            </div>
-        </div>
-    </div>
-    {{ name }}
+    <main>
+        <article id="clock">
+            <div id="clock-hours"></div>:
+            <div id="clock-minutes"></div>:
+            <div id="clock-seconds"></div>
+        </article>
+    </main>
     <script>
-
-        const format = "AM-PM";
-
-        function byId(id) {
-            return document.getElementById(id);
-        }
+        const $ = document.getElementById.bind(document);
 
         function fillZero(number) {
             return (number < 10) ? "0" + number : number;
         }
 
-        function hourFormat(hour) {
-            return (hour > 12) ? "PM" : "AM";
-        }
-
-        function hourToAmPm(hour) {
-            return (hour > 12) ? hour - 12 : hour;
+        function tiktok(number) {
+            return (number % 2 == 0) ? "{{ extra.get('values.clock.config.' ~ name ~ '.tiktok.tok') }}" : '{{ extra.get('values.clock.config.' ~ name ~ '.tiktok.tik') }}';
         }
 
         function showTime() {
-            let date = new Date();
+            const date = new Date();
+            const [h, m, s] = [
+                date.getHours(),
+                date.getMinutes(),
+                date.getSeconds(),
+            ];
 
-            let h = date.getHours();
-            let m = date.getMinutes();
-            let s = date.getSeconds();
-
-            if (format == "AM-PM") {
-                byId("clock-format").innerText = hourFormat(h);
-                h = hourToAmPm(h);
-            }
-
-            byId("clock-hours").innerText = fillZero(h);
-            byId("clock-minutes").innerText = fillZero(m);
-            byId("clock-seconds").innerText = fillZero(s);
+            $("clock-hours").innerText = fillZero(h);
+            $("clock-minutes").innerText = fillZero(m);
+            $("clock-seconds").innerText = fillZero(s);
 
             setTimeout(showTime, 1000);
         }
