@@ -244,12 +244,12 @@ public class WebMVCConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
                 .addResourceHandler("static/**")
-                .addResourceLocations("classpath:/assets/")
+                .addResourceLocations("classpath:/assets/", "/assets/")
                 .setCachePeriod(2629743)
                 .resourceChain(true)
                 .addResolver(new EncodedResourceResolver())
                 .addResolver(new VersionResourceResolver()
-                        .addVersionStrategy(new ContentHashVersionStrategy(), "/**/*.css", "/**/*.js"));
+                        .addVersionStrategy(new ContentHashVersionStrategy(), "/**"));
     }
 
     @Bean

@@ -1,13 +1,13 @@
 package org.papaja.adminfly.module.psy.dbl.entity;
 
 import org.papaja.adminfly.commons.dao.entity.api.AbstractEntity;
-import org.papaja.adminfly.module.psy.tests.mmpi2.Sex;
+import org.papaja.adminfly.module.psy.tests.MMPI.Gender;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 import static java.lang.String.format;
-import static org.papaja.adminfly.module.psy.tests.mmpi2.Sex.F;
+import static org.papaja.adminfly.module.psy.tests.MMPI.Gender.F;
 
 @Entity
 @Table(name = "PSY_PATIENTS")
@@ -21,7 +21,7 @@ public class Patient extends AbstractEntity {
 
     @Column(name = "SEX", columnDefinition = "CHAR")
     @Enumerated(EnumType.STRING)
-    private Sex sex;
+    private Gender sex;
 
     @Column(name = "CREATED")
     private Timestamp created;
@@ -45,11 +45,11 @@ public class Patient extends AbstractEntity {
         this.surname = surname;
     }
 
-    public Sex getSex() {
+    public Gender getSex() {
         return sex;
     }
 
-    public void setSex(Sex sex) {
+    public void setSex(Gender sex) {
         this.sex = sex;
     }
 

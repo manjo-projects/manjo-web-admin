@@ -26,6 +26,7 @@
         <papaja.adminfly.module.shopper.version>1.0</papaja.adminfly.module.shopper.version>
         <papaja.adminfly.module.bookkeeper.version>1.0</papaja.adminfly.module.bookkeeper.version>
         <papaja.adminfly.module.psy-tests.version>1.0</papaja.adminfly.module.psy-tests.version>
+        <papaja.adminfly.module.clock.version>1.0</papaja.adminfly.module.clock.version>
 
         <jfree-chart.version>1.5.0</jfree-chart.version>
     </properties>
@@ -35,6 +36,16 @@
             <id>empty</id>
             <dependencies>
                 <!-- Admin-Secure Only -->
+            </dependencies>
+        </profile>
+        <profile>
+            <id>clock</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.papaja.adminfly</groupId>
+                    <artifactId>papaja-adminfly-module-clock</artifactId>
+                    <version>${papaja.adminfly.module.clock.version}</version>
+                </dependency>
             </dependencies>
         </profile>
         <profile>
@@ -134,6 +145,11 @@
                     <groupId>org.papaja.adminfly</groupId>
                     <artifactId>papaja-adminfly-module-bookkeeper</artifactId>
                     <version>${papaja.adminfly.module.bookkeeper.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.papaja.adminfly</groupId>
+                    <artifactId>papaja-adminfly-module-clock</artifactId>
+                    <version>${papaja.adminfly.module.clock.version}</version>
                 </dependency>
                 <!--
                 <dependency>

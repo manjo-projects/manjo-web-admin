@@ -32,6 +32,7 @@
         <module>key-vault</module>
         <module>shopper</module>
         <module>bookkeeper</module>
+        <module>just-clock</module>
         <!-- <module>psy-tests</module>-->
     </modules>
 

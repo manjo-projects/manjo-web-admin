@@ -3,7 +3,7 @@ package org.papaja.adminfly.module.psy.controller.test.mmpi2;
 import org.papaja.adminfly.module.psy.dbl.entity.results.AbstractMMPIResult;
 import org.papaja.adminfly.module.psy.dbl.entity.results.MMPI566Result;
 import org.papaja.adminfly.module.psy.tests.Test;
-import org.papaja.adminfly.module.psy.tests.mmpi2.Answer;
+import org.papaja.adminfly.module.psy.tests.MMPI.Answer;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

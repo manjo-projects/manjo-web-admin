@@ -39,9 +39,6 @@ public class ModuleChangerInterceptor extends HandlerInterceptorAdapter {
         if (servletPath.length() > 0) {
             moduleName = servletPath.substring(1);
 
-            System.out.println("getPathKey0: " + getPathKey(servletPath, 0));
-            System.out.println("getPathKey1: " + getPathKey(servletPath, 1));
-
             if (moduleName.indexOf('/') > 0) {
                 moduleName = moduleName.substring(0, moduleName.indexOf('/')).toUpperCase();
             }

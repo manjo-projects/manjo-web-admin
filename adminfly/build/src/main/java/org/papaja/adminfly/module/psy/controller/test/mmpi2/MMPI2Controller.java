@@ -6,12 +6,12 @@ import org.papaja.adminfly.module.psy.dbl.converter.MMPI2ResultConverter;
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
 import org.papaja.adminfly.module.psy.dbl.entity.results.AbstractMMPIResult;
 import org.papaja.adminfly.module.psy.tests.TestAware;
-import org.papaja.adminfly.module.psy.tests.mmpi2.Answer;
-import org.papaja.adminfly.module.psy.tests.mmpi2.AnswersPointsConverter;
-import org.papaja.adminfly.module.psy.tests.mmpi2.Scale;
-import org.papaja.adminfly.module.psy.tests.mmpi2.q566.Formula;
-import org.papaja.adminfly.module.psy.tests.mmpi2.q566.Questions;
-import org.papaja.adminfly.module.psy.tests.mmpi2.q566.ValueMap;
+import org.papaja.adminfly.module.psy.tests.MMPI.Answer;
+import org.papaja.adminfly.module.psy.tests.MMPI.AnswersPointsConverter;
+import org.papaja.adminfly.module.psy.tests.MMPI.Scale;
+import org.papaja.adminfly.module.psy.tests.MMPI.Q566.Formula;
+import org.papaja.adminfly.module.psy.tests.MMPI.Q566.Questions;
+import org.papaja.adminfly.module.psy.tests.MMPI.Q566.ValueMap;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
 import org.papaja.adminfly.module.psy.tests.wizard.WizardAware;
 import org.papaja.tuple.Triplet;
@@ -26,7 +26,7 @@ import java.util.Map;
 
 import static java.lang.String.format;
 import static org.papaja.adminfly.module.psy.tests.Test.MMPI_566;
-import static org.papaja.adminfly.module.psy.tests.mmpi2.q566.ValueMap.MAP;
+import static org.papaja.adminfly.module.psy.tests.MMPI.Q566.ValueMap.MAP;
 import static org.papaja.adminfly.module.psy.tests.wizard.Wizard.State.FINISHED;
 
 @Controller

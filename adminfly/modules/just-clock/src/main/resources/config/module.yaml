@@ -1,0 +1,53 @@
+main:
+  name: "🕒 Just Clock"
+  key: CLOCK
+  link: "/shared/clock/default"
+settings:
+  view:
+    theme: minty
+values:
+
+  clock:
+    config:
+      default:
+        background: "Gradient0.jpg"
+      gradient1:
+        background: "Gradient1.png"
+      gradient2:
+        background: "Gradient2.jpg"
+      gradient3:
+        background: "Gradient3.jpg"
+      amadeus:
+        background: "Amadeus.jpg"
+      beach1:
+        background: "Beach1.jpg"
+      wave1:
+        background: "Wave1.png"
+      wave2:
+        background: "Wave2.jpg"
+      sasha1:
+        background: "adult/Sasha1.jpg"
+      sasha2:
+        background: "adult/Sasha2.png"
+
+  themes:
+    - label: "✔ - Default"
+      path: "/shared/clock"
+    - label: "🖼️ - Gradient 1"
+      path: "/shared/clock/gradient1"
+    - label: "🖼️ - Gradient 2"
+      path: "/shared/clock/gradient2"
+    - label: "🖼️ - Gradient 3"
+      path: "/shared/clock/gradient3"
+    - label: "✈ - Amadeus"
+      path: "/shared/clock/amadeus"
+    - label: "🌴 - Beach 1"
+      path: "/shared/clock/beach1"
+    - label: "🌊 - Wave 1"
+      path: "/shared/clock/wave1"
+    - label: "🌊 - Wave 2"
+      path: "/shared/clock/wave2"
+    - label: "🔞 - Sasha 1"
+      path: "/shared/clock/sasha1"
+    - label: "🔞 - Sasha 2"
+      path: "/shared/clock/sasha2"

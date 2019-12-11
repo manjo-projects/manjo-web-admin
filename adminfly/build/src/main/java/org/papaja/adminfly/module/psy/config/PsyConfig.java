@@ -2,9 +2,9 @@ package org.papaja.adminfly.module.psy.config;
 
 import org.papaja.adminfly.commons.vendor.spring.web.servlet.handler.LocaleConstraintInterceptor;
 import org.papaja.adminfly.module.psy.commons.holder.TestContextHolder;
-import org.papaja.adminfly.module.psy.tests.mmpi2.Answer;
-import org.papaja.adminfly.module.psy.tests.mmpi2.WizardFactory;
-import org.papaja.adminfly.module.psy.tests.mmpi2.q566.MMPI566Wizard;
+import org.papaja.adminfly.module.psy.tests.MMPI.Answer;
+import org.papaja.adminfly.module.psy.tests.MMPI.WizardFactory;
+import org.papaja.adminfly.module.psy.tests.MMPI.Q566.MMPI566Wizard;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
