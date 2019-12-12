@@ -1,6 +1,8 @@
 package org.papaja.adminfly.config;
 
-import org.papaja.adminfly.config.application.WebMVCConfig;
+import org.papaja.adminfly.config.root.DatabaseConfig;
+import org.papaja.adminfly.config.root.SecurityConfig;
+import org.papaja.adminfly.config.web.WebMVCConfig;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -45,12 +47,12 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{WebMVCConfig.class,};
+        return new Class[]{DatabaseConfig.class, SecurityConfig.class};
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{};
+        return new Class[]{WebMVCConfig.class,};
     }
 
     @Override

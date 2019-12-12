@@ -2,9 +2,9 @@ package org.papaja.adminfly.module.psy.tests;
 
 public enum Test {
 
-    MMPI_566("MMPI-2 566Q"),
-    MMPI_71("MMPI-2 MiniMulti-71Q"),
-    MMPI_377("MMPI-2 377Q"),
+    MMPI_566("MMPI-566Q"),
+    MMPI_71("MMPI-MiniMult-71Q"),
+    MMPI_377("MMPI-377Q"),
     SCHMIESCHEK("Schmieschek"),
     YAKHIN("Yakhin-Mendelevich");
 

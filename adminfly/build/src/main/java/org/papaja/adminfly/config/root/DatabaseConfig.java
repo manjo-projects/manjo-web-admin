@@ -1,4 +1,4 @@
-package org.papaja.adminfly.config;
+package org.papaja.adminfly.config.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;

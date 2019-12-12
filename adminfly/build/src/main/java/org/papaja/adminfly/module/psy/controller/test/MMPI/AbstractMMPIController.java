@@ -1,4 +1,4 @@
-package org.papaja.adminfly.module.psy.controller.test.mmpi2;
+package org.papaja.adminfly.module.psy.controller.test.MMPI;
 
 import org.papaja.adminfly.commons.DataHolder;
 import org.papaja.adminfly.module.psy.controller.AbstractPsyController;
@@ -30,7 +30,7 @@ import static org.papaja.adminfly.module.psy.tests.MMPI.Q566.ValueMap.MAP;
 import static org.papaja.adminfly.module.psy.tests.wizard.Wizard.State.FINISHED;
 
 @Controller
-abstract public class MMPI2Controller extends AbstractPsyController implements WizardAware, TestAware {
+abstract public class AbstractMMPIController extends AbstractPsyController implements WizardAware, TestAware {
 
     @PreAuthorize("hasAnyAuthority('READ')")
     @GetMapping({"/restart"})

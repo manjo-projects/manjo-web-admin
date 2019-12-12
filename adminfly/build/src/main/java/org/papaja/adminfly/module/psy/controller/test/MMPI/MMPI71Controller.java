@@ -1,4 +1,4 @@
-package org.papaja.adminfly.module.psy.controller.test.mmpi2;
+package org.papaja.adminfly.module.psy.controller.test.MMPI;
 
 import org.papaja.adminfly.module.psy.dbl.entity.results.MMPI71Result;
 import org.papaja.adminfly.module.psy.dbl.entity.results.AbstractMMPIResult;
@@ -15,7 +15,7 @@ import static org.papaja.adminfly.module.psy.tests.Test.MMPI_71;
 @SuppressWarnings({"unused"})
 @Controller
 @RequestMapping("/psy/MMPI_71")
-public class MMPI71Controller extends MMPI2Controller {
+public class MMPI71Controller extends AbstractMMPIController {
 
     @Autowired
     @Qualifier("wizardMMPI2")
@@ -37,7 +37,7 @@ public class MMPI71Controller extends MMPI2Controller {
     }
 
     @Controller
-    @RequestMapping("/shared/psy/MMPI2_ZAITSEV")
+    @RequestMapping("/shared/psy/MMPI_71")
     public static class Shared extends MMPI2Shared {
 
         @Autowired
