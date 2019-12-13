@@ -1,4 +1,4 @@
-package org.papaja.adminfly.config.application;
+package org.papaja.adminfly.config;
 
 import org.hibernate.validator.HibernateValidator;
 import org.jtwig.environment.EnvironmentConfigurationBuilder;
@@ -64,23 +64,18 @@ import static org.papaja.util.StringUtils.substringBetween;
 @EnableWebMvc
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @PropertySource("classpath:properties/application.properties")
-@ComponentScan(
-        basePackages = {
-                "org.papaja.adminfly.config",
-                "org.papaja.adminfly.commons",
-                "org.papaja.adminfly.module",
-        }
-)
-public class WebMVCConfig implements WebMvcConfigurer {
+@ComponentScan(basePackages = {
+        "org.papaja.adminfly.commons"
+})
+@Import({DatabaseConfig.class, SecurityConfig.class,})
+public class CommonConfig implements WebMvcConfigurer {
 
     private static final Charset     UTF8   = StandardCharsets.UTF_8;
-    private static final Logger      LOGGER = Logger.getLogger(WebMVCConfig.class.getName());
+    private static final Logger      LOGGER = Logger.getLogger(CommonConfig.class.getName());
     protected            Environment environment;
 
-    private int counter = 0;
-
     @Autowired
-    public WebMVCConfig(Environment environment) {
+    public CommonConfig(Environment environment) {
         this.environment = environment;
     }
 
@@ -180,10 +175,10 @@ public class WebMVCConfig implements WebMvcConfigurer {
         String[]                required = {"main.key", "main.name",};
 
         try {
-            String     pattern         = "classpath*:**/module.yaml";
-            Resource[] resources       = resolver.getResources(pattern);
+            String     pattern   = "classpath*:**/module.yaml";
+            Resource[] resources = resolver.getResources(pattern);
 
-            boolean    isValidResource;
+            boolean isValidResource;
 
             for (Resource resource : resources) {
                 Map<String, Object> data = yaml.load(resource.getInputStream());

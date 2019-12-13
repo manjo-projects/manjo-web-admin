@@ -24,9 +24,9 @@ public class ModuleChangerInterceptor extends HandlerInterceptorAdapter {
             if (name.isEmpty() || source.has(name)) {
                 source.setKey(name);
             } else {
-                throw new AccessDeniedException(
-                    format("Access denied to the module: '%s'. Make sure you correctly configure the module in 'resources/**/module.yaml'",
-                        name));
+//                throw new AccessDeniedException(
+//                    format("Access denied to the module: '%s'. Make sure you correctly configure the module in 'resources/**/module.yaml'",
+//                        name));
             }
         }
 

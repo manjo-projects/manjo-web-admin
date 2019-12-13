@@ -1,8 +1,10 @@
-package org.papaja.adminfly.config.web;
+package org.papaja.adminfly.config;
 
 import org.papaja.adminfly.commons.dao.service.AuthUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -39,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
 
-        provider.setUserDetailsService(new AuthUserDetails());
+        provider.setUserDetailsService(userDetailsService());
         provider.setPasswordEncoder(passwordEncoder());
 
         return provider;
@@ -50,10 +52,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        return new AuthUserDetails();
-//    }
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new AuthUserDetails();
+    }
 
     @Override
     public void configure(final WebSecurity web) {

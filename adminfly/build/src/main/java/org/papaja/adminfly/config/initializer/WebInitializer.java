@@ -1,8 +1,7 @@
-package org.papaja.adminfly.config;
+package org.papaja.adminfly.config.initializer;
 
-import org.papaja.adminfly.config.root.DatabaseConfig;
-import org.papaja.adminfly.config.root.SecurityConfig;
-import org.papaja.adminfly.config.web.WebMVCConfig;
+import org.papaja.adminfly.config.CommonConfig;
+import org.papaja.adminfly.config.MVCConfig;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -19,7 +18,9 @@ import java.io.InputStream;
 import java.util.Properties;
 
 @SuppressWarnings({"unused"})
-public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+
+    public static final String SERVLET_NAME = "WEB-APPLICATION";
 
     @Override
     public void onStartup(ServletContext context) throws ServletException {
@@ -47,12 +48,12 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{DatabaseConfig.class, SecurityConfig.class};
+        return new Class[]{CommonConfig.class,};
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{WebMVCConfig.class,};
+        return new Class[]{MVCConfig.class};
     }
 
     @Override
@@ -72,7 +73,7 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 
     // @todo unfortunately hardcoded
     private Properties getApplicationProperties() {
-        ClassLoader loader     = ApplicationInitializer.class.getClassLoader();
+        ClassLoader loader     = WebInitializer.class.getClassLoader();
         Properties  properties = new Properties();
         InputStream stream     = new BufferedInputStream(loader.getResourceAsStream("properties/application.properties"));
 
@@ -85,4 +86,8 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
         return properties;
     }
 
+    @Override
+    protected String getServletName() {
+        return SERVLET_NAME;
+    }
 }
