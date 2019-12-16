@@ -21,12 +21,12 @@ public class ModuleChangerInterceptor extends HandlerInterceptorAdapter {
         String name = getModuleName(request);
 
         if (handler instanceof HandlerMethod) {
-            if (name.isEmpty() || source.has(name)) {
+            if (name == null || source.has(name)) {
                 source.setKey(name);
             } else {
-//                throw new AccessDeniedException(
-//                    format("Access denied to the module: '%s'. Make sure you correctly configure the module in 'resources/**/module.yaml'",
-//                        name));
+                throw new AccessDeniedException(
+                    format("Access denied to the module: '%s'. Make sure you correctly configure the module in 'resources/**/module.yaml'",
+                        name));
             }
         }
 
@@ -34,17 +34,7 @@ public class ModuleChangerInterceptor extends HandlerInterceptorAdapter {
     }
 
     private String getModuleName(HttpServletRequest request) {
-        String servletPath = request.getServletPath(), moduleName = null;
-
-        if (servletPath.length() > 0) {
-            moduleName = servletPath.substring(1);
-
-            if (moduleName.indexOf('/') > 0) {
-                moduleName = moduleName.substring(0, moduleName.indexOf('/')).toUpperCase();
-            }
-        }
-
-        return moduleName;
+        return getPathKey(request.getServletPath(), 0);
     }
 
     private String getPathKey(String path, int index) {

@@ -1,6 +1,5 @@
 package org.papaja.adminfly.module.psy.controller;
 
-import org.papaja.adminfly.commons.support.SystemThemes;
 import org.papaja.adminfly.module.psy.commons.crypto.Crypto;
 import org.papaja.adminfly.module.psy.dbl.dto.PatientDto;
 import org.papaja.adminfly.module.psy.dbl.dto.SessionDto;
@@ -25,12 +24,17 @@ import static java.lang.String.format;
 import static java.util.Objects.isNull;
 
 @SuppressWarnings({"unused"})
-@Controller("psyIndexController")
-@RequestMapping(value = "/psy")
+@Controller
 public class IndexController extends AbstractPsyController {
 
     @Autowired
     private SessionService sessions;
+
+    @PreAuthorize("hasAnyAuthority('READ')")
+    @GetMapping("/test")
+    public ModelAndView test() {
+        return new ModelAndView("test");
+    }
 
     @PreAuthorize("hasAnyAuthority('READ')")
     @GetMapping("")
@@ -126,9 +130,9 @@ public class IndexController extends AbstractPsyController {
     }
 
     @PreAuthorize("hasAnyAuthority('READ')")
-    @GetMapping(value = {"/results/index"})
+    @GetMapping(value = {"/results"})
     public ModelAndView results() {
-        return newView("results");
+        return new ModelAndView("results/index");
     }
 
     @PreAuthorize("hasAnyAuthority('READ')")

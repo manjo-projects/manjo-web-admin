@@ -15,10 +15,6 @@ public class JustClockController extends AbstractController {
 
     private static final String LOGO_TEXT = "\uD83D\uDD52 Just Clock";
 
-    {
-        setPrefix("clock");
-    }
-
     @RequestMapping({"/clock", "/clock/{theme:[\\w\\d_]+}"})
     public ModelAndView index(
             @PathVariable(name = "theme", required = false) String theme

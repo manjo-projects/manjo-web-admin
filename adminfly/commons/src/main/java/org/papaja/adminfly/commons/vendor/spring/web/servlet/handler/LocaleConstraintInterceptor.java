@@ -40,24 +40,24 @@ public class LocaleConstraintInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-        Locale locale = getLocale();
-
-        if (!locales.contains(defaultLocale)) {
-            throw new IllegalArgumentException(format("The default locale '%s' must be contained in the passed allowed locales",
-                    defaultLocale.getDisplayLanguage()));
-        }
-
-        if (predicate.get() && !locales.contains(locale)) {
-            String       language = defaultLocale.toLanguageTag().replace('-', '_');
-            String       redirect = format("%s?%s=%s", request.getServletPath(), LOCALE_PARAMETER, language);
-            FlashMessage message  = messages.getErrorMessage("text.unavailableLocale", locale.getDisplayLanguage(),
-                    format("(%s)", getLocalesNames()));
-
-            getOutputFlashMap(request).put("message", message);
-            saveOutputFlashMap(redirect, request, response);
-
-            response.sendRedirect(redirect);
-        }
+//        Locale locale = getLocale();
+//
+//        if (!locales.contains(defaultLocale)) {
+//            throw new IllegalArgumentException(format("The default locale '%s' must be contained in the passed allowed locales",
+//                    defaultLocale.getDisplayLanguage()));
+//        }
+//
+//        if (predicate.get() && !locales.contains(locale)) {
+//            String       language = defaultLocale.toLanguageTag().replace('-', '_');
+//            String       redirect = format("%s?%s=%s", request.getServletPath(), LOCALE_PARAMETER, language);
+//            FlashMessage message  = messages.getErrorMessage("text.unavailableLocale", locale.getDisplayLanguage(),
+//                    format("(%s)", getLocalesNames()));
+//
+//            getOutputFlashMap(request).put("message", message);
+//            saveOutputFlashMap(redirect, request, response);
+//
+//            response.sendRedirect(redirect);
+//        }
 
         return true;
     }

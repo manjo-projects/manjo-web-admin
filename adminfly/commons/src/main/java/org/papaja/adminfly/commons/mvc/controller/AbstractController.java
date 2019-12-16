@@ -27,36 +27,15 @@ abstract public class AbstractController {
     }
 
     protected ModelAndView newView(String view) {
-        return new ModelAndView(normalizeViewPath(view));
-    }
-
-    protected void setPrefix(String prefix) {
-        this.prefix = prefix;
-    }
-
-    private String normalizeViewPath(String view) {
-        return format("%s/%s", getPrefix(), (view.startsWith("/") ? view.substring(1) : view));
-    }
-
-    protected String getPrefix() {
-        String prefix = this.prefix;
-
-        if (isNull(prefix)) {
-            RequestMapping annotation = this.getClass().getAnnotation(RequestMapping.class);
-            List<String>   mapping    = Arrays.asList(annotation.value());
-
-            prefix = mapping.size() > 0 ? mapping.get(0) : null;
-        }
-
-        return prefix;
+        return new ModelAndView(view);
     }
 
     protected ModelAndView newRedirect(String view) {
-        return new ModelAndView(format("redirect:%s", normalizeViewPath(view)));
+        return new ModelAndView(format("redirect:%s", view));
     }
 
     protected RedirectView newRedirectView(String view) {
-        return new RedirectView(normalizeViewPath(view));
+        return new RedirectView(view);
     }
 
 }

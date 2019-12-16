@@ -1,12 +1,9 @@
-package org.papaja.adminfly.module.buildin.controller;
+package org.papaja.adminfly.buildin.controller;
 
 import org.papaja.adminfly.commons.mvc.controller.AbstractController;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.context.ContextLoader;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -19,31 +16,8 @@ import java.util.Random;
 @RequestMapping("/build-in")
 public class BuildInController extends AbstractController {
 
-    @Autowired
-    WebApplicationContext webApplicationContext;
-
-    {
-        setPrefix("");
-    }
-
-    private void processContext() {
-        WebApplicationContext rootContext = ContextLoader.getCurrentWebApplicationContext();
-
-        System.out.println("context : " + rootContext);
-        for (String beanDefinitionName : rootContext.getBeanDefinitionNames()) {
-            System.out.println(">>> bean: " + beanDefinitionName);
-        }
-
-        System.out.println("context : " + webApplicationContext);
-        for (String beanDefinitionName : webApplicationContext.getBeanDefinitionNames()) {
-            System.out.println(">>> bean: " + beanDefinitionName);
-        }
-    }
-
     @RequestMapping
     public String home(HttpServletRequest request) {
-        processContext();
-
         return "redirect:/build-in/home";
     }
 
@@ -57,7 +31,7 @@ public class BuildInController extends AbstractController {
     }
 
     @Controller
-    @RequestMapping("/")
+    @RequestMapping
     public static class ToBuildIn extends AbstractController {
         @RequestMapping
         public ModelAndView home(RedirectAttributes attributes) {

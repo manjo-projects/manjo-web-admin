@@ -44,10 +44,6 @@ public class MMPI566Controller extends AbstractMMPIController {
         @Qualifier("wizardMMPI2")
         private Wizard<Answer> wizard;
 
-        {
-            setPrefix("/psy/MMPI_566/shared");
-        }
-
         @Override
         public Wizard<Answer> getWizard() {
             return wizard;

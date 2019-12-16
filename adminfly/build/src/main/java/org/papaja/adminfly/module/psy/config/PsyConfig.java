@@ -1,5 +1,6 @@
 package org.papaja.adminfly.module.psy.config;
 
+import org.papaja.adminfly.commons.annotation.MvcConfiguration;
 import org.papaja.adminfly.commons.vendor.spring.web.servlet.handler.LocaleConstraintInterceptor;
 import org.papaja.adminfly.module.psy.commons.holder.TestContextHolder;
 import org.papaja.adminfly.module.psy.tests.MMPI.Answer;
@@ -7,10 +8,7 @@ import org.papaja.adminfly.module.psy.tests.MMPI.WizardFactory;
 import org.papaja.adminfly.module.psy.tests.MMPI.Q566.MMPI566Wizard;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -28,10 +26,12 @@ import static org.springframework.util.StringUtils.parseLocale;
 import static org.springframework.web.context.WebApplicationContext.SCOPE_SESSION;
 
 @SuppressWarnings({"unused"})
-@Configuration
+@MvcConfiguration
+@EnableAspectJAutoProxy(proxyTargetClass = true)
 @PropertySource(value = {
         "classpath:properties/module/psy/module.properties"
 }, ignoreResourceNotFound = true)
+@ComponentScan(basePackages = {"org.papaja.adminfly.module.psy"})
 public class PsyConfig implements WebMvcConfigurer {
 
     private static final String MODULE_KEY = "PSY";

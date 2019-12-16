@@ -5,13 +5,11 @@ import org.papaja.adminfly.module.psy.controller.AbstractPsyController;
 import org.papaja.adminfly.module.psy.dbl.converter.MMPI2ResultConverter;
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
 import org.papaja.adminfly.module.psy.dbl.entity.results.AbstractMMPIResult;
-import org.papaja.adminfly.module.psy.tests.TestAware;
 import org.papaja.adminfly.module.psy.tests.MMPI.Answer;
 import org.papaja.adminfly.module.psy.tests.MMPI.AnswersPointsConverter;
-import org.papaja.adminfly.module.psy.tests.MMPI.Scale;
-import org.papaja.adminfly.module.psy.tests.MMPI.Q566.Formula;
 import org.papaja.adminfly.module.psy.tests.MMPI.Q566.Questions;
-import org.papaja.adminfly.module.psy.tests.MMPI.Q566.ValueMap;
+import org.papaja.adminfly.module.psy.tests.MMPI.Scale;
+import org.papaja.adminfly.module.psy.tests.TestAware;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
 import org.papaja.adminfly.module.psy.tests.wizard.WizardAware;
 import org.papaja.tuple.Triplet;
@@ -26,7 +24,6 @@ import java.util.Map;
 
 import static java.lang.String.format;
 import static org.papaja.adminfly.module.psy.tests.Test.MMPI_566;
-import static org.papaja.adminfly.module.psy.tests.MMPI.Q566.ValueMap.MAP;
 import static org.papaja.adminfly.module.psy.tests.wizard.Wizard.State.FINISHED;
 
 @Controller
@@ -37,7 +34,7 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
     public ModelAndView restart() {
         getWizard().reset();
 
-        return new ModelAndView(format("redirect:%s", getPrefix()));
+        return new ModelAndView("redirect:/");
     }
 
     @PreAuthorize("hasAnyAuthority('READ')")
@@ -48,7 +45,6 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
         getWizard().update();
 
         if (!getWizard().is(FINISHED) && context.getPatient().isOld()) {
-            mav.addObject("prefix", getPrefix());
             mav.addObject("position", getWizard().position());
             mav.addObject("total", getWizard().size());
             mav.addObject("previous", getWizard().results().get(getWizard().position()));
@@ -72,7 +68,7 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
             @PathVariable(value = "answer", required = false) Answer answer,
             RedirectAttributes attributes
     ) {
-        ModelAndView mav = new ModelAndView(format("redirect:%s", getPrefix()));
+        ModelAndView mav = new ModelAndView("redirect:/");
 
         if (!getWizard().submit(answer, direction)) {
             attributes.addFlashAttribute("message",
@@ -91,10 +87,8 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
         ModelAndView   mav    = new ModelAndView("redirect:/psy/tests");
 
         if (wizard.results().size() == wizard.size()) {
-            AnswersPointsConverter     converter = new AnswersPointsConverter(new Questions());
-            Map<Scale, Integer>        points    = converter.convert(wizard.results());
-            Formula                    formula   = new Formula();
-            Map<Scale, ValueMap.Value> values    = MAP.getValues(context.getPatient().getSex());
+            AnswersPointsConverter converter = new AnswersPointsConverter(new Questions());
+            Map<Scale, Integer>    points    = converter.convert(wizard.results());
 
             AbstractMMPIResult result = new MMPI2ResultConverter()
                     .convert(new Triplet(getMMPI2ResultEntity(), points, context.getPatient()));

@@ -1,4 +1,4 @@
-package org.papaja.adminfly.module.buildin.controller;
+package org.papaja.adminfly.buildin.controller;
 
 import org.papaja.adminfly.commons.pojo.UserDto;
 import org.papaja.adminfly.commons.mvc.controller.AbstractController;

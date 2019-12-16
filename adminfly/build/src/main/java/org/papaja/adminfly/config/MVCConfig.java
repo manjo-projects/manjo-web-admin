@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @PropertySource("classpath:properties/application.properties")
-@ComponentScan(basePackages = {"org.papaja.adminfly.module.buildin", "org.papaja.adminfly.module.psy"})
+@ComponentScan(basePackages = {"org.papaja.adminfly.buildin"})
 public class MVCConfig implements WebMvcConfigurer {
 
 }
