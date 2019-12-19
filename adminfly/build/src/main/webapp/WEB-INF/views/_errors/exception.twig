@@ -1,0 +1,30 @@
+{% extends '../_shared/layout/main.twig' %}
+{% set menu = 'index' %}
+{% block title %}{{ 'label.flash.danger' | translate }} [{{ exceptionClass }}]{% endblock %}
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-3">{{ 'label.flash.danger' | translate }}</h1>
+        <hr class="my-4">
+        <p class="lead">{{ exceptionClass }}</p>
+        <hr class="my-4">
+        <p>{{ rootMassage }}</p>
+        <hr class="my-4">
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" onclick="$('#stackTraceModal').modal();"
+               role="button">{{ 'label.stackTrace' | translate }}</a>
+        </p>
+    </div>
+    <div id="stackTraceModal" class="modal fade" tabindex='-1'>
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Stack: [{{ exceptionClass }}]</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <pre class="p-3">{{ stack }}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,8 +1,8 @@
 # required
 main:
-  name: "🔒 Secure"
-  key: SECURE
-  link: "/secure/"
+  name: "🔒 Secure Manager"
+  key: MANAGER
+  link: "/manager/"
 
 # optional
 settings:
@@ -15,10 +15,10 @@ values:
   # optional
   menu:
     - label: "label.users"
-      path: "/secure/users"
+      path: "/users"
 
     - label: "label.credentials"
-      path: "/secure/credentials"
+      path: "/credentials"
 
     - label: "label.system"
-      path: "/secure/system"
+      path: "/system"

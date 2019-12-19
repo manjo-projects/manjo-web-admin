@@ -9,8 +9,4 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @ComponentScan(basePackages = {"org.papaja.adminfly.module.admin"})
 public class AdminConfig {
 
-    public AdminConfig() {
-
-    }
-
 }

@@ -41,14 +41,14 @@ public class GlobalController {
 
         handleRequest(request, model);
 
-        return "errors/access";
+        return "_errors/access";
     }
 
     @ExceptionHandler({Exception.class})
     public String handleException(
             Exception exception, Model model, HttpServletRequest request, HttpServletResponse response, Principal principal
     ) {
-        String template = "errors/exception";
+        String template = "_errors/exception";
 
         model.addAttribute("stack", ExceptionUtils.getStackTrace(exception));
         model.addAttribute("exceptionClass", exception.getClass().getName());

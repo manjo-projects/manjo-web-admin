@@ -2,7 +2,7 @@
 {% block content %}
     <link rel="stylesheet" href="{{ asset('module/clock/css/clock.css') }}">
     <link rel="stylesheet" href="{{ asset('module/clock/css/theme_' ~ name ~ '.css') }}">
-    <style> body { background-image: url("{{ asset('module/clock/images/' ~ extra.get('values.clock.config.' ~ name ~ '.background')) }}"); } </style>
+    <style> body { background-image: relative("{{ asset('module/clock/images/' ~ extra.get('values.clock.config.' ~ name ~ '.background')) }}"); } </style>
     <main>
         <article id="clock">
             <div id="clock-hours"></div>:

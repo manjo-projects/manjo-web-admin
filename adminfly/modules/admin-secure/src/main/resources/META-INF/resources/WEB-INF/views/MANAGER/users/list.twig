@@ -1,0 +1,65 @@
+{% extends '../layout-link.twig' %}
+{% import '../../_shared/macro/pagination.twig' as pagi %}
+{% block title %}{{ 'label.users' | translate }}{% endblock %}
+{% block content %}
+    <div class="page-header mb-4">
+        <h1 id="tables">{{ 'label.users' | translate }}</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card border-light mb-3">
+                <div class="card-header">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button onclick="location.href='{{ relative('/users/create') }}'" type="button" class="btn btn-primary">{{ 'label.create' | translate }}</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">{{ 'label.name' | translate }}</th>
+                            <th scope="col">{{ 'label.roles' | translate }}</th>
+                            <th scope="col" class="d-none d-md-table-cell">{{ 'title.status' | translate }}</th>
+                            <th scope="col" class="d-none d-lg-table-cell">{{ 'label.registered' | translate }}</th>
+                            <th scope="col" class="w-25"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in pagination.result %}
+                            {% set edit = relative('/users/edit/' ~ user.id) %}
+                            <tr>
+                                <td>{{ user.username }}</td>
+                                <td>
+                                    {% for role in user.roles %}
+                                        <b>[{{ role.name }}]</b>
+                                    {% endfor %}
+                                </td>
+                                <td class="d-none d-md-table-cell">
+                                    {% if user.enabled %}
+                                        <span class="badge badge-pill badge-success">{{ 'label.enabled' | translate }}</span>
+                                    {% else %}
+                                        <span class="badge badge-pill badge-danger">{{ 'label.disabled' | translate }}</span>
+                                    {% endif %}
+                                </td>
+                                <td class="d-none d-lg-table-cell">
+                                    [{{ user.created }}]
+                                </td>
+                                <td class="text-lg-right">
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        <button type="button" onclick="location.href='{{ edit }}'"
+                                                class="btn btn-sm btn-primary">{{ 'label.edit' | translate }}</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    {{ pagi.pagination(pagination.total, pagination.limit, pagination.current, relative('/users', {}, {page : ''}), 10, 3) }}
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

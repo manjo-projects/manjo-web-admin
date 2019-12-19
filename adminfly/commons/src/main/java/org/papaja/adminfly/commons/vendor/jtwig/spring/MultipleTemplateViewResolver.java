@@ -5,6 +5,8 @@ import org.jtwig.spring.JtwigViewResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.nio.file.NoSuchFileException;
 import java.util.*;
 
@@ -15,6 +17,10 @@ public class MultipleTemplateViewResolver extends JtwigViewResolver {
 
     @Autowired
     private ResourceLoader loader;
+
+    @Autowired
+    private HttpServletRequest request;
+
     private Set<String>    prefixes;
 
     public MultipleTemplateViewResolver(String... prefixes) {
@@ -41,7 +47,6 @@ public class MultipleTemplateViewResolver extends JtwigViewResolver {
     private String getViewLocation(String name) {
         return format("%s%s%s", getPrefix(), name, getSuffix());
     }
-
     private String resolveViewName(String name, String prefix) {
         return prefix + resolveViewName(name);
     }

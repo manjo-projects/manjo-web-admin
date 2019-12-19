@@ -1,9 +1,9 @@
 package org.papaja.adminfly.config.initializer;
 
-import org.papaja.adminfly.config.CommonConfig;
-import org.papaja.adminfly.config.MVCConfig;
+import org.papaja.adminfly.commons.vendor.spring.web.filter.UTF8EncodingFilter;
+import org.papaja.adminfly.config.BuildInConfig;
+import org.papaja.adminfly.config.RootServletConfig;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.FrameworkServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -48,12 +48,12 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{CommonConfig.class,};
+        return new Class[]{RootServletConfig.class,};
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{MVCConfig.class};
+        return new Class[]{BuildInConfig.class};
     }
 
     @Override
@@ -63,12 +63,9 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     @Override
     protected Filter[] getServletFilters() {
-        CharacterEncodingFilter filter = new CharacterEncodingFilter();
-
-        filter.setEncoding("UTF-8");
-        filter.setForceEncoding(true);
-
-        return new Filter[]{filter};
+        return new Filter[]{
+                new UTF8EncodingFilter(),
+        };
     }
 
     // @todo unfortunately hardcoded

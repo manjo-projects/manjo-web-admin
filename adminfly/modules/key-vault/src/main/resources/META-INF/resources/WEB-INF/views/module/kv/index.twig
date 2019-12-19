@@ -1,5 +1,5 @@
 {% extends './layout-link.twig' %}
-{% import '../../shared/macro/fields.twig' as fields %}
+{% import '../../_shared/macro/fields.twig' as fields %}
 {% block title %}KV Vault{% endblock %}
 {% block content %}
     <div class="page-header mb-4">
@@ -19,10 +19,10 @@
                         </thead>
                         <tbody>
                         {% for item in kvs %}
-                            {% set edit = url('/kv/edit') %}
-                            {% set remove = url('/kv/remove/' ~ item.key) %}
-                            {% set view = url('/kv/get/' ~ item.key) %}
-                            {% set save = url('/kv/save') %}
+                            {% set edit = relative('/kv/edit') %}
+                            {% set remove = relative('/kv/remove/' ~ item.key) %}
+                            {% set view = relative('/kv/get/' ~ item.key) %}
+                            {% set save = relative('/kv/save') %}
                             <tr>
                                 <td>{{ item.key }}</td>
                                 <td>{{ item.value }}</td>

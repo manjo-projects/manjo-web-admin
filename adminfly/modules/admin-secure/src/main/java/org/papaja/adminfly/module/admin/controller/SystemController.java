@@ -2,6 +2,7 @@ package org.papaja.adminfly.module.admin.controller;
 
 import org.papaja.adminfly.commons.mvc.controller.AbstractController;
 import org.papaja.adminfly.commons.support.SystemInformation;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import static java.lang.Runtime.getRuntime;
 
 @Controller
-@RequestMapping("/secure/system")
+@Secured("ROLE_ADMIN")
+@RequestMapping("/system")
 public class SystemController extends AbstractController {
 
     @RequestMapping("")

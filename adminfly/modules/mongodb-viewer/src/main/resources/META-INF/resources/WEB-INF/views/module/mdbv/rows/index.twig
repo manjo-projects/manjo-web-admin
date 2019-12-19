@@ -1,5 +1,5 @@
 {% extends '../layout-link.twig' %}
-{% import '../../../shared/macro/fields.twig' as fields %}
+{% import '../../../_shared/macro/fields.twig' as fields %}
 {% block title %}MongoDB Viewer{% endblock %}
 {% block content %}
 <div class="page-header mb-4">
@@ -7,7 +7,7 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <form action="{{ url('/mdbv/rows/edit') }}{% if not empty(row.id) %}/{{ row.id }}{% endif %}" method="post">
+        <form action="{{ relative('/mdbv/rows/edit') }}{% if not empty(row.id) %}/{{ row.id }}{% endif %}" method="post">
             <div class="card bg-light mb-3">
                 <div class="card-header">{{ 'label.editing' | translate }}</div>
                 <div class="card-body">
@@ -58,7 +58,7 @@
         <div class="card border-light mb-3">
             <div class="card-header">
                 {% include '../partials/setting-header-buttons.twig' %}
-                <button onclick="location.href='{{ url('/mdbv/scan') }}'"
+                <button onclick="location.href='{{ relative('/mdbv/scan') }}'"
                         type="button" class="btn btn-sm btn-danger">{{ 'label.scan' | translate }}</button>
             </div>
             <div class="card-body">
@@ -72,8 +72,8 @@
                     </thead>
                     <tbody>
                     {% for item in items %}
-                    {% set edit = url('/mdbv/rows/edit/' ~ item.id) %}
-                    {% set remove = url('/mdbv/rows/remove/' ~ item.id) %}
+                    {% set edit = relative('/mdbv/rows/edit/' ~ item.id) %}
+                    {% set remove = relative('/mdbv/rows/remove/' ~ item.id) %}
                     <tr>
                         <td>
                             <span title="[{{ item.path }}]">

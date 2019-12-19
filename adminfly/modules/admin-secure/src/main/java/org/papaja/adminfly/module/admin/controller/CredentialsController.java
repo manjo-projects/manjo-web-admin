@@ -7,6 +7,7 @@ import org.papaja.adminfly.commons.dao.entity.Role;
 import org.papaja.adminfly.commons.dao.service.PrivilegeService;
 import org.papaja.adminfly.commons.dao.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/secure/credentials")
+@Secured("ROLE_ADMIN")
+@RequestMapping("/credentials")
 public class CredentialsController extends AbstractController {
 
     @Autowired

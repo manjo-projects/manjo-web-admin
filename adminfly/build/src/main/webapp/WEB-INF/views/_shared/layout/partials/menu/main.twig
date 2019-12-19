@@ -1,0 +1,47 @@
+<div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+    <div class="container">
+        {% include 'logo/logo.twig' %}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav">
+                {% for item in extra.get('values.menu') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ relative(item.path) }}">{{ item.label | translate }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="modules" aria-expanded="true">
+                        <b>{{ 'label.modules' | translate }}</b> <span class="caret"></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="modules">
+                        {% for module in extra.all() %}
+                            {% if module.main.link is not empty %}
+                            <a class="dropdown-item" href="{{ absolute(module.main.link) }}">&bullet;&nbsp;{{ module.main.name }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="languages"
+                       aria-expanded="false">{{ 'label.languages' | translate }} <span class="caret"></span></a>
+                    <div class="dropdown-menu" aria-labelledby="languages">
+                        {% include 'languages/links.twig' %}
+                    </div>
+                </li>
+            </ul>
+
+            <div class="form-inline my-2 my-lg-0">
+                <button onclick="window.location='{{ relative('/auth/logout') }}'" class="btn btn-secondary my-2 my-sm-0" type="submit">
+                    [{{ principal.name }}] {{ 'title.logout' | translate }}
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

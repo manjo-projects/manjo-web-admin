@@ -1,6 +1,6 @@
 {% extends '../layout-link.twig' %}
-{% import '../../../shared/macro/fields.twig' as fields %}
-{% import '../../../shared/macro/pagination.twig' as pagi %}
+{% import '../../../_shared/macro/fields.twig' as fields %}
+{% import '../../../_shared/macro/pagination.twig' as pagi %}
 {% block title %}MongoDB Viewer | {{ 'label.records' | translate }}{% endblock %}
 {% block content %}
     <div class="page-header mb-4">
@@ -8,7 +8,7 @@
     </div>
     <div class="card bg-light mb-3">
         <div class="card-body">
-            <form method="get" action="{{ url('/mdbv/records') }}" class="form-inline my-2 my-lg-0 float-left">
+            <form method="get" action="{{ relative('/mdbv/records') }}" class="form-inline my-2 my-lg-0 float-left">
 
                 <div class="input-group" role="group">
                     <select class="custom-select" name="path">
@@ -50,7 +50,7 @@
                         <tr>
                             {% for column in preview %}
                                 <th scope="col" class="w-25">
-                                    <a href="{{ url('/mdbv/records', app.request.query, {column : column.path, vector: (app.request.query.vector == 'ASC') ? 'DESC' : 'ASC'}) }}">
+                                    <a href="{{ relative('/mdbv/records', app.request.query, {column : column.path, vector: (app.request.query.vector == 'ASC') ? 'DESC' : 'ASC'}) }}">
                                         {{ column.name }}
                                     </a>
                                 </th>
@@ -60,7 +60,7 @@
                         </thead>
                         <tbody>
                         {% for record in records %}
-                            {% set view = url('/mdbv/records/view/' ~ record.getId()) %}
+                            {% set view = relative('/mdbv/records/view/' ~ record.getId()) %}
                             <tr>
                                 {% for column in preview %}
                                     {% set value = accessor.getValue(record, column.path) %}
@@ -78,7 +78,7 @@
                     </table>
                 </div>
                 <div class="card-footer">
-                    {{ pagi.pagination(pagination.total, pagination.size, pagination.current, url('/mdbv/records', app.request.query, {page : ''}), 12, 4) }}
+                    {{ pagi.pagination(pagination.total, pagination.size, pagination.current, relative('/mdbv/records', app.request.query, {page : ''}), 12, 4) }}
                 </div>
             </div>
         </div>

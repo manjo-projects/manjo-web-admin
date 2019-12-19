@@ -1,0 +1,20 @@
+{% extends '../layout.twig' %}
+{% block content %}
+    {% include './../_partials/patient-current.twig' %}
+    <div class="page-header mb-4">
+        <h1>{{ 'label.patients' | translate }}</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card bg-light mb-3">
+                <div class="card-header">
+                    {% set create = relative('/psy/patients/create') %}
+                    <button type="button" onclick="location.href='{{ create }}'"
+                            class="btn btn-sm btn-info">{{ 'label.create' | translate }}
+                    </button>
+                </div>
+                {% include './../_partials/patient-list.twig' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -5,6 +5,7 @@ import org.papaja.adminfly.commons.mvc.controller.AbstractController;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 @SuppressWarnings({"unused"})
@@ -13,14 +14,14 @@ import org.springframework.web.servlet.view.RedirectView;
 public class AuthController extends AbstractController {
 
     @RequestMapping("")
-    public RedirectView home() {
-        return newRedirectView("login");
+    public ModelAndView home() {
+        return newRedirect("login");
     }
 
     @PreAuthorize("isAnonymous()")
     @RequestMapping(value = "/login")
-    public String login(UserDto user) {
-        return "login/login";
+    public ModelAndView login(UserDto user) {
+        return newView("login/form");
     }
 
     @PreAuthorize("isAuthenticated()")

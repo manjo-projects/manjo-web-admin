@@ -1,14 +1,8 @@
 package org.papaja.adminfly.module.admin.config;
 
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import org.papaja.adminfly.commons.vendor.spring.support.AbstractModuleConfigDispatcherServletInitializer;
 
-public class AdminSecureInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
-
-    @Override
-    protected Class<?>[] getRootConfigClasses() {
-        System.out.println(getClass().getName()+".getRootConfigClasses()");
-        return null;
-    }
+public class AdminSecureInitializer extends AbstractModuleConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
@@ -16,8 +10,8 @@ public class AdminSecureInitializer extends AbstractAnnotationConfigDispatcherSe
     }
 
     @Override
-    protected String[] getServletMappings() {
-        return new String[] {"/secure/*"};
+    protected String getModuleName() {
+        return "MANAGER";
     }
 
 }

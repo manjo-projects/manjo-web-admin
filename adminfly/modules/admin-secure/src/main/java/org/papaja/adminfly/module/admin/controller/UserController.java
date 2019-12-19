@@ -23,9 +23,13 @@ import java.util.Optional;
 
 @SuppressWarnings("unused")
 @Controller
-@RequestMapping("/secure/users")
+@RequestMapping("/users")
 @Secured("ROLE_ADMIN")
 public class UserController extends AbstractController {
+
+    {
+        setPrefix("users");
+    }
 
     @Autowired
     private UserService users;

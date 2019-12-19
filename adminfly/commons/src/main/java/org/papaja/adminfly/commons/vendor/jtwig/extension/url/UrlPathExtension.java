@@ -7,7 +7,9 @@ public class UrlPathExtension implements Extension {
 
     @Override
     public void configure(EnvironmentConfigurationBuilder builder) {
-        builder.functions().add(new UrlPathFunction()).and();
+        builder.functions()
+                .add(new RelativeUrlPathFunction())
+                .add(new AbsoluteUrlPathFunction()).and();
     }
 
 }

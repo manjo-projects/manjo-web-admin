@@ -1,5 +1,5 @@
 {% extends '../layout-link.twig' %}
-{% import '../../../shared/macro/pagination.twig' as pagination %}
+{% import '../../../_shared/macro/pagination.twig' as pagination %}
 {% block title %}{{ 'title.posts' | translate }}{% endblock %}
 {% block content %}
     <div class="page-header mb-4">
@@ -21,7 +21,7 @@
                         </thead>
                         <tbody>
                         {% for post in result.result %}
-                            {% set edit = url('/blog/posts/edit/' ~ post.id) %}
+                            {% set edit = relative('/blog/posts/edit/' ~ post.id) %}
                             <tr>
                                 <td>{{ post.title }}</td>
                                 <td class="d-none d-md-table-cell">{{ post.category.name }}</td>

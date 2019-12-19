@@ -1,5 +1,5 @@
 {% extends '../layout-link.twig' %}
-{% import '../../../shared/macro/fields.twig' as fields %}
+{% import '../../../_shared/macro/fields.twig' as fields %}
 {% block title %}{{ 'label.categories' | translate }}{% endblock %}
 {% block content %}
     <div class="page-header mb-4">
@@ -20,7 +20,7 @@
                         <tbody>
                             {% for category in categories %}
                                 <tr>
-                                    {% set edit = url('/blog/categories/edit/' ~ category.id) %}
+                                    {% set edit = relative('/blog/categories/edit/' ~ category.id) %}
                                     <td>{{ category.name }}</td>
                                     <td class="text-right">
                                         <button type="button" onclick="location.href='{{ edit }}'"
@@ -35,7 +35,7 @@
             </div>
         </div>
         <div class="col-lg-6">
-            <form action="{{ url('/blog/categories/process') }}{% if not empty(entity.id) %}/{{ entity.id }}{% endif %}" method="post">
+            <form action="{{ relative('/blog/categories/process') }}{% if not empty(entity.id) %}/{{ entity.id }}{% endif %}" method="post">
                 <div class="card border-light mb-3">
                     <div class="card-header">{{ 'label.editing' | translate }}</div>
                     <div class="card-body">

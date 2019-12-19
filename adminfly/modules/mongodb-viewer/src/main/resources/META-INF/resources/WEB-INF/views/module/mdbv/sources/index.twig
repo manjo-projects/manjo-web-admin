@@ -1,5 +1,5 @@
 {% extends '../layout-link.twig' %}
-{% import '../../../shared/macro/fields.twig' as fields %}
+{% import '../../../_shared/macro/fields.twig' as fields %}
 {% block title %}MongoDB Viewer{% endblock %}
 {% block content %}
     <div class="page-header mb-4">
@@ -7,7 +7,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <form action="{{ url('/mdbv/sources/edit') }}{% if not empty(source.id) %}/{{ source.id }}{% endif %}"
+            <form action="{{ relative('/mdbv/sources/edit') }}{% if not empty(source.id) %}/{{ source.id }}{% endif %}"
                   method="post">
                 <div class="card bg-light mb-3">
                     <div class="card-header">{{ 'label.editing' | translate }}</div>
@@ -57,9 +57,9 @@
                         </thead>
                         <tbody>
                         {% for item in items %}
-                            {% set select = url('/mdbv/sources/select/' ~ item.id) %}
-                            {% set edit = url('/mdbv/sources/edit/' ~ item.id) %}
-                            {% set remove = url('/mdbv/sources/remove/' ~ item.id) %}
+                            {% set select = relative('/mdbv/sources/select/' ~ item.id) %}
+                            {% set edit = relative('/mdbv/sources/edit/' ~ item.id) %}
+                            {% set remove = relative('/mdbv/sources/remove/' ~ item.id) %}
                             <tr>
                                 <td>[{{ item.name }}]</td>
                                 <td><code>{{ item.database }}.{{ item.collection }}</code></td>

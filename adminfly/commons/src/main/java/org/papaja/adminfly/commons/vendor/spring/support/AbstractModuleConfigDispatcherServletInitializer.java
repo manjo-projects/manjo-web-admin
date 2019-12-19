@@ -1,6 +1,9 @@
 package org.papaja.adminfly.commons.vendor.spring.support;
 
+import org.papaja.adminfly.commons.vendor.spring.web.filter.UTF8EncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.Filter;
 
 import static java.lang.String.format;
 
@@ -22,6 +25,13 @@ abstract public class AbstractModuleConfigDispatcherServletInitializer extends A
     protected String[] getServletMappings() {
         return new String[] {
                 format("/%s/*", getModuleName().toLowerCase())
+        };
+    }
+
+    @Override
+    protected Filter[] getServletFilters() {
+        return new Filter[] {
+          new UTF8EncodingFilter(),
         };
     }
 
