@@ -130,12 +130,6 @@ public class IndexController extends AbstractPsyController {
     }
 
     @PreAuthorize("hasAnyAuthority('READ')")
-    @GetMapping(value = {"/results"})
-    public ModelAndView results() {
-        return new ModelAndView("results/index");
-    }
-
-    @PreAuthorize("hasAnyAuthority('READ')")
     @GetMapping(value = {"/tests"})
     public ModelAndView tests() {
         ModelAndView mav = newView("tests/index");

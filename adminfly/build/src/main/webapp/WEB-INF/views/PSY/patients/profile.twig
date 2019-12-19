@@ -9,7 +9,7 @@
             <div class="card mb-3">
                 <h4 class="card-header">{{ 'label.test' | translate }}-{{ 'label.session' | translate }}</h4>
                 <div class="card-body">
-                    <form method="post" action="{{ relative('/psy/patients/profile/' ~ profile.id) }}">
+                    <form method="post" action="{{ relative('/patients/profile/' ~ profile.id) }}">
                         <fieldset>
                             <div class="form-group">
                                 <label for="testsSelect">{{ 'label.tests' | translate }}</label>

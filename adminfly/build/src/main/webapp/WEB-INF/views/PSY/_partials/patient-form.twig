@@ -1,4 +1,4 @@
-<form action="{{ relative('/psy/patients') }}{% if not empty(patient.id) %}/edit/{{ patient.id }}{% else %}/create{% endif %}"
+<form action="{{ relative('/patients') }}{% if not empty(patient.id) %}/edit/{{ patient.id }}{% else %}/create{% endif %}"
       method="post">
     <div class="card bg-light mb-3">
         <div class="card-header">

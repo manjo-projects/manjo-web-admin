@@ -2,11 +2,12 @@ main:
   name: "🕒 Just Clock"
   key: CLOCK
   link: "/shared/clock/default"
+
 settings:
   view:
     theme: minty
-values:
 
+values:
   clock:
     config:
       default:

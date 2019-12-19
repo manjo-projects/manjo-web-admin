@@ -9,7 +9,7 @@
             <div class="card bg-light mb-3">
                 <ul class="list-group">
                     {% for result in results %}
-                        {% set view = relative('/psy/results/' ~ result.id) %}
+                        {% set view = relative('/results/' ~ result.id) %}
                         {% set patient = result.getPatient() %}
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             {{ patient.sexEmoji }}&nbsp;{{ patient.name }}&nbsp;{{ patient.surname }}&nbsp;—&nbsp;[{{ result.test }}]

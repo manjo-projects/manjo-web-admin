@@ -5,6 +5,7 @@ import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.axis.ValueAxis;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.Plot;
 import org.jfree.chart.plot.PlotOrientation;
@@ -36,9 +37,10 @@ import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.DecimalFormat;
 
 @Controller("psyResultController")
-@RequestMapping("/psy/results")
+@RequestMapping("/results")
 public class ResultController extends AbstractPsyController {
 
     @Autowired
@@ -109,6 +111,11 @@ public class ResultController extends AbstractPsyController {
 // sets thickness for series (using strokes)
         renderer.setSeriesStroke(0, new BasicStroke(4.0f));
         renderer.setSeriesStroke(1, new BasicStroke(3.0f));
+
+        StandardCategoryItemLabelGenerator labelGenerator
+                = new StandardCategoryItemLabelGenerator("{2}", new DecimalFormat("###,###"));
+
+        renderer.setDefaultItemLabelGenerator(labelGenerator);
 
         chart.getCategoryPlot().setBackgroundPaint(Color.getColor("f2ffe6"));
 

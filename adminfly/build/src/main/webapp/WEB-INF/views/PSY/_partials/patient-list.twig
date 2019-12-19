@@ -1,8 +1,8 @@
 <ul class="list-group">
     {% for item in items %}
-        {% set edit = relative('/psy/patients/edit/' ~ item.id) %}
-        {% set activate = relative('/psy/patients/activate/' ~ item.id) ~ ((test is defined) ? '?test=' ~ test : '') %}
-        {% set profile = relative('/psy/patients/profile/' ~ item.id) %}
+        {% set edit = relative('/patients/edit/' ~ item.id) %}
+        {% set activate = relative('/patients/activate/' ~ item.id) ~ ((test is defined) ? '?test=' ~ test : '') %}
+        {% set profile = relative('/patients/profile/' ~ item.id) %}
         <li class="list-group-item d-flex justify-content-between align-items-center">
             {{ item.sexEmoji }}&nbsp;{{ item.name }}&nbsp;{{ item.surname }}
             <div class="float-right">
