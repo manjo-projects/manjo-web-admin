@@ -28,6 +28,7 @@ import org.springframework.ui.context.ThemeSource;
 import org.springframework.ui.context.support.ResourceBundleThemeSource;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ThemeResolver;
@@ -170,6 +171,7 @@ public class RootServletConfig implements WebMvcConfigurer {
     }
 
     @Bean
+    @Scope(WebApplicationContext.SCOPE_SESSION)
     public DataHolder modulesDataHolder() {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         Yaml                    yaml     = new Yaml();
