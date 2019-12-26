@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.psy.tests.MMPI.Q566;
 
 import org.papaja.adminfly.module.psy.tests.MMPI.Scale;
-import org.papaja.adminfly.module.psy.tests.MMPI.Gender;
+import org.papaja.adminfly.module.psy.tests.Gender;
 import org.papaja.adminfly.module.psy.tests.MMPI.PointsTRateConverterInterface;
 
 import java.util.HashMap;

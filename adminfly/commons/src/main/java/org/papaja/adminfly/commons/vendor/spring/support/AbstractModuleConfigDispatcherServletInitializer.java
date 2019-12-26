@@ -24,7 +24,7 @@ abstract public class AbstractModuleConfigDispatcherServletInitializer extends A
     @Override
     protected String[] getServletMappings() {
         return new String[] {
-                format("/%s/*", getModuleName().toLowerCase())
+                format("/%s", getModuleName().toLowerCase()), format("/%s/*", getModuleName().toLowerCase())
         };
     }
 

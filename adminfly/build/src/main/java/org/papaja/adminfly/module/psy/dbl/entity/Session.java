@@ -12,6 +12,9 @@ import static java.lang.String.valueOf;
 @Table(name = "PSY_SESSIONS")
 public class Session extends AbstractEntity {
 
+    @Column(name = "SESSION_ID", columnDefinition = "VARCHAR(16)")
+    private String sessionId;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PATIENT_ID")
     private Patient patient;
@@ -22,6 +25,14 @@ public class Session extends AbstractEntity {
 
     @Column(name = "ACTIVE", columnDefinition = "TINYINT(1)")
     private Boolean active;
+
+    public String getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
 
     public String getStringId() {
         return valueOf(id);

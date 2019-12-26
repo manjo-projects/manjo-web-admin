@@ -1,0 +1,41 @@
+{% include './../_partials/patient-current.twig' %}
+{% set progress = number_format((position / total) * 100, 2, '.', '') %}
+<h5>{{ 'label.progress' | translate }}: {{ position }} — {{ total }} ({{ progress }} %)</h5>
+<div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+         style="width: {{ progress }}%" aria-valuenow="{{ progress }}"
+         aria-valuemin="0" aria-valuemax="100"></div>
+</div>
+<hr class="my-4"/>
+<div class="jumbotron">
+    {% if previous is not empty %}
+        <div class="alert alert-dismissible alert-{{ (previous.getValue() == 1) ? 'success' : 'danger' }}">
+            <h4 class="alert-heading m-0">{{ 'text.previousAnswer' | translate }}: <b>{{ ((previous.getValue() == 1) ? 'label.true' : 'label.not_true') | translate }}</b></h4>
+        </div>
+        <hr class="my-4"/>
+    {% endif %}
+    {% set question = test ~ '_' ~ patient.getSex() ~ '_Q' ~ position | translate %}
+    <h3 class="display-4">{{ question }}</h3>
+    <hr class="my-4"/>
+    <div class="lead">
+        <div class="btn-group btn-block">
+            <button class="btn btn-success btn-lg" href="#" onclick="window.location='{{ relative('/' ~ test ~ '/FORWARD/T') }}'"
+                    role="button">
+                {{ 'label.true' | translate }}!
+            </button>
+            <button class="btn btn-danger btn-lg" href="#" onclick="window.location='{{ relative('/' ~ test ~ '/FORWARD/F') }}'"
+                    role="button">
+                {{ 'label.not_true' | translate }}!
+            </button>
+        </div>
+    </div>
+    <hr class="my-4"/>
+    <button class="btn btn-secondary btn-lg" href="#" onclick="window.location='{{ relative(prefix) ~ '/' ~ test ~ '/BACKWARD' }}'"
+            role="button">
+        {{ 'label.back' | translate }}!
+    </button>
+    <button class="btn btn-outline-danger btn-lg" href="#" onclick="window.location='{{ relative('/' ~ test ~ '/restart') }}'"
+            role="button">
+        {{ 'label.restart' | translate }}
+    </button>
+</div>

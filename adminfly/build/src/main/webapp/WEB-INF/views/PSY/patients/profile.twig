@@ -1,5 +1,5 @@
 {% extends '../layout.twig' %}
-{% import '../../../_shared/macro/fields.twig' as fields %}
+{% import '../../_shared/macro/fields.twig' as fields %}
 {% block content %}
     <div class="page-header mb-4">
         <h2>{{ 'label.profile' | translate }}:&nbsp;<b>{{ profile.name }}&nbsp;{{ profile.surname }}</b></h2>
@@ -31,7 +31,7 @@
                 <ul class="list-group">
                     {% if sessions is not empty %}
                         {% for session in sessions %}
-                            {% set sessionURL = url ~ '/_shared/psy/_/' ~ encryptor.encrypt(session.getStringId()) ~ '?locale=' ~ locale.getCode() %}
+                            {% set sessionURL = url ~ '/psy/shared/_/' ~ session.getSessionId() ~ '?locale=' ~ locale.getCode() %}
                             <li class="list-group-item">
                                 [{{ session.test }}]: <a href="{{ sessionURL }}" target="_blank">{{ sessionURL }}</a>
                             </li>
@@ -42,28 +42,6 @@
                         </a>
                     {% endif %}
                 </ul>
-            </div>
-            <div class="card mb-3">
-                <h4 class="card-header">{{ 'label.forms' | translate }}</h4>
-                <div class="list-group">
-                    <a href="#" class="list-group-item">
-                        <i>{{ 'text.noFormsYet' | translate }}</i>
-                    </a>
-                </div>
-                <form>
-                    <div class="form-group">
-                        <label for="exampleFormControlFile1">Example file input</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                    </div>
-                </form>
-            </div>
-            <div class="card">
-                <h4 class="card-header">{{ 'label.documents' | translate }}</h4>
-                <div class="list-group">
-                    <a href="#" class="list-group-item">
-                        <i>{{ 'text.noDocsYet' | translate }}</i>
-                    </a>
-                </div>
             </div>
         </div>
     </div>

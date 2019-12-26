@@ -7,12 +7,14 @@ import org.papaja.adminfly.module.psy.dbl.entity.Patient;
 import org.papaja.adminfly.module.psy.dbl.entity.results.AbstractMMPIResult;
 import org.papaja.adminfly.module.psy.tests.MMPI.Answer;
 import org.papaja.adminfly.module.psy.tests.MMPI.AnswersPointsConverter;
-import org.papaja.adminfly.module.psy.tests.MMPI.Q566.Questions;
+import org.papaja.adminfly.module.psy.tests.MMPI.Q566.Q566Answers;
 import org.papaja.adminfly.module.psy.tests.MMPI.Scale;
+import org.papaja.adminfly.module.psy.tests.MMPI.WizardFactory;
 import org.papaja.adminfly.module.psy.tests.TestAware;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
 import org.papaja.adminfly.module.psy.tests.wizard.WizardAware;
 import org.papaja.tuple.Triplet;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,20 +31,25 @@ import static org.papaja.adminfly.module.psy.tests.wizard.Wizard.State.FINISHED;
 @Controller
 abstract public class AbstractMMPIController extends AbstractPsyController implements WizardAware, TestAware {
 
+    @Autowired
+    protected WizardFactory wizardFactory;
+
     @PreAuthorize("hasAnyAuthority('READ')")
     @GetMapping({"/restart"})
     public ModelAndView restart() {
         getWizard().reset();
 
-        return new ModelAndView("redirect:/");
+        return newRedirect(getTest().name());
     }
 
     @PreAuthorize("hasAnyAuthority('READ')")
-    @GetMapping({"", "/index"})
+    @GetMapping
     public ModelAndView index() {
-        ModelAndView mav = newView("test");
+        ModelAndView mav = newView("MMPI/test");
 
         getWizard().update();
+
+        mav.addObject("test", getTest());
 
         if (!getWizard().is(FINISHED) && context.getPatient().isOld()) {
             mav.addObject("position", getWizard().position());
@@ -53,7 +60,6 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
         } else {
             mav = newView("choose-patient");
             mav.addObject("items", patients.getAll());
-            mav.addObject("test", getTest());
         }
 
         return mav;
@@ -68,7 +74,7 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
             @PathVariable(value = "answer", required = false) Answer answer,
             RedirectAttributes attributes
     ) {
-        ModelAndView mav = new ModelAndView("redirect:/");
+        ModelAndView mav = newRedirect(getTest().name());
 
         if (!getWizard().submit(answer, direction)) {
             attributes.addFlashAttribute("message",
@@ -84,14 +90,14 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
             RedirectAttributes attributes
     ) {
         Wizard<Answer> wizard = getWizard();
-        ModelAndView   mav    = new ModelAndView("redirect:/psy/tests");
+        ModelAndView   mav    = newRedirect("tests");
 
         if (wizard.results().size() == wizard.size()) {
-            AnswersPointsConverter converter = new AnswersPointsConverter(new Questions());
+            AnswersPointsConverter converter = new AnswersPointsConverter(new Q566Answers());
             Map<Scale, Integer>    points    = converter.convert(wizard.results());
 
             AbstractMMPIResult result = new MMPI2ResultConverter()
-                    .convert(new Triplet(getMMPI2ResultEntity(), points, context.getPatient()));
+                    .convert(new Triplet(getResultEntity(), points, context.getPatient()));
 
             results.merge(result);
 
@@ -110,23 +116,30 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
         return mav;
     }
 
-    abstract protected AbstractMMPIResult getMMPI2ResultEntity();
+    @Override
+    public Wizard<Answer> getWizard() {
+        return wizardFactory.createWizard(getTest());
+    }
+
+    abstract protected AbstractMMPIResult getResultEntity();
 
     abstract public static class MMPI2Shared extends AbstractPsyController implements WizardAware, TestAware {
+
+        @Autowired
+        protected WizardFactory wizardFactory;
 
         @GetMapping
         public ModelAndView test() {
             Wizard<Answer> wizard = getWizard();
             ModelAndView   mav    = newView("index");
 
-            DataHolder.HOLDER.set("main.name", getTest().getName());
+            DataHolder.HOLDER.set("main.current.name", getTest().getName());
 
             wizard.update();
 
             if (context.getPatient().isNew()) {
-                mav = new ModelAndView("redirect:/shared/psy/undefined");
+                mav = newRedirect("undefined");
             } else {
-                mav.addObject("prefix", format("/shared/psy/%s", getTest().name()));
                 mav.addObject("position", wizard.position());
                 mav.addObject("total", wizard.size());
                 mav.addObject("previous", wizard.results().get(wizard.position()));
@@ -151,14 +164,19 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
                         messages.getSuccessMessage("text.unableGoToStep", direction, wizard.position()));
             }
 
-            return new ModelAndView(format("redirect:%s", format("/shared/psy/%s", getTest().name())));
+            return newRedirect(getTest().name());
         }
 
         @GetMapping({"/restart"})
         public ModelAndView restart() {
             getWizard().reset();
 
-            return new ModelAndView(format(format("redirect:/shared/psy/%s", getTest().name())));
+            return newRedirect(getTest().name());
+        }
+
+        @Override
+        public Wizard<Answer> getWizard() {
+            return wizardFactory.createWizard(getTest());
         }
 
     }

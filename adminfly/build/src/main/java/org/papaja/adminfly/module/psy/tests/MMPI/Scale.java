@@ -1,5 +1,7 @@
 package org.papaja.adminfly.module.psy.tests.MMPI;
 
+import org.papaja.adminfly.module.psy.tests.Gender;
+
 public enum Scale {
 
     SCALE_L("L"),

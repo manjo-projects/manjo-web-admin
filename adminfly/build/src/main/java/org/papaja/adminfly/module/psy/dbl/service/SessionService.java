@@ -1,6 +1,7 @@
 package org.papaja.adminfly.module.psy.dbl.service;
 
 import org.papaja.adminfly.commons.dao.service.AbstractService;
+import org.papaja.adminfly.commons.utils.Randomizer;
 import org.papaja.adminfly.module.psy.commons.crypto.Crypto;
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
 import org.papaja.adminfly.module.psy.dbl.entity.Session;
@@ -31,11 +32,18 @@ public class SessionService extends AbstractService<Session, SessionRepository> 
     public void newSession(Patient patient, Test test) {
         Session session = new Session();
 
+        session.setSessionId(Randomizer.getRandomHexadecimal(16).toUpperCase());
         session.setPatient(patient);
         session.setTest(test);
         session.setActive(true);
 
         merge(session);
+    }
+
+    public Session getSession(String id) {
+        return repository.getList(repository.getConsumer(asList(
+                new Pair<>("sessionId", id)
+        ))).get(0);
     }
 
     public List<Session> getSessions(Patient patient) {

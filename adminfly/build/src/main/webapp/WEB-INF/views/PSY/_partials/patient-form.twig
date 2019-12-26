@@ -22,18 +22,14 @@
             <div class="form-group">
                 <label for="patientsCollection">{{ 'label.sex' | translate }}</label>
                 <div class="form-group">
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="femaleRadio" name="sex" class="custom-control-input"
-                               value="F" checked>
-                        <label class="custom-control-label"
-                               for="femaleRadio">{{ 'label.female' | translate }}</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="maleRadio" name="sex" class="custom-control-input"
-                               value="M">
-                        <label class="custom-control-label"
-                               for="maleRadio">{{ 'label.male' | translate }}</label>
-                    </div>
+                    {% for gender in genders %}
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="femaleRadio" name="sex" class="custom-control-input"
+                                   value="{{ gender }}" checked>
+                            <label class="custom-control-label"
+                                   for="femaleRadio">{{ 'label.gender_' ~ gender | translate }}</label>
+                        </div>
+                    {% endfor %}
                 </div>
                 {{ fields.error(result, 'sex') }}
             </div>

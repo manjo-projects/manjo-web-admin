@@ -15,9 +15,9 @@ public class WizardFactory {
     private static final Map<Test, Wizard<Answer>> INSTANCES = new EnumMap<>(Test.class);
 
     static {
-        INSTANCES.put(MMPI_566, new AbstractWizard<Answer>(1, 566) {});
-        INSTANCES.put(MMPI_71, new AbstractWizard<Answer>(1, 71) {});
-        INSTANCES.put(MMPI_377, new AbstractWizard<Answer>(1, 377) {});
+        INSTANCES.put(MMPI_566, new AbstractWizard<>(1, 566) {});
+        INSTANCES.put(MMPI_71, new AbstractWizard<>(1, 71) {});
+        INSTANCES.put(MMPI_377, new AbstractWizard<>(1, 377) {});
     }
 
     public Wizard<Answer> createWizard(Test test) {

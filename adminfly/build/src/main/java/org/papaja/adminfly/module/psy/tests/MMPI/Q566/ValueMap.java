@@ -1,15 +1,15 @@
 package org.papaja.adminfly.module.psy.tests.MMPI.Q566;
 
 import org.papaja.adminfly.module.psy.tests.MMPI.Scale;
-import org.papaja.adminfly.module.psy.tests.MMPI.Gender;
+import org.papaja.adminfly.module.psy.tests.Gender;
 import org.papaja.tuple.Pair;
 
 import java.util.EnumMap;
 import java.util.Map;
 
 import static org.papaja.adminfly.module.psy.tests.MMPI.Scale.*;
-import static org.papaja.adminfly.module.psy.tests.MMPI.Gender.F;
-import static org.papaja.adminfly.module.psy.tests.MMPI.Gender.M;
+import static org.papaja.adminfly.module.psy.tests.Gender.F;
+import static org.papaja.adminfly.module.psy.tests.Gender.M;
 
 // [SEX][SCALE] = [INDEX,SIGMA]
 public enum ValueMap {

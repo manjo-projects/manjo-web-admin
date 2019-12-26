@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(final WebSecurity web) {
-        web.ignoring().antMatchers("/static/**", "/shared/**");
+        web.ignoring().antMatchers("/static/**", "/*/shared/**");
     }
 
     @Override

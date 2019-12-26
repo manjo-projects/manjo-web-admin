@@ -27,12 +27,10 @@
 
     <modules>
         <module>admin-secure</module>
-        <!--<module>blog</module>
+        <module>blog</module>
         <module>mongodb-viewer</module>
-        <module>key-vault</module>
-        <module>shopper</module>
         <module>bookkeeper</module>
-        <module>just-clock</module>-->
+        <module>just-clock</module>
         <!-- <module>psy-tests</module>-->
     </modules>
 

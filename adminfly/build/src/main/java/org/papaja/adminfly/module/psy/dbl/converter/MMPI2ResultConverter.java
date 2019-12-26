@@ -4,7 +4,7 @@ import org.papaja.adminfly.module.psy.dbl.entity.Patient;
 import org.papaja.adminfly.module.psy.dbl.entity.results.AbstractMMPIResult;
 import org.papaja.adminfly.module.psy.tests.MMPI.Points;
 import org.papaja.adminfly.module.psy.tests.MMPI.Scale;
-import org.papaja.adminfly.module.psy.tests.MMPI.Gender;
+import org.papaja.adminfly.module.psy.tests.Gender;
 import org.papaja.function.Converter;
 import org.papaja.tuple.Triplet;
 

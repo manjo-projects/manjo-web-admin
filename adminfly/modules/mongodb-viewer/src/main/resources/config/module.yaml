@@ -1,8 +1,8 @@
 # required
 main:
   name: "📄 MongoDB Viewer"
-  key: MDBV
-  link: "/mdbv/"
+  key: "MONGODB-VIEWER"
+  link: "/mongodb-viewer/"
 
 # optional
 settings:
@@ -15,10 +15,10 @@ values:
   # optional
   menu:
     - label: "label.source"
-      path: "/mdbv/sources"
+      path: "/sources"
 
     - label: "label.rows"
-      path: "/mdbv/rows"
+      path: "/rows"
 
     - label: "label.records"
-      path: "/mdbv/records"
+      path: "/records"

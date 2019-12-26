@@ -57,7 +57,7 @@ public class WelshCode {
             if (map.containsKey(rate)) {
                 map.get(rate).add(scale);
             } else {
-                map.put(rate, new ArrayList<String>() {{
+                map.put(rate, new ArrayList<>() {{
                     add(scale);
                 }});
             }

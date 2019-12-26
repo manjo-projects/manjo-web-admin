@@ -3,25 +3,15 @@ package org.papaja.adminfly.module.psy.controller;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.axis.ValueAxis;
-import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
 import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.Plot;
+import org.jfree.chart.plot.IntervalMarker;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
-import org.jfree.chart.util.ShapeUtils;
-import org.jfree.data.Range;
-import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.chart.ui.Layer;
 import org.jfree.data.statistics.DefaultStatisticalCategoryDataset;
-import org.jfree.data.xy.CategoryTableXYDataset;
-import org.jfree.data.xy.IntervalXYDataset;
 import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
 import org.papaja.adminfly.commons.dao.service.BlogFileService;
 import org.papaja.adminfly.module.psy.dbl.entity.Document;
-import org.papaja.adminfly.module.psy.dbl.service.ResultService;
 import org.papaja.adminfly.module.psy.tests.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -34,10 +24,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.text.DecimalFormat;
 
 @Controller("psyResultController")
 @RequestMapping("/results")
@@ -85,7 +75,7 @@ public class ResultController extends AbstractPsyController {
                 true
         );
 
-        chart.getCategoryPlot().getRangeAxis().setRange(0, 100); //.getRangeAxis();
+        chart.getCategoryPlot().getRangeAxis().setRange(0, 120);
 
         CategoryPlot plot = chart.getCategoryPlot();
 
@@ -93,48 +83,35 @@ public class ResultController extends AbstractPsyController {
 
         chart.getCategoryPlot().setRenderer(renderer);
 
+        renderer.setSeriesShape(0, new Ellipse2D.Double(-3, -3, 6, 6));
+        renderer.setSeriesShape(1, new Ellipse2D.Double(-3, -3, 6, 6));
+
         plot.setRangeGridlinesVisible(true);
         plot.setRangeGridlinePaint(Color.BLACK);
 
         plot.setDomainGridlinesVisible(true);
         plot.setDomainGridlinePaint(Color.BLACK);
 
-        plot.setOutlinePaint(Color.BLUE);
-        plot.setOutlineStroke(new BasicStroke(2.0f));
+        IntervalMarker target = new IntervalMarker(31.0, 77.5, Color.decode("#00bd00"));
+        target.setAlpha(0.15f);
+        plot.addRangeMarker(target, Layer.BACKGROUND);
 
-//                renderer.setDefaultShape(true);
-//        renderer.setBaseShapesFilled(true);
+        renderer.setSeriesPaint(0, Color.decode("#ab211a"));
+        renderer.setSeriesPaint(1, Color.decode("#1a80ed"));
 
-        renderer.setSeriesPaint(0, Color.BLUE);
-        renderer.setSeriesPaint(1, Color.RED);
-
-// sets thickness for series (using strokes)
-        renderer.setSeriesStroke(0, new BasicStroke(4.0f));
+        renderer.setSeriesStroke(0, new BasicStroke(3.0f));
         renderer.setSeriesStroke(1, new BasicStroke(3.0f));
 
-        StandardCategoryItemLabelGenerator labelGenerator
-                = new StandardCategoryItemLabelGenerator("{2}", new DecimalFormat("###,###"));
-
-        renderer.setDefaultItemLabelGenerator(labelGenerator);
-
-        chart.getCategoryPlot().setBackgroundPaint(Color.getColor("f2ffe6"));
-
-//        rangeAxis.setAxisLinePaint(Color.GREEN);
-//
-//        rangeAxis.setRange(new Range(0f, 120f));
+        chart.getCategoryPlot().setBackgroundPaint(Color.WHITE);
 
         chart.setBackgroundPaint(Color.WHITE);
-//        chart.setTitle(getClass().getName());
 
-//        chart.getXYPlot().getRenderer().setBaseStroke(new BasicStroke(2.0f));
-
-//        chart.getPlot().setBackgroundPaint(Color.PINK);
         chart.setAntiAlias(true);
 
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-        ChartUtils.writeChartAsPNG(stream, chart, 800, 600);
+        ChartUtils.writeChartAsPNG(stream, chart, 1000, 600);
 
         return stream.toByteArray();
     }
@@ -172,8 +149,8 @@ public class ResultController extends AbstractPsyController {
         document.setCompressed(false);
         document.setCreated(new Timestamp(123123123L));
         document.setUpdated(new Timestamp(1223123123L));
-        document.setData(new byte[] {
-            (byte)0x7b, (byte)0x20, (byte)0x7b
+        document.setData(new byte[]{
+                (byte) 0x7b, (byte) 0x20, (byte) 0x7b
         });
         document.setName("test");
         document.setMime("unknown");

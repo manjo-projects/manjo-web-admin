@@ -22,8 +22,6 @@
         <papaja.adminfly.module.admin.version>1.0</papaja.adminfly.module.admin.version>
         <papaja.adminfly.module.blog.version>1.0</papaja.adminfly.module.blog.version>
         <papaja.adminfly.module.mongodb-viewer.version>1.0</papaja.adminfly.module.mongodb-viewer.version>
-        <papaja.adminfly.module.key-vault.version>1.0</papaja.adminfly.module.key-vault.version>
-        <papaja.adminfly.module.shopper.version>1.0</papaja.adminfly.module.shopper.version>
         <papaja.adminfly.module.bookkeeper.version>1.0</papaja.adminfly.module.bookkeeper.version>
         <papaja.adminfly.module.psy-tests.version>1.0</papaja.adminfly.module.psy-tests.version>
         <papaja.adminfly.module.clock.version>1.0</papaja.adminfly.module.clock.version>
@@ -59,32 +57,12 @@
             </dependencies>
         </profile>
         <profile>
-            <id>kv</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.papaja.adminfly</groupId>
-                    <artifactId>papaja-adminfly-module-kv</artifactId>
-                    <version>${papaja.adminfly.module.key-vault.version}</version>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
             <id>blog</id>
             <dependencies>
                 <dependency>
                     <groupId>org.papaja.adminfly</groupId>
                     <artifactId>papaja-adminfly-module-blog</artifactId>
                     <version>${papaja.adminfly.module.blog.version}</version>
-                </dependency>
-            </dependencies>
-        </profile>
-        <profile>
-            <id>shopper</id>
-            <dependencies>
-                <dependency>
-                    <groupId>org.papaja.adminfly</groupId>
-                    <artifactId>papaja-adminfly-module-shopper</artifactId>
-                    <version>${papaja.adminfly.module.shopper.version}</version>
                 </dependency>
             </dependencies>
         </profile>
@@ -123,11 +101,6 @@
             <dependencies>
                 <dependency>
                     <groupId>org.papaja.adminfly</groupId>
-                    <artifactId>papaja-adminfly-module-kv</artifactId>
-                    <version>${papaja.adminfly.module.key-vault.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.papaja.adminfly</groupId>
                     <artifactId>papaja-adminfly-module-blog</artifactId>
                     <version>${papaja.adminfly.module.blog.version}</version>
                 </dependency>
@@ -135,11 +108,6 @@
                     <groupId>org.papaja.adminfly</groupId>
                     <artifactId>papaja-adminfly-module-mdbv</artifactId>
                     <version>${papaja.adminfly.module.mongodb-viewer.version}</version>
-                </dependency>
-                <dependency>
-                    <groupId>org.papaja.adminfly</groupId>
-                    <artifactId>papaja-adminfly-module-shopper</artifactId>
-                    <version>${papaja.adminfly.module.shopper.version}</version>
                 </dependency>
                 <dependency>
                     <groupId>org.papaja.adminfly</groupId>
@@ -209,7 +177,6 @@
             <version>${javax.servlet.api.version}</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>org.jfree</groupId>
             <artifactId>jfreechart</artifactId>

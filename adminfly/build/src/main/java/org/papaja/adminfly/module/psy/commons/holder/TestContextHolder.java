@@ -12,15 +12,14 @@ public enum TestContextHolder {
 
     public static class Context {
 
-        private Patient patient = new Patient();
         private Session session = new Session();
 
         public Patient getPatient() {
-            return patient;
+            return session.getPatient();
         }
 
         public void setPatient(Patient patient) {
-            this.patient = patient;
+            this.session.setPatient(patient);
         }
 
         public Session getSession() {

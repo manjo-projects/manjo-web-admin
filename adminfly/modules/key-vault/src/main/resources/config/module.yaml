@@ -1,8 +1,0 @@
-# required
-main:
-  name: "⚔️ KV Store"
-  key: BLOG
-  link: "/kv/"
-
-# optional
-values: ~

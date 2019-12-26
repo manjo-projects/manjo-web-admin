@@ -5,10 +5,10 @@ import java.util.Map;
 
 public class AnswersPointsConverter implements AnswersPointsConverterInterface {
 
-    private QuestionsInterface questions;
+    private AnswersInterface answers;
 
-    public AnswersPointsConverter(QuestionsInterface questions) {
-        this.questions = questions;
+    public AnswersPointsConverter(AnswersInterface answers) {
+        this.answers = answers;
     }
 
     @Override
@@ -20,7 +20,7 @@ public class AnswersPointsConverter implements AnswersPointsConverterInterface {
         }
 
         results.forEach((question, answer) -> {
-            for (Scale scale : questions.getScales(question, answer)) {
+            for (Scale scale : answers.getScales(question, answer)) {
                 points.put(scale, points.get(scale));
             }
         });

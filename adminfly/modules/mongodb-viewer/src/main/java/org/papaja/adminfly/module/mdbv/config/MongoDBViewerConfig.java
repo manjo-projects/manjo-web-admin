@@ -25,6 +25,7 @@ import static java.util.Objects.requireNonNull;
         "classpath:properties/module/mdbv/database.private.properties",
         "classpath:properties/module/mdbv/module.properties",
 }, ignoreResourceNotFound = true)
+@ComponentScan(basePackages = {"org.papaja.adminfly.module.mdbv"})
 public class MongoDBViewerConfig {
 
     protected Environment environment;

@@ -14,17 +14,8 @@ import static org.papaja.adminfly.module.psy.tests.Test.MMPI_566;
 
 @SuppressWarnings({"unused", "Duplicates"})
 @Controller
-@RequestMapping("/psy/MMPI_566")
+@RequestMapping("/MMPI_566")
 public class MMPI566Controller extends AbstractMMPIController {
-
-    @Autowired
-    @Qualifier("wizardMMPI2")
-    private Wizard<Answer> wizard;
-
-    @Override
-    public Wizard<Answer> getWizard() {
-        return wizard;
-    }
 
     @Override
     public Test getTest() {
@@ -32,22 +23,13 @@ public class MMPI566Controller extends AbstractMMPIController {
     }
 
     @Override
-    protected AbstractMMPIResult getMMPI2ResultEntity() {
+    protected AbstractMMPIResult getResultEntity() {
         return new MMPI566Result();
     }
 
     @Controller
-    @RequestMapping("/shared/psy/MMPI_566")
+    @RequestMapping("/shared/MMPI_566")
     public static class Shared extends AbstractMMPIController.MMPI2Shared {
-
-        @Autowired
-        @Qualifier("wizardMMPI2")
-        private Wizard<Answer> wizard;
-
-        @Override
-        public Wizard<Answer> getWizard() {
-            return wizard;
-        }
 
         @Override
         public Test getTest() {

@@ -32,7 +32,7 @@ public class MMPI71Controller extends AbstractMMPIController {
     }
 
     @Override
-    protected AbstractMMPIResult getMMPI2ResultEntity() {
+    protected AbstractMMPIResult getResultEntity() {
         return new MMPI71Result();
     }
 
