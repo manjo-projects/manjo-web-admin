@@ -171,7 +171,7 @@ public class RootServletConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    @Scope(WebApplicationContext.SCOPE_SESSION)
+    @Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
     public DataHolder modulesDataHolder() {
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         Yaml                    yaml     = new Yaml();
