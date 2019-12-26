@@ -140,7 +140,7 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
             Wizard<Answer> wizard = getWizard();
             ModelAndView   mav    = newView("MMPI/shared/test");
 
-            extra.set("main.current.name", getTest().getName());
+            extra.set("main.name", getTest().getName());
 
             wizard.update();
 
