@@ -1,6 +1,7 @@
 package org.papaja.adminfly.commons.vendor.spring.web.servlet.handler;
 
 import org.papaja.adminfly.commons.DataHolder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -12,7 +13,8 @@ import static java.lang.String.format;
 
 public class ModuleChangerInterceptor extends HandlerInterceptorAdapter {
 
-    private DataHolder source = DataHolder.HOLDER;
+    @Autowired
+    private DataHolder source;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)

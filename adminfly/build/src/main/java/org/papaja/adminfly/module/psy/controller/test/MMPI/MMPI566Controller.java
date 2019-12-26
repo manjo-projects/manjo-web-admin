@@ -3,10 +3,6 @@ package org.papaja.adminfly.module.psy.controller.test.MMPI;
 import org.papaja.adminfly.module.psy.dbl.entity.results.AbstractMMPIResult;
 import org.papaja.adminfly.module.psy.dbl.entity.results.MMPI566Result;
 import org.papaja.adminfly.module.psy.tests.Test;
-import org.papaja.adminfly.module.psy.tests.MMPI.Answer;
-import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,7 +25,7 @@ public class MMPI566Controller extends AbstractMMPIController {
 
     @Controller
     @RequestMapping("/shared/MMPI_566")
-    public static class Shared extends AbstractMMPIController.MMPI2Shared {
+    public static class Shared extends AbstractMMPIController.MMPIShared {
 
         @Override
         public Test getTest() {

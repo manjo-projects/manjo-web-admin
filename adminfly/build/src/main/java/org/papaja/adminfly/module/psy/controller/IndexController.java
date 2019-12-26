@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import static java.lang.String.format;
+
 @SuppressWarnings({"unused"})
 @Controller
 public class IndexController extends AbstractPsyController {
@@ -44,12 +46,12 @@ public class IndexController extends AbstractPsyController {
                 @PathVariable("session") String hash
         ) {
             Session      session = sessions.getSession(hash);
-            ModelAndView mav     = newRedirect(session.getTest().toString());
+            ModelAndView mav     = newRedirect(format("shared/%s", session.getTest().name()));
 
             if (session.isOld() && session.isActive()) {
                 context.setSession(session);
             } else {
-                mav = newRedirect("undefined");
+                mav = newRedirect("shared/undefined");
             }
 
             return mav;
@@ -57,7 +59,7 @@ public class IndexController extends AbstractPsyController {
 
         @GetMapping("/undefined")
         public ModelAndView undefined() {
-            return new ModelAndView("/psy/shared/undefined");
+            return newView("shared/undefined");
         }
 
     }

@@ -25,7 +25,7 @@ public class MMPI377Controller extends AbstractMMPIController {
 
     @Controller
     @RequestMapping("/shared/MMPI_377")
-    public static class Shared extends AbstractMMPIController.MMPI2Shared {
+    public static class Shared extends AbstractMMPIController.MMPIShared {
 
         @Override
         public Test getTest() {

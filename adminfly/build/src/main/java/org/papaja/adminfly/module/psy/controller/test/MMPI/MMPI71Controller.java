@@ -38,7 +38,7 @@ public class MMPI71Controller extends AbstractMMPIController {
 
     @Controller
     @RequestMapping("/shared/psy/MMPI_71")
-    public static class Shared extends MMPI2Shared {
+    public static class Shared extends MMPIShared {
 
         @Autowired
         @Qualifier("wizardMMPI2")

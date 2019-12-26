@@ -1,5 +1,6 @@
 package org.papaja.adminfly.module.psy.controller;
 
+import org.papaja.adminfly.commons.DataHolder;
 import org.papaja.adminfly.commons.mvc.controller.AbstractController;
 import org.papaja.adminfly.module.psy.commons.holder.TestContextHolder;
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
@@ -18,6 +19,9 @@ abstract public class AbstractPsyController extends AbstractController {
     protected TestContextHolder.Context context;
 
     @Autowired
+    protected DataHolder extra;
+
+    @Autowired
     protected PatientService patients;
 
     @Autowired
@@ -28,9 +32,7 @@ abstract public class AbstractPsyController extends AbstractController {
 
     @ModelAttribute
     public void sharedData(Model model) {
-        Patient patient = context.getPatient();
-
-        model.addAttribute("patient", patient);
+        model.addAttribute("patient", context.getPatient());
     }
 
 }

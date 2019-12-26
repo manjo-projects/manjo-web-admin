@@ -19,22 +19,22 @@
     <hr class="my-4"/>
     <div class="lead">
         <div class="btn-group btn-block">
-            <button class="btn btn-success btn-lg" href="#" onclick="window.location='{{ relative('/' ~ test ~ '/FORWARD/T') }}'"
+            <button class="btn btn-success btn-lg" href="#" onclick="window.location='{{ relative(prefix) ~ '/FORWARD/T' }}'"
                     role="button">
                 {{ 'label.true' | translate }}!
             </button>
-            <button class="btn btn-danger btn-lg" href="#" onclick="window.location='{{ relative('/' ~ test ~ '/FORWARD/F') }}'"
+            <button class="btn btn-danger btn-lg" href="#" onclick="window.location='{{ relative(prefix) ~ '/FORWARD/F' }}'"
                     role="button">
                 {{ 'label.not_true' | translate }}!
             </button>
         </div>
     </div>
     <hr class="my-4"/>
-    <button class="btn btn-secondary btn-lg" href="#" onclick="window.location='{{ relative(prefix) ~ '/' ~ test ~ '/BACKWARD' }}'"
+    <button class="btn btn-secondary btn-lg" href="#" onclick="window.location='{{ relative(prefix) ~ '/BACKWARD' }}'"
             role="button">
         {{ 'label.back' | translate }}!
     </button>
-    <button class="btn btn-outline-danger btn-lg" href="#" onclick="window.location='{{ relative('/' ~ test ~ '/restart') }}'"
+    <button class="btn btn-outline-danger btn-lg" href="#" onclick="window.location='{{ relative(prefix) ~ '/restart' }}'"
             role="button">
         {{ 'label.restart' | translate }}
     </button>

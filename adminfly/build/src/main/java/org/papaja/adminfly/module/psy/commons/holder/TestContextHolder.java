@@ -8,11 +8,15 @@ import static java.lang.ThreadLocal.withInitial;
 public enum TestContextHolder {
     INSTANCE;
 
-    private static final ThreadLocal<Context> CONTEXT = withInitial(() -> new Context());
+    private static final ThreadLocal<Context> CONTEXT = withInitial(() -> new Context() {{
+        setSession(new Session() {{
+            setPatient(new Patient());
+        }});
+    }});
 
     public static class Context {
 
-        private Session session = new Session();
+        private Session session;
 
         public Patient getPatient() {
             return session.getPatient();
