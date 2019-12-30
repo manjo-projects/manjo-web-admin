@@ -6,6 +6,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import static java.lang.String.format;
 
+@MappedSuperclass
 abstract public class AbstractMMPIResult extends Result {
 
     @Column(name = "SCALE_L")
