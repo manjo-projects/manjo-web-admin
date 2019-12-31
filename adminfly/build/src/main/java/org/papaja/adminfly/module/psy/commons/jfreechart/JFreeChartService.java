@@ -17,16 +17,20 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import static java.awt.Color.decode;
 import static java.lang.String.format;
 
+@SuppressWarnings({"unused", "Duplicates"})
 public class JFreeChartService {
 
-    private static final Ellipse2D.Double CIRCLE = new Ellipse2D.Double(-3, -3, 6, 6);
+    private static final Ellipse2D.Double CIRCLE       = new Ellipse2D.Double(-3, -3, 6, 6);
+    private static final BasicStroke      BASIC_STROKE = new BasicStroke(3.0f);
 
     public static byte[] create(String title, String xTitle, String yTitle, List<Map<Double, String>> data) {
         byte[]                            bytes   = new byte[0];
         DefaultStatisticalCategoryDataset dataset = new DefaultStatisticalCategoryDataset();
         int                               counter = 0;
+        int                               size    = data.size();
 
         for (Map<Double, String> datum : data) {
             String row = format("R%d", counter++);
@@ -44,30 +48,25 @@ public class JFreeChartService {
 
         chart.getCategoryPlot().setRenderer(renderer);
 
-        renderer.setSeriesShape(0, CIRCLE);
-        renderer.setSeriesShape(1, CIRCLE);
-
         plot.setRangeGridlinesVisible(true);
         plot.setRangeGridlinePaint(Color.BLACK);
 
         plot.setDomainGridlinesVisible(true);
         plot.setDomainGridlinePaint(Color.BLACK);
 
-        IntervalMarker target = new IntervalMarker(31.0, 77.5, Color.decode("#00bd00"));
+        IntervalMarker target = new IntervalMarker(31.0, 77.5, Colors.GREEN.getColor());
 
         target.setAlpha(0.15f);
         plot.addRangeMarker(target, Layer.BACKGROUND);
 
-        renderer.setSeriesPaint(0, Color.decode("#ab211a"));
-        renderer.setSeriesPaint(1, Color.decode("#1a80ed"));
+        for (int i = 0; i < size; i++) {
+            renderer.setSeriesShape(i, CIRCLE);
+            renderer.setSeriesPaint(i, i % 2 == 0 ? Colors.RED.getColor() : Colors.BLUE.getColor());
+            renderer.setSeriesStroke(i, BASIC_STROKE);
+        }
 
-        renderer.setSeriesStroke(0, new BasicStroke(3.0f));
-        renderer.setSeriesStroke(1, new BasicStroke(3.0f));
-
-        chart.getCategoryPlot().setBackgroundPaint(Color.WHITE);
-
-        chart.setBackgroundPaint(Color.WHITE);
-
+        chart.getCategoryPlot().setBackgroundPaint(Colors.WHITE.getColor());
+        chart.setBackgroundPaint(Colors.WHITE.getColor());
         chart.setAntiAlias(true);
 
 
@@ -81,6 +80,26 @@ public class JFreeChartService {
         }
 
         return bytes;
+    }
+
+    private enum Colors {
+
+        RED(decode("#ab211a")),
+        BLUE(decode("#1a80ed")),
+        BLACK(Color.BLACK),
+        WHITE(Color.WHITE),
+        GREEN(decode("#00bd00"));
+
+        private Color color;
+
+        Colors(Color color) {
+            this.color = color;
+        }
+
+        public Color getColor() {
+            return color;
+        }
+
     }
 
 }
