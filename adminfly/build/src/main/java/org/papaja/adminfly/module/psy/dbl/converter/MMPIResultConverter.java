@@ -8,7 +8,7 @@ import org.papaja.adminfly.module.psy.tests.Gender;
 import org.papaja.function.Converter;
 import org.papaja.tuple.Triplet;
 
-public class MMPI2ResultConverter<Result extends AbstractMMPIResult>
+public class MMPIResultConverter<Result extends AbstractMMPIResult>
         implements Converter<Triplet<Result, Points, Patient>, Result> {
 
     @Override

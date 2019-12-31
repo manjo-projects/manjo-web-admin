@@ -66,6 +66,7 @@ public class ResultController extends AbstractPsyController {
         dataset.add(33, 0, "SCALES", "SCALE_4");
         dataset.add(45, 0, "SCALES", "SCALE_5");
         dataset.add(99, 0, "SCALES", "SCALE_6");
+        dataset.add(33.4, 0, "SCALES", "SCALE_X");
 
         JFreeChart chart = ChartFactory.createLineChart(Test.MMPI_71.getName(), "Scales", "T-Rates",
                 dataset,
