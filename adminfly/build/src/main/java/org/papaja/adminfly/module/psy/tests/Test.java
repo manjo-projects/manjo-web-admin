@@ -4,9 +4,7 @@ public enum Test {
 
     MMPI_566("MMPI-566Q"),
     MMPI_71("MMPI-MiniMult-71Q"),
-    MMPI_377("MMPI-377Q"),
-    SCHMIESCHEK("Schmieschek"),
-    YAKHIN("Yakhin-Mendelevich");
+    MMPI_377("MMPI-377Q");
 
     private String name;
 

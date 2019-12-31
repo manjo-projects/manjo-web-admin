@@ -14,6 +14,8 @@ public class PointsTRateConverterFactory {
                 return new PointsTRateQ71Converter();
             case MMPI_566:
                 return new PointsTRateQ566Converter(null);
+            case MMPI_377:
+                return new PointsTRateQ566Converter(null);
             default:
                 throw new IllegalArgumentException(format("Cannot create converter for '%s' test", test));
         }

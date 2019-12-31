@@ -14,7 +14,8 @@
         </div>
         <hr class="my-4"/>
     {% endif %}
-    {% set question = test ~ '_' ~ patient.getSex() ~ '_Q' ~ position | translate %}
+    {% set infix = (test == 'MMPI_566') ? '_' ~ patient.getSex() : '' %}
+    {% set question = test ~ infix  ~ '_Q' ~ position | translate %}
     <h3 class="display-4">{{ question }}</h3>
     <hr class="my-4"/>
     <div class="lead">

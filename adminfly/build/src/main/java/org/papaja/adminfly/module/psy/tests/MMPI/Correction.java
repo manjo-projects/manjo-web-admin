@@ -7,8 +7,6 @@ public class Correction {
     private static final float DEFAULT_K = 30f;
     private static final float DEFAULT_T = 120f;
 
-    private float ts = DEFAULT_T;
-    private float ks = DEFAULT_K;
     private float factor;
 
     Correction(float factor, float ks, float ts) {

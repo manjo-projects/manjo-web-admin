@@ -16,8 +16,8 @@ public class WizardFactory {
 
     static {
         INSTANCES.put(MMPI_566, new AbstractWizard<>(1, 566) {});
-        INSTANCES.put(MMPI_71, new AbstractWizard<>(1, 71) {});
-        INSTANCES.put(MMPI_377, new AbstractWizard<>(1, 377) {});
+        INSTANCES.put(MMPI_71, new AbstractWizard<>(1, 3) {});
+        INSTANCES.put(MMPI_377, new AbstractWizard<>(1, 3) {});
     }
 
     public Wizard<Answer> createWizard(Test test) {

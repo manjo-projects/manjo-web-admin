@@ -21,7 +21,7 @@ public class AnswersPointsConverter implements AnswersPointsConverterInterface {
 
         results.forEach((question, answer) -> {
             for (Scale scale : answers.getScales(question, answer)) {
-                points.put(scale, points.get(scale));
+                points.put(scale, points.get(scale) + 1);
             }
         });
 

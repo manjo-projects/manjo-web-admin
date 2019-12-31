@@ -9,9 +9,8 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.chart.ui.Layer;
 import org.jfree.data.statistics.DefaultStatisticalCategoryDataset;
-import org.jfree.data.xy.XYSeries;
 import org.papaja.adminfly.commons.dao.service.BlogFileService;
-import org.papaja.adminfly.module.psy.dbl.entity.Document;
+import org.papaja.adminfly.module.psy.dbl.entity.results.Result;
 import org.papaja.adminfly.module.psy.tests.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -27,7 +26,8 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.sql.Timestamp;
+
+import static java.lang.String.format;
 
 @Controller("psyResultController")
 @RequestMapping("/results")
@@ -42,17 +42,6 @@ public class ResultController extends AbstractPsyController {
     public byte[] chart() throws IOException {
 //        DefaultCategoryDataset
 
-        XYSeries series = new XYSeries("XYSeries");
-
-        series.add(3.4f, 3.5f);
-        series.add(2.4f, 1.5f);
-        series.add(4.4f, 6.5f);
-        series.add(2.4f, 1.5f);
-        series.add(4.4f, 6.5f);
-        series.add(7.4f, 2.5f);
-
-//        XYSeriesCollection dataset = new XYSeriesCollection();
-//        dataset.addSeries(series);
 
         DefaultStatisticalCategoryDataset dataset = new DefaultStatisticalCategoryDataset();
 
@@ -120,7 +109,7 @@ public class ResultController extends AbstractPsyController {
     @GetMapping
     @PreAuthorize("hasAnyAuthority('READ')")
     public ModelAndView index() {
-        ModelAndView mav = newView("index");
+        ModelAndView mav = newView("results/index");
 
         mav.addObject("results", results.getAll());
 
@@ -132,31 +121,10 @@ public class ResultController extends AbstractPsyController {
     public ModelAndView result(
             @PathVariable("id") Integer id
     ) {
-        ModelAndView mav = newView("result");
+        Result       result = results.getOne(id);
+        ModelAndView mav    = newView("results/MMPI/index");
 
-        System.out.println(results.getOne(id));
-        mav.addObject("result", results.getOne(id));
-
-        return mav;
-    }
-
-    @GetMapping("/test")
-    public ModelAndView test() {
-        ModelAndView mav = newView("result");
-
-        Document document = new Document();
-
-        document.setAlgorithm("none");
-        document.setCompressed(false);
-        document.setCreated(new Timestamp(123123123L));
-        document.setUpdated(new Timestamp(1223123123L));
-        document.setData(new byte[]{
-                (byte) 0x7b, (byte) 0x20, (byte) 0x7b
-        });
-        document.setName("test");
-        document.setMime("unknown");
-
-        files.merge(document);
+        mav.addObject("result", result);
 
         return mav;
     }

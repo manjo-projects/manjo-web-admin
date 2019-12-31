@@ -4,15 +4,10 @@ import org.papaja.adminfly.module.psy.controller.AbstractPsyController;
 import org.papaja.adminfly.module.psy.dbl.converter.MMPIResultConverter;
 import org.papaja.adminfly.module.psy.dbl.entity.Patient;
 import org.papaja.adminfly.module.psy.dbl.entity.results.AbstractMMPIResult;
-import org.papaja.adminfly.module.psy.tests.MMPI.Answer;
-import org.papaja.adminfly.module.psy.tests.MMPI.AnswersPointsConverter;
-import org.papaja.adminfly.module.psy.tests.MMPI.Q566.Q566Answers;
-import org.papaja.adminfly.module.psy.tests.MMPI.Scale;
-import org.papaja.adminfly.module.psy.tests.MMPI.WizardFactory;
+import org.papaja.adminfly.module.psy.tests.MMPI.*;
 import org.papaja.adminfly.module.psy.tests.TestAware;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
 import org.papaja.adminfly.module.psy.tests.wizard.WizardAware;
-import org.papaja.tuple.Triplet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -55,7 +50,7 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
             mav.addObject("previous", getWizard().results().get(getWizard().position()));
             mav.addObject("prefix", format("/%s", getTest()));
         } else if (getWizard().is(FINISHED)) {
-            mav = newRedirect("calculate");
+            mav = newRedirect(format("%s/calculate", getTest()));
         } else {
             mav = newView("choose-patient");
             mav.addObject("items", patients.getAll());
@@ -92,13 +87,10 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
         ModelAndView   mav    = newRedirect("tests");
 
         if (wizard.results().size() == wizard.size()) {
-            AnswersPointsConverter converter = new AnswersPointsConverter(new Q566Answers());
+            AnswersPointsConverter converter = new AnswersPointsConverter(AnswersFactory.createAnswers(getTest()));
             Map<Scale, Integer>    points    = converter.convert(wizard.results());
 
-            AbstractMMPIResult result = new MMPIResultConverter()
-                    .convert(new Triplet(getResultEntity(), points, context.getPatient()));
-
-            results.merge(result);
+            results.proceed(points, getResultEntity(), context.getSession());
 
             attributes.addFlashAttribute("message",
                     messages.getSuccessMessage("text.calculationResultWasSaved", getTest().getName()));
