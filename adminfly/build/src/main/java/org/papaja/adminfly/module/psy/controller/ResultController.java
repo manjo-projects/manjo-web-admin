@@ -10,7 +10,7 @@ import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.chart.ui.Layer;
 import org.jfree.data.statistics.DefaultStatisticalCategoryDataset;
 import org.papaja.adminfly.commons.dao.service.BlogFileService;
-import org.papaja.adminfly.module.psy.dbl.entity.results.Result;
+import org.papaja.adminfly.module.psy.database.entity.results.Result;
 import org.papaja.adminfly.module.psy.tests.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -122,7 +122,7 @@ public class ResultController extends AbstractPsyController {
             @PathVariable("id") Integer id
     ) {
         Result       result = results.getOne(id);
-        ModelAndView mav    = newView("results/MMPI/index");
+        ModelAndView mav    = newView(format("results/%s/index", result.getTest()));
 
         mav.addObject("result", result);
 

@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.psy.commons.holder;
 
-import org.papaja.adminfly.module.psy.dbl.entity.Patient;
-import org.papaja.adminfly.module.psy.dbl.entity.Session;
+import org.papaja.adminfly.module.psy.database.entity.Patient;
+import org.papaja.adminfly.module.psy.database.entity.Session;
 
 import static java.lang.ThreadLocal.withInitial;
 

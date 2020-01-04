@@ -19,6 +19,7 @@ import java.util.Map;
 
 import static java.lang.String.format;
 
+@SuppressWarnings({"unused", "Duplicates"})
 public class JFreeChartService {
 
     private static final Ellipse2D.Double CIRCLE = new Ellipse2D.Double(-3, -3, 6, 6);
@@ -38,8 +39,8 @@ public class JFreeChartService {
 
         chart.getCategoryPlot().getRangeAxis().setRange(0, 120);
 
-        CategoryPlot plot = chart.getCategoryPlot();
-
+        CategoryPlot         plot     = chart.getCategoryPlot();
+        IntervalMarker       target   = new IntervalMarker(31.0, 77.5, Color.decode("#00bd00"));
         LineAndShapeRenderer renderer = new LineAndShapeRenderer();
 
         chart.getCategoryPlot().setRenderer(renderer);
@@ -53,10 +54,10 @@ public class JFreeChartService {
         plot.setDomainGridlinesVisible(true);
         plot.setDomainGridlinePaint(Color.BLACK);
 
-        IntervalMarker target = new IntervalMarker(31.0, 77.5, Color.decode("#00bd00"));
+        plot.addRangeMarker(target, Layer.BACKGROUND);
+
 
         target.setAlpha(0.15f);
-        plot.addRangeMarker(target, Layer.BACKGROUND);
 
         renderer.setSeriesPaint(0, Color.decode("#ab211a"));
         renderer.setSeriesPaint(1, Color.decode("#1a80ed"));

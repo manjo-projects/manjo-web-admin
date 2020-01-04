@@ -1,9 +1,8 @@
 package org.papaja.adminfly.module.psy.controller.test.MMPI;
 
 import org.papaja.adminfly.module.psy.controller.AbstractPsyController;
-import org.papaja.adminfly.module.psy.dbl.converter.MMPIResultConverter;
-import org.papaja.adminfly.module.psy.dbl.entity.Patient;
-import org.papaja.adminfly.module.psy.dbl.entity.results.AbstractMMPIResult;
+import org.papaja.adminfly.module.psy.database.entity.Patient;
+import org.papaja.adminfly.module.psy.database.entity.results.AbstractMMPIResult;
 import org.papaja.adminfly.module.psy.tests.MMPI.*;
 import org.papaja.adminfly.module.psy.tests.TestAware;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;

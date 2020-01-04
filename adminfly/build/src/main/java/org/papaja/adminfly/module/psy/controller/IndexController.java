@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.psy.controller;
 
-import org.papaja.adminfly.module.psy.dbl.entity.Session;
-import org.papaja.adminfly.module.psy.dbl.service.SessionService;
+import org.papaja.adminfly.module.psy.database.entity.Session;
+import org.papaja.adminfly.module.psy.database.service.SessionService;
 import org.papaja.adminfly.module.psy.tests.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.psy.controller.test.MMPI;
 
-import org.papaja.adminfly.module.psy.dbl.entity.results.AbstractMMPIResult;
-import org.papaja.adminfly.module.psy.dbl.entity.results.MMPI566Result;
+import org.papaja.adminfly.module.psy.database.entity.results.AbstractMMPIResult;
+import org.papaja.adminfly.module.psy.database.entity.results.MMPI566Result;
 import org.papaja.adminfly.module.psy.tests.Test;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
