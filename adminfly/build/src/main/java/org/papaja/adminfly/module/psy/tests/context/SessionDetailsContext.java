@@ -1,5 +1,6 @@
 package org.papaja.adminfly.module.psy.tests.context;
 
+import org.papaja.adminfly.module.psy.tests.Gender;
 import org.papaja.adminfly.module.psy.tests.PatientDetails;
 import org.papaja.adminfly.module.psy.tests.SessionContext;
 import org.papaja.adminfly.module.psy.tests.SessionDetails;
@@ -27,6 +28,18 @@ public class SessionDetailsContext extends TestContext implements SessionContext
     @Override
     public void setPatient(PatientDetails patient) {
         this.patient = patient;
+    }
+
+    @Override
+    public Gender getGender() {
+        return hasPatient() ? getPatient().getGender() : null;
+    }
+
+    @Override
+    public void setGender(Gender gender) {
+        if (hasPatient()) {
+            getPatient().setGender(gender);
+        }
     }
 
 }

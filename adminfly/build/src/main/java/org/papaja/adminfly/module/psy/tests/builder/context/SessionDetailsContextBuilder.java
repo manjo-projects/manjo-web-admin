@@ -7,8 +7,6 @@ import org.papaja.adminfly.module.psy.tests.context.SessionDetailsContext;
 
 public class SessionDetailsContextBuilder extends AbstractTestContextBuilder<SessionDetailsContextBuilder, SessionContext> {
 
-    private SessionContext context;
-
     public SessionDetailsContextBuilder() {
         this.context = new SessionDetailsContext();
     }

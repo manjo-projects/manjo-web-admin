@@ -4,20 +4,26 @@ import org.papaja.adminfly.module.psy.controller.AbstractPsyController;
 import org.papaja.adminfly.module.psy.database.converter.MMPIToResultConverter;
 import org.papaja.adminfly.module.psy.database.entity.Patient;
 import org.papaja.adminfly.module.psy.database.entity.results.MMPI.AbstractMMPIResult;
-import org.papaja.adminfly.module.psy.tests.MMPI.*;
+import org.papaja.adminfly.module.psy.database.entity.results.Result;
+import org.papaja.adminfly.module.psy.tests.MMPI.Answer;
+import org.papaja.adminfly.module.psy.tests.MMPI.AnswersFactory;
+import org.papaja.adminfly.module.psy.tests.MMPI.AnswersPointsConverter;
+import org.papaja.adminfly.module.psy.tests.MMPI.WizardFactory;
+import org.papaja.adminfly.module.psy.tests.MMPI.payload.AnswersPayload;
 import org.papaja.adminfly.module.psy.tests.TestAware;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
 import org.papaja.adminfly.module.psy.tests.wizard.WizardAware;
+import org.papaja.tuple.Pair;
 import org.papaja.tuple.Triplet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.Map;
 
 import static java.lang.String.format;
 import static org.papaja.adminfly.module.psy.tests.wizard.Wizard.State.FINISHED;
@@ -27,6 +33,11 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
 
     @Autowired
     protected WizardFactory wizardFactory;
+
+    @ModelAttribute
+    public void updateModel(Model model) {
+        context.setTest(getTest());
+    }
 
     @PreAuthorize("hasAnyAuthority('READ')")
     @GetMapping({"/restart"})
@@ -45,7 +56,7 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
 
         mav.addObject("test", getTest());
 
-        if (!getWizard().is(FINISHED) && context.getPatient().isOld()) {
+        if (!getWizard().is(FINISHED) && context.hasPatient()) {
             mav.addObject("position", getWizard().position());
             mav.addObject("total", getWizard().size());
             mav.addObject("previous", getWizard().results().get(getWizard().position()));
@@ -88,18 +99,22 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
         ModelAndView   mav    = newRedirect("tests");
 
         if (wizard.results().size() == wizard.size()) {
-            AnswersPointsConverter converter = new AnswersPointsConverter(AnswersFactory.createAnswers(getTest()));
-            Map<Scale, Integer>    points    = converter.convert(wizard.results());
 
-            results.proceed(new MMPIToResultConverter<>().convert(
-                    new Triplet<>(getResultEntity(), points, context.getPatient())
-            ));
+            AnswersPayload         payload   = new AnswersPayload(
+                    new Pair<>(wizard.results(), AnswersFactory.createAnswers(getTest())));
+            AnswersPointsConverter converter = new AnswersPointsConverter();
+            Result                 result    = new MMPIToResultConverter<>().convert(
+                    new Triplet<>(getResultEntity(), converter.convert(payload), context.getPatient()));
+
+            result.setPatient((Patient) context.getPatient());
+
+            results.proceed(result);
 
             attributes.addFlashAttribute("message",
                     messages.getSuccessMessage("text.calculationResultWasSaved", getTest().getName()));
 
             wizard.reset();
-            context.setPatient(new Patient());
+            context.setPatient(null);
         } else {
             wizard.reset();
             attributes.addFlashAttribute("message",
@@ -130,7 +145,7 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
 
             wizard.update();
 
-            if (context.getPatient().isNew()) {
+            if (!context.hasPatient()) {
                 mav = newView("MMPI/shared/undefined");
             } else if (getWizard().is(FINISHED)) {
                 mav = newView("MMPI/shared/finish");

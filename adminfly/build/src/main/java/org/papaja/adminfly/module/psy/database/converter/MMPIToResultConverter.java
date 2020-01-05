@@ -1,24 +1,22 @@
 package org.papaja.adminfly.module.psy.database.converter;
 
-import org.papaja.adminfly.module.psy.database.entity.Patient;
 import org.papaja.adminfly.module.psy.database.entity.results.MMPI.AbstractMMPIResult;
 import org.papaja.adminfly.module.psy.tests.Gender;
 import org.papaja.adminfly.module.psy.tests.MMPI.Scale;
+import org.papaja.adminfly.module.psy.tests.PatientDetails;
 import org.papaja.function.Converter;
 import org.papaja.tuple.Triplet;
 
 import java.util.Map;
 
 public class MMPIToResultConverter<Result extends AbstractMMPIResult>
-        implements Converter<Triplet<Result, Map<Scale, Integer>, Patient>, Result> {
+        implements Converter<Triplet<Result, Map<Scale, Integer>, PatientDetails>, Result> {
 
     @Override
-    public Result convert(Triplet<Result, Map<Scale, Integer>, Patient> data) {
+    public Result convert(Triplet<Result, Map<Scale, Integer>, PatientDetails> data) {
         Map<Scale, Integer> points  = data.getB();
-        Patient             patient = data.getC();
+        PatientDetails      patient = data.getC();
         Result              result  = data.getA();
-
-        result.setPatient(patient);
 
         result.setScaleL(points.get(Scale.SCALE_L));
         result.setScaleF(points.get(Scale.SCALE_F));

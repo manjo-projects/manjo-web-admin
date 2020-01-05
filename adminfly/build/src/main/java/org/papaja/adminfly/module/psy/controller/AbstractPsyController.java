@@ -5,7 +5,7 @@ import org.papaja.adminfly.commons.mvc.controller.AbstractController;
 import org.papaja.adminfly.module.psy.database.service.PatientService;
 import org.papaja.adminfly.module.psy.database.service.ResultService;
 import org.papaja.adminfly.module.psy.database.service.SessionService;
-import org.papaja.adminfly.module.psy.tests.Context;
+import org.papaja.adminfly.module.psy.tests.SessionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 abstract public class AbstractPsyController extends AbstractController {
 
     @Autowired
-    protected Context context;
+    protected SessionContext context;
 
     @Autowired
     protected DataHolder extra;

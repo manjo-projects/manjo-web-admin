@@ -7,8 +7,6 @@ import org.papaja.adminfly.module.psy.tests.context.PayloadDataContext;
 public class PayloadContextBuilder<PayloadType>
         extends AbstractTestContextBuilder<PayloadContextBuilder<PayloadType>, PayloadContext> {
 
-    private PayloadContext<PayloadType> context;
-
     public PayloadContextBuilder() {
         this.context = new PayloadDataContext();
     }
