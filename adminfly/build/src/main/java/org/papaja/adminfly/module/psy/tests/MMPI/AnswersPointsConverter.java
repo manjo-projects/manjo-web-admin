@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class AnswersPointsConverter implements AnswersPointsConverterInterface {
 
-    private AnswersInterface answers;
+    private Answers answers;
 
-    public AnswersPointsConverter(AnswersInterface answers) {
+    public AnswersPointsConverter(Answers answers) {
         this.answers = answers;
     }
 

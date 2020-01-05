@@ -2,6 +2,7 @@ package org.papaja.adminfly.module.psy.database.entity;
 
 import org.papaja.adminfly.commons.dao.entity.api.AbstractEntity;
 import org.papaja.adminfly.module.psy.tests.Gender;
+import org.papaja.adminfly.module.psy.tests.PatientDetails;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -11,7 +12,7 @@ import static org.papaja.adminfly.module.psy.tests.Gender.F;
 
 @Entity
 @Table(name = "PSY_PATIENTS")
-public class Patient extends AbstractEntity {
+public class Patient extends AbstractEntity implements PatientDetails {
 
     @Column(name = "NAME")
     private String name;
@@ -21,7 +22,7 @@ public class Patient extends AbstractEntity {
 
     @Column(name = "SEX", columnDefinition = "CHAR")
     @Enumerated(EnumType.STRING)
-    private Gender sex;
+    private Gender gender;
 
     @Column(name = "CREATED")
     private Timestamp created;
@@ -29,6 +30,7 @@ public class Patient extends AbstractEntity {
     @Column(name = "UPDATED")
     private Timestamp updated;
 
+    @Override
     public String getName() {
         return name;
     }
@@ -37,6 +39,7 @@ public class Patient extends AbstractEntity {
         this.name = name;
     }
 
+    @Override
     public String getSurname() {
         return surname;
     }
@@ -45,16 +48,17 @@ public class Patient extends AbstractEntity {
         this.surname = surname;
     }
 
-    public Gender getSex() {
-        return sex;
+    @Override
+    public Gender getGender() {
+        return gender;
     }
 
-    public void setSex(Gender sex) {
-        this.sex = sex;
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public String getSexEmoji() {
-        return sex.equals(F) ? "&#127825;" : "&#127820;";
+        return gender.equals(F) ? "&#127825;" : "&#127820;";
     }
 
     public Timestamp getCreated() {
@@ -75,7 +79,7 @@ public class Patient extends AbstractEntity {
 
     @Override
     public String toString() {
-        return format("Patient{name='%s', surname='%s', sex=%s, created=%s, updated=%s}",
-                name, surname, sex, created, updated);
+        return format("Patient{name='%s', surname='%s', gender=%s, created=%s, updated=%s}",
+                name, surname, gender, created, updated);
     }
 }

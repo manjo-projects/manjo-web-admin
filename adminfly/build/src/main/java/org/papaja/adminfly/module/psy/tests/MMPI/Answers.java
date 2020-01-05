@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.psy.tests.MMPI;
 
-public interface AnswersInterface {
+public interface Answers {
 
     Scale[][][] getMap();
 

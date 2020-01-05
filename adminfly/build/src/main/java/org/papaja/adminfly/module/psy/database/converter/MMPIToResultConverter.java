@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.psy.database.converter;
 
 import org.papaja.adminfly.module.psy.database.entity.Patient;
-import org.papaja.adminfly.module.psy.database.entity.results.AbstractMMPIResult;
+import org.papaja.adminfly.module.psy.database.entity.results.MMPI.AbstractMMPIResult;
 import org.papaja.adminfly.module.psy.tests.Gender;
 import org.papaja.adminfly.module.psy.tests.MMPI.Scale;
 import org.papaja.function.Converter;
@@ -34,7 +34,7 @@ public class MMPIToResultConverter<Result extends AbstractMMPIResult>
         result.setScale9(points.get(Scale.SCALE_9));
 
         result.setScale5(
-                points.get(patient.getSex().equals(Gender.F) ? Scale.SCALE_5_F : Scale.SCALE_5_M)
+                points.get(patient.getGender().equals(Gender.F) ? Scale.SCALE_5_F : Scale.SCALE_5_M)
         );
 
         return result;

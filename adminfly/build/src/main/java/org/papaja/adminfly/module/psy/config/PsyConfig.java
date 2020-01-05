@@ -1,7 +1,8 @@
 package org.papaja.adminfly.module.psy.config;
 
 import org.papaja.adminfly.commons.annotation.MvcConfiguration;
-import org.papaja.adminfly.module.psy.commons.holder.TestContextHolder;
+import org.papaja.adminfly.module.psy.tests.Context;
+import org.papaja.adminfly.module.psy.tests.builder.ContextBuilder;
 import org.papaja.adminfly.module.psy.tests.MMPI.Answer;
 import org.papaja.adminfly.module.psy.tests.MMPI.Q566.MMPI566Wizard;
 import org.papaja.adminfly.module.psy.tests.MMPI.WizardFactory;
@@ -34,8 +35,8 @@ public class PsyConfig implements WebMvcConfigurer {
 
     @Bean
     @Scope(value = SCOPE_SESSION, proxyMode = TARGET_CLASS)
-    public TestContextHolder.Context contextHolder() {
-        return TestContextHolder.getTestContext();
+    public Context contextHolder() {
+        return new ContextBuilder<>().build();
     }
 
     @Bean("wizardMMPI2")

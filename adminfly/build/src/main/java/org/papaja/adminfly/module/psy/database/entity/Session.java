@@ -1,6 +1,7 @@
 package org.papaja.adminfly.module.psy.database.entity;
 
 import org.papaja.adminfly.commons.dao.entity.api.AbstractEntity;
+import org.papaja.adminfly.module.psy.tests.SessionDetails;
 import org.papaja.adminfly.module.psy.tests.Test;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import static java.lang.String.valueOf;
 
 @Entity
 @Table(name = "PSY_SESSIONS")
-public class Session extends AbstractEntity {
+public class Session extends AbstractEntity implements SessionDetails {
 
     @Column(name = "SESSION_ID", columnDefinition = "VARCHAR(16)")
     private String sessionId;
@@ -26,6 +27,7 @@ public class Session extends AbstractEntity {
     @Column(name = "ACTIVE", columnDefinition = "TINYINT(1)")
     private Boolean active;
 
+    @Override
     public String getSessionId() {
         return sessionId;
     }
@@ -54,10 +56,12 @@ public class Session extends AbstractEntity {
         this.test = test;
     }
 
+    @Override
     public boolean isActive() {
         return active;
     }
 
+    @Override
     public void setActive(boolean active) {
         this.active = active;
     }

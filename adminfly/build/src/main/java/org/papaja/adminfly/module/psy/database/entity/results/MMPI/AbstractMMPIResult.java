@@ -1,4 +1,6 @@
-package org.papaja.adminfly.module.psy.database.entity.results;
+package org.papaja.adminfly.module.psy.database.entity.results.MMPI;
+
+import org.papaja.adminfly.module.psy.database.entity.results.Result;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;

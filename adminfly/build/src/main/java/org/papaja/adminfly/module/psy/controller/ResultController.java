@@ -9,10 +9,12 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.chart.ui.Layer;
 import org.jfree.data.statistics.DefaultStatisticalCategoryDataset;
-import org.papaja.adminfly.commons.dao.service.BlogFileService;
 import org.papaja.adminfly.module.psy.database.entity.results.Result;
+import org.papaja.adminfly.module.psy.database.formatter.FormatterFactory;
+import org.papaja.adminfly.module.psy.tests.Context;
+import org.papaja.adminfly.module.psy.tests.builder.ContextBuilder;
 import org.papaja.adminfly.module.psy.tests.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.papaja.function.Formatter;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -29,12 +31,9 @@ import java.io.IOException;
 
 import static java.lang.String.format;
 
-@Controller("psyResultController")
+@Controller
 @RequestMapping("/results")
 public class ResultController extends AbstractPsyController {
-
-    @Autowired
-    private BlogFileService files;
 
     @PreAuthorize("hasAnyAuthority('READ')")
     @ResponseBody
@@ -123,6 +122,15 @@ public class ResultController extends AbstractPsyController {
     ) {
         Result       result = results.getOne(id);
         ModelAndView mav    = newView(format("results/%s/index", result.getTest()));
+
+        Context context = new ContextBuilder<>()
+                .withGender(result.getPatient().getGender())
+                .withTest(result.getTest())
+                .build();
+
+        Formatter formatter = FormatterFactory.createFormatter(context);
+
+        System.out.println(formatter.format(result));
 
         mav.addObject("result", result);
 

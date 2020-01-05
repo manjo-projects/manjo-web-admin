@@ -1,12 +1,14 @@
 package org.papaja.adminfly.module.psy.controller.test.MMPI;
 
 import org.papaja.adminfly.module.psy.controller.AbstractPsyController;
+import org.papaja.adminfly.module.psy.database.converter.MMPIToResultConverter;
 import org.papaja.adminfly.module.psy.database.entity.Patient;
-import org.papaja.adminfly.module.psy.database.entity.results.AbstractMMPIResult;
+import org.papaja.adminfly.module.psy.database.entity.results.MMPI.AbstractMMPIResult;
 import org.papaja.adminfly.module.psy.tests.MMPI.*;
 import org.papaja.adminfly.module.psy.tests.TestAware;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
 import org.papaja.adminfly.module.psy.tests.wizard.WizardAware;
+import org.papaja.tuple.Triplet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -89,7 +91,9 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
             AnswersPointsConverter converter = new AnswersPointsConverter(AnswersFactory.createAnswers(getTest()));
             Map<Scale, Integer>    points    = converter.convert(wizard.results());
 
-            results.proceed(points, getResultEntity(), context.getSession());
+            results.proceed(new MMPIToResultConverter<>().convert(
+                    new Triplet<>(getResultEntity(), points, context.getPatient())
+            ));
 
             attributes.addFlashAttribute("message",
                     messages.getSuccessMessage("text.calculationResultWasSaved", getTest().getName()));

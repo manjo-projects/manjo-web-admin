@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.psy.tests.MMPI;
 
-abstract public class AbstractAnswers implements AnswersInterface {
+abstract public class AbstractAnswers implements Answers {
 
     @Override
     public Scale[] getScales(int question, Answer answer) {

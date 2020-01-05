@@ -18,7 +18,7 @@ public class PatientMapper extends AbstractMapper<PatientDto, Patient> {
 
         patient.setName(capitalize(dto.getName().toLowerCase()));
         patient.setSurname(capitalize(dto.getSurname().toLowerCase()));
-        patient.setSex(valueOf(dto.getSex()));
+        patient.setGender(valueOf(dto.getSex()));
 
         if (patient.isNew()) {
             patient.setCreated(timestamp);
