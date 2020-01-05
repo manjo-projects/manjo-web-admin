@@ -12,7 +12,7 @@ import org.jfree.data.statistics.DefaultStatisticalCategoryDataset;
 import org.papaja.adminfly.module.psy.database.entity.results.Result;
 import org.papaja.adminfly.module.psy.database.formatter.FormatterFactory;
 import org.papaja.adminfly.module.psy.tests.Context;
-import org.papaja.adminfly.module.psy.tests.builder.ContextBuilder;
+import org.papaja.adminfly.module.psy.tests.builder.AbstractTestContextBuilder;
 import org.papaja.adminfly.module.psy.tests.Test;
 import org.papaja.function.Formatter;
 import org.springframework.http.MediaType;
@@ -123,9 +123,9 @@ public class ResultController extends AbstractPsyController {
         Result       result = results.getOne(id);
         ModelAndView mav    = newView(format("results/%s/index", result.getTest()));
 
-        Context context = new ContextBuilder<>()
-                .withGender(result.getPatient().getGender())
-                .withTest(result.getTest())
+        Context context = new AbstractTestContextBuilder()
+                .with(result.getPatient().getGender())
+                .with(result.getTest())
                 .build();
 
         Formatter formatter = FormatterFactory.createFormatter(context);

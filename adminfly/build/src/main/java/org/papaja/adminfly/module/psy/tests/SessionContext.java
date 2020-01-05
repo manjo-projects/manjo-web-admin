@@ -1,8 +1,6 @@
 package org.papaja.adminfly.module.psy.tests;
 
-import static org.papaja.adminfly.module.psy.tests.Context.UNSUPPORTED_OPERATION_EXCEPTION;
-
-public interface SessionContext extends SessionAware, PatientAware {
+public interface SessionContext extends SessionAware, PatientAware, Context {
 
     String NAME = PayloadContext.class.getCanonicalName();
 
@@ -23,4 +21,13 @@ public interface SessionContext extends SessionAware, PatientAware {
     default PatientDetails getPatient() {
         throw UNSUPPORTED_OPERATION_EXCEPTION.apply(NAME, "getPatient");
     }
+
+    default boolean hasPatient() {
+        return getPatient() != null;
+    }
+
+    default boolean hasSession() {
+        return getSession() != null;
+    }
+
 }

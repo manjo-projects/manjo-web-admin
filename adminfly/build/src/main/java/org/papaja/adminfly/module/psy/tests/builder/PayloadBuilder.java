@@ -7,7 +7,7 @@ import org.papaja.tuple.value.Tuple;
 
 import java.util.Map;
 
-public class PayloadBuilder extends AbstractBuilder<PayloadBuilder, Payload> {
+public class PayloadBuilder<T> extends AbstractBuilder<PayloadBuilder, Payload<T>> {
 
     private static final Payload NULL_PAYLOAD = () -> null;
     private              Payload payload      = NULL_PAYLOAD;

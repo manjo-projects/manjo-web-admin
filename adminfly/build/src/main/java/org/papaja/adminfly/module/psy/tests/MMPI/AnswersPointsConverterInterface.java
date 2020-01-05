@@ -1,13 +1,14 @@
 package org.papaja.adminfly.module.psy.tests.MMPI;
 
-import org.papaja.function.Converter;
+import org.papaja.adminfly.module.psy.tests.ResultConverter;
+import org.papaja.adminfly.module.psy.tests.MMPI.payload.AnswersPayload;
 
 import java.util.Map;
 
-public interface AnswersPointsConverterInterface extends Converter<Map<Integer, Answer>, Map<Scale, Integer>> {
+public interface AnswersPointsConverterInterface extends ResultConverter<AnswersPayload, Map<Scale, Integer>> {
 
-    default Map<Scale, Integer> getPoints(Map<Integer, Answer> answers) {
-        return convert(answers);
+    default Map<Scale, Integer> getPoints(AnswersPayload payload) {
+        return convert(payload);
     }
 
 }

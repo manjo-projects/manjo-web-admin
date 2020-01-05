@@ -14,4 +14,12 @@ public interface Context extends TestAware, GenderAware {
 
     void setGender(Gender gender);
 
+    default boolean hasTest() {
+        return getTest() != null;
+    }
+
+    default boolean hasGender() {
+        return getGender() != null;
+    }
+
 }
