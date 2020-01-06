@@ -42,8 +42,8 @@ public class JFreeChartService {
 
         chart.getCategoryPlot().getRangeAxis().setRange(0, 120);
 
-        CategoryPlot plot = chart.getCategoryPlot();
-
+        CategoryPlot         plot     = chart.getCategoryPlot();
+        IntervalMarker       target   = new IntervalMarker(31.0, 77.5, Color.decode("#00bd00"));
         LineAndShapeRenderer renderer = new LineAndShapeRenderer();
 
         chart.getCategoryPlot().setRenderer(renderer);
@@ -54,10 +54,9 @@ public class JFreeChartService {
         plot.setDomainGridlinesVisible(true);
         plot.setDomainGridlinePaint(Color.BLACK);
 
-        IntervalMarker target = new IntervalMarker(31.0, 77.5, Colors.GREEN.getColor());
+        plot.addRangeMarker(target, Layer.BACKGROUND);
 
         target.setAlpha(0.15f);
-        plot.addRangeMarker(target, Layer.BACKGROUND);
 
         for (int i = 0; i < size; i++) {
             renderer.setSeriesShape(i, CIRCLE);

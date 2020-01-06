@@ -1,23 +1,23 @@
 package org.papaja.adminfly.module.psy.tests.MMPI;
 
-import org.papaja.adminfly.module.psy.tests.Test;
-import org.papaja.adminfly.module.psy.tests.MMPI.Q566.PointsTRateQ566Converter;
-import org.papaja.adminfly.module.psy.tests.MMPI.Q71.PointsTRateQ71Converter;
+import org.papaja.adminfly.module.psy.tests.Context;
+import org.papaja.adminfly.module.psy.tests.ConverterFactory;
+import org.papaja.adminfly.module.psy.tests.MMPI.converter.PointsTRateConverter;
+import org.papaja.adminfly.module.psy.tests.MMPI.converter.PointsTRateQ71Converter;
 
 import static java.lang.String.format;
 
-public class PointsTRateConverterFactory {
+public class PointsTRateConverterFactory implements ConverterFactory<PointsTRateConverterInterface, Context> {
 
-    public static PointsTRateConverterInterface createConverter(Test test) {
-        switch (test) {
+    public PointsTRateConverterInterface createConverter(Context context) {
+        switch (context.getTest()) {
             case MMPI_71:
                 return new PointsTRateQ71Converter();
             case MMPI_566:
-                return new PointsTRateQ566Converter(null);
             case MMPI_377:
-                return new PointsTRateQ566Converter(null);
+                return new PointsTRateConverter();
             default:
-                throw new IllegalArgumentException(format("Cannot create converter for '%s' test", test));
+                throw new IllegalArgumentException(format("Cannot create converter for '%s' test", context.getTest()));
         }
     }
 

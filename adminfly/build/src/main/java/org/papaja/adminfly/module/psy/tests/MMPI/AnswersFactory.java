@@ -9,7 +9,7 @@ import static java.lang.String.format;
 
 public class AnswersFactory {
 
-    public static AnswersInterface createAnswers(Test test) {
+    public static Answers createAnswers(Test test) {
         switch (test) {
             case MMPI_71:
                 return new Q71Answers();

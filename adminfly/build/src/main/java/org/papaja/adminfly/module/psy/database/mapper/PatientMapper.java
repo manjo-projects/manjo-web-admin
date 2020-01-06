@@ -1,0 +1,34 @@
+package org.papaja.adminfly.module.psy.database.mapper;
+
+import org.papaja.adminfly.commons.dao.mapper.AbstractMapper;
+import org.papaja.adminfly.module.psy.dto.PatientDto;
+import org.papaja.adminfly.module.psy.database.entity.Patient;
+
+import java.sql.Timestamp;
+import java.time.Instant;
+
+import static org.papaja.adminfly.module.psy.tests.Gender.valueOf;
+import static org.springframework.util.StringUtils.capitalize;
+
+public class PatientMapper extends AbstractMapper<PatientDto, Patient> {
+
+    @Override
+    public void accept(PatientDto dto, Patient patient) {
+        Timestamp timestamp = Timestamp.from(Instant.now());
+
+        patient.setName(capitalize(dto.getName().toLowerCase()));
+        patient.setSurname(capitalize(dto.getSurname().toLowerCase()));
+        patient.setGender(valueOf(dto.getSex()));
+
+        if (patient.isNew()) {
+            patient.setCreated(timestamp);
+        }
+
+        patient.setUpdated(timestamp);
+    }
+
+    @Override
+    public Patient get() {
+        return new Patient();
+    }
+}

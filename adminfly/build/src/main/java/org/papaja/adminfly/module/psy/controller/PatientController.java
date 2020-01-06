@@ -1,9 +1,9 @@
 package org.papaja.adminfly.module.psy.controller;
 
-import org.papaja.adminfly.module.psy.dbl.dto.PatientDto;
-import org.papaja.adminfly.module.psy.dbl.dto.SessionDto;
-import org.papaja.adminfly.module.psy.dbl.entity.Patient;
-import org.papaja.adminfly.module.psy.dbl.mapper.PatientMapper;
+import org.papaja.adminfly.module.psy.dto.PatientDto;
+import org.papaja.adminfly.module.psy.dto.SessionDto;
+import org.papaja.adminfly.module.psy.database.entity.Patient;
+import org.papaja.adminfly.module.psy.database.mapper.PatientMapper;
 import org.papaja.adminfly.module.psy.tests.Gender;
 import org.papaja.adminfly.module.psy.tests.Test;
 import org.papaja.geo.Locale;
