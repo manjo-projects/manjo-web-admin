@@ -14,9 +14,11 @@ import org.papaja.adminfly.module.psy.commons.function.Value;
 import org.papaja.adminfly.module.psy.database.entity.results.Result;
 import org.papaja.adminfly.module.psy.database.preparer.PreparerFactory;
 import org.papaja.adminfly.module.psy.tests.Context;
-import org.papaja.adminfly.module.psy.tests.HandlerStrategyFactory;
+import org.papaja.adminfly.module.psy.tests.Gender;
+import org.papaja.adminfly.module.psy.tests.HandlerFactory;
 import org.papaja.adminfly.module.psy.tests.Test;
-import org.papaja.adminfly.module.psy.tests.builder.context.SessionDetailsContextBuilder;
+import org.papaja.adminfly.module.psy.tests.builder.context.TestContextBuilder;
+import org.papaja.adminfly.module.psy.tests.Handler;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -124,19 +126,26 @@ public class ResultController extends AbstractPsyController {
     ) {
         Result       result = results.getOne(id);
         ModelAndView mav    = newView(format("results/%s/index", result.getTest()));
+        Gender       gender = result.getPatient().getGender();
+        Test         test   = result.getTest();
 
         System.out.println(result.getClass().getName());
 
-        Context context = new SessionDetailsContextBuilder()
-                .with(result.getPatient()).with(result.getTest()).build();
+        Context context = new TestContextBuilder()
+                .with(gender).with(test)
+                .build();
 
-        Preparer preparer = PreparerFactory.createPreparer(context);
+        Preparer preparer = PreparerFactory.createPreparer(test, gender);
 
         Value value = preparer.prepare(result);
 
         System.out.println(value.get());
 
-//        HandlerStrategyFactory.createHandler();
+        Handler handler = HandlerFactory.createHandler(context);
+
+        System.out.println(handler.getClass().getName());
+
+        handler.handle(value);
 
 /*        System.out.println(points);
 

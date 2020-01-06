@@ -1,26 +1,31 @@
 package org.papaja.adminfly.module.psy.tests.MMPI.converter;
 
-import org.papaja.adminfly.module.psy.tests.MMPI.PointsTRateConverterInterface;
+import org.papaja.adminfly.module.psy.tests.Gender;
 import org.papaja.adminfly.module.psy.tests.MMPI.Scale;
 import org.papaja.adminfly.module.psy.tests.MMPI.formula.Formula;
 import org.papaja.adminfly.module.psy.tests.MMPI.formula.FormulaData;
-import org.papaja.adminfly.module.psy.tests.MMPI.payload.RawPointsPayload;
+import org.papaja.function.Converter;
 
 import java.util.HashMap;
 import java.util.Map;
 
 // gender
 // input-map
-public class PointsTRateConverter implements PointsTRateConverterInterface {
+public class PointsTRateConverter implements Converter<Map<Scale, Integer>, Map<Scale, Float>> {
 
     private static final Formula     FORMULA = new Formula();
     private static final FormulaData DATA    = FormulaData.MAP;
 
+    private Gender gender;
+
+    public PointsTRateConverter(Gender gender) {
+        this.gender = gender;
+    }
+
     @Override
-    public Map<Scale, Float> convert(RawPointsPayload payload) {
-        Map<Scale, Integer>           input  = payload.getValue().getA();
+    public Map<Scale, Float> convert(Map<Scale, Integer> input) {
         Map<Scale, Float>             output = new HashMap<>();
-        Map<Scale, FormulaData.Value> values = DATA.getValues(payload.getValue().getB());
+        Map<Scale, FormulaData.Value> values = DATA.getValues(gender);
 
         input.forEach((scale, points)
                 -> output.put(scale, FORMULA.apply(points, values.get(scale).getIndex(), values.get(scale).getIndex())));

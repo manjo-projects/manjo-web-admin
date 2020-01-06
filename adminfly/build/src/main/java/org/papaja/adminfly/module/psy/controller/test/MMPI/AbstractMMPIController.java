@@ -7,7 +7,7 @@ import org.papaja.adminfly.module.psy.database.entity.results.MMPI.AbstractMMPIR
 import org.papaja.adminfly.module.psy.database.entity.results.Result;
 import org.papaja.adminfly.module.psy.tests.MMPI.Answer;
 import org.papaja.adminfly.module.psy.tests.MMPI.AnswersFactory;
-import org.papaja.adminfly.module.psy.tests.MMPI.AnswersPointsConverter;
+import org.papaja.adminfly.module.psy.tests.MMPI.AnswersConverter;
 import org.papaja.adminfly.module.psy.tests.MMPI.WizardFactory;
 import org.papaja.adminfly.module.psy.tests.MMPI.payload.AnswersPayload;
 import org.papaja.adminfly.module.psy.tests.TestAware;
@@ -102,7 +102,7 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
 
             AnswersPayload         payload   = new AnswersPayload(
                     new Pair<>(wizard.results(), AnswersFactory.createAnswers(getTest())));
-            AnswersPointsConverter converter = new AnswersPointsConverter();
+            AnswersConverter converter = new AnswersConverter();
             Result                 result    = new MMPIToResultConverter<>().convert(
                     new Triplet<>(getResultEntity(), converter.convert(payload), context.getPatient()));
 

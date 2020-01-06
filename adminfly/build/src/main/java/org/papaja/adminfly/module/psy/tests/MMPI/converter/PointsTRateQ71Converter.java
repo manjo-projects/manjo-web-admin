@@ -1,15 +1,14 @@
 package org.papaja.adminfly.module.psy.tests.MMPI.converter;
 
-import org.papaja.adminfly.module.psy.tests.MMPI.PointsTRateConverterInterface;
 import org.papaja.adminfly.module.psy.tests.MMPI.Scale;
-import org.papaja.adminfly.module.psy.tests.MMPI.payload.RawPointsPayload;
+import org.papaja.function.Converter;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.papaja.adminfly.module.psy.tests.MMPI.Scale.*;
 
-public class PointsTRateQ71Converter implements PointsTRateConverterInterface {
+public class PointsTRateQ71Converter implements Converter<Map<Scale, Integer>, Map<Scale, Float>> {
 
     private static final Map<Scale, float[]> MAP = new HashMap<>() {{
         put(SCALE_L, new float[]{38f, 46f, 55f, 62f, 70f, 79f});
@@ -26,11 +25,10 @@ public class PointsTRateQ71Converter implements PointsTRateConverterInterface {
     }};
 
     @Override
-    public Map<Scale, Float> convert(RawPointsPayload payload) {
+    public Map<Scale, Float> convert(Map<Scale, Integer> input) {
         Map<Scale, Float> rates = new HashMap<>();
 
-        payload.getValue().getA()
-                .forEach((scale, point) -> rates.put(scale, MAP.get(scale)[point]));
+        input.forEach((scale, point) -> rates.put(scale, MAP.get(scale)[point]));
 
         return rates;
     }
