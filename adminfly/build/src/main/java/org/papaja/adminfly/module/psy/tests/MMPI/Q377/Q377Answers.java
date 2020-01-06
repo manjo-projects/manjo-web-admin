@@ -15,11 +15,11 @@ public class Q377Answers extends AbstractAnswers {
      *     SCALE[]
      */
     private static final Scale[][][] MAP = {
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q1
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q2
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q3
-            {{SCALE_0, SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q4
-            {{}, {SCALE_6, SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q5
+            {{}, {SCALE_5_F, SCALE_5_M},}, // Q1
+            {{SCALE_5_F, SCALE_5_M}, {},}, // Q2
+            {{}, {SCALE_5_F, SCALE_5_M},}, // Q3
+            {{SCALE_0, SCALE_5_F, SCALE_5_M}, {},}, // Q4
+            {{}, {SCALE_6, SCALE_5_F, SCALE_5_M},}, // Q5
             {{}, {SCALE_0},}, // Q6
             {{}, {SCALE_0},}, // Q7
             {{SCALE_0}, {SCALE_9, SCALE_4, SCALE_3, SCALE_K},}, // Q8
@@ -45,11 +45,11 @@ public class Q377Answers extends AbstractAnswers {
             {{}, {SCALE_6, SCALE_F},}, // Q28
             {{}, {SCALE_9},}, // Q29
             {{}, {},}, // Q30
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q31
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q32
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q33
-            {{SCALE_0}, {SCALE_6, SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q34
-            {{SCALE_9, SCALE_5_F, SCALE_5_F}, {SCALE_5_M},}, // Q35
+            {{SCALE_5_F, SCALE_5_M}, {},}, // Q31
+            {{}, {SCALE_5_F, SCALE_5_M},}, // Q32
+            {{SCALE_5_F, SCALE_5_M}, {},}, // Q33
+            {{SCALE_0}, {SCALE_6, SCALE_5_F, SCALE_5_M},}, // Q34
+            {{SCALE_9, SCALE_5_F}, {SCALE_5_M},}, // Q35
             {{SCALE_0}, {},}, // Q36
             {{SCALE_0}, {SCALE_F},}, // Q37
             {{SCALE_0}, {SCALE_9, SCALE_4, SCALE_3, SCALE_K},}, // Q38
@@ -75,11 +75,11 @@ public class Q377Answers extends AbstractAnswers {
             {{SCALE_F, SCALE_L}, {},}, // Q58
             {{}, {SCALE_9},}, // Q59
             {{}, {SCALE_9},}, // Q60
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q61
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q62
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q63
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q64
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M, SCALE_L}, {},}, // Q65
+            {{SCALE_5_F, SCALE_5_M}, {},}, // Q61
+            {{}, {SCALE_5_F, SCALE_5_M},}, // Q62
+            {{SCALE_5_F, SCALE_5_M}, {},}, // Q63
+            {{}, {SCALE_5_F, SCALE_5_M},}, // Q64
+            {{SCALE_5_F, SCALE_5_M, SCALE_L}, {},}, // Q65
             {{SCALE_0}, {},}, // Q66
             {{SCALE_0}, {},}, // Q67
             {{SCALE_0, SCALE_4}, {},}, // Q68
@@ -105,10 +105,10 @@ public class Q377Answers extends AbstractAnswers {
             {{}, {SCALE_6},}, // Q88
             {{}, {SCALE_9},}, // Q89
             {{SCALE_9, SCALE_L}, {},}, // Q90
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q91
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q92
-            {{SCALE_5_F, SCALE_5_F}, {SCALE_5_M},}, // Q93
-            {{SCALE_9, SCALE_5_F, SCALE_5_F, SCALE_5_M}, {SCALE_4, SCALE_K},}, // Q94
+            {{SCALE_5_F, SCALE_5_M}, {},}, // Q91
+            {{SCALE_5_F, SCALE_5_M}, {},}, // Q92
+            {{SCALE_5_F}, {SCALE_5_M},}, // Q93
+            {{SCALE_9, SCALE_5_F, SCALE_5_M}, {SCALE_4, SCALE_K},}, // Q94
             {{}, {SCALE_0},}, // Q95
             {{SCALE_0}, {},}, // Q96
             {{}, {SCALE_0},}, // Q97
@@ -135,10 +135,10 @@ public class Q377Answers extends AbstractAnswers {
             {{SCALE_6}, {},}, // Q118
             {{}, {SCALE_9},}, // Q119
             {{SCALE_9, SCALE_L}, {},}, // Q120
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q121
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q122
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q123
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M, SCALE_3, SCALE_2, SCALE_K}, {},}, // Q124
+            {{SCALE_5_F, SCALE_5_M}, {},}, // Q121
+            {{}, {SCALE_5_F, SCALE_5_M},}, // Q122
+            {{SCALE_5_F, SCALE_5_M}, {},}, // Q123
+            {{SCALE_5_F, SCALE_5_M, SCALE_3, SCALE_2, SCALE_K}, {},}, // Q124
             {{SCALE_0}, {},}, // Q125
             {{}, {SCALE_0},}, // Q126
             {{}, {SCALE_0},}, // Q127
@@ -165,10 +165,10 @@ public class Q377Answers extends AbstractAnswers {
             {{SCALE_6}, {},}, // Q148
             {{}, {SCALE_9},}, // Q149
             {{SCALE_L}, {},}, // Q150
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q151
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q152
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q153
-            {{SCALE_7, SCALE_5_F, SCALE_5_F, SCALE_5_M}, {SCALE_K},}, // Q154
+            {{}, {SCALE_5_F, SCALE_5_M},}, // Q151
+            {{}, {SCALE_5_F, SCALE_5_M},}, // Q152
+            {{SCALE_5_F, SCALE_5_M}, {},}, // Q153
+            {{SCALE_7, SCALE_5_F, SCALE_5_M}, {SCALE_K},}, // Q154
             {{SCALE_0}, {SCALE_3},}, // Q155
             {{SCALE_0}, {},}, // Q156
             {{SCALE_0}, {},}, // Q157
@@ -195,10 +195,10 @@ public class Q377Answers extends AbstractAnswers {
             {{}, {SCALE_6},}, // Q178
             {{}, {SCALE_9},}, // Q179
             {{SCALE_L}, {},}, // Q180
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q181
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q182
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q183
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M, SCALE_3}, {},}, // Q184
+            {{}, {SCALE_5_F, SCALE_5_M},}, // Q181
+            {{SCALE_5_F, SCALE_5_M}, {},}, // Q182
+            {{SCALE_5_F, SCALE_5_M}, {},}, // Q183
+            {{SCALE_5_F, SCALE_5_M, SCALE_3}, {},}, // Q184
             {{SCALE_0}, {},}, // Q185
             {{SCALE_0}, {},}, // Q186
             {{SCALE_0}, {SCALE_4, SCALE_3},}, // Q187
@@ -225,10 +225,10 @@ public class Q377Answers extends AbstractAnswers {
             {{}, {SCALE_6},}, // Q208
             {{}, {SCALE_9},}, // Q209
             {{SCALE_L}, {},}, // Q210
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q211
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q212
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q213
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {SCALE_3},}, // Q214
+            {{SCALE_5_F, SCALE_5_M}, {},}, // Q211
+            {{SCALE_5_F, SCALE_5_M}, {},}, // Q212
+            {{}, {SCALE_5_F, SCALE_5_M},}, // Q213
+            {{SCALE_5_F, SCALE_5_M}, {SCALE_3},}, // Q214
             {{SCALE_0}, {},}, // Q215
             {{SCALE_0}, {},}, // Q216
             {{SCALE_0}, {SCALE_9, SCALE_4, SCALE_K},}, // Q217
@@ -255,10 +255,10 @@ public class Q377Answers extends AbstractAnswers {
             {{SCALE_6}, {},}, // Q238
             {{}, {SCALE_9},}, // Q239
             {{SCALE_L}, {},}, // Q240
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q241
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q242
-            {{}, {SCALE_0, SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q243
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M, SCALE_2}, {},}, // Q244
+            {{SCALE_5_F, SCALE_5_M}, {},}, // Q241
+            {{}, {SCALE_5_F, SCALE_5_M},}, // Q242
+            {{}, {SCALE_0, SCALE_5_F, SCALE_5_M},}, // Q243
+            {{SCALE_5_F, SCALE_5_M, SCALE_2}, {},}, // Q244
             {{}, {SCALE_0},}, // Q245
             {{SCALE_0}, {},}, // Q246
             {{SCALE_0}, {SCALE_8, SCALE_4},}, // Q247
@@ -285,10 +285,10 @@ public class Q377Answers extends AbstractAnswers {
             {{SCALE_6}, {},}, // Q268
             {{}, {SCALE_9},}, // Q269
             {{SCALE_L}, {},}, // Q270
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q271
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q272
-            {{SCALE_0}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q273
-            {{}, {SCALE_8, SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q274
+            {{SCALE_5_F, SCALE_5_M}, {},}, // Q271
+            {{SCALE_5_F, SCALE_5_M}, {},}, // Q272
+            {{SCALE_0}, {SCALE_5_F, SCALE_5_M},}, // Q273
+            {{}, {SCALE_8, SCALE_5_F, SCALE_5_M},}, // Q274
             {{SCALE_0}, {},}, // Q275
             {{SCALE_0}, {SCALE_9},}, // Q276
             {{SCALE_0, SCALE_4, SCALE_2, SCALE_K}, {},}, // Q277
@@ -315,10 +315,10 @@ public class Q377Answers extends AbstractAnswers {
             {{SCALE_9}, {SCALE_6},}, // Q298
             {{}, {SCALE_9},}, // Q299
             {{SCALE_L}, {},}, // Q300
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q301
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q302
-            {{SCALE_0}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q303
-            {{}, {SCALE_8, SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q304
+            {{}, {SCALE_5_F, SCALE_5_M},}, // Q301
+            {{}, {SCALE_5_F, SCALE_5_M},}, // Q302
+            {{SCALE_0}, {SCALE_5_F, SCALE_5_M},}, // Q303
+            {{}, {SCALE_8, SCALE_5_F, SCALE_5_M},}, // Q304
             {{}, {SCALE_0},}, // Q305
             {{SCALE_0}, {},}, // Q306
             {{SCALE_0}, {SCALE_4},}, // Q307
@@ -345,10 +345,10 @@ public class Q377Answers extends AbstractAnswers {
             {{}, {SCALE_9},}, // Q328
             {{}, {},}, // Q329
             {{SCALE_L}, {},}, // Q330
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q331
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q332
-            {{SCALE_0, SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q333
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M, SCALE_F},}, // Q334
+            {{}, {SCALE_5_F, SCALE_5_M},}, // Q331
+            {{}, {SCALE_5_F, SCALE_5_M},}, // Q332
+            {{SCALE_0, SCALE_5_F, SCALE_5_M}, {},}, // Q333
+            {{}, {SCALE_5_F, SCALE_5_M, SCALE_F},}, // Q334
             {{SCALE_0}, {},}, // Q335
             {{SCALE_0}, {},}, // Q336
             {{}, {SCALE_0, SCALE_8, SCALE_7, SCALE_4, SCALE_3, SCALE_2},}, // Q337
@@ -375,10 +375,10 @@ public class Q377Answers extends AbstractAnswers {
             {{SCALE_9}, {},}, // Q358
             {{}, {SCALE_9},}, // Q359
             {{SCALE_L}, {},}, // Q360
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q361
-            {{}, {SCALE_5_F, SCALE_5_F, SCALE_5_M},}, // Q362
-            {{SCALE_0, SCALE_5_F, SCALE_5_F, SCALE_5_M}, {},}, // Q363
-            {{SCALE_5_F, SCALE_5_F, SCALE_5_M, SCALE_F}, {},}, // Q364
+            {{}, {SCALE_5_F, SCALE_5_M},}, // Q361
+            {{}, {SCALE_5_F, SCALE_5_M},}, // Q362
+            {{SCALE_0, SCALE_5_F, SCALE_5_M}, {},}, // Q363
+            {{SCALE_5_F, SCALE_5_M, SCALE_F}, {},}, // Q364
             {{}, {SCALE_0},}, // Q365
             {{}, {SCALE_0},}, // Q366
             {{}, {SCALE_0, SCALE_7, SCALE_4, SCALE_2},}, // Q367
