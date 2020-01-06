@@ -1,26 +1,28 @@
-package org.papaja.adminfly.module.psy.database.formatter;
+package org.papaja.adminfly.module.psy.database.preparer;
 
+import org.papaja.adminfly.module.psy.commons.function.Preparer;
+import org.papaja.adminfly.module.psy.commons.function.Value;
 import org.papaja.adminfly.module.psy.database.entity.results.MMPI.AbstractMMPIResult;
 import org.papaja.adminfly.module.psy.tests.Gender;
 import org.papaja.adminfly.module.psy.tests.MMPI.Scale;
-import org.papaja.function.Formatter;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.papaja.adminfly.module.psy.tests.Gender.F;
 
-public class MMPIResultFormatter implements Formatter<AbstractMMPIResult, Map<Scale, Integer>> {
+public class MMPIResultPreparer implements Preparer<AbstractMMPIResult, Map<Scale, Integer>> {
 
     private Gender gender;
 
-    public MMPIResultFormatter(Gender gender) {
+    public MMPIResultPreparer(Gender gender) {
         this.gender = gender;
     }
 
     @Override
-    public Map<Scale, Integer> format(AbstractMMPIResult result) {
+    public Value<Map<Scale, Integer>> prepare(AbstractMMPIResult result) {
         Map<Scale, Integer> formatted = new HashMap<>();
+        Scale               scale5    = (gender.equals(F) ? Scale.SCALE_5_F : Scale.SCALE_5_M);
 
         formatted.put(Scale.SCALE_L, result.getScaleL());
         formatted.put(Scale.SCALE_F, result.getScaleF());
@@ -34,10 +36,9 @@ public class MMPIResultFormatter implements Formatter<AbstractMMPIResult, Map<Sc
         formatted.put(Scale.SCALE_7, result.getScale7());
         formatted.put(Scale.SCALE_8, result.getScale8());
         formatted.put(Scale.SCALE_9, result.getScale9());
+        formatted.put(scale5, result.getScale5());
 
-        formatted.put((gender.equals(F) ? Scale.SCALE_5_F : Scale.SCALE_5_M), result.getScale5());
-
-        return formatted;
+        return new Value<>(formatted);
     }
 
 }

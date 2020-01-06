@@ -9,6 +9,8 @@ import org.papaja.adminfly.module.psy.tests.MMPI.payload.RawPointsPayload;
 import java.util.HashMap;
 import java.util.Map;
 
+// gender
+// input-map
 public class PointsTRateConverter implements PointsTRateConverterInterface {
 
     private static final Formula     FORMULA = new Formula();

@@ -1,8 +1,8 @@
 package org.papaja.adminfly.module.psy.tests.MMPI;
 
-import org.papaja.adminfly.module.psy.tests.MMPI.Q377.Q377Answers;
-import org.papaja.adminfly.module.psy.tests.MMPI.Q566.Q566Answers;
-import org.papaja.adminfly.module.psy.tests.MMPI.Q71.Q71Answers;
+import org.papaja.adminfly.module.psy.tests.MMPI.answers.Q377Answers;
+import org.papaja.adminfly.module.psy.tests.MMPI.answers.Q566Answers;
+import org.papaja.adminfly.module.psy.tests.MMPI.answers.Q71Answers;
 import org.papaja.adminfly.module.psy.tests.Test;
 
 import static java.lang.String.format;

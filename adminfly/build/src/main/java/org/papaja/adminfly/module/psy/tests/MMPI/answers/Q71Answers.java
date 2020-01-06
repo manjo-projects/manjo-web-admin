@@ -1,4 +1,4 @@
-package org.papaja.adminfly.module.psy.tests.MMPI.Q71;
+package org.papaja.adminfly.module.psy.tests.MMPI.answers;
 
 import org.papaja.adminfly.module.psy.tests.MMPI.AbstractAnswers;
 import org.papaja.adminfly.module.psy.tests.MMPI.Scale;

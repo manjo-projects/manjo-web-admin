@@ -9,17 +9,14 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.chart.ui.Layer;
 import org.jfree.data.statistics.DefaultStatisticalCategoryDataset;
+import org.papaja.adminfly.module.psy.commons.function.Preparer;
+import org.papaja.adminfly.module.psy.commons.function.Value;
 import org.papaja.adminfly.module.psy.database.entity.results.Result;
-import org.papaja.adminfly.module.psy.database.formatter.FormatterFactory;
+import org.papaja.adminfly.module.psy.database.preparer.PreparerFactory;
 import org.papaja.adminfly.module.psy.tests.Context;
-import org.papaja.adminfly.module.psy.tests.MMPI.PointsTRateConverterFactory;
-import org.papaja.adminfly.module.psy.tests.MMPI.Scale;
-import org.papaja.adminfly.module.psy.tests.MMPI.payload.RawPointsPayload;
+import org.papaja.adminfly.module.psy.tests.HandlerStrategyFactory;
 import org.papaja.adminfly.module.psy.tests.Test;
 import org.papaja.adminfly.module.psy.tests.builder.context.SessionDetailsContextBuilder;
-import org.papaja.adminfly.module.psy.tests.builder.context.TestContextBuilder;
-import org.papaja.function.Formatter;
-import org.papaja.tuple.Pair;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -33,7 +30,6 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Map;
 
 import static java.lang.String.format;
 
@@ -129,28 +125,32 @@ public class ResultController extends AbstractPsyController {
         Result       result = results.getOne(id);
         ModelAndView mav    = newView(format("results/%s/index", result.getTest()));
 
+        System.out.println(result.getClass().getName());
+
         Context context = new SessionDetailsContextBuilder()
-                .with(result.getPatient())
-                .with(result.getTest())
-                .build();
+                .with(result.getPatient()).with(result.getTest()).build();
 
-        Formatter formatter = FormatterFactory.createFormatter(context);
+        Preparer preparer = PreparerFactory.createPreparer(context);
 
-        Map<Scale, Integer> points = (Map<Scale, Integer>) formatter.format(result);
+        Value value = preparer.prepare(result);
 
-        System.out.println(points);
+        System.out.println(value.get());
+
+//        HandlerStrategyFactory.createHandler();
+
+/*        System.out.println(points);
 
         points.forEach((scale, integer) -> {
             points.put(scale, integer + 10);
         });
 
+        Caster.cast("", String.class);
+
         Map<Scale, Float> rates = new PointsTRateConverterFactory()
                 .createConverter(new TestContextBuilder().with(result.getTest()).build())
-                .getTRates(new RawPointsPayload(
-                        new Pair<>(points, result.getPatient().getGender())
-                ));
+                .getTRates(new RawPointsPayload(new Pair<>(points, result.getPatient().getGender())));
 
-        System.out.println(rates);
+        System.out.println(rates);*/
 
         mav.addObject("result", result);
 
