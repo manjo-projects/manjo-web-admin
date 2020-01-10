@@ -19,7 +19,7 @@ public class ResultService extends AbstractService<Result, ResultRepository> {
     }
 
     public void proceed(Result result) {
-        result.setUniqueId(getRandomHexadecimal(24));
+        result.setUniqueId(getRandomHexadecimal(24).toUpperCase());
 
         merge(result);
     }

@@ -1,8 +1,8 @@
 package org.papaja.adminfly.module.psy.tests.builder.context;
 
-import org.papaja.adminfly.module.psy.tests.PatientDetails;
-import org.papaja.adminfly.module.psy.tests.SessionContext;
-import org.papaja.adminfly.module.psy.tests.SessionDetails;
+import org.papaja.adminfly.module.psy.tests.context.PatientDetails;
+import org.papaja.adminfly.module.psy.tests.context.SessionContext;
+import org.papaja.adminfly.module.psy.tests.context.SessionDetails;
 import org.papaja.adminfly.module.psy.tests.context.SessionDetailsContext;
 
 public class SessionDetailsContextBuilder extends AbstractTestContextBuilder<SessionDetailsContextBuilder, SessionContext> {

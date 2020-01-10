@@ -2,7 +2,7 @@ package org.papaja.adminfly.module.psy.database.entity;
 
 import org.papaja.adminfly.commons.dao.entity.api.AbstractEntity;
 import org.papaja.adminfly.module.psy.tests.Gender;
-import org.papaja.adminfly.module.psy.tests.PatientDetails;
+import org.papaja.adminfly.module.psy.tests.context.PatientDetails;
 
 import javax.persistence.*;
 import java.sql.Timestamp;

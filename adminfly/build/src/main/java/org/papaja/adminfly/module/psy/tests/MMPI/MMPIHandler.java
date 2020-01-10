@@ -2,8 +2,8 @@ package org.papaja.adminfly.module.psy.tests.MMPI;
 
 import org.papaja.adminfly.module.psy.commons.function.Caster;
 import org.papaja.adminfly.module.psy.commons.function.Value;
-import org.papaja.adminfly.module.psy.tests.Context;
-import org.papaja.adminfly.module.psy.tests.Handler;
+import org.papaja.adminfly.module.psy.tests.context.Context;
+import org.papaja.adminfly.module.psy.tests.handler.Handler;
 
 import java.util.Map;
 

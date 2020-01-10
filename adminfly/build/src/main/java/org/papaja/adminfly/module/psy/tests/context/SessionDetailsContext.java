@@ -1,9 +1,6 @@
 package org.papaja.adminfly.module.psy.tests.context;
 
 import org.papaja.adminfly.module.psy.tests.Gender;
-import org.papaja.adminfly.module.psy.tests.PatientDetails;
-import org.papaja.adminfly.module.psy.tests.SessionContext;
-import org.papaja.adminfly.module.psy.tests.SessionDetails;
 
 public class SessionDetailsContext extends TestContext implements SessionContext {
 

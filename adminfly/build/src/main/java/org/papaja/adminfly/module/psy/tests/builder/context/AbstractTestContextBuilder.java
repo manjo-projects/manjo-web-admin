@@ -2,7 +2,7 @@ package org.papaja.adminfly.module.psy.tests.builder.context;
 
 import org.papaja.adminfly.module.psy.tests.*;
 import org.papaja.adminfly.module.psy.tests.builder.AbstractBuilder;
-import org.papaja.adminfly.module.psy.tests.context.TestContext;
+import org.papaja.adminfly.module.psy.tests.context.Context;
 
 abstract public class AbstractTestContextBuilder<B extends AbstractTestContextBuilder<B, C>, C extends Context>
         extends AbstractBuilder<B, C> {

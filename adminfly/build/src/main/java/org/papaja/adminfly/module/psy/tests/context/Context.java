@@ -1,5 +1,8 @@
-package org.papaja.adminfly.module.psy.tests;
+package org.papaja.adminfly.module.psy.tests.context;
 
+import org.papaja.adminfly.module.psy.tests.Gender;
+import org.papaja.adminfly.module.psy.tests.Test;
+import org.papaja.adminfly.module.psy.tests.TestAware;
 import org.papaja.function.BiFunction;
 
 import static java.lang.String.format;

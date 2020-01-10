@@ -5,7 +5,7 @@ import org.papaja.adminfly.commons.mvc.controller.AbstractController;
 import org.papaja.adminfly.module.psy.database.service.PatientService;
 import org.papaja.adminfly.module.psy.database.service.ResultService;
 import org.papaja.adminfly.module.psy.database.service.SessionService;
-import org.papaja.adminfly.module.psy.tests.SessionContext;
+import org.papaja.adminfly.module.psy.tests.context.SessionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

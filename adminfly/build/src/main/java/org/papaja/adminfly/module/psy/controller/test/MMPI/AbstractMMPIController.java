@@ -6,14 +6,12 @@ import org.papaja.adminfly.module.psy.database.entity.Patient;
 import org.papaja.adminfly.module.psy.database.entity.results.MMPI.AbstractMMPIResult;
 import org.papaja.adminfly.module.psy.database.entity.results.Result;
 import org.papaja.adminfly.module.psy.tests.MMPI.Answer;
-import org.papaja.adminfly.module.psy.tests.MMPI.AnswersFactory;
 import org.papaja.adminfly.module.psy.tests.MMPI.AnswersConverter;
+import org.papaja.adminfly.module.psy.tests.MMPI.AnswersFactory;
 import org.papaja.adminfly.module.psy.tests.MMPI.WizardFactory;
-import org.papaja.adminfly.module.psy.tests.MMPI.payload.AnswersPayload;
 import org.papaja.adminfly.module.psy.tests.TestAware;
 import org.papaja.adminfly.module.psy.tests.wizard.Wizard;
 import org.papaja.adminfly.module.psy.tests.wizard.WizardAware;
-import org.papaja.tuple.Pair;
 import org.papaja.tuple.Triplet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -100,11 +98,9 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
 
         if (wizard.results().size() == wizard.size()) {
 
-            AnswersPayload         payload   = new AnswersPayload(
-                    new Pair<>(wizard.results(), AnswersFactory.createAnswers(getTest())));
-            AnswersConverter converter = new AnswersConverter();
-            Result                 result    = new MMPIToResultConverter<>().convert(
-                    new Triplet<>(getResultEntity(), converter.convert(payload), context.getPatient()));
+            AnswersConverter converter = new AnswersConverter(AnswersFactory.createAnswers(context.getTest()));
+            Result result = new MMPIToResultConverter<>().convert(
+                    new Triplet<>(getResultEntity(), converter.convert(wizard.results()), context.getPatient()));
 
             result.setPatient((Patient) context.getPatient());
 

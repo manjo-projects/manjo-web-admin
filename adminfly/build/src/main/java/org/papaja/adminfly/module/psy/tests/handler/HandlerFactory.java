@@ -1,6 +1,7 @@
-package org.papaja.adminfly.module.psy.tests;
+package org.papaja.adminfly.module.psy.tests.handler;
 
 import org.papaja.adminfly.module.psy.tests.MMPI.MMPIHandler;
+import org.papaja.adminfly.module.psy.tests.context.Context;
 
 import static java.lang.String.format;
 

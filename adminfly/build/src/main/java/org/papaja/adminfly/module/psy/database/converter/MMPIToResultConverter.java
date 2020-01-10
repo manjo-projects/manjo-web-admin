@@ -3,7 +3,7 @@ package org.papaja.adminfly.module.psy.database.converter;
 import org.papaja.adminfly.module.psy.database.entity.results.MMPI.AbstractMMPIResult;
 import org.papaja.adminfly.module.psy.tests.Gender;
 import org.papaja.adminfly.module.psy.tests.MMPI.Scale;
-import org.papaja.adminfly.module.psy.tests.PatientDetails;
+import org.papaja.adminfly.module.psy.tests.context.PatientDetails;
 import org.papaja.function.Converter;
 import org.papaja.tuple.Triplet;
 

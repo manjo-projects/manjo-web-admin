@@ -1,7 +1,7 @@
 package org.papaja.adminfly.module.psy.database.entity;
 
 import org.papaja.adminfly.commons.dao.entity.api.AbstractEntity;
-import org.papaja.adminfly.module.psy.tests.SessionDetails;
+import org.papaja.adminfly.module.psy.tests.context.SessionDetails;
 import org.papaja.adminfly.module.psy.tests.Test;
 
 import javax.persistence.*;

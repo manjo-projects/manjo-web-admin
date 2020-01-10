@@ -2,7 +2,7 @@ package org.papaja.adminfly.module.psy.config;
 
 import org.papaja.adminfly.commons.annotation.MvcConfiguration;
 import org.papaja.adminfly.module.psy.tests.MMPI.WizardFactory;
-import org.papaja.adminfly.module.psy.tests.SessionContext;
+import org.papaja.adminfly.module.psy.tests.context.SessionContext;
 import org.papaja.adminfly.module.psy.tests.builder.context.SessionDetailsContextBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
