@@ -37,7 +37,7 @@
             </dependencies>
         </profile>
         <profile>
-            <id>clock</id>
+            <id>PAPAJA-ADMINFLY-CLOCK</id>
             <dependencies>
                 <dependency>
                     <groupId>org.papaja.adminfly</groupId>
@@ -47,7 +47,7 @@
             </dependencies>
         </profile>
         <profile>
-            <id>mdbv</id>
+            <id>PAPAJA-ADMINFLY-MDBV</id>
             <dependencies>
                 <dependency>
                     <groupId>org.papaja.adminfly</groupId>
@@ -57,7 +57,7 @@
             </dependencies>
         </profile>
         <profile>
-            <id>blog</id>
+            <id>PAPAJA-ADMINFLY-BLOG</id>
             <dependencies>
                 <dependency>
                     <groupId>org.papaja.adminfly</groupId>
@@ -67,7 +67,7 @@
             </dependencies>
         </profile>
         <profile>
-            <id>psy</id>
+            <id>PAPAJA-ADMINFLY-PSY</id>
             <dependencies>
                 <!-- Psy -->
             </dependencies>
@@ -83,7 +83,7 @@
             </dependencies>
         </profile>
         <profile>
-            <id>psy-blog</id>
+            <id>PAPAJA-ADMINFLY-PSY-BLOG</id>
             <dependencies>
                 <!-- Psy -->
                 <dependency>
@@ -94,7 +94,7 @@
             </dependencies>
         </profile>
         <profile>
-            <id>all</id>
+            <id>PAPAJA-ADMINFLY-ALL</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>

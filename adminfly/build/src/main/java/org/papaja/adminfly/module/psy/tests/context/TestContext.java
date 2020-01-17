@@ -24,7 +24,6 @@ public class TestContext implements Context {
 
     @Override
     public void setTest(Test test) {
-        System.out.println("set test: " + test);
         this.test = test;
     }
 
