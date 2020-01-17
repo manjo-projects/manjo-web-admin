@@ -9,16 +9,15 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.chart.ui.Layer;
 import org.jfree.data.statistics.DefaultStatisticalCategoryDataset;
-import org.papaja.adminfly.module.psy.commons.function.Preparer;
 import org.papaja.adminfly.module.psy.commons.function.Value;
 import org.papaja.adminfly.module.psy.database.entity.results.Result;
 import org.papaja.adminfly.module.psy.database.preparer.PreparerFactory;
-import org.papaja.adminfly.module.psy.tests.context.Context;
 import org.papaja.adminfly.module.psy.tests.Gender;
-import org.papaja.adminfly.module.psy.tests.handler.HandlerFactory;
 import org.papaja.adminfly.module.psy.tests.Test;
 import org.papaja.adminfly.module.psy.tests.builder.context.TestContextBuilder;
+import org.papaja.adminfly.module.psy.tests.context.Context;
 import org.papaja.adminfly.module.psy.tests.handler.Handler;
+import org.papaja.adminfly.module.psy.tests.handler.HandlerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -135,31 +134,12 @@ public class ResultController extends AbstractPsyController {
                 .with(gender).with(test)
                 .build();
 
-        Preparer preparer = PreparerFactory.createPreparer(test, gender);
-
-        Value value = preparer.prepare(result);
-
-        System.out.println(value.get());
-
+        Value   value   = PreparerFactory.createPreparer(test, gender).prepare(result);
         Handler handler = HandlerFactory.createHandler(context);
 
         System.out.println(handler.getClass().getName());
 
         handler.handle(value);
-
-/*        System.out.println(points);
-
-        points.forEach((scale, integer) -> {
-            points.put(scale, integer + 10);
-        });
-
-        Caster.cast("", String.class);
-
-        Map<Scale, Float> rates = new PointsTRateConverterFactory()
-                .createConverter(new TestContextBuilder().with(result.getTest()).build())
-                .getTRates(new RawPointsPayload(new Pair<>(points, result.getPatient().getGender())));
-
-        System.out.println(rates);*/
 
         mav.addObject("result", result);
 
