@@ -59,7 +59,6 @@ abstract public class AbstractMMPIController extends AbstractPsyController imple
             mav.addObject("total", getWizard().size());
             mav.addObject("previous", getWizard().results().get(getWizard().position()));
             mav.addObject("prefix", format("/%s", getTest()));
-            mav.addObject("patient", context.getPatient());
         } else if (getWizard().is(FINISHED)) {
             mav = newRedirect(format("%s/calculate", getTest()));
         } else {
