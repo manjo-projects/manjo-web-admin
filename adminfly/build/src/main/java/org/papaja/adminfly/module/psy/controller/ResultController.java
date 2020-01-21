@@ -139,9 +139,12 @@ public class ResultController extends AbstractPsyController {
 
         System.out.println(handler.getClass().getName());
 
-        handler.handle(value);
+        Value handled = handler.handle(value);
+
+        System.out.println(handled.type().getName());
 
         mav.addObject("result", result);
+        mav.addObject("values", handled);
 
         return mav;
     }

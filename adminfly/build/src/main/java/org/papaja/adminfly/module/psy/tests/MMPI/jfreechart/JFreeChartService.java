@@ -36,12 +36,13 @@ public class JFreeChartService implements Builder<byte[]> {
     private XYValue<Integer>     size   = DEFAULT_SIZE;
     private IntervalMarker       marker = DEFAULT_INTERVAL_MARKER;
 
-    public JFreeChartService(String title, String xTitle, String yTitle, List<Map<Double, String>> data) {
+    public JFreeChartService(String title, String xTitle, String yTitle, List<Map<String, Double>> data) {
         byte[]                            bytes    = new byte[0];
         DefaultStatisticalCategoryDataset dataset  = new DefaultStatisticalCategoryDataset();
         int                               counter  = 0;
         int                               size     = data.size();
-        LineAndShapeRenderer              renderer = new LineAndShapeRenderer();
+
+        renderer = new LineAndShapeRenderer();
 
         for (int i = 0; i < size; i++) {
             renderer.setSeriesShape(i, CIRCLE);
@@ -49,13 +50,17 @@ public class JFreeChartService implements Builder<byte[]> {
             renderer.setSeriesStroke(i, BASIC_STROKE);
         }
 
-        for (Map<Double, String> datum : data) {
+        for (Map<String, Double> datum : data) {
             String row = format("R%d", counter++);
-            datum.forEach((value, name) -> dataset.add(value.doubleValue(), 0D, row, name));
+            datum.forEach((name, value) -> dataset.add(value.doubleValue(), 0D, row, name));
         }
 
         chart = ChartFactory.createLineChart(
                 title, xTitle, yTitle, dataset, PlotOrientation.VERTICAL, false, false, true);
+    }
+
+    public void setMarker(XYValue<Double> marker) {
+        this.marker = new IntervalMarker(marker.getX(), marker.getY(), Color.decode("#00bd00"));
     }
 
     @Override

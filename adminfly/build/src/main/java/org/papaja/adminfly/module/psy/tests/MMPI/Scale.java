@@ -1,6 +1,6 @@
 package org.papaja.adminfly.module.psy.tests.MMPI;
 
-import org.papaja.adminfly.module.psy.tests.Gender;
+import static java.lang.String.format;
 
 public enum Scale {
 
@@ -21,7 +21,6 @@ public enum Scale {
 
     private boolean    inverted;
     private String     name;
-    private Gender     sex;
     private Correction correction;
 
     Scale(String name, Correction correction, boolean inverted) {
@@ -62,12 +61,8 @@ public enum Scale {
         return getName().toUpperCase();
     }
 
-    public Gender sex() {
-        return sex;
-    }
-
-    public void sex(Gender sex) {
-        this.sex = sex;
+    public String getPrintableName() {
+        return format("%s (%s)", name().split("_")[1], getName());
     }
 
 }

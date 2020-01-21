@@ -2,7 +2,7 @@ package org.papaja.adminfly.module.psy.tests.context;
 
 public interface SessionContext extends SessionAware, PatientAware, Context {
 
-    String NAME = PayloadContext.class.getCanonicalName();
+    String NAME = SessionContext.class.getCanonicalName();
 
     default void setSession(SessionDetails session) {
         throw UNSUPPORTED_OPERATION_EXCEPTION.apply(NAME, "setSession");

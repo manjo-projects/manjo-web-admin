@@ -96,4 +96,25 @@ public class WelshCode {
 
     }
 
+    public static void main(String[] args) {
+        Map<String, Float> rates = new HashMap<>();
+
+        rates.put("1", 34F);
+        rates.put("2", 70F);
+        rates.put("3", 30F);
+        rates.put("4", 88F);
+        rates.put("5", 38F);
+        rates.put("6", 90F);
+        rates.put("7", 95F);
+        rates.put("8", 62F);
+        rates.put("9", 23F);
+        rates.put("0", 44F);
+
+        rates.put("L", 55F);
+        rates.put("F", 55F);
+        rates.put("K", 100F);
+
+        System.out.println(new WelshCode().getCode(rates));
+    }
+
 }

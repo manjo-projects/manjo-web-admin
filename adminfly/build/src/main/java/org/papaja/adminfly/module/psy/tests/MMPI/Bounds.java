@@ -2,17 +2,17 @@ package org.papaja.adminfly.module.psy.tests.MMPI;
 
 import org.papaja.tuple.Pair;
 
-public class Bounds extends Pair<Float, Float> {
+public class Bounds extends Pair<Double, Double> {
 
-    public Bounds(Float boundA, Float boundB) {
+    public Bounds(Double boundA, Double boundB) {
         super(boundA, boundB);
     }
 
-    public float getBoundA() {
+    public double getBoundA() {
         return getA();
     }
 
-    public float getBoundB() {
+    public double getBoundB() {
         return getB();
     }
 

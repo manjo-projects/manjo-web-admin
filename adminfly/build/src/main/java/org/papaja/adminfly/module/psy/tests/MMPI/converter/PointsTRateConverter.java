@@ -28,7 +28,7 @@ public class PointsTRateConverter implements Converter<Map<Scale, Integer>, Map<
         Map<Scale, FormulaData.Value> values = DATA.getValues(gender);
 
         input.forEach((scale, points)
-                -> output.put(scale, FORMULA.apply(points, values.get(scale).getIndex(), values.get(scale).getIndex())));
+                -> output.put(scale, FORMULA.apply(points, values.get(scale).getIndex(), values.get(scale).getSigma())));
 
         return output;
     }
