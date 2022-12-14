@@ -56,7 +56,7 @@
         <apache.lang3.version>3.9</apache.lang3.version>
         <apache.beanutils.version>1.9.3</apache.beanutils.version>
 
-        <snake-yaml.version>1.25</snake-yaml.version>
+        <snake-yaml.version>1.32</snake-yaml.version>
     </properties>
 
     <build>
